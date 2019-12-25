@@ -7,7 +7,6 @@ export type ShellfieTheme = {
 
 export type ShellfieStyle = {
     fontFamily: string;
-    fontColor: string;
     fontWeight: string;
     fontSize: number;  
 };
