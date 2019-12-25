@@ -45,6 +45,7 @@ async function shellfie(data, { name, location, style, theme = defaultTheme, ext
             lines.forEach(line => {
                 // support json
                 line = line.replace("\\x1b", "\x1b");
+                line = `${line}\x1b[0m`;
                 term.writeln(line);
             });
 
