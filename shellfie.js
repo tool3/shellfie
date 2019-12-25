@@ -28,7 +28,7 @@ async function shellfie(data, { name, location, style, theme = defaultTheme, ext
         const lines = Array.isArray(data) ? data : data.split('\n');
 
         // inject js scripts
-        const localModules = path.join(__dirname, 'node_modules')
+        const localModules = path.join(localPath, 'node_modules')
         await page.addScriptTag({ path: `${localModules}/xterm/lib/xterm.js` });
 
         // set page html
