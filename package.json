@@ -1,6 +1,6 @@
 {
   "name": "shellfie",
-  "version": "1.0.4",
+  "version": "1.0.9",
   "description": "take images of your formatted cli output",
   "main": "shellfie.js",
   "directories": {
