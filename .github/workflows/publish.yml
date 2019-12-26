@@ -26,3 +26,4 @@ jobs:
       - uses: tool3/publisher@master
         with:
           npm_token: ${{ secrets.NPM_TOKEN }}
+          github_token: ${{ secrets.GITHUB_TOKEN }}
