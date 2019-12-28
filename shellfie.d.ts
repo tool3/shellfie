@@ -17,7 +17,7 @@ export type ShellfieViewport = {
 };
 
 export type ShellfieOptions = {
-    name: string,
+    name?: string,
     location?: string,
     theme?: ShellfieTheme,
     style?: ShellfieStyle,
