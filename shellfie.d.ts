@@ -1,6 +1,6 @@
 export type ShellfieTheme = {
     theme: {
-        background: string ='#151515';
+        background: string;
         foreground: string;
     };
 };
@@ -17,12 +17,12 @@ export type ShellfieViewport = {
 };
 
 export type ShellfieOptions = {
-    name?: string,
-    location?: string,
-    theme?: ShellfieTheme,
-    style?: ShellfieStyle,
-    viewport?: ShellfieViewport,
-    puppeteerArgs?: string[]
+    name?: string;
+    location?: string;
+    theme?: ShellfieTheme;
+    style?: ShellfieStyle;
+    viewport?: ShellfieViewport;
+    puppeteerArgs?: string[];
 };
 
 export default function shellfie(data: string | string[], options: ShellfieOptions): Promise<void>;

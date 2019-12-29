@@ -6,6 +6,18 @@ describe('shellfie', () => {
         await shellfie(["\x1b[32mGreen line", "\x1b[31;1mRED bold"], { name: 'image name' });
     });
 
+    it.only('should support raw string', async () => {
+        const string = `
+    [32m  ✓[0m[90m should support complex string[0m[31m (928ms)[0m
+    [32m  ✓[0m[90m should support different font family[0m[31m (3447ms)[0m
+    [32m  ✓[0m[90m should support chartscii fancy example[0m[31m (885ms)[0m
+    [32m  ✓[0m[90m should support string output[0m[31m (848ms)[0m
+    [32m  ✓[0m[90m should support string output[0m[31m (766ms)[0m
+    [32m  ✓[0m[90m should magically work with magic numbers[0m[31m (1583ms)[0m
+    [32m  ✓[0m[90m should work with lolcat[0m[31m (837ms)[0m`
+          await shellfie(string, {name: 'raw', mode: 'raw'});
+    });
+
     it('should support complex string', async () => {
         const testResults = [
             "[2K[1G[1myarn run v1.22.5[22m",

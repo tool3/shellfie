@@ -48,7 +48,7 @@ async function shellfie(data, config) {
         // read html template
         const templatePath = path.join(__dirname + '/template/template.html');
         let html = await fs.readFile(templatePath, 'utf-8');
-        const lines = (Array.isArray(data) || mode !== 'default') ? data : data.split('\n');
+        const lines = (Array.isArray(data) || mode === 'raw') ? data : data.split('\n');
 
         // inject js scripts
         const localModules = path.join(localPath, 'node_modules')
@@ -57,7 +57,7 @@ async function shellfie(data, config) {
         // set page html
         await page.setContent(html);
         await page.waitForSelector('.main');
-
+        page.on('console', txt => txt.text());
         // setup terminal
         await page.evaluate(({ options, lines, mode}) => {
             const term = new Terminal({ ...options });
@@ -70,10 +70,11 @@ async function shellfie(data, config) {
                     term.writeln(line);
                 });
             } else {
+                lines = lines.replace(/\n/g, '\r\n');
                 term.write(lines);
             }
 
-            if (lines.length > 5) {
+            if (Array.isArray(lines) && lines.length > 5) {
                 term.resize((Number(lines.length) * 4), Number(lines.length) + 3);
             } else {
                 const { rows, cols } = term;
@@ -81,7 +82,6 @@ async function shellfie(data, config) {
             }
 
         }, { lines, mode, options: style ? { theme, ...style } : { theme } });
-        
         
         // inject styles
         await page.addStyleTag({ path: `${localModules}/xterm/css/xterm.css` })
