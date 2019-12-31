@@ -1,50 +1,22 @@
 global.window = undefined;
 const puppeteer = require('puppeteer');
+const getConfig = require('./utils/config');
 const path = require('path');
 const fs = require('fs').promises;
 const { Terminal } = require('xterm');
-
-function generateId() {
-    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-    const charactersLength = characters.length;
-    let result = '';
-
-    for (var i = 0; i < 7; i++) {
-        result += characters.charAt(Math.floor(Math.random() * charactersLength));
-    }
-    return `shellfie_${result}`;
-}
-
-const defaultpuppeteerArgs = ['--no-sandbox', '--disable-setuid-sandbox'];
-const defaultTheme = { background: '#151515' };
-const defaultViewport = { width: 700, height: 600 };
-const localPath = process.env.INIT_CWD || process.cwd();
-const defaultOptions = {
-    name: generateId(),
-    location: `${localPath}/shellfies`,
-    style: {},
-    theme: defaultTheme,
-    ext: 'png',
-    puppeteerArgs: defaultpuppeteerArgs,
-    viewport: defaultViewport,
-    mode: 'default'
-};
 
 async function shellfie(data, config) {
     try {
         if (!data || data.length === 0) {
             throw new Error('no data provided.\nshelffie needs a string || string[] to produce an image.')
         }
+        const localPath = process.env.INIT_CWD || process.cwd();
+        const { name, location, style, theme, ext, puppeteerArgs, viewport, mode } = getConfig(config, localPath);
         
-        Object.assign(defaultOptions, config);
-        const { name, location, style, theme, ext, puppeteerArgs, viewport, mode } = defaultOptions;
-        
-        const viewportSize = { width: viewport.width || defaultViewport.width, height: viewport.height || defaultViewport.height }
-        const puppeteerArguments = { args: puppeteerArgs ? [...defaultpuppeteerArgs, ...puppeteerArgs] : defaultpuppeteerArgs };
-        const browser = await puppeteer.launch(puppeteerArguments);
+        const browser = await puppeteer.launch(puppeteerArgs);
         const page = await browser.newPage();
 
-        await page.setViewport({ ...viewportSize, deviceScaleFactor: 2 });
+        await page.setViewport({ ...viewport, deviceScaleFactor: 2 });
         // read html template
         const templatePath = path.join(__dirname + '/template/template.html');
         let html = await fs.readFile(templatePath, 'utf-8');
@@ -53,16 +25,21 @@ async function shellfie(data, config) {
         // inject js scripts
         const localModules = path.join(localPath, 'node_modules')
         await page.addScriptTag({ path: `${localModules}/xterm/lib/xterm.js` });
+        await page.addScriptTag({ path: `${localModules}/xterm-addon-fit/lib/xterm-addon-fit.js` });
         
         // set page html
         await page.setContent(html);
         await page.waitForSelector('.main');
-        page.on('console', txt => txt.text());
+        page.on('console', txt => console.log(txt.text()));
         // setup terminal
-        await page.evaluate(({ options, lines, mode}) => {
+        await page.evaluate(({ options, lines, mode }) => {
             const term = new Terminal({ ...options });
             term.open(document.getElementById('terminal'));
             term.writeln('');
+
+            const isArray = Array.isArray(lines);
+            const length = isArray ? lines.length : lines.split('\n').length;
+
             if (mode === 'default') {
                 lines.forEach(line => {
                     line = line.replace(/\\x1.?\[/g, "\x1b[");
@@ -74,11 +51,12 @@ async function shellfie(data, config) {
                 term.write(lines);
             }
 
-            if (Array.isArray(lines) && lines.length > 5) {
-                term.resize((Number(lines.length) * 4), Number(lines.length) + 3);
+            if (isArray && length > 5) {
+                term.resize((Number(length) * 4), Number(length) + 3);
             } else {
                 const { rows, cols } = term;
-                term.resize(cols - 10, rows)
+                const rowsNumber = rows > length ? (length * 2) + 1 : rows;
+                term.resize(cols - 10, rowsNumber);
             }
 
         }, { lines, mode, options: style ? { theme, ...style } : { theme } });
