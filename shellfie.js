@@ -25,7 +25,6 @@ async function shellfie(data, config) {
         // inject js scripts
         const localModules = path.join(localPath, 'node_modules')
         await page.addScriptTag({ path: `${localModules}/xterm/lib/xterm.js` });
-        await page.addScriptTag({ path: `${localModules}/xterm-addon-fit/lib/xterm-addon-fit.js` });
         
         // set page html
         await page.setContent(html);
