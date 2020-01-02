@@ -10,6 +10,20 @@ describe('shellfie', () => {
         await shellfie(["\x1b[32mGreen line", "\x1b[31;1mRED bold"], { name: 'small', viewport: {width: 200} });
     });
 
+    it('should support long raw output', async () => {
+        let foreground = '';
+        let background = '';
+        for (let i = 0; i < 255; i++) {
+            foreground += `\x1b[38;5;${i}m ${i}\x1b[0m`;
+        }
+        await shellfie(foreground, { name: 'foreground', mode: 'raw'});
+
+        for (let i = 0; i < 255; i++) {
+            background += `\x1b[48;5;${i}m ${i}\x1b[0m`;
+        }
+        shellfie(background, {mode: 'raw', name: 'test'});
+    });
+
     it('should support raw string', async () => {
         const string = `
     [32m  ✓[0m[90m should support complex string[0m[31m (928ms)[0m
