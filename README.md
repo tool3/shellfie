@@ -32,7 +32,7 @@ await shellfie(data, options);
 ```
 
 outputs:
-![](https://github.com/tool3/shellfied/blob/master/shellfies/shellfie.png?raw=true)
+![](https://github.com/tool3/shellfie/blob/master/shellfies/shellfie.png?raw=true)
 
 
 # data
