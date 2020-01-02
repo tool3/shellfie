@@ -22,6 +22,7 @@ export type ShellfieOptions = {
     theme?: ShellfieTheme;
     style?: ShellfieStyle;
     viewport?: ShellfieViewport;
+    mode?: string;
     puppeteerArgs?: string[];
 };
 
