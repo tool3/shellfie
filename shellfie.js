@@ -12,7 +12,7 @@ async function shellfie(data, config) {
         const localPath = process.env.INIT_CWD || process.cwd();
         const { name, location, style, theme, ext, puppeteerArgs, viewport, mode } = getConfig(config, localPath);
 
-        const browser = await puppeteer.launch(puppeteerArgs);
+        const browser = await puppeteer.launch({ args: puppeteerArgs });
         const page = await browser.newPage();
 
         await page.setViewport({ ...viewport, deviceScaleFactor: 2 });
