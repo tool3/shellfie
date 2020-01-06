@@ -45,6 +45,7 @@ async function shellfie(data, config) {
                     term.writeln(line);
                 });
             } else {
+                lines = Array.isArray(lines) && lines.length > 1  ? lines : lines[0];
                 lines = lines.replace(/\n/g, '\r\n');
                 lines = chunkArray(lines.split(' '), cols * 4);
                 lines.forEach(line => {
