@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Fira+Code&family=Roboto&display=swap');
 
+body {
+  margin: 0;
+  padding: 0;
+}
+
 .main {
   height: auto;
 }
@@ -39,6 +44,11 @@
   background: #27c840;
 }
 
-.xterm .xterm-screen canvas {
-  left: 20px;
+
+.xterm-rows {
+  padding: 0 15px !important;
+}
+
+.xterm-cursor {
+  display: none !important;
 }

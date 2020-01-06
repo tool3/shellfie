@@ -29,8 +29,8 @@ describe('shellfie', () => {
         await shellfie(data, options);
     });
 
-    it('should support custom viewport', async () => {
-        await shellfie(["\x1b[32mGreen line", "\x1b[31;1mRED bold"], { name: 'small', viewport: { width: 200 } });
+    it.only('should support custom viewport', async () => {
+        await shellfie(["\x1b[32mGreen line", "\x1b[31;1mRED bold"], { name: 'small', viewport: { width: 200, height: 200 } });
     });
 
     it('should support long raw output', async () => {
@@ -113,7 +113,7 @@ describe('shellfie', () => {
         await shellfie(testResults, { name: 'monaco', style: { fontFamily: 'Monaco' } });
         await shellfie(testResults, { name: 'fira', style: { fontFamily: 'Fira Code', fontWeight: 'bold' } });
         await shellfie(testResults, { name: 'colored', style: { fontFamily: 'Fira Code' }, theme: { forground: 'gray' } });
-        await shellfie(testResults, { name: 'default' });
+        await shellfie(testResults, { name: 'default', viewport: {height: 500} });
     });
 
     it('should support chartscii fancy example', async () => {

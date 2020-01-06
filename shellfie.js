@@ -24,20 +24,21 @@ async function shellfie(data, config) {
         // inject js scripts
         const localModules = path.join(localPath, 'node_modules')
         await page.addScriptTag({ path: `${localModules}/xterm/lib/xterm.js` });
+        await page.addScriptTag({ path: `${localModules}/xterm-addon-fit/lib/xterm-addon-fit.js` });
 
         // set page html
         await page.setContent(html);
         await page.waitForSelector('.main');
         page.on('console', txt => console.log(txt.text()));
+        
         // setup terminal
-        await page.evaluate(({ options, lines, mode }) => {
-            const term = new Terminal({ ...options });
+        await page.evaluate(({ options, lines, mode, viewport }) => {
+            const fit = new FitAddon.FitAddon();
+            const term = new Terminal({ ...options, rendererType: 'dom' });
             term.open(document.getElementById('terminal'));
+            term.loadAddon(fit);
             term.writeln('');
-
-            const isArray = Array.isArray(lines);
-            const length = isArray ? lines.length : lines.split('\n').length;
-            const { rows, cols } = term;
+            
             if (mode === 'default') {
                 lines.forEach(line => {
                     line = line.replace(/\\x1.?\[/g, "\x1b[");
@@ -45,43 +46,23 @@ async function shellfie(data, config) {
                     term.writeln(line);
                 });
             } else {
-                lines = Array.isArray(lines) && lines.length > 1  ? lines : lines[0];
-                lines = lines.replace(/\n/g, '\r\n');
-                lines = chunkArray(lines.split(' '), cols * 4);
-                lines.forEach(line => {
-                    line = line.join(' ');
-                    line = line.replace(/\\x1.?\[/g, "\x1b[");
-                    line = `${line}\x1b[0m`;
-                    term.writeln(line);
-                });
-            }
-
-            if (isArray && length > 5) {
-                term.resize((Number(length) * 4), Number(length) + 3);
-            } else {
-                const rowsNumber = rows > length ? (length * 2) + 1 : rows;
-                term.resize(cols - 8, mode === "default" ? rowsNumber : rows + 5);
-            }
-
-
-            function chunkArray(myArray, size) {
-                var index = 0;
-                var arrayLength = myArray.length;
-                var tempArray = [];
-
-                for (index = 0; index < arrayLength; index += size) {
-                    myChunk = myArray.slice(index, index + size);
-                    tempArray.push(myChunk);
+                if (Array.isArray(lines)) {
+                    lines = lines.length > 1 ? lines : lines[0]
                 }
-
-                return tempArray;
+                lines = lines.replace(/\n/g, '\r\n');
+                term.write(lines);
             }
+            const height = viewport.height - 60;
+            document.querySelector('.xterm-screen').style.width = `${viewport.width}px`;
+            document.querySelector('.xterm-screen').style.height = `${height}px`;
+            fit.fit();
 
-        }, { lines, mode, options: style ? { theme, ...style } : { theme } });
-
+        }, { lines, mode, options: style ? { theme, ...style } : { theme }, viewport });
+        
         // inject styles
-        await page.addStyleTag({ path: `${localModules}/xterm/css/xterm.css` })
         await page.addStyleTag({ path: `${path.resolve(__dirname, 'template/template.css')}` });
+        await page.addStyleTag({ path: `${localModules}/xterm/css/xterm.css` })
+        await page.evaluateHandle('document.fonts.ready');
 
         // crop image   
         const clip = await (await page.$(".main")).boundingBox();
@@ -99,7 +80,7 @@ async function shellfie(data, config) {
         await page.screenshot({ path: `${pngsDir}/${name}.${ext}`, clip, omitBackground: true, type: ext });
         await browser.close();
     } catch (err) {
-        console.error(new Error(`shellfie error: ${err.message}`))
+        console.error(new Error(`\x1b[32mshellfie error: ${err.message}\x1b[0m`))
         console.error(err.stack)
         throw err;
     }
