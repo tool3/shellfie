@@ -8,7 +8,7 @@ yarn add shellfie
 ```
 
 # any way you want 'em
-you can require `shellfie` as a library, use the `shellfie-cli`, or even make `POST` calls to the shellfie service (`shellfied`), allowing you to get your shellfies any way your want 'em.   
+you can require `shellfie` as a library, use the `shellfie-cli`, or even make `POST` calls to the shellfie service - `shellfied`, allowing you to get your shellfies any way you want 'em.   
     - [shellfie](https://github.com/tool3/shellfie)   
     - [shellfie-cli](https://github.com/tool3/shellfie-cli)   
     - [shellfied](https://github.com/tool3/shellfied)   
