@@ -97,7 +97,7 @@ outputs:
 
   # examples
   ```js
-  await shellfie(["\x1b[32mGreen line", "\x1b[31;1mRED bold"], { name: 'small', viewport: { width: 200 } });
+  await shellfie(["\x1b[32mGreen line", "\x1b[31;1mRED bold"], { name: 'small', viewport: { width: 200, height: 200 } });
   ```   
 ![](https://github.com/tool3/shellfie/blob/master/shellfies/small.png?raw=true)    
 
