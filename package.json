@@ -1,7 +1,7 @@
 {
   "name": "shellfie",
   "version": "1.1.4",
-  "description": "take images of your formatted cli output",
+  "description": "create beautiful terminal screenshots from formatted string",
   "main": "shellfie.js",
   "directories": {
     "test": "tests"
@@ -13,7 +13,6 @@
   "author": "Tal Hayut",
   "license": "MIT",
   "dependencies": {
-    "chartscii": "^1.2.3",
     "puppeteer": "^5.5.0",
     "xterm": "^4.9.0",
     "xterm-addon-fit": "^0.4.0"

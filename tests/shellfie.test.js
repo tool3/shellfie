@@ -1,5 +1,5 @@
 const shellfie = require('../shellfie');
-const fancyExample = require('./fancy');
+const execute = require('util').promisify(require('child_process').exec);
 
 describe('shellfie', () => {
     it('should support array of string and output a png file', async () => {
@@ -29,7 +29,7 @@ describe('shellfie', () => {
         await shellfie(data, options);
     });
 
-    it.only('should support custom viewport', async () => {
+    it('should support custom viewport', async () => {
         await shellfie(["\x1b[32mGreen line", "\x1b[31;1mRED bold"], { name: 'small', viewport: { width: 200, height: 200 } });
     });
 
@@ -113,17 +113,30 @@ describe('shellfie', () => {
         await shellfie(testResults, { name: 'monaco', style: { fontFamily: 'Monaco' } });
         await shellfie(testResults, { name: 'fira', style: { fontFamily: 'Fira Code', fontWeight: 'bold' } });
         await shellfie(testResults, { name: 'colored', style: { fontFamily: 'Fira Code' }, theme: { forground: 'gray' } });
-        await shellfie(testResults, { name: 'default', viewport: {height: 500} });
+        await shellfie(testResults, { name: 'default', viewport: { height: 500 } });
     });
 
-    it('should support chartscii fancy example', async () => {
-        const stdout = fancyExample();
+    it.only('should support chartscii fancy example', async () => {
+        const chart = [];
+        for (let i = 1; i <= 20; i++) {
+            chart.push(Math.floor(Math.random() * 1000));
+        }
+        const dataString = chart.join(' ');
+        const cmd = `npx chartscii-cli create ${dataString} --label 'Example Chart' --width 500 --color 'green' --colorLabels --percentage --reverse`;
+        const { stdout } = await execute(cmd);
         const data = stdout.split('\n');
         await shellfie(data, { name: 'chartscii' });
     });
 
-    it('should support fancy unsplitted', async () => {
-        await shellfie(fancyExample(), { name: 'chartscii again' });
+    it.only('should support fancy unsplitted', async () => {
+        const chart = [];
+        for (let i = 1; i <= 20; i++) {
+            chart.push(Math.floor(Math.random() * 1000));
+        }
+        const dataString = chart.join(' ');
+        const cmd = `npx chartscii-cli create ${dataString} --label 'Example Chart' --width 500 --color 'pink' --colorLabels --percentage --reverse`;
+        const { stdout } = await execute(cmd);
+        await shellfie(stdout, { name: 'chartscii again', mode: 'raw' });
     });
 
     it('should support string output', async () => {
