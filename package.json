@@ -9,7 +9,11 @@
   "scripts": {
     "test": "mocha --no-timeouts tests/"
   },
-  "keywords": [],
+  "keywords": [
+    "terminal",
+    "screenshot",
+    "ansi"
+  ],
   "author": "Tal Hayut",
   "license": "MIT",
   "dependencies": {

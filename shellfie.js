@@ -15,7 +15,7 @@ async function shellfie(data, config) {
         const browser = await puppeteer.launch({ args: puppeteerArgs });
         const page = await browser.newPage();
 
-        await page.setViewport({ ...viewport, deviceScaleFactor: 2 });
+        await page.setViewport({ ...viewport, deviceScaleFactor: 4 });
         // read html template
         const templatePath = path.join(__dirname + '/template/template.html');
         let html = await fs.readFile(templatePath, 'utf-8');
@@ -50,7 +50,7 @@ async function shellfie(data, config) {
                     lines = lines.length > 1 ? lines : lines[0]
                 }
                 lines = lines.replace(/\n/g, '\r\n');
-                term.write(lines);
+                term.write(lines.trim());
             }
             const height = viewport.height - 60;
             document.querySelector('.xterm-screen').style.width = `${viewport.width}px`;

@@ -81,7 +81,7 @@ describe('shellfie', () => {
             "[2K[1GDone in 10.46s.",
 
         ]
-        await shellfie(testResults, { name: 'mocha test results' });
+        await shellfie(testResults, { name: 'mocha test results', viewport: {height: 400} });
     });
 
     it('should support different font family', async () => {
@@ -116,7 +116,7 @@ describe('shellfie', () => {
         await shellfie(testResults, { name: 'default', viewport: { height: 500 } });
     });
 
-    it.only('should support chartscii fancy example', async () => {
+    it('should support chartscii fancy example', async () => {
         const chart = [];
         for (let i = 1; i <= 20; i++) {
             chart.push(Math.floor(Math.random() * 1000));
@@ -128,7 +128,7 @@ describe('shellfie', () => {
         await shellfie(data, { name: 'chartscii' });
     });
 
-    it.only('should support fancy unsplitted', async () => {
+    it('should support fancy unsplitted', async () => {
         const chart = [];
         for (let i = 1; i <= 20; i++) {
             chart.push(Math.floor(Math.random() * 1000));
