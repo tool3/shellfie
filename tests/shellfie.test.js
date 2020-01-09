@@ -49,13 +49,13 @@ describe('shellfie', () => {
 
     it('should support raw string', async () => {
         const string = `
-    [32m  ✓[0m[90m should support complex string[0m[31m (928ms)[0m
-    [32m  ✓[0m[90m should support different font family[0m[31m (3447ms)[0m
-    [32m  ✓[0m[90m should support chartscii fancy example[0m[31m (885ms)[0m
-    [32m  ✓[0m[90m should support string output[0m[31m (848ms)[0m
-    [32m  ✓[0m[90m should support string output[0m[31m (766ms)[0m
-    [32m  ✓[0m[90m should magically work with magic numbers[0m[31m (1583ms)[0m
-    [32m  ✓[0m[90m should work with lolcat[0m[31m (837ms)[0m`
+[32m  ✓[0m[90m should support complex string[0m[31m (928ms)[0m
+[32m  ✓[0m[90m should support different font family[0m[31m (3447ms)[0m
+[32m  ✓[0m[90m should support chartscii fancy example[0m[31m (885ms)[0m
+[32m  ✓[0m[90m should support string output[0m[31m (848ms)[0m
+[32m  ✓[0m[90m should support string output[0m[31m (766ms)[0m
+[32m  ✓[0m[90m should magically work with magic numbers[0m[31m (1583ms)[0m
+[32m  ✓[0m[90m should work with lolcat[0m[31m (837ms)[0m`
         await shellfie(string, { name: 'raw', mode: 'raw' });
     });
 
