@@ -9,15 +9,21 @@
   "scripts": {
     "test": "mocha --no-timeouts tests/"
   },
+  "files": [
+    "shellfie.js",
+    "shellfie.d.ts",
+    "template",
+    "utils"
+  ],
   "keywords": [
     "terminal",
+    "xterm",
     "screenshot",
     "ansi"
   ],
   "author": "Tal Hayut",
   "license": "MIT",
   "dependencies": {
-    "gradient-string": "^1.2.0",
     "puppeteer": "^5.5.0",
     "xterm": "^4.9.0",
     "xterm-addon-fit": "^0.4.0"
