@@ -1,4 +1,3 @@
-global.window = undefined;
 const puppeteer = require('puppeteer');
 const getConfig = require('./utils/config');
 const path = require('path');

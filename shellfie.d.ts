@@ -1,14 +1,12 @@
 export type ShellfieTheme = {
-    theme: {
-        background: string;
-        foreground: string;
-    };
+    background: string;
+    foreground: string;
 };
 
 export type ShellfieStyle = {
     fontFamily: string;
     fontWeight: string;
-    fontSize: number;  
+    fontSize: number;
 };
 
 export type ShellfieViewport = {

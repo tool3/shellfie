@@ -44,7 +44,7 @@ describe('shellfie', () => {
         for (let i = 0; i < 255; i++) {
             background += `\x1b[48;5;${i}m ${i}\x1b[0m`;
         }
-        await shellfie(background, { mode: 'raw', name: 'background' });
+        await shellfie(background, { mode: 'raw', name: 'background', theme: {background: '#1e1e1e'} });
     });
 
     it('should support raw string', async () => {
