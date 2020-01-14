@@ -16,12 +16,12 @@ async function shellfie(data, config) {
 
         await page.setViewport({ ...viewport, deviceScaleFactor: 4 });
         // read html template
-        const templatePath = path.join(__dirname + '/template/template.html');
+        const templatePath = __dirname + '/template/template.html';
         let html = await fs.readFile(templatePath, 'utf-8');
         const lines = (Array.isArray(data) || mode === 'raw') ? data : data.split('\n');
 
         // inject js scripts
-        const localModules = path.join(localPath, 'node_modules')
+        const localModules = __dirname + '/node_modules';
         await page.addScriptTag({ path: `${localModules}/xterm/lib/xterm.js` });
         await page.addScriptTag({ path: `${localModules}/xterm-addon-fit/lib/xterm-addon-fit.js` });
 
