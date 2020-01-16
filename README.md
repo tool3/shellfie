@@ -68,7 +68,7 @@ outputs:
 - #### `background`
   **type**: `string`   
   **description**: css color for terminal background   
-  **default**: `{ background: '#151515' }`
+  **default**: `'#151515'`
 - #### `forground`
   **type**: `string`   
   **description**: css color for any unformatted string provided in `data`
