@@ -3,18 +3,22 @@ const puppeteer = require('puppeteer');
 const path = require('path');
 const fs = require('fs').promises;
 const { Terminal } = require('xterm');
-const { FitAddon } = require('xterm-addon-fit');
 
 const defaultpuppeteerArgs = ['--no-sandbox', '--disable-setuid-sandbox'];
-const defaultTheme = { background: '#151515' };
-const defaultViewport = { width: 800, height: 600 };
+const defaultTheme = { background: '#151515', linewrap: '' };
+const defaultViewport = { width: 700, height: 600 };
 
-async function shellfie(data, { name, location, style, theme = defaultTheme, ext = 'png', puppeteerArgs = defaultpuppeteerArgs, viewport = defaultViewport }) {
+async function shellfie(data, { name, location, style, theme = defaultTheme, ext = 'png', puppeteerArgs, viewport = defaultViewport }) {
     try {
-        // validateInput(snapshot);
+
+        if (!data || data.length === 0) {
+            throw new Error('no data provided.\nshelffie needs a string || string[] to produce an image.')
+        }
+
         const localPath = process.env.INIT_CWD;
-        const browser = await puppeteer.launch({ args: puppeteerArgs, });
+        const browser = await puppeteer.launch({ args: puppeteerArgs ? [...defaultpuppeteerArgs, ...puppeteerArgs] : defaultpuppeteerArgs });
         const page = await browser.newPage();
+        page.on('console', message => console.log(message.text()))
         const viewportSize = { width: viewport.width || defaultViewport.width, height: viewport.height || defaultViewport.height }
 
         await page.setViewport({ ...viewportSize, deviceScaleFactor: 2 });
@@ -32,13 +36,20 @@ async function shellfie(data, { name, location, style, theme = defaultTheme, ext
         await page.setContent(html);
         await page.waitForSelector('.main');
 
+        // setup terminal
         await page.evaluate(({ options, lines }) => {
-            // const fit = new FitAddon();
-            const term = new Terminal({ ...options, convertEol: true, allowProposedApi: true, logLevel: 'debug' });
-            // term.loadAddon(fit)
+            const term = new Terminal({ ...options });
             term.open(document.getElementById('terminal'));
-            lines.forEach(line => term.writeln(line));
-            // fit.fit();
+            term.writeln('');
+
+            lines.forEach(line => {
+                term.writeln(line)
+            });
+
+            if (lines.length > 5) {
+                term.resize((Number(lines.length) * 4), Number(lines.length) + 3);
+            }
+
         }, { lines, options: style ? { theme, ...style } : { theme } })
 
         // inject styles

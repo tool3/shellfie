@@ -1,6 +1,7 @@
 export type ShellfieTheme = {
     theme: {
         background: string ='#151515';
+        foreground: string;
     };
 };
 
