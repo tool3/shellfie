@@ -43,7 +43,9 @@ async function shellfie(data, { name, location, style, theme = defaultTheme, ext
             term.writeln('');
 
             lines.forEach(line => {
-                term.writeln(line)
+                // support json
+                line = line.replace("\\x1b", "\x1b");
+                term.writeln(line);
             });
 
             if (lines.length > 5) {
