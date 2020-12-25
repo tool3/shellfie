@@ -48,8 +48,11 @@ async function shellfie(data, { name, location, style, theme = defaultTheme, ext
 
             if (lines.length > 5) {
                 term.resize((Number(lines.length) * 4), Number(lines.length) + 3);
+            } else {
+                const {rows, cols} = term;
+                term.resize(cols - 10, rows)
             }
-
+            
         }, { lines, options: style ? { theme, ...style } : { theme } })
 
         // inject styles
