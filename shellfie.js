@@ -18,7 +18,7 @@ async function shellfie(data, { name, location, style, theme = defaultTheme, ext
         const localPath = process.env.INIT_CWD;
         const browser = await puppeteer.launch({ args: puppeteerArgs ? [...defaultpuppeteerArgs, ...puppeteerArgs] : defaultpuppeteerArgs });
         const page = await browser.newPage();
-        page.on('console', message => console.log(message.text()))
+        
         const viewportSize = { width: viewport.width || defaultViewport.width, height: viewport.height || defaultViewport.height }
 
         await page.setViewport({ ...viewportSize, deviceScaleFactor: 2 });
@@ -43,11 +43,11 @@ async function shellfie(data, { name, location, style, theme = defaultTheme, ext
 
             lines.forEach(line => {
                 // support json
-                line = line.replace(/\\x1.*\[/g, "\x1b[");
+                line = line.replace(/\\x1.?\[/g, "\x1b[");
                 line = `${line}\x1b[0m`;
                 term.writeln(line);
             });
-
+            
             if (lines.length > 5) {
                 term.resize((Number(lines.length) * 4), Number(lines.length) + 3);
             } else {
