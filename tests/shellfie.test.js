@@ -6,7 +6,11 @@ describe('shellfie', () => {
         await shellfie(["\x1b[32mGreen line", "\x1b[31;1mRED bold"], { name: 'image name' });
     });
 
-    it.only('should support raw string', async () => {
+    it('should support custom viewport', async () => {
+        await shellfie(["\x1b[32mGreen line", "\x1b[31;1mRED bold"], { name: 'small', viewport: {width: 200} });
+    });
+
+    it('should support raw string', async () => {
         const string = `
     [32m  ✓[0m[90m should support complex string[0m[31m (928ms)[0m
     [32m  ✓[0m[90m should support different font family[0m[31m (3447ms)[0m
@@ -78,7 +82,7 @@ describe('shellfie', () => {
         await shellfie(data, { name: 'chartscii' });
     });
 
-    it('should support string output', async () => {
+    it('should support fancy unsplitted', async () => {
         await shellfie(fancyExample(), { name: 'chartscii again' });
     });
 
@@ -92,8 +96,8 @@ describe('shellfie', () => {
         const data = ["\x1b[95mWorks", "with", "4", "items"]
         await shellfie(data, { name: '4 items', theme: { foreground: 'blue' } });
 
-        const _data = "Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate. Voluptatum ducimus voluptates voluptas?";
-        await shellfie(_data, { name: '5 items', theme: { foreground: 'yellow' },  });
+        const _data = "Lorem ipsum dolor sit amet, consectetur adipisicing elit.\nEligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate.\nVoluptatum ducimus voluptates voluptas?";
+        await shellfie(_data, { name: 'raw 5 items', theme: { foreground: 'yellow' },  });
     });
 
     it('should work with lolcat', async () => {
