@@ -18,8 +18,8 @@ describe('shellfie', () => {
             name: 'shellfie',
             style: {
                 fontSize: 15,
-                fontWeight: "bold",
-                fontFamily: "Fira Code"
+                fontWeight: 'bold',
+                fontFamily: 'Fira Code'
             },
             viewport: {
                 width: 400,
@@ -44,7 +44,7 @@ describe('shellfie', () => {
         for (let i = 0; i < 255; i++) {
             background += `\x1b[48;5;${i}m ${i}\x1b[0m`;
         }
-        shellfie(background, { mode: 'raw', name: 'test' });
+        await shellfie(background, { mode: 'raw', name: 'background' });
     });
 
     it('should support raw string', async () => {
@@ -91,21 +91,24 @@ describe('shellfie', () => {
             "",
             "[0m[0m",
             "[0m  shellfie[0m",
-            "  [32m  ✓[0m[90m should support array of string and output a png file[0m[31m (795ms)[0m",
-            "  [32m  ✓[0m[90m should support complex string[0m[31m (928ms)[0m",
-            "  [32m  ✓[0m[90m should support different font family[0m[31m (3447ms)[0m",
-            "  [32m  ✓[0m[90m should support chartscii fancy example[0m[31m (885ms)[0m",
-            "  [32m  ✓[0m[90m should support string output[0m[31m (848ms)[0m",
-            "  [32m  ✓[0m[90m should support string output[0m[31m (766ms)[0m",
-            "  [32m  ✓[0m[90m should magically work with magic numbers[0m[31m (1583ms)[0m",
-            "  [32m  ✓[0m[90m should work with lolcat[0m[31m (837ms)[0m",
+            "  [32m  ✓[0m[90m should support array of string and output a png file[0m[31m (1106ms)[0m",
+            "  [32m  ✓[0m[90m should show into img[0m[31m (983ms)[0m",
+            "  [32m  ✓[0m[90m should support custom viewport[0m[31m (982ms)[0m",
+            "  [32m  ✓[0m[90m should support long raw output[0m[31m (2287ms)[0m",
+            "  [32m  ✓[0m[90m should support raw string[0m[31m (1087ms)[0m",
+            "  [32m  ✓[0m[90m should support complex string[0m[31m (1079ms)[0m",
+            "  [32m  ✓[0m[90m should support different font family[0m[31m (5541ms)[0m",
+            "  [32m  ✓[0m[90m should support chartscii fancy example[0m[31m (1123ms)[0m",
+            "  [32m  ✓[0m[90m should support fancy unsplitted[0m[31m (1082ms)[0m",
+            "  [32m  ✓[0m[90m should support string output[0m[31m (947ms)[0m",
+            "  [32m  ✓[0m[90m should magically work with magic numbers[0m[31m (1945ms)[0m",
+            "  [32m  ✓[0m[90m should work with lolcat[0m[31m (1102ms)[0m",
             "",
             "",
-            "[92m [0m[32m 8 passing[0m[90m (10s)[0m",
+            "[92m [0m[32m 12 passing[0m[90m (19s)[0m",
             "",
-            "[2K[1GDone in 10.46s.",
-
-        ]
+            "[2K[1GDone in 19.60s.",
+        ];
         await shellfie(testResults, { name: 'monospace', style: { fontFamily: 'monospace' } });
         await shellfie(testResults, { name: 'monaco', style: { fontFamily: 'Monaco' } });
         await shellfie(testResults, { name: 'fira', style: { fontFamily: 'Fira Code', fontWeight: 'bold' } });
