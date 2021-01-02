@@ -3,7 +3,6 @@ const puppeteer = require('puppeteer');
 const getConfig = require('./utils/config');
 const path = require('path');
 const fs = require('fs').promises;
-const { Terminal } = require('xterm');
 
 async function shellfie(data, config) {
     try {
@@ -12,7 +11,7 @@ async function shellfie(data, config) {
         }
         const localPath = process.env.INIT_CWD || process.cwd();
         const { name, location, style, theme, ext, puppeteerArgs, viewport, mode } = getConfig(config, localPath);
-        
+
         const browser = await puppeteer.launch(puppeteerArgs);
         const page = await browser.newPage();
 
@@ -25,7 +24,7 @@ async function shellfie(data, config) {
         // inject js scripts
         const localModules = path.join(localPath, 'node_modules')
         await page.addScriptTag({ path: `${localModules}/xterm/lib/xterm.js` });
-        
+
         // set page html
         await page.setContent(html);
         await page.waitForSelector('.main');
@@ -38,7 +37,7 @@ async function shellfie(data, config) {
 
             const isArray = Array.isArray(lines);
             const length = isArray ? lines.length : lines.split('\n').length;
-
+            const { rows, cols } = term;
             if (mode === 'default') {
                 lines.forEach(line => {
                     line = line.replace(/\\x1.?\[/g, "\x1b[");
@@ -47,25 +46,48 @@ async function shellfie(data, config) {
                 });
             } else {
                 lines = lines.replace(/\n/g, '\r\n');
-                term.write(lines);
+                lines = chunkArray(lines.split(' '), cols * 4);
+                lines.forEach(line => {
+                    line = line.join(' ');
+                    line = line.replace(/\\x1.?\[/g, "\x1b[");
+                    line = `${line}\x1b[0m`;
+                    term.writeln(line);
+                });
             }
 
             if (isArray && length > 5) {
                 term.resize((Number(length) * 4), Number(length) + 3);
             } else {
-                const { rows, cols } = term;
                 const rowsNumber = rows > length ? (length * 2) + 1 : rows;
-                term.resize(cols - 10, rowsNumber);
+                term.resize(cols - 8, mode === "default" ? rowsNumber : rows + 5);
+            }
+
+
+            function chunkArray(myArray, size) {
+                var index = 0;
+                var arrayLength = myArray.length;
+                var tempArray = [];
+
+                for (index = 0; index < arrayLength; index += size) {
+                    myChunk = myArray.slice(index, index + size);
+                    tempArray.push(myChunk);
+                }
+
+                return tempArray;
             }
 
         }, { lines, mode, options: style ? { theme, ...style } : { theme } });
-        
+
         // inject styles
         await page.addStyleTag({ path: `${localModules}/xterm/css/xterm.css` })
         await page.addStyleTag({ path: `${path.resolve(__dirname, 'template/template.css')}` });
 
         // crop image   
-        const clip = await (await page.$(".main")).boundingBox()
+        const clip = await (await page.$(".main")).boundingBox();
+        clip.height = Math.min(clip.height, page.viewport().height);
+        clip.width = Math.min(clip.width, page.viewport().width);
+
+        await page.evaluate((height) => document.querySelector('.main').style.height = height, clip.height);
 
         // create shellfies dir
         const pngsDir = path.resolve(location);
@@ -81,5 +103,6 @@ async function shellfie(data, config) {
         throw err;
     }
 }
+
 
 module.exports = shellfie

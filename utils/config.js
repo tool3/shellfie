@@ -15,8 +15,8 @@ function getConfig(config, localPath) {
     const defaultpuppeteerArgs = ['--no-sandbox', '--disable-setuid-sandbox'];
     const defaultViewport = { width: 700, height: 600 };
     const defaultTheme = { background: '#151515' };
-    
-    const defaultOptions = {
+
+    const options = {
         name: generateId(),
         location: `${localPath}/shellfies`,
         style: {},
@@ -27,17 +27,17 @@ function getConfig(config, localPath) {
         mode: 'default'
     };
 
-    Object.assign(defaultOptions, config);
-
-    if (config.puppeteerArgs) {
-        defaultOptions.puppeteerArgs = { args: config.puppeteerArgs ? [...defaultpuppeteerArgs, ...puppeteerArgs] : defaultpuppeteerArgs };
-    }
-
-    if (config.viewport) {
-        defaultOptions.viewport = { width: config.viewport.width || defaultViewport.width, height: config.viewport.height || defaultViewport.height };
+    if (config) {
+        const userConfig = Object.keys(config).reduce((acc, key) => {
+            if (key in options) {
+                acc[key] = typeof options[key] === "object" ? Object.assign(options[key], config[key]) : config[key];
+            }
+            return acc;
+        }, {});
+        return Object.assign(options, userConfig);
     }
     
-    return defaultOptions;
+    return options;
 }
 
 module.exports = getConfig;
