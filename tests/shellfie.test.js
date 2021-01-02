@@ -6,8 +6,31 @@ describe('shellfie', () => {
         await shellfie(["\x1b[32mGreen line", "\x1b[31;1mRED bold"], { name: 'image name' });
     });
 
+    it('should show into img', async () => {
+        const data = [
+            '\x1b[105mSHELLFIE\\x1b[0m🤳',
+            '\x1b[38;5;225mthe easiest way',
+            '\x1b[38;5;213mto create beautiful',
+            '\x1b[38;5;14mCLI screenshots 📸',
+            '\x1b[38;5;199mprogrammatically 🚀'
+        ];
+        const options = {
+            name: 'shellfie',
+            style: {
+                fontSize: 15,
+                fontWeight: "bold",
+                fontFamily: "Fira Code"
+            },
+            viewport: {
+                width: 400,
+                height: 300
+            }
+        }
+        await shellfie(data, options);
+    });
+
     it('should support custom viewport', async () => {
-        await shellfie(["\x1b[32mGreen line", "\x1b[31;1mRED bold"], { name: 'small', viewport: {width: 200} });
+        await shellfie(["\x1b[32mGreen line", "\x1b[31;1mRED bold"], { name: 'small', viewport: { width: 200 } });
     });
 
     it('should support long raw output', async () => {
@@ -16,12 +39,12 @@ describe('shellfie', () => {
         for (let i = 0; i < 255; i++) {
             foreground += `\x1b[38;5;${i}m ${i}\x1b[0m`;
         }
-        await shellfie(foreground, { name: 'foreground', mode: 'raw'});
+        await shellfie(foreground, { name: 'foreground', mode: 'raw' });
 
         for (let i = 0; i < 255; i++) {
             background += `\x1b[48;5;${i}m ${i}\x1b[0m`;
         }
-        shellfie(background, {mode: 'raw', name: 'test'});
+        shellfie(background, { mode: 'raw', name: 'test' });
     });
 
     it('should support raw string', async () => {
@@ -33,7 +56,7 @@ describe('shellfie', () => {
     [32m  ✓[0m[90m should support string output[0m[31m (766ms)[0m
     [32m  ✓[0m[90m should magically work with magic numbers[0m[31m (1583ms)[0m
     [32m  ✓[0m[90m should work with lolcat[0m[31m (837ms)[0m`
-          await shellfie(string, {name: 'raw', mode: 'raw'});
+        await shellfie(string, { name: 'raw', mode: 'raw' });
     });
 
     it('should support complex string', async () => {
@@ -111,7 +134,7 @@ describe('shellfie', () => {
         await shellfie(data, { name: '4 items', theme: { foreground: 'blue' } });
 
         const _data = "Lorem ipsum dolor sit amet, consectetur adipisicing elit.\nEligendi non quis exercitationem culpa nesciunt nihil aut nostrum explicabo reprehenderit optio amet ab temporibus asperiores quasi cupiditate.\nVoluptatum ducimus voluptates voluptas?";
-        await shellfie(_data, { name: 'raw 5 items', theme: { foreground: 'yellow' },  });
+        await shellfie(_data, { name: 'raw 5 items', theme: { foreground: 'yellow' }, });
     });
 
     it('should work with lolcat', async () => {
@@ -142,7 +165,7 @@ describe('shellfie', () => {
             "[38;2;60;254;68ml[39m[38;2;65;254;63mo[39m[38;2;69;254;59ml[39m[38;2;73;254;55mc[39m[38;2;77;254;52ma[39m[38;2;82;253;48mt[39m[38;2;86;252;44m [39m[38;2;91;251;41mh[39m[38;2;95;250;37mo[39m[38;2;100;249;34mm[39m[38;2;105;247;31me[39m[38;2;109;245;28m [39m[38;2;114;244;25mp[39m[38;2;119;242;22ma[39m[38;2;124;239;20mg[39m[38;2;128;237;17me[39m[38;2;133;235;15m:[39m[38;2;138;232;13m [39m[38;2;143;229;11m<[39m[38;2;147;226;9mh[39m[38;2;152;223;7mt[39m[38;2;157;220;6mt[39m[38;2;161;217;5mp[39m[38;2;166;213;3ms[39m[38;2;170;210;3m:[39m[38;2;175;206;2m/[39m[38;2;179;202;1m/[39m[38;2;183;198;1mg[39m[38;2;188;194;1mi[39m[38;2;192;190;1mt[39m[38;2;196;186;1mh[39m[38;2;200;182;1mu[39m[38;2;204;177;1mb[39m[38;2;207;173;2m.[39m[38;2;211;168;3mc[39m[38;2;215;164;4mo[39m[38;2;218;159;5mm[39m[38;2;221;155;6m/[39m[38;2;224;150;8mb[39m[38;2;227;145;10mu[39m[38;2;230;141;12ms[39m[38;2;233;136;14my[39m[38;2;236;131;16ml[39m[38;2;238;126;18mo[39m[38;2;240;122;21mo[39m[38;2;242;117;23mp[39m[38;2;244;112;26m/[39m[38;2;246;107;29ml[39m[38;2;248;103;32mo[39m[38;2;249;98;35ml[39m[38;2;250;93;39mc[39m[38;2;252;89;42ma[39m[38;2;253;84;46mt[39m[38;2;253;80;49m/[39m[38;2;254;76;53m>[39m[38;2;254;71;57m[39m",
             "[38;2;95;250;37mR[39m[38;2;100;249;34me[39m[38;2;105;247;31mp[39m[38;2;109;245;28mo[39m[38;2;114;244;25mr[39m[38;2;119;242;22mt[39m[38;2;124;239;20m [39m[38;2;128;237;17ml[39m[38;2;133;235;15mo[39m[38;2;138;232;13ml[39m[38;2;143;229;11mc[39m[38;2;147;226;9ma[39m[38;2;152;223;7mt[39m[38;2;157;220;6m [39m[38;2;161;217;5mt[39m[38;2;166;213;3mr[39m[38;2;170;210;3ma[39m[38;2;175;206;2mn[39m[38;2;179;202;1ms[39m[38;2;183;198;1ml[39m[38;2;188;194;1ma[39m[38;2;192;190;1mt[39m[38;2;196;186;1mi[39m[38;2;200;182;1mo[39m[38;2;204;177;1mn[39m[38;2;207;173;2m [39m[38;2;211;168;3mb[39m[38;2;215;164;4mu[39m[38;2;218;159;5mg[39m[38;2;221;155;6ms[39m[38;2;224;150;8m [39m[38;2;227;145;10mt[39m[38;2;230;141;12mo[39m[38;2;233;136;14m [39m[38;2;236;131;16m<[39m[38;2;238;126;18mh[39m[38;2;240;122;21mt[39m[38;2;242;117;23mt[39m[38;2;244;112;26mp[39m[38;2;246;107;29m:[39m[38;2;248;103;32m/[39m[38;2;249;98;35m/[39m[38;2;250;93;39ms[39m[38;2;252;89;42mp[39m[38;2;253;84;46me[39m[38;2;253;80;49ma[39m[38;2;254;76;53mk[39m[38;2;254;71;57ml[39m[38;2;254;67;61mo[39m[38;2;254;63;65ml[39m[38;2;254;59;69mc[39m[38;2;254;55;74ma[39m[38;2;254;51;78mt[39m[38;2;253;47;82m.[39m[38;2;252;44;87mc[39m[38;2;251;40;91mo[39m[38;2;250;37;96mm[39m[38;2;248;33;101m/[39m[38;2;247;30;105m>[39m[38;2;245;27;110m[39m"]
 
-        await shellfie(data, { name: 'lolcat'});
+        await shellfie(data, { name: 'lolcat' });
     })
 
 });
