@@ -31,7 +31,7 @@ const options = {
 await shellfie(data, options);
 ```
 
-outputs:
+outputs:   
 ![](https://github.com/tool3/shellfie/blob/master/shellfies/shellfie.png?raw=true)
 
 
