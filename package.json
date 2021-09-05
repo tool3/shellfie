@@ -1,6 +1,6 @@
 {
   "name": "shellfie",
-  "version": "1.2.4",
+  "version": "1.2.5",
   "description": "create beautiful terminal screenshots from formatted string",
   "main": "shellfie.js",
   "directories": {
