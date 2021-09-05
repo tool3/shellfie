@@ -1,6 +1,6 @@
 # shellfie 🤳🏽
 
-create beautiful terminal screenshots from formatted string
+create beautiful terminal screenshots programmatically
 
 # install
 ```bash
