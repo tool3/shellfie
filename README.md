@@ -38,7 +38,7 @@ await shellfie(data, options);
 ```
 
 outputs:   
-![](https://github.com/tool3/shellfie/blob/master/shellfies/shellfie.png?raw=true)
+<img src="./shellfies/shellfie.png" />
 
 
 # data
@@ -99,7 +99,8 @@ outputs:
   ```js
   await shellfie(["\x1b[32mGreen line", "\x1b[31;1mRED bold"], { name: 'small', viewport: { width: 200, height: 200 } });
   ```   
-![](https://github.com/tool3/shellfie/blob/master/shellfies/small.png?raw=true)    
+
+<img src="./shellfies/small.png" />   
 
 
 ```js
@@ -129,4 +130,5 @@ const testResults = [
 ];
 await shellfie(testResults, { name: 'fira', style: { fontFamily: 'Fira Code', fontWeight: 'bold' } });
 ```   
-![](https://github.com/tool3/shellfie/blob/master/shellfies/fira.png?raw=true)   
+
+<img src="./shellfies/fira.png" />
