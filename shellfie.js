@@ -20,7 +20,6 @@ async function shellfie(data, config) {
         const lines = (Array.isArray(data) || mode === 'raw') ? data : data.split('\n');
 
         // inject js scripts
-        const localModules = __dirname + '/node_modules';
         await page.addScriptTag({ path: require.resolve('xterm/lib/xterm.js') });
         await page.addScriptTag({ path: require.resolve('xterm-addon-fit/lib/xterm-addon-fit.js') });
 
@@ -59,7 +58,7 @@ async function shellfie(data, config) {
         
         // inject styles
         await page.addStyleTag({ path: `${path.resolve(__dirname, 'template/template.css')}` });
-        await page.addStyleTag({ path: `${localModules}/xterm/css/xterm.css` });
+        await page.addStyleTag({ path: `${localPath}/node_modules/xterm/css/xterm.css` });
         await page.evaluate((theme) => document.querySelector('.terminal').style.background = theme.background, theme);
         await page.evaluateHandle('document.fonts.ready');
         
