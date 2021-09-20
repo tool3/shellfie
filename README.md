@@ -1,21 +1,20 @@
 # shellfie 🤳🏽
 
-create beautiful terminal screenshots programmatically
-<img src="./shellfies/shellfie.png" />
+<img src="./shellfies/logo.png" />
 
 # install
 ```bash
-yarn add shellfie
+npm install shellfie
 ```
 
 # the holy trinity ▽
-`shellfie` respects the holy trinity: the lib, the service, and the cli.   
+`shellfie` respects the holy trinity: the lib, the service, and the holy cli.   
   - [shellfie](https://github.com/tool3/shellfie)   
   - [shellfied](https://github.com/tool3/shellfied)   
   - [shellfie-cli](https://github.com/tool3/shellfie-cli)   
 
 # usage
-```js
+```javascript
 const data = [
     '\x1b[105mSHELLFIE\\x1b[0m🤳',
     '\x1b[38;5;225mthe easiest way',
@@ -138,6 +137,7 @@ await shellfie(testResults, { name: 'monaco', style: { fontFamily: 'Monaco' } })
 <img src="./shellfies/monospace.png" />
 <img src="./shellfies/monaco.png" />
 
+### raw mode
 ```javascript
 const string = `    
 cristal     [38;2;189;255;243m■[39m[38;2;187;254;241m■[39m[38;2;184;252;239m■[39m[38;2;182;251;237m■[39m[38;2;179;250;235m■[39m[38;2;177;249;234m■[39m[38;2;174;247;232m■[39m[38;2;172;246;230m■[39m[38;2;169;245;228m■[39m[38;2;167;243;226m■[39m[38;2;165;242;224m■[39m[38;2;162;241;222m■[39m[38;2;160;239;220m■[39m[38;2;157;238;218m■[39m[38;2;155;237;216m■[39m[38;2;152;236;215m■[39m[38;2;150;234;213m■[39m[38;2;147;233;211m■[39m[38;2;145;232;209m■[39m[38;2;143;230;207m■[39m[38;2;140;229;205m■[39m[38;2;138;228;203m■[39m[38;2;135;226;201m■[39m[38;2;133;225;199m■[39m[38;2;130;224;198m■[39m[38;2;128;223;196m■[39m[38;2;125;221;194m■[39m[38;2;123;220;192m■[39m[38;2;120;219;190m■[39m[38;2;118;217;188m■[39m[38;2;116;216;186m■[39m[38;2;113;215;184m■[39m[38;2;111;213;182m■[39m[38;2;108;212;181m■[39m[38;2;106;211;179m■[39m[38;2;103;210;177m■[39m[38;2;101;208;175m■[39m[38;2;98;207;173m■[39m[38;2;96;206;171m■[39m[38;2;94;204;169m■[39m[38;2;91;203;167m■[39m[38;2;89;202;165m■[39m[38;2;86;200;163m■[39m[38;2;84;199;162m■[39m[38;2;81;198;160m■[39m[38;2;79;197;158m■[39m[38;2;76;195;156m■[39m[38;2;74;194;154m■[39m
@@ -157,3 +157,15 @@ rainbow     [38;2;255;0;0m■[39m[38;2;255;0;33m■[39m[38;2;255;0;65m■[
 await shellfie(string, { name: 'gradient', mode: 'raw', viewport: {width: 600, height: 350} });
 ```
 <img src="./shellfies/gradient.png" />
+
+### bash colors
+```javascript
+const shellfie = require('shellfie');
+let backgroundColors = '';
+for (let i = 0; i < 255; i++) {
+    backgroundColors += `\x1b[48;5;${i}m ${i}\x1b[0m`;
+}
+await shellfie(backgroundColors, { name: 'background', viewport: {width: 500, height: 400} });
+```
+
+<img src="./shellfies/background.png" />
