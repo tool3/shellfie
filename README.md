@@ -129,6 +129,10 @@ const testResults = [
     "[2K[1GDone in 19.60s.",
 ];
 await shellfie(testResults, { name: 'fira', style: { fontFamily: 'Fira Code', fontWeight: 'bold' } });
+await shellfie(testResults, { name: 'monospace', style: { fontFamily: 'monospace' } });
+await shellfie(testResults, { name: 'monaco', style: { fontFamily: 'Monaco' } });
 ```   
 
 <img src="./shellfies/fira.png" />
+<img src="./shellfies/monospace.png" />
+<img src="./shellfies/monaco.png" />
