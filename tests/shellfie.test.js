@@ -29,28 +29,6 @@ describe('shellfie', () => {
         }
         await shellfie(data, options);
     });
-    it('create logo img', async () => {
-        const data = [
-            '\x1b[105mSHELLFIE\\x1b[0m🤳',
-            '\x1b[38;5;225mthe easiest way',
-            '\x1b[38;5;213mto create beautiful',
-            '\x1b[38;5;14mTerminal screenshots 📸',
-            '\x1b[38;5;199mprogrammatically 🚀'
-        ];
-        const options = {
-            name: 'logoz',
-            style: {
-                // fontSize: 15,
-                // fontWeight: 'bold',
-                // fontFamily: 'Fira Code'
-            },
-            viewport: {
-                width: 1280,
-                height: 640
-            }
-        }
-        await shellfie(data, options);
-    });
 
     it('should support custom viewport', async () => {
         await shellfie(["\x1b[32mGreen line", "\x1b[31;1mRED bold"], { name: 'small', viewport: { width: 200, height: 200 } });
