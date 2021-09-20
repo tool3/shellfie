@@ -9,9 +9,8 @@ async function shellfie(data, config) {
             throw new Error('no data provided.\nshelffie needs a string || string[] to produce an image.')
         }
         const localPath = process.env.INIT_CWD || process.cwd();
-        const { name, location, style, theme, ext, puppeteerArgs, viewport, mode } = getConfig(config, localPath);
-
-        const browser = await puppeteer.launch({ args: puppeteerArgs });
+        const { name, location, style, theme, ext, puppeteerOptions, viewport, mode, rendererType } = getConfig(config, localPath);
+        const browser = await puppeteer.launch(puppeteerOptions);
         const page = await browser.newPage();
 
         await page.setViewport({ ...viewport, deviceScaleFactor: 4 });
@@ -22,6 +21,7 @@ async function shellfie(data, config) {
 
         // inject js scripts
         const localModules = __dirname + '/node_modules';
+        console.log(localModules);
         await page.addScriptTag({ path: require.resolve('xterm/lib/xterm.js') });
         await page.addScriptTag({ path: require.resolve('xterm-addon-fit/lib/xterm-addon-fit.js') });
 
@@ -33,7 +33,7 @@ async function shellfie(data, config) {
         // setup terminal
         await page.evaluate(({ options, lines, mode, viewport }) => {
             const fit = new FitAddon.FitAddon();
-            const term = new Terminal({ ...options, rendererType: 'dom' });
+            const term = new Terminal({ ...options });
             term.open(document.getElementById('terminal'));
             term.loadAddon(fit);
             term.writeln('');
@@ -56,13 +56,14 @@ async function shellfie(data, config) {
             document.querySelector('.xterm-screen').style.height = `${height}px`;
             fit.fit();
 
-        }, { lines, mode, options: style ? { theme, ...style } : { theme }, viewport });
+        }, { lines, mode, options: style ? { theme, ...style, rendererType } : { theme, rendererType }, viewport });
         
         // inject styles
         await page.addStyleTag({ path: `${path.resolve(__dirname, 'template/template.css')}` });
-        await page.addStyleTag({ path: `${localModules}/xterm/css/xterm.css` })
+        await page.addStyleTag({ path: `${localModules}/xterm/css/xterm.css` });
+        await page.evaluate((theme) => document.querySelector('.terminal').style.background = theme.background, theme);
         await page.evaluateHandle('document.fonts.ready');
-
+        
         // crop image   
         const clip = await (await page.$(".main")).boundingBox();
         clip.height = Math.min(clip.height, page.viewport().height);

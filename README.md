@@ -54,10 +54,10 @@ outputs:
 ### `location`
 **type**: `string`   
 **description**: relative path to save your shellfies   
-### `puppeteerArgs`
-**type**: `string[]`   
+### `puppeteerOptions`
+**type**: `object`   
 **description**: optional puppteer args    
-**default**: `['--no-sandbox', '--disable-setuid-sandbox']`
+**default**: `{ args: ['--no-sandbox', '--disable-setuid-sandbox'] }`
 ### `mode`
 **type**: `string`   
 **description**: can allow raw string input. for example: `yarn test --colors > help.txt`, then copy the text and provide it to `shellfie` with this option set to `raw`.   

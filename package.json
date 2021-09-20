@@ -25,8 +25,8 @@
   "license": "MIT",
   "dependencies": {
     "puppeteer": "^5.5.0",
-    "xterm": "^4.9.0",
-    "xterm-addon-fit": "^0.4.0"
+    "xterm": "^4.14.1",
+    "xterm-addon-fit": "^0.5.0"
   },
   "devDependencies": {
     "mocha": "^8.2.1"

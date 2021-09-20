@@ -1,27 +1,29 @@
-export type ShellfieTheme = {
+declare type ShellfieTheme = {
     background: string;
     foreground: string;
 };
 
-export type ShellfieStyle = {
+declare type ShellfieStyle = {
     fontFamily: string;
     fontWeight: string;
     fontSize: number;
 };
 
-export type ShellfieViewport = {
+declare type ShellfieViewport = {
     width: number;
     height: number;
 };
 
-export type ShellfieOptions = {
+declare type ShellfieOptions = {
     name?: string;
     location?: string;
     theme?: ShellfieTheme;
     style?: ShellfieStyle;
     viewport?: ShellfieViewport;
     mode?: string;
-    puppeteerArgs?: string[];
+    puppeteerOptions?: Record<string, any>;
 };
 
-export default function shellfie(data: string | string[], options: ShellfieOptions): Promise<void>;
+declare function shellfie(data: string | string[], options: ShellfieOptions): Promise<void>;
+
+export = shellfie;
