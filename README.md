@@ -1,6 +1,7 @@
 # shellfie 🤳🏽
 
 create beautiful terminal screenshots programmatically
+<img src="./shellfies/shellfie.png" />
 
 # install
 ```bash

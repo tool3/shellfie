@@ -7,12 +7,12 @@ describe('shellfie', () => {
         await shellfie(["\x1b[32mGreen line", "\x1b[31;1mRED bold"], { name: 'image name' });
     });
 
-    it.only('should show intro img', async () => {
+    it('should show intro img', async () => {
         const data = [
             '\x1b[105mSHELLFIE\\x1b[0m🤳',
             '\x1b[38;5;225mthe easiest way',
             '\x1b[38;5;213mto create beautiful',
-            '\x1b[38;5;14mTerminal screenshots 📸',
+            '\x1b[38;5;14mterminal screenshots 📸',
             '\x1b[38;5;199mprogrammatically 🚀'
         ];
         const options = {
@@ -52,7 +52,7 @@ describe('shellfie', () => {
         await shellfie(data, options);
     });
 
-    it.only('should support custom viewport', async () => {
+    it('should support custom viewport', async () => {
         await shellfie(["\x1b[32mGreen line", "\x1b[31;1mRED bold"], { name: 'small', viewport: { width: 200, height: 200 } });
     });
 
@@ -107,7 +107,7 @@ describe('shellfie', () => {
         await shellfie(testResults, { name: 'mocha test results', viewport: { height: 400 } });
     });
 
-    it.only('should support different font family', async () => {
+    it('should support different font family', async () => {
         const testResults = [
             "[2K[1G[1myarn run v1.22.5[22m",
             "[2K[1G[2m$ mocha --no-timeouts tests/ --colors[22m",
