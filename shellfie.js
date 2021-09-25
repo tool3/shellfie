@@ -2,6 +2,7 @@ const puppeteer = require('puppeteer');
 const getConfig = require('./utils/config');
 const path = require('path');
 const fs = require('fs').promises;
+const { getStyles } = require('./utils/styles');
 
 async function shellfie(data, config) {
     try {
@@ -54,12 +55,24 @@ async function shellfie(data, config) {
             document.querySelector('.xterm-screen').style.height = `${height}px`;
             fit.fit();
 
-        }, { lines, mode, options: style ? { theme, ...style, rendererType } : { theme, rendererType }, viewport });
+        }, { lines, mode, options: { theme, rendererType }, viewport });
         
-        // inject styles
-        await page.addStyleTag({ path: `${path.resolve(__dirname, 'template/template.css')}` });
-        await page.addStyleTag({ path: `${localPath}/node_modules/xterm/css/xterm.css` });
         await page.evaluate((theme) => document.querySelector('.terminal').style.background = theme.background, theme);
+        const templateStyle = __dirname + '/template/template.css';
+
+        // inject user style
+        if (style) {
+            const styles = getStyles(style);
+            console.log(styles);
+            await page.addStyleTag({content: `.terminal {${styles}}`})
+        }
+
+        // inject styles
+        await page.addStyleTag({ path: templateStyle });
+        await page.addStyleTag({ path: `${localPath}/node_modules/xterm/css/xterm.css` });
+        
+
+
         await page.evaluateHandle('document.fonts.ready');
         
         // crop image   
