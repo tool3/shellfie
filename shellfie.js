@@ -63,8 +63,9 @@ async function shellfie(data, config) {
         // inject user style
         if (style) {
             const styles = getStyles(style);
-            console.log(styles);
-            await page.addStyleTag({content: `.terminal {${styles}}`})
+            const className = rendererType === 'dom' ? '.terminal.xterm' : 'canvas';
+            const content = `${className} {${styles}}`
+            await page.addStyleTag({content})
         }
 
         // inject styles
