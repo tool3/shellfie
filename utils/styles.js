@@ -1,6 +1,9 @@
 function processLine(key, value) {
-    const [word] = key.match(/(^[a-z]|[A-Z0-9])[a-z]*/);
-    if (key !== word) key = `${word}-${key.replace(word, '').toLowerCase()}`;
+    const words = key.split(/(?=[A-Z])/);
+    if (words.length > 1) {
+      key = words.map(word => word.toLowerCase()).join('-')
+    }
+    
     return `${key}: ${value};`
 }
 
