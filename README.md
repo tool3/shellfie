@@ -13,6 +13,13 @@ npm install shellfie
   - [shellfied](https://github.com/tool3/shellfied)   
   - [shellfie-cli](https://github.com/tool3/shellfie-cli)   
 
+### Apple Silicon
+```bash
+# NOTE! if you are running on Apple Silicon you may need to set the following env variables: 
+export PUPPETEER_EXECUTABLE_PATH=`which chromium`
+export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+ ```
+
 # usage
 ```javascript
 const data = [
@@ -40,13 +47,6 @@ await shellfie(data, options);
 outputs:   
 <img src="./shellfies/shellfie.png" />
 
-
-### Apple Silicon
-```bash
-# NOTE! if you are running on Apple Silicon you may need to set the following env variables: 
-export PUPPETEER_EXECUTABLE_PATH=`which chromium`
-export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
- ```f
 
 # data
 **type**: `string[]` || `string`   
