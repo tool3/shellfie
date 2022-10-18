@@ -41,6 +41,13 @@ outputs:
 <img src="./shellfies/shellfie.png" />
 
 
+### Apple Silicon
+```bash
+# NOTE! if you are running on Apple Silicon you may need to set the following env variables: 
+export PUPPETEER_EXECUTABLE_PATH=`which chromium`
+export PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true
+ ```f
+
 # data
 **type**: `string[]` || `string`   
 **description**: string data to output to the terminal

@@ -77,7 +77,6 @@ async function shellfie(data, config) {
       const styles = getStyles(style);
       const className = rendererType === 'dom' ? '.terminal.xterm' : 'canvas';
       const content = `${className} {${styles}}`;
-      console.log(content);
       await page.addStyleTag({ content });
     }
 
