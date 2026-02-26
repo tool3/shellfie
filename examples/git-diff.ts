@@ -4,7 +4,7 @@
  * Run: npx tsx examples/git-diff.ts
  */
 
-import { shellfie } from '../src';
+import shellfie from '../src';
 import { writeFileSync } from 'node:fs';
 
 const gitDiffOutput = `\x1b[1mdiff --git a/src/index.ts b/src/index.ts\x1b[0m

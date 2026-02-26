@@ -4,7 +4,7 @@
  * Run: npx ts-node examples/minimal.ts
  */
 
-import { shellfie } from '../src';
+import shellfie from '../src';
 import { writeFileSync } from 'node:fs';
 
 const terminalOutput = `\x1b[1;32m❯\x1b[0m ls -la

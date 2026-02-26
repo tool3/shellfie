@@ -4,7 +4,7 @@
  * Run: npx ts-node examples/npm.ts
  */
 
-import { shellfie } from '../src';
+import shellfie from '../src';
 import { writeFileSync } from 'node:fs';
 
 const npmOutput = `\x1b[32mnpm\x1b[0m \x1b[36minfo\x1b[0m using npm@10.2.0

@@ -5,7 +5,7 @@
  * Run: npx tsx examples/realtime.ts
  */
 
-import { shellfie } from '../src';
+import shellfie from '../src';
 import { writeFileSync } from 'node:fs';
 import { exec } from 'child_process';
 import { promisify } from 'util'

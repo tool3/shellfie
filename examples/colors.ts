@@ -4,7 +4,7 @@
  * Run: npx tsx examples/colors.ts
  */
 
-import { shellfie } from '../src';
+import shellfie from '../src';
 import { writeFileSync } from 'node:fs';
 
 const colorDemo = `\x1b[1m256 Color Palette Sample:\x1b[0m
