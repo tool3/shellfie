@@ -19,9 +19,7 @@ const colorDemo = `\x1b[1m256 Color Palette Sample:\x1b[0m
 const svg = snaptty(colorDemo, {
   template: 'macos',
   title: 'Color Support Demo',
-  watermark: 'Full ANSI color support',
-  // watermarkPadding: 10,
-  lineHeight: 1.5
+  watermark: 'Full \x1b[31mANSI\x1b[0m color support',
 });
 
 writeFileSync('examples/colors.svg', svg);

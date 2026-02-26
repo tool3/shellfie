@@ -22,26 +22,41 @@ import { parseAnsi } from './parser';
 import { darkTheme, renderSvg } from './renderer';
 import { resolveTemplate } from './templates';
 import type {
+  PaddingInput,
   ParsedLine,
   RenderOptions,
+  ResolvedPadding,
   SnapttyOptions
 } from './types';
 
 /**
+ * Resolve CSS-style padding shorthand into individual values
+ */
+function resolvePadding(input: PaddingInput): ResolvedPadding {
+  if (typeof input === 'number') {
+    return { top: input, right: input, bottom: input, left: input };
+  }
+  if (input.length === 2) {
+    const [vertical, horizontal] = input;
+    return { top: vertical, right: horizontal, bottom: vertical, left: horizontal };
+  }
+  const [top, right, bottom, left] = input;
+  return { top, right, bottom, left };
+}
+
+/**
  * Default options
  */
-const defaults: Required<
-  Omit<SnapttyOptions, 'customFont' | 'width' | 'watermark' | 'watermarkPadding'>
-> & { width: number | null; watermark: string | null; watermarkPadding: number | null } = {
-  template: 'macos',
+const defaults = {
+  template: 'macos' as const,
   title: '',
   theme: darkTheme,
   fontSize: 14,
   lineHeight: 1.4,
-  padding: 16,
-  width: null,
-  watermark: null,
-  watermarkPadding: null,
+  padding: 16 as PaddingInput,
+  width: null as number | null,
+  watermark: null as string | null,
+  watermarkPadding: null as PaddingInput | null,
   windowControls: true,
   fontFamily: "'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace",
   embedFont: false,
@@ -75,7 +90,10 @@ function resolveOptions(options: SnapttyOptions = {}): RenderOptions {
     embedFormat,
   });
 
-  const padding = options.padding ?? template.chrome.padding;
+  const paddingInput = options.padding ?? template.chrome.padding;
+  const padding = resolvePadding(paddingInput);
+  const watermarkPaddingInput = options.watermarkPadding ?? paddingInput;
+  const watermarkPadding = resolvePadding(watermarkPaddingInput);
 
   return {
     template,
@@ -85,7 +103,7 @@ function resolveOptions(options: SnapttyOptions = {}): RenderOptions {
     padding,
     width: options.width ?? defaults.width,
     watermark: options.watermark ?? defaults.watermark,
-    watermarkPadding: options.watermarkPadding ?? padding,
+    watermarkPadding,
     windowControls: options.windowControls ?? defaults.windowControls,
     customGlyphs: options.customGlyphs ?? defaults.customGlyphs,
   };

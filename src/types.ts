@@ -90,6 +90,22 @@ export interface Template {
   chrome: ChromeConfig;
 }
 
+/**
+ * CSS-style padding shorthand
+ * - Single number: all sides
+ * - [vertical, horizontal]: top/bottom, left/right
+ * - [top, right, bottom, left]: each side individually
+ */
+export type PaddingInput = number | [number, number] | [number, number, number, number];
+
+/** Resolved padding values for all four sides */
+export interface ResolvedPadding {
+  top: number;
+  right: number;
+  bottom: number;
+  left: number;
+}
+
 /** Font configuration */
 export interface FontConfig {
   family: string;
@@ -114,14 +130,25 @@ export interface SnapttyOptions {
   fontSize?: number;
   /** Line height multiplier */
   lineHeight?: number;
-  /** Content padding in pixels */
-  padding?: number;
+  /**
+   * Content padding in pixels. Supports CSS-style shorthand:
+   * - Single number: all sides (e.g., 16)
+   * - [vertical, horizontal]: top/bottom, left/right (e.g., [10, 20])
+   * - [top, right, bottom, left]: each side (e.g., [10, 20, 30, 40])
+   */
+  padding?: PaddingInput;
   /** Terminal width in columns (auto-detect if not specified) */
   width?: number;
   /** Watermark text (supports ANSI escape codes for styling) */
   watermark?: string;
-  /** Padding from edge for watermark in pixels (default: same as content padding) */
-  watermarkPadding?: number;
+  /**
+   * Padding from edge for watermark in pixels. Supports CSS-style shorthand:
+   * - Single number: all sides
+   * - [vertical, horizontal]: top/bottom, left/right
+   * - [top, right, bottom, left]: each side
+   * Defaults to content padding if not specified.
+   */
+  watermarkPadding?: PaddingInput;
   /** Show window control buttons */
   windowControls?: boolean;
   /** Font family */
@@ -157,10 +184,10 @@ export interface RenderOptions {
   title: string;
   theme: Theme;
   font: FontConfig;
-  padding: number;
+  padding: ResolvedPadding;
   width: number | null;
   watermark: string | null;
-  watermarkPadding: number;
+  watermarkPadding: ResolvedPadding;
   windowControls: boolean;
   /** Whether to render custom glyphs for box drawing and block elements */
   customGlyphs: boolean;

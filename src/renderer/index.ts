@@ -228,12 +228,14 @@ export function renderSvg(
   const titleBarHeight = template.chrome.titleBar
     ? template.chrome.titleBarHeight
     : 0;
-  const totalPadding = padding * 2;
-  const watermarkHeight = watermark ? 20 : 0;
 
-  const contentWidth = textWidth + totalPadding;
+  // Watermark height accounts for its own padding
+  const wmFontSize = font.size - 4;
+  const watermarkHeight = watermark ? wmFontSize + watermarkPadding.bottom : 0;
+
+  const contentWidth = textWidth + padding.left + padding.right;
   const contentHeight =
-    textHeight + totalPadding + titleBarHeight + watermarkHeight;
+    textHeight + padding.top + padding.bottom + titleBarHeight + watermarkHeight;
 
   // Start building SVG
   const svgParts: string[] = [];
@@ -287,8 +289,8 @@ export function renderSvg(
   }
 
   // Content area
-  const contentX = padding;
-  const contentY = titleBarHeight + padding;
+  const contentX = padding.left;
+  const contentY = titleBarHeight + padding.top;
 
   // Collect all elements: backgrounds, custom glyphs, and text
   const backgrounds: string[] = [];
@@ -372,8 +374,8 @@ export function renderSvg(
 
   // Watermark
   if (watermark) {
-    const wmX = contentWidth - watermarkPadding;
-    const wmY = contentHeight - watermarkPadding + font.size - 4;
+    const wmX = contentWidth - watermarkPadding.right;
+    const wmY = contentHeight - watermarkPadding.bottom;
     svgParts.push(`  ${renderWatermark(watermark, wmX, wmY, theme, font)}`);
   }
 
