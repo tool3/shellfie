@@ -29,11 +29,7 @@ rainbow     [38;2;255;0;0m■[39m[38;2;255;0;33m■[39m[38;2;255;0;65m■[
 const svg = shellfie(string, {
     template: 'macos',
     title: 'gradient string',
-    watermark: '😎',
-    footer: {
-      backgroundColor: '#1e1e1e',
-      border: true
-    }
+    watermark: '😎'
 });
 
 writeFileSync('examples/svgs/gradient-string.svg', svg);

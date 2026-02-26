@@ -172,3 +172,8 @@ getMaxWidth(lines); // 80
 ## License
 
 MIT
+
+
+<!-- TODOs -->
+<!-- watermark padding doesn't increase total height/width -->
+<!-- default watermark padding should be around 10 -->

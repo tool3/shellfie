@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 536 431.99999999999994" width="536" height="431.99999999999994">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 536 391.99999999999994" width="536" height="391.99999999999994">
   <defs>
     <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
       <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
     </filter>
   </defs>
-  <rect x="0" y="0" width="536" height="431.99999999999994" fill="#1e1e1e" rx="10" ry="10" filter="url(#shadow)"/>
+  <rect x="0" y="0" width="536" height="391.99999999999994" fill="#1e1e1e" rx="10" ry="10" filter="url(#shadow)"/>
   <g class="title-bar">
     <rect x="0" y="0" width="536" height="39" fill="#1e1e1e" rx="10" ry="10"/>
     <rect x="0" y="29" width="536" height="10" fill="#1e1e1e"/>
@@ -658,9 +658,4 @@
     <text y="344.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#d4d4d4">  </tspan></text>
   </g>
   <text y="359.99999999999994" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="10" xml:space="preserve"><tspan x="508" fill="#d4d4d4">😎</tspan></text>
-  <g class="footer">
-    <line x1="0" y1="392.49999999999994" x2="536" y2="392.49999999999994" stroke="#d4d4d41a" stroke-width="1"/>
-    <rect x="0" y="392.99999999999994" width="536" height="39" fill="#1e1e1e" rx="10" ry="10"/>
-    <rect x="0" y="392.99999999999994" width="536" height="10" fill="#1e1e1e"/>
-  </g>
 </svg>
