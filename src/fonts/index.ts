@@ -1,22 +1,10 @@
-/**
- * Font utilities
- *
- * Handles font configuration and optional embedding for portable SVGs
- */
-
 import type { FontConfig } from '../types';
 import { readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 
-/**
- * Default font stack for various platforms
- */
 export const defaultFontFamily =
   "'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace";
 
-/**
- * Common system font paths by platform
- */
 export const systemFontPaths: Record<string, string[]> = {
   darwin: [
     '/System/Library/Fonts/SFMono.ttf',
@@ -34,9 +22,6 @@ export const systemFontPaths: Record<string, string[]> = {
   ],
 };
 
-/**
- * Get font format from file extension
- */
 export function getFontFormat(path: string): 'woff2' | 'woff' | 'ttf' | null {
   const ext = path.toLowerCase().split('.').pop();
   switch (ext) {
@@ -52,9 +37,6 @@ export function getFontFormat(path: string): 'woff2' | 'woff' | 'ttf' | null {
   }
 }
 
-/**
- * Load a font file and return base64-encoded data
- */
 export async function loadFont(
   path: string
 ): Promise<{ data: string; format: 'woff2' | 'woff' | 'ttf' } | null> {
@@ -77,9 +59,6 @@ export async function loadFont(
   }
 }
 
-/**
- * Create a font configuration
- */
 export function createFontConfig(options: {
   family?: string;
   size?: number;
@@ -97,9 +76,6 @@ export function createFontConfig(options: {
   };
 }
 
-/**
- * Find an available system font for the current platform
- */
 export function findSystemFont(): string | null {
   const platform = process.platform;
   const paths = systemFontPaths[platform] ?? [];
@@ -113,19 +89,9 @@ export function findSystemFont(): string | null {
   return null;
 }
 
-/**
- * Load an embedded font for portable SVGs
- *
- * Tries to load from:
- * 1. Provided custom font path
- * 2. System fonts
- *
- * Returns null if no font can be loaded (will fall back to system fonts)
- */
 export async function loadEmbeddedFont(
   customPath?: string
 ): Promise<{ data: string; format: 'woff2' | 'woff' | 'ttf' } | null> {
-  // Try custom path first
   if (customPath) {
     const result = await loadFont(customPath);
     if (result) {
@@ -133,7 +99,6 @@ export async function loadEmbeddedFont(
     }
   }
 
-  // Try system fonts
   const systemPath = findSystemFont();
   if (systemPath) {
     return loadFont(systemPath);

@@ -1,29 +1,17 @@
-/**
- * Parser-specific types
- */
-
 import type { TextStyle } from '../types';
 
-/** ANSI escape sequence types */
-export type EscapeSequenceType =
-  | 'sgr'      // Select Graphic Rendition (colors, styles)
-  | 'cursor'   // Cursor movement
-  | 'erase'    // Erase commands
-  | 'unknown'; // Unknown/unsupported sequences
+export type EscapeSequenceType = 'sgr' | 'cursor' | 'erase' | 'unknown';
 
-/** Parsed escape sequence */
 export interface EscapeSequence {
   type: EscapeSequenceType;
   params: number[];
   raw: string;
 }
 
-/** Parser state for tracking current style */
 export interface ParserState {
   style: TextStyle;
 }
 
-/** Token types during parsing */
 export type TokenType = 'text' | 'escape' | 'newline';
 
 export interface Token {
