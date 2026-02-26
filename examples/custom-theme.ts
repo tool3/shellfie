@@ -46,6 +46,6 @@ const svg = snaptty(terminalOutput, {
   theme: oceanTheme,
 });
 
-writeFileSync('examples/custom-theme.svg', svg);
-console.log('✓ Created examples/example-custom-theme.svg');
+writeFileSync('examples/svgs/custom-theme.svg', svg);
+console.log('✓ Created examples/svgs/custom-theme.svg');
 

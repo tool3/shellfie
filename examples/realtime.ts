@@ -14,12 +14,12 @@ const execAsync = promisify(exec);
 
 (async () => {
     const data = await execAsync("git log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --color=always")
-    console.log(data);
     const svg = snaptty(data.stdout, {
         template: 'macos',
         title: 'realtime',
     });
 
-    writeFileSync('examples/realtime.svg', svg);
+    writeFileSync('examples/svgs/realtime.svg', svg);
+    console.log('✓ Created examples/svgs/realtime.svg');
 })()
 

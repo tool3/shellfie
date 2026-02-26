@@ -11,5 +11,6 @@ import './git-diff';
 import './npm';
 import './colors';
 import './custom-theme';
+import './realtime';
 
-console.log('\nAll examples generated! Open the SVG files in a browser to view.');
+console.log('\nAll examples generated! see ./svgs folder for output.');

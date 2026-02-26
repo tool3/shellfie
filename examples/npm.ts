@@ -22,6 +22,5 @@ const svg = snaptty(npmOutput, {
   title: 'npm install',
 });
 
-writeFileSync('examples/npm.svg', svg);
-console.log('✓ Created examples/npm.svg');
-
+writeFileSync('examples/svgs/npm.svg', svg);
+console.log('✓ Created examples/svgs/npm.svg');

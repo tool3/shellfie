@@ -22,6 +22,6 @@ const svg = snaptty(colorDemo, {
   watermark: 'Full \x1b[31mANSI\x1b[0m color support',
 });
 
-writeFileSync('examples/colors.svg', svg);
-console.log('✓ Created examples/example-colors.svg');
+writeFileSync('examples/svgs/colors.svg', svg);
+console.log('✓ Created examples/svgs/colors.svg');
 

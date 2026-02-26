@@ -21,6 +21,6 @@ const svg = snaptty(terminalOutput, {
   title: 'Command Prompt',
 });
 
-writeFileSync('examples/windows.svg', svg);
-console.log('✓ Created examples/windows.svg');
+writeFileSync('examples/svgs/windows.svg', svg);
+console.log('✓ Created examples/svgs/windows.svg');
 

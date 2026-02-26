@@ -20,6 +20,5 @@ const svg = snaptty(terminalOutput, {
   template: 'minimal',
 });
 
-writeFileSync('examples/minimal.svg', svg);
-console.log('✓ Created examples/minimal.svg');
-
+writeFileSync('examples/svgs/minimal.svg', svg);
+console.log('✓ Created examples/svgs/minimal.svg');
