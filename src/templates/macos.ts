@@ -15,9 +15,9 @@ export const macosTemplate: Template = createTemplate('macos', {
   titleBar: true,
   titleBarHeight: 40,
   borderRadius: 10,
-  windowControls: true,
-  windowControlsPosition: 'left',
-  windowControlStyle: {
+  controls: true,
+  controlsPosition: 'left',
+  controlStyle: {
     close: '#ff5f56',
     minimize: '#ffbd2e',
     maximize: '#27c93f',

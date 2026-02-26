@@ -25,21 +25,21 @@ export interface RenderResult {
 /**
  * Render window controls (close, minimize, maximize buttons)
  */
-function renderWindowControls(
+function renderControls(
   template: Template,
   x: number,
   y: number
 ): string {
-  if (!template.chrome.windowControls) {
+  if (!template.shell.controls) {
     return '';
   }
 
-  const style = template.chrome.windowControlStyle;
+  const style = template.shell.controlStyle;
   const { size, spacing, radius } = style;
 
   const buttons: string[] = [];
 
-  if (template.chrome.windowControlsPosition === 'left') {
+  if (template.shell.controlsPosition === 'left') {
     // macOS style - left aligned
     buttons.push(
       `<circle cx="${x}" cy="${y}" r="${radius}" fill="${style.close}"/>`,
@@ -69,14 +69,14 @@ function renderTitleBar(
   font: FontConfig,
   header: ResolvedHeaderConfig | null
 ): string {
-  if (!template.chrome.titleBar) {
+  if (!template.shell.titleBar) {
     return '';
   }
 
-  const { borderRadius, windowControls, windowControlsPosition } = template.chrome;
+  const { borderRadius, controls, controlsPosition } = template.shell;
 
   // Use header height if specified, otherwise use template's titleBarHeight
-  const titleBarHeight = header?.height ?? template.chrome.titleBarHeight;
+  const titleBarHeight = header?.height ?? template.shell.titleBarHeight;
 
   // Use header background color if provided, otherwise use theme background
   const backgroundColor = header?.backgroundColor ?? theme.background;
@@ -109,15 +109,15 @@ function renderTitleBar(
     );
   }
 
-  // Window controls
-  if (windowControls) {
+  // Controls
+  if (controls) {
     const controlY = bgHeight / 2;
     const controlX =
-      windowControlsPosition === 'left'
-        ? template.chrome.padding
-        : contentWidth - template.chrome.padding;
+      controlsPosition === 'left'
+        ? template.shell.padding
+        : contentWidth - template.shell.padding;
 
-    parts.push(renderWindowControls(template, controlX, controlY));
+    parts.push(renderControls(template, controlX, controlY));
   }
 
   // Title text (centered in background area)
@@ -256,7 +256,7 @@ export function renderSvg(
   lines: ParsedLine[],
   options: RenderOptions
 ): RenderResult {
-  const { template, title, theme, font, padding, watermark, watermarkPadding, windowControls, customGlyphs, header, footer } =
+  const { template, title, theme, font, padding, watermark, watermarkPadding, customGlyphs, header, footer } =
     options;
 
   const charWidth = font.size * font.charWidth;
@@ -281,8 +281,8 @@ export function renderSvg(
 
   // Calculate total dimensions with chrome
   // Use header height if specified, otherwise use template's titleBarHeight
-  const titleBarHeight = template.chrome.titleBar
-    ? (header?.height ?? template.chrome.titleBarHeight)
+  const titleBarHeight = template.shell.titleBar
+    ? (header?.height ?? template.shell.titleBarHeight)
     : 0;
 
   // Footer height
@@ -306,7 +306,7 @@ export function renderSvg(
 
   // Defs (filters, fonts)
   const defs: string[] = [];
-  if (template.chrome.shadow) {
+  if (template.shell.shadow) {
     defs.push(renderShadowFilter());
   }
   if (font.embedData) {
@@ -323,25 +323,25 @@ export function renderSvg(
     `width="${contentWidth}"`,
     `height="${contentHeight}"`,
     `fill="${theme.background}"`,
-    `rx="${template.chrome.borderRadius}"`,
-    `ry="${template.chrome.borderRadius}"`,
+    `rx="${template.shell.borderRadius}"`,
+    `ry="${template.shell.borderRadius}"`,
   ];
 
-  if (template.chrome.shadow) {
+  if (template.shell.shadow) {
     bgAttrs.push(`filter="url(#shadow)"`);
   }
 
   svgParts.push(`  <rect ${bgAttrs.join(' ')}/>`);
 
   // Border
-  if (template.chrome.border) {
+  if (template.shell.border) {
     svgParts.push(
-      `  <rect x="0.5" y="0.5" width="${contentWidth - 1}" height="${contentHeight - 1}" fill="none" stroke="${template.chrome.borderColor}" stroke-width="${template.chrome.borderWidth}" rx="${template.chrome.borderRadius}" ry="${template.chrome.borderRadius}"/>`
+      `  <rect x="0.5" y="0.5" width="${contentWidth - 1}" height="${contentHeight - 1}" fill="none" stroke="${template.shell.borderColor}" stroke-width="${template.shell.borderWidth}" rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}"/>`
     );
   }
 
   // Title bar (with optional header styling)
-  if (template.chrome.titleBar) {
+  if (template.shell.titleBar) {
     svgParts.push(`  <g class="title-bar">`);
     svgParts.push(`    ${renderTitleBar(template, title, contentWidth, theme, font, header)}`);
     svgParts.push(`  </g>`);
@@ -444,7 +444,7 @@ export function renderSvg(
   if (footer) {
     const footerY = titleBarHeight + padding.top + textHeight + padding.bottom + watermarkHeight;
     svgParts.push(`  <g class="footer">`);
-    svgParts.push(`    ${renderFooterBar(footer, contentWidth, footerY, template.chrome.borderRadius)}`);
+    svgParts.push(`    ${renderFooterBar(footer, contentWidth, footerY, template.shell.borderRadius)}`);
     svgParts.push(`  </g>`);
   }
 

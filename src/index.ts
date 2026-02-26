@@ -108,7 +108,7 @@ const defaults = {
   width: null as number | null,
   watermark: null as string | null,
   watermarkPadding: null as PaddingInput | null,
-  windowControls: true,
+  controls: true,
   fontFamily: "'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace",
   embedFont: false,
   customGlyphs: true,
@@ -141,7 +141,7 @@ function resolveOptions(options: shellfieOptions = {}): RenderOptions {
     embedFormat,
   });
 
-  const paddingInput = options.padding ?? template.chrome.padding;
+  const paddingInput = options.padding ?? template.shell.padding;
   const padding = resolvePadding(paddingInput);
   const watermarkPaddingInput = options.watermarkPadding ?? paddingInput;
   const watermarkPadding = resolvePadding(watermarkPaddingInput);
@@ -150,12 +150,12 @@ function resolveOptions(options: shellfieOptions = {}): RenderOptions {
   const header = resolveHeader(
     options.header,
     theme,
-    template.chrome.titleBarHeight
+    template.shell.titleBarHeight
   );
   const footer = resolveFooter(
     options.footer,
     theme,
-    template.chrome.titleBarHeight
+    template.shell.titleBarHeight
   );
 
   return {
@@ -167,7 +167,7 @@ function resolveOptions(options: shellfieOptions = {}): RenderOptions {
     width: options.width ?? defaults.width,
     watermark: options.watermark ?? defaults.watermark,
     watermarkPadding,
-    windowControls: options.windowControls ?? defaults.windowControls,
+    controls: options.controls ?? defaults.controls,
     customGlyphs: options.customGlyphs ?? defaults.customGlyphs,
     header,
     footer,
@@ -185,9 +185,9 @@ export function shellfie(input: string, options: shellfieOptions = {}): string {
   const lines = parseAnsi(input);
   const renderOptions = resolveOptions(options);
 
-  // Update window controls based on template if not explicitly set
-  if (options.windowControls === undefined) {
-    renderOptions.windowControls = renderOptions.template.chrome.windowControls;
+  // Update controls based on template if not explicitly set
+  if (options.controls === undefined) {
+    renderOptions.controls = renderOptions.template.shell.controls;
   }
 
   const result = renderSvg(lines, renderOptions);
@@ -210,9 +210,9 @@ export async function shellfieAsync(
   const lines = parseAnsi(input);
   const renderOptions = resolveOptions(options);
 
-  // Update window controls based on template if not explicitly set
-  if (options.windowControls === undefined) {
-    renderOptions.windowControls = renderOptions.template.chrome.windowControls;
+  // Update controls based on template if not explicitly set
+  if (options.controls === undefined) {
+    renderOptions.controls = renderOptions.template.shell.controls;
   }
 
   // Handle font embedding if requested
@@ -248,8 +248,8 @@ export function render(
 ): string {
   const renderOptions = resolveOptions(options);
 
-  if (options.windowControls === undefined) {
-    renderOptions.windowControls = renderOptions.template.chrome.windowControls;
+  if (options.controls === undefined) {
+    renderOptions.controls = renderOptions.template.shell.controls;
   }
 
   const result = renderSvg(lines, renderOptions);
@@ -258,9 +258,9 @@ export function render(
 
 // Re-export types
 export type {
-  ChromeConfig, FontConfig,
+  ShellConfig, FontConfig,
   ParsedLine, RGB, shellfieOptions, Template, TextSpan,
-  TextStyle, Theme, WindowControlStyle
+  TextStyle, Theme, ControlStyle
 } from './types';
 
 // Re-export utilities

@@ -22,7 +22,7 @@ describe('shellfie', () => {
   });
 
   it('renders with macOS template by default', () => {
-    const svg = shellfie('Test', { windowControls: true });
+    const svg = shellfie('Test', { controls: true });
     // macOS has traffic light buttons
     expect(svg).toContain('#ff5f56'); // close button color
     expect(svg).toContain('#ffbd2e'); // minimize button color
@@ -30,7 +30,7 @@ describe('shellfie', () => {
   });
 
   it('renders with windows template', () => {
-    const svg = shellfie('Test', { template: 'windows', windowControls: true });
+    const svg = shellfie('Test', { template: 'windows', controls: true });
     expect(svg).toContain('#e81123'); // windows close button color
   });
 
@@ -136,20 +136,20 @@ describe('templates', () => {
 
   it('macos template has correct configuration', () => {
     expect(templates.macos.name).toBe('macos');
-    expect(templates.macos.chrome.windowControlsPosition).toBe('left');
-    expect(templates.macos.chrome.borderRadius).toBe(10);
+    expect(templates.macos.shell.controlsPosition).toBe('left');
+    expect(templates.macos.shell.borderRadius).toBe(10);
   });
 
   it('windows template has correct configuration', () => {
     expect(templates.windows.name).toBe('windows');
-    expect(templates.windows.chrome.windowControlsPosition).toBe('right');
-    expect(templates.windows.chrome.borderRadius).toBe(0);
+    expect(templates.windows.shell.controlsPosition).toBe('right');
+    expect(templates.windows.shell.borderRadius).toBe(0);
   });
 
-  it('minimal template has no chrome', () => {
+  it('minimal template has no shell decorations', () => {
     expect(templates.minimal.name).toBe('minimal');
-    expect(templates.minimal.chrome.titleBar).toBe(false);
-    expect(templates.minimal.chrome.windowControls).toBe(false);
+    expect(templates.minimal.shell.titleBar).toBe(false);
+    expect(templates.minimal.shell.controls).toBe(false);
   });
 });
 

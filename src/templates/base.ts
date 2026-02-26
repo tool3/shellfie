@@ -2,12 +2,12 @@
  * Base template configuration
  */
 
-import type { Template, ChromeConfig, WindowControlStyle } from '../types';
+import type { Template, ShellConfig, ControlStyle } from '../types';
 
 /**
- * Default window control style (macOS-like)
+ * Default control style (macOS-like)
  */
-export const defaultWindowControlStyle: WindowControlStyle = {
+export const defaultControlStyle: ControlStyle = {
   close: '#ff5f56',
   minimize: '#ffbd2e',
   maximize: '#27c93f',
@@ -17,15 +17,15 @@ export const defaultWindowControlStyle: WindowControlStyle = {
 };
 
 /**
- * Default chrome configuration
+ * Default shell configuration
  */
-export const defaultChrome: ChromeConfig = {
+export const defaultShell: ShellConfig = {
   titleBar: true,
   titleBarHeight: 40,
   borderRadius: 8,
-  windowControls: true,
-  windowControlsPosition: 'left',
-  windowControlStyle: defaultWindowControlStyle,
+  controls: true,
+  controlsPosition: 'left',
+  controlStyle: defaultControlStyle,
   padding: 16,
   shadow: true,
   border: false,
@@ -38,16 +38,16 @@ export const defaultChrome: ChromeConfig = {
  */
 export function createTemplate(
   name: string,
-  overrides: Partial<ChromeConfig> = {}
+  overrides: Partial<ShellConfig> = {}
 ): Template {
   return {
     name,
-    chrome: {
-      ...defaultChrome,
+    shell: {
+      ...defaultShell,
       ...overrides,
-      windowControlStyle: {
-        ...defaultWindowControlStyle,
-        ...(overrides.windowControlStyle ?? {}),
+      controlStyle: {
+        ...defaultControlStyle,
+        ...(overrides.controlStyle ?? {}),
       },
     },
   };

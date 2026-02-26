@@ -63,8 +63,8 @@ export interface Theme {
   brightWhite: string;
 }
 
-/** Window control button style */
-export interface WindowControlStyle {
+/** Control button style */
+export interface ControlStyle {
   close: string;
   minimize: string;
   maximize: string;
@@ -73,14 +73,14 @@ export interface WindowControlStyle {
   size: number;
 }
 
-/** Template chrome configuration */
-export interface ChromeConfig {
+/** Template shell configuration (window decoration settings) */
+export interface ShellConfig {
   titleBar: boolean;
   titleBarHeight: number;
   borderRadius: number;
-  windowControls: boolean;
-  windowControlsPosition: 'left' | 'right';
-  windowControlStyle: WindowControlStyle;
+  controls: boolean;
+  controlsPosition: 'left' | 'right';
+  controlStyle: ControlStyle;
   padding: number;
   shadow: boolean;
   border: boolean;
@@ -91,7 +91,7 @@ export interface ChromeConfig {
 /** Template definition */
 export interface Template {
   name: string;
-  chrome: ChromeConfig;
+  shell: ShellConfig;
 }
 
 /**
@@ -181,8 +181,8 @@ export interface shellfieOptions {
    * Defaults to content padding if not specified.
    */
   watermarkPadding?: PaddingInput;
-  /** Show window control buttons */
-  windowControls?: boolean;
+  /** Show control buttons */
+  controls?: boolean;
   /** Font family */
   fontFamily?: string;
   /** Embed font in SVG for portability */
@@ -250,7 +250,7 @@ export interface RenderOptions {
   watermarkPadding: ResolvedPadding;
   header: ResolvedHeaderConfig | null;
   footer: ResolvedFooterConfig | null;
-  windowControls: boolean;
+  controls: boolean;
   /** Whether to render custom glyphs for box drawing and block elements */
   customGlyphs: boolean;
 }
