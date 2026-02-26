@@ -8,7 +8,7 @@ import { snaptty } from 'snaptty';
 const svg = snaptty('\x1b[32m✓\x1b[0m All tests passed');
 ```
 
-![macOS Terminal](examples/example-macos.svg)
+![macOS Terminal](examples/svgs/macos.svg)
 
 ## Features
 
@@ -57,7 +57,7 @@ Classic macOS terminal with traffic light buttons.
 snaptty(output, { template: 'macos' });
 ```
 
-![macOS](examples/example-macos.svg)
+![macOS](examples/svgs/macos.svg)
 
 ### Windows
 
@@ -67,7 +67,7 @@ Windows terminal style with square controls.
 snaptty(output, { template: 'windows' });
 ```
 
-![Windows](examples/example-windows.svg)
+![Windows](examples/svgs/windows.svg)
 
 ### Minimal
 
@@ -77,7 +77,7 @@ Clean, borderless output — perfect for documentation.
 snaptty(output, { template: 'minimal' });
 ```
 
-![Minimal](examples/example-minimal.svg)
+![Minimal](examples/svgs/minimal.svg)
 
 ## API
 
@@ -183,7 +183,7 @@ snaptty supports the full spectrum of terminal colors:
 '\x1b[38;2;255;128;64mOrange\x1b[0m'
 ```
 
-![Color Demo](examples/example-colors.svg)
+![Color Demo](examples/svgs/colors.svg)
 
 ## Custom Themes
 
@@ -259,7 +259,7 @@ const gitDiff = execSync('git diff --color=always HEAD~1').toString();
 const svg = snaptty(gitDiff, { title: 'git diff' });
 ```
 
-![Git Diff](examples/example-git-diff.svg)
+![Git Diff](examples/svgs/git-diff.svg)
 
 ### npm Install
 
@@ -268,7 +268,7 @@ const npmOutput = execSync('npm install --color=always 2>&1').toString();
 const svg = snaptty(npmOutput, { title: 'npm install' });
 ```
 
-![npm](examples/example-npm.svg)
+![npm](examples/svgs/npm.svg)
 
 ### Test Output
 
