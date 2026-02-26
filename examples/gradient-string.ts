@@ -30,6 +30,10 @@ const svg = shellfie(string, {
     template: 'macos',
     title: 'gradient string',
     watermark: '😎',
+    footer: {
+      backgroundColor: '#1e1e1e',
+      border: true
+    }
 });
 
 writeFileSync('examples/svgs/gradient-string.svg', svg);

@@ -39,6 +39,10 @@ export interface Theme {
   foreground: string;
   cursor: string;
   selection: string;
+  /** Header/title bar background color (defaults to background) */
+  headerBackground?: string;
+  /** Footer background color (defaults to background) */
+  footerBackground?: string;
   /** Standard ANSI colors (0-7) */
   black: string;
   red: string;
@@ -118,6 +122,34 @@ export interface FontConfig {
   embedFormat?: 'woff2' | 'woff' | 'ttf';
 }
 
+/** Header chrome configuration (title bar styling) */
+export interface HeaderConfig {
+  /** Background color for the title bar area (defaults to theme background) */
+  backgroundColor?: string;
+  /** Height of the header/title bar in pixels (defaults to template's titleBarHeight) */
+  height?: number;
+  /** Show border line below the title bar */
+  border?: boolean;
+  /** Border color (defaults to foreground with low opacity) */
+  borderColor?: string;
+  /** Border width in pixels */
+  borderWidth?: number;
+}
+
+/** Footer chrome configuration (bottom bar styling) */
+export interface FooterConfig {
+  /** Background color for the footer area (defaults to theme background) */
+  backgroundColor?: string;
+  /** Height of the footer in pixels (defaults to same as title bar) */
+  height?: number;
+  /** Show border line above the footer */
+  border?: boolean;
+  /** Border color (defaults to foreground with low opacity) */
+  borderColor?: string;
+  /** Border width in pixels */
+  borderWidth?: number;
+}
+
 /** Main options for shellfie */
 export interface shellfieOptions {
   /** Template name or custom template object */
@@ -176,6 +208,34 @@ export interface shellfieOptions {
    * @default true
    */
   customGlyphs?: boolean;
+  /**
+   * Header (title bar) styling configuration.
+   * Customize the background color and border of the title bar area.
+   */
+  header?: HeaderConfig;
+  /**
+   * Footer styling configuration.
+   * Adds a footer bar at the bottom, mirroring the title bar style.
+   */
+  footer?: FooterConfig;
+}
+
+/** Resolved header configuration for rendering */
+export interface ResolvedHeaderConfig {
+  backgroundColor: string;
+  height: number;
+  border: boolean;
+  borderColor: string;
+  borderWidth: number;
+}
+
+/** Resolved footer configuration for rendering */
+export interface ResolvedFooterConfig {
+  backgroundColor: string;
+  height: number;
+  border: boolean;
+  borderColor: string;
+  borderWidth: number;
 }
 
 /** Internal render options (resolved from shellfieOptions) */
@@ -188,6 +248,8 @@ export interface RenderOptions {
   width: number | null;
   watermark: string | null;
   watermarkPadding: ResolvedPadding;
+  header: ResolvedHeaderConfig | null;
+  footer: ResolvedFooterConfig | null;
   windowControls: boolean;
   /** Whether to render custom glyphs for box drawing and block elements */
   customGlyphs: boolean;
