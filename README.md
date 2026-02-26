@@ -1,8 +1,8 @@
 # shellfie
+Take a selfie of your shell.
 
 ![macOS Terminal](examples/svgs/logo.svg)
 
-Take a selfie of your shell.
 
 ```typescript
 import shellfie from 'shellfie';

@@ -1,18 +1,18 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 527.6 248.39999999999998" width="527.6" height="248.39999999999998">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 527.6 288.4" width="527.6" height="288.4">
   <defs>
     <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
       <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
     </filter>
   </defs>
-  <rect x="0" y="0" width="527.6" height="248.39999999999998" fill="#1e1e1e" rx="10" ry="10" filter="url(#shadow)"/>
+  <rect x="0" y="0" width="527.6" height="288.4" fill="#1e1e1e" rx="10" ry="10" filter="url(#shadow)"/>
   <g class="title-bar">
-    <rect x="0" y="0" width="527.6" height="40" fill="#1e1e1e" rx="10" ry="10"/>
-    <rect x="0" y="30" width="527.6" height="10" fill="#1e1e1e"/>
-    <circle cx="16" cy="20" r="6" fill="#ff5f56"/>
-    <circle cx="36" cy="20" r="6" fill="#ffbd2e"/>
-    <circle cx="56" cy="20" r="6" fill="#27c93f"/>
-    <text x="263.8" y="24.666666666666668" fill="#d4d4d4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">shellfie</text>
-    <line x1="0" y1="40" x2="527.6" y2="40" stroke="#d4d4d4" stroke-opacity="0.1"/>
+    <rect x="0" y="0" width="527.6" height="39" fill="#1e1e1e" rx="10" ry="10"/>
+    <rect x="0" y="29" width="527.6" height="10" fill="#1e1e1e"/>
+    <line x1="0" y1="39.5" x2="527.6" y2="39.5" stroke="#d4d4d41a" stroke-width="1"/>
+    <circle cx="16" cy="19.5" r="6" fill="#ff5f56"/>
+    <circle cx="36" cy="19.5" r="6" fill="#ffbd2e"/>
+    <circle cx="56" cy="19.5" r="6" fill="#27c93f"/>
+    <text x="263.8" y="24.166666666666668" fill="#d4d4d4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">shellfie</text>
   </g>
   <g class="glyphs">
     <rect x="16" y="75.6" width="8.4" height="19.599999999999998" fill="#77a1d3" shape-rendering="crispEdges"/>
@@ -308,5 +308,10 @@
     <text y="168" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="108.40000000000002" fill="#78b1d0"> </tspan><tspan x="116.80000000000003" fill="#78b2cf"> </tspan><tspan x="377.19999999999976" fill="#aea9bc"> </tspan><tspan x="385.59999999999974" fill="#b1a6bc"> </tspan><tspan x="393.9999999999997" fill="#b5a4bb"> </tspan><tspan x="402.3999999999997" fill="#b9a1ba"> </tspan><tspan x="410.79999999999967" fill="#bd9fb9"> </tspan></text>
     <text y="187.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="108.40000000000002" fill="#78b1d0"> </tspan><tspan x="116.80000000000003" fill="#78b2cf"> </tspan><tspan x="377.19999999999976" fill="#aea9bc"> </tspan><tspan x="385.59999999999974" fill="#b1a6bc"> </tspan><tspan x="393.9999999999997" fill="#b5a4bb"> </tspan><tspan x="402.3999999999997" fill="#b9a1ba"> </tspan><tspan x="410.79999999999967" fill="#bd9fb9"> </tspan></text>
     <text y="226.79999999999998" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#77a1d3"> </tspan><tspan x="24.4" fill="#77a2d3"> </tspan><tspan x="32.8" fill="#77a4d2"> </tspan><tspan x="41.199999999999996" fill="#77a5d2"> </tspan><tspan x="49.599999999999994" fill="#77a7d2"> </tspan><tspan x="57.99999999999999" fill="#77a8d1"> </tspan><tspan x="66.39999999999999" fill="#77aad1"> </tspan><tspan x="74.8" fill="#77abd1">c</tspan><tspan x="83.2" fill="#78add1">r</tspan><tspan x="91.60000000000001" fill="#78aed0">e</tspan><tspan x="100.00000000000001" fill="#78afd0">a</tspan><tspan x="108.40000000000002" fill="#78b1d0">t</tspan><tspan x="116.80000000000003" fill="#78b2cf">e</tspan><tspan x="125.20000000000003" fill="#78b4cf"> </tspan><tspan x="133.60000000000002" fill="#78b5cf">b</tspan><tspan x="142.00000000000003" fill="#78b7ce">e</tspan><tspan x="150.40000000000003" fill="#78b8ce">a</tspan><tspan x="158.80000000000004" fill="#78bace">u</tspan><tspan x="167.20000000000005" fill="#78bbcd">t</tspan><tspan x="175.60000000000005" fill="#78bdcd">i</tspan><tspan x="184.00000000000006" fill="#78becd">f</tspan><tspan x="192.40000000000006" fill="#78bfcc">u</tspan><tspan x="200.80000000000007" fill="#79c1cc">l</tspan><tspan x="209.20000000000007" fill="#79c2cc"> </tspan><tspan x="217.60000000000008" fill="#79c4cc">t</tspan><tspan x="226.00000000000009" fill="#79c5cb">e</tspan><tspan x="234.4000000000001" fill="#79c7cb">r</tspan><tspan x="242.8000000000001" fill="#79c8cb">m</tspan><tspan x="251.2000000000001" fill="#79caca">i</tspan><tspan x="259.6000000000001" fill="#79cbca">n</tspan><tspan x="268.00000000000006" fill="#7dc9c9">a</tspan><tspan x="276.40000000000003" fill="#81c6c8">l</tspan><tspan x="284.8" fill="#84c4c7"> </tspan><tspan x="293.2" fill="#88c1c6">s</tspan><tspan x="301.59999999999997" fill="#8cbfc5">c</tspan><tspan x="309.99999999999994" fill="#90bcc4">r</tspan><tspan x="318.3999999999999" fill="#93bac3">e</tspan><tspan x="326.7999999999999" fill="#97b7c2">e</tspan><tspan x="335.1999999999999" fill="#9bb5c1">n</tspan><tspan x="343.59999999999985" fill="#9fb3c0">s</tspan><tspan x="351.99999999999983" fill="#a2b0bf">h</tspan><tspan x="360.3999999999998" fill="#a6aebe">o</tspan><tspan x="368.7999999999998" fill="#aaabbd">t</tspan><tspan x="377.19999999999976" fill="#aea9bc">s</tspan><tspan x="385.59999999999974" fill="#b1a6bc"> </tspan><tspan x="393.9999999999997" fill="#b5a4bb">i</tspan><tspan x="402.3999999999997" fill="#b9a1ba">n</tspan><tspan x="410.79999999999967" fill="#bd9fb9"> </tspan><tspan x="419.19999999999965" fill="#c09cb8">s</tspan><tspan x="427.5999999999996" fill="#c49ab7">e</tspan><tspan x="435.9999999999996" fill="#c898b6">c</tspan><tspan x="444.3999999999996" fill="#cc95b5">o</tspan><tspan x="452.79999999999956" fill="#cf93b4">n</tspan><tspan x="461.19999999999953" fill="#d390b3">d</tspan><tspan x="469.5999999999995" fill="#d78eb2">s</tspan></text>
+  </g>
+  <g class="footer">
+    <line x1="0" y1="248.89999999999998" x2="527.6" y2="248.89999999999998" stroke="#d4d4d41a" stroke-width="1"/>
+    <rect x="0" y="249.39999999999998" width="527.6" height="39" fill="#1e1e1e" rx="10" ry="10"/>
+    <rect x="0" y="249.39999999999998" width="527.6" height="10" fill="#1e1e1e"/>
   </g>
 </svg>

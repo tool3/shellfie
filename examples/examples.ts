@@ -11,6 +11,7 @@ import './git-diff';
 import './git-log';
 import './gradient-string';
 import './header-footer';
+import './logo';
 import './macos';
 import './minimal';
 import './npm';
