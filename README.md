@@ -1,5 +1,7 @@
 # shellfie
 
+![macOS Terminal](examples/svgs/logo.svg)
+
 Take a selfie of your shell.
 
 ```typescript
