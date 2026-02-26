@@ -1,22 +1,3 @@
-/**
- * shellfie - Convert terminal output to crystal-clear SVG images
- *
- * @example
- * ```typescript
- * import { shellfie } from 'shellfie';
- *
- * // Simple usage
- * const svg = shellfie('Hello \x1b[32mWorld\x1b[0m');
- *
- * // With options
- * const svg = shellfie(terminalOutput, {
- *   template: 'macos',
- *   title: 'my-script.sh',
- *   fontSize: 14,
- * });
- * ```
- */
-
 import { createFontConfig, loadEmbeddedFont } from './fonts';
 import { parseAnsi } from './parser';
 import { darkTheme, renderSvg } from './renderer';
@@ -34,10 +15,23 @@ import type {
   Theme
 } from './types';
 
-/**
- * Resolve CSS-style padding shorthand into individual values
- */
-function resolvePadding(input: PaddingInput): ResolvedPadding {
+const DEFAULTS = {
+  template: 'macos',
+  title: '',
+  theme: darkTheme,
+  fontSize: 14,
+  lineHeight: 1.4,
+  padding: 16,
+  width: null,
+  watermark: null,
+  watermarkPadding: null,
+  controls: true,
+  fontFamily: "'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace",
+  embedFont: false,
+  customGlyphs: true,
+} as const;
+
+const resolvePadding = (input: PaddingInput): ResolvedPadding => {
   if (typeof input === 'number') {
     return { top: input, right: input, bottom: input, left: input };
   }
@@ -47,175 +41,70 @@ function resolvePadding(input: PaddingInput): ResolvedPadding {
   }
   const [top, right, bottom, left] = input;
   return { top, right, bottom, left };
-}
-
-/**
- * Add alpha to hex color (append 2-char hex alpha)
- */
-function addAlpha(hex: string, alpha: number): string {
-  const alphaHex = Math.round(alpha * 255).toString(16).padStart(2, '0');
-  return `${hex}${alphaHex}`;
-}
-
-/**
- * Resolve header configuration (title bar styling)
- */
-function resolveHeader(
-  header: HeaderConfig | undefined,
-  theme: Theme,
-  defaultHeight: number
-): ResolvedHeaderConfig | null {
-  if (!header) return null;
-
-  return {
-    backgroundColor: header.backgroundColor ?? theme.headerBackground ?? theme.background,
-    height: header.height ?? defaultHeight,
-    border: header.border ?? true,
-    borderColor: header.borderColor ?? addAlpha(theme.foreground, 0.1),
-    borderWidth: header.borderWidth ?? 1,
-  };
-}
-
-/**
- * Resolve footer configuration (bottom bar styling)
- */
-function resolveFooter(
-  footer: FooterConfig | undefined,
-  theme: Theme,
-  defaultHeight: number
-): ResolvedFooterConfig | null {
-  if (!footer) return null;
-
-  return {
-    backgroundColor: footer.backgroundColor ?? theme.footerBackground ?? theme.background,
-    height: footer.height ?? defaultHeight,
-    border: footer.border ?? true,
-    borderColor: footer.borderColor ?? addAlpha(theme.foreground, 0.1),
-    borderWidth: footer.borderWidth ?? 1,
-  };
-}
-
-/**
- * Default options
- */
-const defaults = {
-  template: 'macos' as const,
-  title: '',
-  theme: darkTheme,
-  fontSize: 14,
-  lineHeight: 1.4,
-  padding: 16 as PaddingInput,
-  width: null as number | null,
-  watermark: null as string | null,
-  watermarkPadding: null as PaddingInput | null,
-  controls: true,
-  fontFamily: "'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace",
-  embedFont: false,
-  customGlyphs: true,
 };
 
-/**
- * Resolve user options into internal render options
- */
-function resolveOptions(options: shellfieOptions = {}): RenderOptions {
+const addAlpha = (hex: string, alpha: number): string =>
+  `${hex}${Math.round(alpha * 255).toString(16).padStart(2, '0')}`;
+
+type DecorativeConfig = HeaderConfig | FooterConfig;
+type ResolvedDecorativeConfig = ResolvedHeaderConfig | ResolvedFooterConfig;
+
+const resolveShellConfig = (
+  config: DecorativeConfig | undefined,
+  theme: Theme,
+  defaultHeight: number,
+  backgroundKey: 'headerBackground' | 'footerBackground'
+): ResolvedDecorativeConfig | null => {
+  if (!config) return null;
+
+  return {
+    backgroundColor: config.backgroundColor ?? theme[backgroundKey] ?? theme.background,
+    height: config.height ?? defaultHeight,
+    border: config.border ?? true,
+    borderColor: config.borderColor ?? addAlpha(theme.foreground, 0.1),
+    borderWidth: config.borderWidth ?? 1,
+  };
+};
+
+const resolveOptions = (options: shellfieOptions = {}): RenderOptions => {
   const template = resolveTemplate(options.template);
-  const theme = options.theme ?? defaults.theme;
-  const fontSize = options.fontSize ?? defaults.fontSize;
-  const lineHeight = options.lineHeight ?? defaults.lineHeight;
-  const fontFamily = options.fontFamily ?? defaults.fontFamily;
-
-  // Handle font configuration
-  let embedData: string | undefined;
-  let embedFormat: 'woff2' | 'woff' | 'ttf' | undefined;
-
-  if (options.customFont) {
-    embedData = options.customFont.data;
-    embedFormat = options.customFont.format;
-  }
+  const theme = options.theme ?? DEFAULTS.theme;
+  const paddingInput = options.padding ?? template.shell.padding;
+  const watermarkPaddingInput = options.watermarkPadding ?? paddingInput;
 
   const font = createFontConfig({
-    family: fontFamily,
-    size: fontSize,
-    lineHeight,
-    embedData,
-    embedFormat,
+    family: options.fontFamily ?? DEFAULTS.fontFamily,
+    size: options.fontSize ?? DEFAULTS.fontSize,
+    lineHeight: options.lineHeight ?? DEFAULTS.lineHeight,
+    embedData: options.customFont?.data,
+    embedFormat: options.customFont?.format,
   });
-
-  const paddingInput = options.padding ?? template.shell.padding;
-  const padding = resolvePadding(paddingInput);
-  const watermarkPaddingInput = options.watermarkPadding ?? paddingInput;
-  const watermarkPadding = resolvePadding(watermarkPaddingInput);
-
-  // Resolve header and footer (structural chrome elements)
-  const header = resolveHeader(
-    options.header,
-    theme,
-    template.shell.titleBarHeight
-  );
-  const footer = resolveFooter(
-    options.footer,
-    theme,
-    template.shell.titleBarHeight
-  );
 
   return {
     template,
-    title: options.title ?? defaults.title,
+    title: options.title ?? DEFAULTS.title,
     theme,
     font,
-    padding,
-    width: options.width ?? defaults.width,
-    watermark: options.watermark ?? defaults.watermark,
-    watermarkPadding,
-    controls: options.controls ?? defaults.controls,
-    customGlyphs: options.customGlyphs ?? defaults.customGlyphs,
-    header,
-    footer,
+    padding: resolvePadding(paddingInput),
+    width: options.width ?? DEFAULTS.width,
+    watermark: options.watermark ?? DEFAULTS.watermark,
+    watermarkPadding: resolvePadding(watermarkPaddingInput),
+    controls: options.controls ?? template.shell.controls,
+    customGlyphs: options.customGlyphs ?? DEFAULTS.customGlyphs,
+    header: resolveShellConfig(options.header, theme, template.shell.titleBarHeight, 'headerBackground'),
+    footer: resolveShellConfig(options.footer, theme, template.shell.titleBarHeight, 'footerBackground'),
   };
-}
+};
 
-/**
- * Convert terminal output to SVG (synchronous)
- *
- * @param input - Terminal output string (may contain ANSI escape codes)
- * @param options - Rendering options
- * @returns SVG string
- */
-export function shellfie(input: string, options: shellfieOptions = {}): string {
-  const lines = parseAnsi(input);
-  const renderOptions = resolveOptions(options);
+export const shellfie = (input: string, options: shellfieOptions = {}): string =>
+  renderSvg(parseAnsi(input), resolveOptions(options)).svg;
 
-  // Update controls based on template if not explicitly set
-  if (options.controls === undefined) {
-    renderOptions.controls = renderOptions.template.shell.controls;
-  }
-
-  const result = renderSvg(lines, renderOptions);
-  return result.svg;
-}
-
-/**
- * Convert terminal output to SVG with async font embedding
- *
- * Use this when you need portable SVGs with embedded fonts.
- *
- * @param input - Terminal output string (may contain ANSI escape codes)
- * @param options - Rendering options
- * @returns Promise resolving to SVG string
- */
-export async function shellfieAsync(
+export const shellfieAsync = async (
   input: string,
   options: shellfieOptions = {}
-): Promise<string> {
-  const lines = parseAnsi(input);
+): Promise<string> => {
   const renderOptions = resolveOptions(options);
 
-  // Update controls based on template if not explicitly set
-  if (options.controls === undefined) {
-    renderOptions.controls = renderOptions.template.shell.controls;
-  }
-
-  // Handle font embedding if requested
   if (options.embedFont && !options.customFont) {
     const fontData = await loadEmbeddedFont();
     if (fontData) {
@@ -224,50 +113,30 @@ export async function shellfieAsync(
     }
   }
 
-  const result = renderSvg(lines, renderOptions);
-  return result.svg;
-}
+  return renderSvg(parseAnsi(input), renderOptions).svg;
+};
 
-/**
- * Parse terminal output without rendering
- *
- * Useful for inspecting the parsed structure or custom rendering.
- */
-export function parse(input: string): ParsedLine[] {
-  return parseAnsi(input);
-}
+export const parse = (input: string): ParsedLine[] => parseAnsi(input);
 
-/**
- * Render parsed lines to SVG
- *
- * Use with `parse()` for custom workflows.
- */
-export function render(
-  lines: ParsedLine[],
-  options: shellfieOptions = {}
-): string {
-  const renderOptions = resolveOptions(options);
+export const render = (lines: ParsedLine[], options: shellfieOptions = {}): string =>
+  renderSvg(lines, resolveOptions(options)).svg;
 
-  if (options.controls === undefined) {
-    renderOptions.controls = renderOptions.template.shell.controls;
-  }
-
-  const result = renderSvg(lines, renderOptions);
-  return result.svg;
-}
-
-// Re-export types
 export type {
-  ShellConfig, FontConfig,
-  ParsedLine, RGB, shellfieOptions, Template, TextSpan,
-  TextStyle, Theme, ControlStyle
+  ControlStyle,
+  FontConfig,
+  ParsedLine,
+  RGB,
+  ShellConfig,
+  shellfieOptions,
+  Template,
+  TextSpan,
+  TextStyle,
+  Theme
 } from './types';
 
-// Re-export utilities
 export { createFontConfig, loadEmbeddedFont, loadFont } from './fonts';
 export { getMaxWidth, parseAnsi, stripAnsi } from './parser';
 export { createTheme, darkTheme } from './renderer';
 export { createTemplate, resolveTemplate, templates } from './templates';
 
-// Default export
 export default shellfie;

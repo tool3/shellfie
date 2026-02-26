@@ -1,12 +1,5 @@
-/**
- * Base template configuration
- */
-
 import type { Template, ShellConfig, ControlStyle } from '../types';
 
-/**
- * Default control style (macOS-like)
- */
 export const defaultControlStyle: ControlStyle = {
   close: '#ff5f56',
   minimize: '#ffbd2e',
@@ -16,9 +9,6 @@ export const defaultControlStyle: ControlStyle = {
   size: 12,
 };
 
-/**
- * Default shell configuration
- */
 export const defaultShell: ShellConfig = {
   titleBar: true,
   titleBarHeight: 40,
@@ -33,22 +23,14 @@ export const defaultShell: ShellConfig = {
   borderWidth: 1,
 };
 
-/**
- * Create a template by merging with default configuration
- */
-export function createTemplate(
-  name: string,
-  overrides: Partial<ShellConfig> = {}
-): Template {
-  return {
-    name,
-    shell: {
-      ...defaultShell,
-      ...overrides,
-      controlStyle: {
-        ...defaultControlStyle,
-        ...(overrides.controlStyle ?? {}),
-      },
+export const createTemplate = (name: string, overrides: Partial<ShellConfig> = {}): Template => ({
+  name,
+  shell: {
+    ...defaultShell,
+    ...overrides,
+    controlStyle: {
+      ...defaultControlStyle,
+      ...(overrides.controlStyle ?? {}),
     },
-  };
-}
+  },
+});
