@@ -1,27 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368 150.8" width="368" height="150.8">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368 170.8" width="368" height="170.8">
   <defs>
     <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
       <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
     </filter>
   </defs>
-  <rect x="0" y="0" width="368" height="150.8" fill="#1e1e1e" rx="10" ry="10" filter="url(#shadow)"/>
+  <rect x="0" y="0" width="368" height="170.8" fill="#1e1e1e" rx="10" ry="10" filter="url(#shadow)"/>
   <g class="title-bar">
-    <rect x="0" y="0" width="368" height="29" fill="#2d2d2d" rx="10" ry="10"/>
-    <rect x="0" y="19" width="368" height="10" fill="#2d2d2d"/>
-    <line x1="0" y1="29.5" x2="368" y2="29.5" stroke="#d4d4d41a" stroke-width="1"/>
-    <circle cx="16" cy="14.5" r="6" fill="#ff5f56"/>
-    <circle cx="36" cy="14.5" r="6" fill="#ffbd2e"/>
-    <circle cx="56" cy="14.5" r="6" fill="#27c93f"/>
-    <text x="184" y="19.166666666666668" fill="#d4d4d4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">CI/CD Pipeline</text>
+    <rect x="0" y="0" width="368" height="39" fill="#2d2d2d" rx="10" ry="10"/>
+    <rect x="0" y="29" width="368" height="10" fill="#2d2d2d"/>
+    <line x1="0" y1="39.5" x2="368" y2="39.5" stroke="#d4d4d41a" stroke-width="1"/>
+    <circle cx="16" cy="19.5" r="6" fill="#ff5f56"/>
+    <circle cx="36" cy="19.5" r="6" fill="#ffbd2e"/>
+    <circle cx="56" cy="19.5" r="6" fill="#27c93f"/>
+    <text x="184" y="24.166666666666668" fill="#d4d4d4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">CI/CD Pipeline</text>
   </g>
   <g class="text">
-    <text y="60" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#0dbc79">✓</tspan><tspan x="24.4" fill="#d4d4d4"> All tests passed</tspan></text>
-    <text y="79.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#0dbc79">✓</tspan><tspan x="24.4" fill="#d4d4d4"> Build successful</tspan></text>
-    <text y="99.19999999999999" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#0dbc79">✓</tspan><tspan x="24.4" fill="#d4d4d4"> Deployment complete</tspan></text>
+    <text y="70" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#0dbc79">✓</tspan><tspan x="24.4" fill="#d4d4d4"> All tests passed</tspan></text>
+    <text y="89.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#0dbc79">✓</tspan><tspan x="24.4" fill="#d4d4d4"> Build successful</tspan></text>
+    <text y="109.19999999999999" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#0dbc79">✓</tspan><tspan x="24.4" fill="#d4d4d4"> Deployment complete</tspan></text>
   </g>
   <g class="footer">
-    <line x1="0" y1="121.3" x2="368" y2="121.3" stroke="white" stroke-width="1"/>
-    <rect x="0" y="121.8" width="368" height="29" fill="#2d2d2d" rx="10" ry="10"/>
-    <rect x="0" y="121.8" width="368" height="10" fill="#2d2d2d"/>
+    <line x1="0" y1="131.3" x2="368" y2="131.3" stroke="#d4d4d41a" stroke-width="1"/>
+    <rect x="0" y="131.8" width="368" height="39" fill="#2d2d2d" rx="10" ry="10"/>
+    <rect x="0" y="131.8" width="368" height="10" fill="#2d2d2d"/>
   </g>
 </svg>

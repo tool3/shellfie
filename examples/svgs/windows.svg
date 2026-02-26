@@ -2,13 +2,13 @@
   <rect x="0" y="0" width="528" height="216.79999999999998" fill="#1e1e1e" rx="0" ry="0"/>
   <rect x="0.5" y="0.5" width="527" height="215.79999999999998" fill="none" stroke="#333333" stroke-width="1" rx="0" ry="0"/>
   <g class="title-bar">
-    <rect x="0" y="0" width="528" height="36" fill="#1e1e1e" rx="0" ry="0"/>
-    <rect x="0" y="36" width="528" height="0" fill="#1e1e1e"/>
-    <rect x="394" y="13" width="10" height="10" fill="#333333" rx="1"/>
-    <rect x="450" y="13" width="10" height="10" fill="#333333" rx="1"/>
-    <rect x="506" y="13" width="10" height="10" fill="#e81123" rx="1"/>
-    <text x="264" y="22.666666666666668" fill="#d4d4d4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">Command Prompt</text>
-    <line x1="0" y1="36" x2="528" y2="36" stroke="#d4d4d4" stroke-opacity="0.1"/>
+    <rect x="0" y="0" width="528" height="35" fill="#1e1e1e" rx="0" ry="0"/>
+    <rect x="0" y="35" width="528" height="0" fill="#1e1e1e"/>
+    <line x1="0" y1="35.5" x2="528" y2="35.5" stroke="#d4d4d41a" stroke-width="1"/>
+    <rect x="394" y="12.5" width="10" height="10" fill="#333333" rx="1"/>
+    <rect x="450" y="12.5" width="10" height="10" fill="#333333" rx="1"/>
+    <rect x="506" y="12.5" width="10" height="10" fill="#e81123" rx="1"/>
+    <text x="264" y="22.166666666666668" fill="#d4d4d4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">Command Prompt</text>
   </g>
   <g class="text">
     <text y="62" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="12" fill="#0dbc79" font-weight="bold">❯</tspan><tspan x="20.4" fill="#d4d4d4"> ls -la</tspan></text>

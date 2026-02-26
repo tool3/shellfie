@@ -6,12 +6,13 @@
   </defs>
   <rect x="0" y="0" width="536" height="431.99999999999994" fill="#1e1e1e" rx="10" ry="10" filter="url(#shadow)"/>
   <g class="title-bar">
-    <rect x="0" y="0" width="536" height="40" fill="#1e1e1e" rx="10" ry="10"/>
-    <rect x="0" y="30" width="536" height="10" fill="#1e1e1e"/>
-    <circle cx="16" cy="20" r="6" fill="#ff5f56"/>
-    <circle cx="36" cy="20" r="6" fill="#ffbd2e"/>
-    <circle cx="56" cy="20" r="6" fill="#27c93f"/>
-    <text x="268" y="24.666666666666668" fill="#d4d4d4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">gradient string</text>
+    <rect x="0" y="0" width="536" height="39" fill="#1e1e1e" rx="10" ry="10"/>
+    <rect x="0" y="29" width="536" height="10" fill="#1e1e1e"/>
+    <line x1="0" y1="39.5" x2="536" y2="39.5" stroke="#d4d4d41a" stroke-width="1"/>
+    <circle cx="16" cy="19.5" r="6" fill="#ff5f56"/>
+    <circle cx="36" cy="19.5" r="6" fill="#ffbd2e"/>
+    <circle cx="56" cy="19.5" r="6" fill="#27c93f"/>
+    <text x="268" y="24.166666666666668" fill="#d4d4d4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">gradient string</text>
   </g>
   <g class="glyphs">
     <rect x="116.80000000000001" y="81.19999999999999" width="8.4" height="8.4" fill="#bdfff3" shape-rendering="crispEdges"/>

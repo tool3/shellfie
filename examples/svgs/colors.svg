@@ -6,13 +6,13 @@
   </defs>
   <rect x="0" y="0" width="468.8" height="254.79999999999998" fill="#1e1e1e" rx="10" ry="10" filter="url(#shadow)"/>
   <g class="title-bar">
-    <rect x="0" y="0" width="468.8" height="40" fill="#1e1e1e" rx="10" ry="10"/>
-    <rect x="0" y="30" width="468.8" height="10" fill="#1e1e1e"/>
-    <circle cx="16" cy="20" r="6" fill="#ff5f56"/>
-    <circle cx="36" cy="20" r="6" fill="#ffbd2e"/>
-    <circle cx="56" cy="20" r="6" fill="#27c93f"/>
-    <text x="234.4" y="24.666666666666668" fill="#d4d4d4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">Color Support Demo</text>
-    <line x1="0" y1="40" x2="468.8" y2="40" stroke="#d4d4d4" stroke-opacity="0.1"/>
+    <rect x="0" y="0" width="468.8" height="39" fill="#1e1e1e" rx="10" ry="10"/>
+    <rect x="0" y="29" width="468.8" height="10" fill="#1e1e1e"/>
+    <line x1="0" y1="39.5" x2="468.8" y2="39.5" stroke="#d4d4d41a" stroke-width="1"/>
+    <circle cx="16" cy="19.5" r="6" fill="#ff5f56"/>
+    <circle cx="36" cy="19.5" r="6" fill="#ffbd2e"/>
+    <circle cx="56" cy="19.5" r="6" fill="#27c93f"/>
+    <text x="234.4" y="24.166666666666668" fill="#d4d4d4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">Color Support Demo</text>
   </g>
   <g class="backgrounds">
     <rect x="394.00000000000006" y="193.2" width="58.800000000000004" height="19.599999999999998" fill="#d4d4d4"/>
@@ -73,5 +73,5 @@
     <text y="187.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#d4d4d4" font-weight="bold">Text Styles:</tspan></text>
     <text y="207.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#d4d4d4" font-weight="bold">Bold</tspan><tspan x="49.6" fill="#d4d4d4">  </tspan><tspan x="66.4" fill="#d4d4d4" font-style="italic">Italic</tspan><tspan x="116.80000000000001" fill="#d4d4d4">  </tspan><tspan x="133.60000000000002" fill="#d4d4d4" text-decoration="underline">Underline</tspan><tspan x="209.20000000000005" fill="#d4d4d4">  </tspan><tspan x="226.00000000000006" fill="#d4d4d4" text-decoration="line-through">Strikethrough</tspan><tspan x="335.20000000000005" fill="#d4d4d4">  </tspan><tspan x="352.00000000000006" fill="#6a6a6a">Dim</tspan><tspan x="377.20000000000005" fill="#d4d4d4">  </tspan><tspan x="394.00000000000006" fill="#1e1e1e">Inverse</tspan></text>
   </g>
-  <text y="238.79999999999998" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="10" xml:space="preserve"><tspan x="314.8" fill="#d4d4d4">Full </tspan><tspan x="344.8" fill="#ff00d7">ANSI</tspan><tspan x="368.8" fill="#d4d4d4"> color support</tspan></text>
+  <text y="222.79999999999998" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="10" xml:space="preserve"><tspan x="314.8" fill="#d4d4d4">Full </tspan><tspan x="344.8" fill="#ff00d7">ANSI</tspan><tspan x="368.8" fill="#d4d4d4"> color support</tspan></text>
 </svg>

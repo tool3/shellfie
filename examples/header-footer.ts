@@ -21,13 +21,10 @@ const svg = shellfie(content, {
   title: 'CI/CD Pipeline',
   header: {
     backgroundColor: '#2d2d2d',  // Darker header background
-    height: 30,
     border: true,
   },
   footer: {
     backgroundColor: '#2d2d2d',  // Matching footer
-    borderColor: 'white',
-    height: 30,
     border: true,
   },
 });
