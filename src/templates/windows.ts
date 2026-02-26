@@ -15,9 +15,9 @@ export const windowsTemplate: Template = createTemplate('windows', {
   titleBar: true,
   titleBarHeight: 36,
   borderRadius: 0,
-  windowControls: true,
-  windowControlsPosition: 'right',
-  windowControlStyle: {
+  controls: true,
+  controlsPosition: 'right',
+  controlStyle: {
     close: '#e81123',
     minimize: '#333333',
     maximize: '#333333',

@@ -10,7 +10,7 @@ import { minimalTemplate } from './minimal';
 export { macosTemplate } from './macos';
 export { windowsTemplate } from './windows';
 export { minimalTemplate } from './minimal';
-export { createTemplate, defaultChrome, defaultWindowControlStyle } from './base';
+export { createTemplate, defaultShell, defaultControlStyle } from './base';
 
 /**
  * Available templates
