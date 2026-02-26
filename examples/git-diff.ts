@@ -16,7 +16,7 @@ const gitDiffOutput = `\x1b[1mdiff --git a/src/index.ts b/src/index.ts\x1b[0m
 \x1b[31m-  const options = defaultOptions;\x1b[0m
 \x1b[32m+  const options = resolveOptions(userOptions);\x1b[0m
 \x1b[32m+  const template = getTemplate(options.template);\x1b[0m
-   return renderSvg(lines, options);
+  return renderSvg(lines, options);
  }`;
 
 const svg = snaptty(gitDiffOutput, {
