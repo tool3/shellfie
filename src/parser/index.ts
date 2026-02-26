@@ -5,8 +5,8 @@
  * structured data (ParsedLine[]) for rendering.
  */
 
-import type { TextStyle, TextSpan, ParsedLine, RGB } from '../types.js';
-import type { ParserState, Token, EscapeSequence } from './types.js';
+import type { ParsedLine, RGB, TextSpan, TextStyle } from '../types';
+import type { ParserState, Token } from './types';
 
 // ANSI escape sequence patterns
 const ESC = '\x1b';
@@ -378,4 +378,5 @@ export function getMaxWidth(lines: ParsedLine[]): number {
   return maxWidth;
 }
 
-export type { ParserState, Token, EscapeSequence } from './types.js';
+export type { EscapeSequence, ParserState, Token } from './types';
+

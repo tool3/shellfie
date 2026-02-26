@@ -2,7 +2,7 @@
  * Color utilities and theme definitions
  */
 
-import type { Theme, RGB } from '../types.js';
+import type { Theme, RGB } from '../types';
 
 /**
  * Default dark theme (inspired by VS Code Dark+)

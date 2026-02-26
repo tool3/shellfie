@@ -2,7 +2,7 @@
  * Base template configuration
  */
 
-import type { Template, ChromeConfig, WindowControlStyle } from '../types.js';
+import type { Template, ChromeConfig, WindowControlStyle } from '../types';
 
 /**
  * Default window control style (macOS-like)

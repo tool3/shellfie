@@ -4,7 +4,7 @@
  * Handles font configuration and optional embedding for portable SVGs
  */
 
-import type { FontConfig } from '../types.js';
+import type { FontConfig } from '../types';
 import { readFile } from 'node:fs/promises';
 import { existsSync } from 'node:fs';
 

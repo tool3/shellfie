@@ -1,5 +1,5 @@
 import { describe, it, expect } from 'vitest';
-import { parseAnsi, stripAnsi, getMaxWidth } from './index.js';
+import { parseAnsi, stripAnsi, getMaxWidth } from './';
 
 describe('parseAnsi', () => {
   it('parses plain text', () => {

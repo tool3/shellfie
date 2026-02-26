@@ -5,13 +5,13 @@
  */
 
 import type {
+  FontConfig,
   ParsedLine,
   RenderOptions,
-  FontConfig,
-  Theme,
   Template,
-} from '../types.js';
-import { renderSpan, escapeXml, getDefaultFontConfig } from './text.js';
+  Theme,
+} from '../types';
+import { escapeXml, renderSpan } from './text';
 
 export interface RenderResult {
   svg: string;
@@ -162,7 +162,7 @@ export function renderSvg(
   lines: ParsedLine[],
   options: RenderOptions
 ): RenderResult {
-  const { template, title, theme, font, padding, watermark, windowControls } =
+  const { template, title, theme, font, padding, watermark, windowControls, customGlyphs } =
     options;
 
   const charWidth = font.size * font.charWidth;
@@ -251,26 +251,31 @@ export function renderSvg(
   const contentX = padding;
   const contentY = titleBarHeight + padding;
 
-  // Collect all backgrounds first (render behind text)
+  // Collect all elements: backgrounds, custom glyphs, and text
   const backgrounds: string[] = [];
-  const textElements: string[] = [];
+  const glyphs: string[] = [];
 
   // Font family for text
   const fontFamily = font.embedData ? "'EmbeddedFont', " + font.family : font.family;
 
+  // First pass: collect backgrounds and glyphs
   for (let lineIndex = 0; lineIndex < lines.length; lineIndex++) {
     const line = lines[lineIndex];
     const y = contentY + lineIndex * lineHeight + font.size;
     let x = contentX;
 
     for (const span of line.spans) {
-      const result = renderSpan(span, x, y, font, theme);
+      const result = renderSpan(span, x, y, font, theme, customGlyphs);
 
       if (result.background) {
         backgrounds.push(result.background);
       }
 
-      textElements.push(result.text);
+      // Collect custom glyphs
+      for (const glyph of result.glyphs) {
+        glyphs.push(glyph);
+      }
+
       x += result.width;
     }
   }
@@ -280,6 +285,15 @@ export function renderSvg(
     svgParts.push(`  <g class="backgrounds">`);
     for (const bg of backgrounds) {
       svgParts.push(`    ${bg}`);
+    }
+    svgParts.push(`  </g>`);
+  }
+
+  // Render custom glyphs (between backgrounds and text)
+  if (glyphs.length > 0) {
+    svgParts.push(`  <g class="glyphs">`);
+    for (const glyph of glyphs) {
+      svgParts.push(`    ${glyph}`);
     }
     svgParts.push(`  </g>`);
   }
@@ -297,16 +311,23 @@ export function renderSvg(
     // Collect tspans for this line
     const tspans: string[] = [];
     let x = contentX;
+    let hasText = false;
 
     for (const span of line.spans) {
-      const result = renderSpan(span, x, y, font, theme);
-      tspans.push(result.text);
+      const result = renderSpan(span, x, y, font, theme, customGlyphs);
+      if (result.text) {
+        tspans.push(result.text);
+        hasText = true;
+      }
       x += result.width;
     }
 
-    svgParts.push(
-      `    <text y="${y}" font-family="${fontFamily}" font-size="${font.size}">${tspans.join('')}</text>`
-    );
+    // Only add text element if there's actual text content
+    if (hasText && tspans.some(t => t.length > 0)) {
+      svgParts.push(
+        `    <text y="${y}" font-family="${fontFamily}" font-size="${font.size}">${tspans.join('')}</text>`
+      );
+    }
   }
   svgParts.push(`  </g>`);
 
@@ -327,5 +348,6 @@ export function renderSvg(
   };
 }
 
-export { darkTheme, createTheme, resolveColor, dimColor } from './colors.js';
-export { escapeXml, getDefaultFontConfig } from './text.js';
+export { createTheme, darkTheme, dimColor, resolveColor } from './colors';
+export { escapeXml, getDefaultFontConfig } from './text';
+

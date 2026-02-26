@@ -2,7 +2,7 @@
  * Parser-specific types
  */
 
-import type { TextStyle } from '../types.js';
+import type { TextStyle } from '../types';
 
 /** ANSI escape sequence types */
 export type EscapeSequenceType =

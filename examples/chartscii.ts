@@ -23,8 +23,8 @@ for (let i = 0; i < colors.length; i++) {
 }
 
 const chart = new Chartscii(data, {
-    barSize: 1,
-    fill: '░',
+    barSize: 2,
+    fill: '▒',
     colorLabels: true,
     orientation: 'vertical',
     valueLabels: true
@@ -38,3 +38,4 @@ const svg = snaptty(chart.create(), {
 });
 
 writeFileSync('examples/chartscii.svg', svg);
+export { svg };

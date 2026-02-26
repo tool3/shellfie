@@ -22,5 +22,7 @@ const svg = snaptty(colorDemo, {
   watermark: 'Full ANSI color support',
 });
 
-writeFileSync('examples/example-colors.svg', svg);
+writeFileSync('examples/colors.svg', svg);
 console.log('✓ Created examples/example-colors.svg');
+
+export { svg };

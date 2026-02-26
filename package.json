@@ -29,7 +29,7 @@
     "tty",
     "cli"
   ],
-  "author": "",
+  "author": "tool3",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.10.0",

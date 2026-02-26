@@ -1,7 +1,7 @@
 /**
  * Minimal template example
  *
- * Run: npx tsx examples/minimal.ts
+ * Run: npx ts-node examples/minimal.ts
  */
 
 import { snaptty } from '../src/index.js';
@@ -20,5 +20,7 @@ const svg = snaptty(terminalOutput, {
   template: 'minimal',
 });
 
-writeFileSync('examples/example-minimal.svg', svg);
-console.log('✓ Created examples/example-minimal.svg');
+writeFileSync('examples/minimal.svg', svg);
+console.log('✓ Created examples/minimal.svg');
+
+export { svg };

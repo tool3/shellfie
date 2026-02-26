@@ -8,8 +8,8 @@
  * - Border instead of shadow
  */
 
-import type { Template } from '../types.js';
-import { createTemplate } from './base.js';
+import type { Template } from '../types';
+import { createTemplate } from './base';
 
 export const windowsTemplate: Template = createTemplate('windows', {
   titleBar: true,

@@ -1,7 +1,7 @@
 /**
  * npm output example
  *
- * Run: npx tsx examples/npm.ts
+ * Run: npx ts-node examples/npm.ts
  */
 
 import { snaptty } from '../src/index.js';
@@ -22,5 +22,7 @@ const svg = snaptty(npmOutput, {
   title: 'npm install',
 });
 
-writeFileSync('examples/example-npm.svg', svg);
-console.log('✓ Created examples/example-npm.svg');
+writeFileSync('examples/npm.svg', svg);
+console.log('✓ Created examples/npm.svg');
+
+export { svg };

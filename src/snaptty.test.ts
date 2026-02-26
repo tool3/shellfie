@@ -5,8 +5,7 @@ import {
   render,
   templates,
   darkTheme,
-  stripAnsi,
-} from './index.js';
+} from './';
 
 describe('snaptty', () => {
   it('renders plain text to SVG', () => {

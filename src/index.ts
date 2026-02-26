@@ -17,17 +17,15 @@
  * ```
  */
 
+import { createFontConfig, loadEmbeddedFont } from './fonts';
+import { parseAnsi } from './parser';
+import { darkTheme, renderSvg } from './renderer';
+import { resolveTemplate } from './templates';
 import type {
-  SnapttyOptions,
-  RenderOptions,
-  Theme,
-  Template,
   ParsedLine,
-} from './types.js';
-import { parseAnsi, getMaxWidth } from './parser/index.js';
-import { renderSvg, darkTheme, getDefaultFontConfig } from './renderer/index.js';
-import { resolveTemplate, templates } from './templates/index.js';
-import { createFontConfig, loadEmbeddedFont } from './fonts/index.js';
+  RenderOptions,
+  SnapttyOptions
+} from './types';
 
 /**
  * Default options
@@ -46,6 +44,7 @@ const defaults: Required<
   windowControls: true,
   fontFamily: "'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace",
   embedFont: false,
+  customGlyphs: true,
 };
 
 /**
@@ -84,6 +83,7 @@ function resolveOptions(options: SnapttyOptions = {}): RenderOptions {
     width: options.width ?? defaults.width,
     watermark: options.watermark ?? defaults.watermark,
     windowControls: options.windowControls ?? defaults.windowControls,
+    customGlyphs: options.customGlyphs ?? defaults.customGlyphs,
   };
 }
 
@@ -171,23 +171,16 @@ export function render(
 
 // Re-export types
 export type {
-  SnapttyOptions,
-  Theme,
-  Template,
-  ChromeConfig,
-  WindowControlStyle,
-  FontConfig,
-  ParsedLine,
-  TextSpan,
-  TextStyle,
-  RGB,
-} from './types.js';
+  ChromeConfig, FontConfig,
+  ParsedLine, RGB, SnapttyOptions, Template, TextSpan,
+  TextStyle, Theme, WindowControlStyle
+} from './types';
 
 // Re-export utilities
-export { templates, resolveTemplate, createTemplate } from './templates/index.js';
-export { darkTheme, createTheme } from './renderer/colors.js';
-export { parseAnsi, stripAnsi, getMaxWidth } from './parser/index.js';
-export { createFontConfig, loadEmbeddedFont, loadFont } from './fonts/index.js';
+export { createFontConfig, loadEmbeddedFont, loadFont } from './fonts';
+export { getMaxWidth, parseAnsi, stripAnsi } from './parser';
+export { createTheme, darkTheme } from './renderer';
+export { createTemplate, resolveTemplate, templates } from './templates';
 
 // Default export
 export default snaptty;

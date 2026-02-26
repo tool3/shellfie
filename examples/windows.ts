@@ -1,7 +1,7 @@
 /**
  * Windows template example
  *
- * Run: npx tsx examples/windows.ts
+ * Run: npx ts-node examples/windows.ts
  */
 
 import { snaptty } from '../src/index.js';
@@ -21,5 +21,7 @@ const svg = snaptty(terminalOutput, {
   title: 'Command Prompt',
 });
 
-writeFileSync('examples/example-windows.svg', svg);
-console.log('✓ Created examples/example-windows.svg');
+writeFileSync('examples/windows.svg', svg);
+console.log('✓ Created examples/windows.svg');
+
+export { svg };

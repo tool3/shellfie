@@ -2,8 +2,13 @@
  * Text rendering utilities
  */
 
-import type { TextSpan, TextStyle, Theme, FontConfig } from '../types.js';
-import { resolveColor, dimColor } from './colors.js';
+import type { TextSpan, TextStyle, Theme, FontConfig } from '../types';
+import { resolveColor, dimColor } from './colors';
+import {
+  isCustomGlyph,
+  renderCustomGlyph,
+  type GlyphContext,
+} from './customGlyphs';
 
 /**
  * Escape special XML/HTML characters
@@ -101,18 +106,37 @@ export function renderSpanBackground(
 }
 
 /**
+ * Result of rendering a span
+ */
+export interface SpanRenderResult {
+  /** SVG tspan element for regular text */
+  text: string;
+  /** Background rectangle if needed */
+  background: string | null;
+  /** Custom glyph SVG elements (rendered as primitives instead of text) */
+  glyphs: string[];
+  /** Total width in pixels */
+  width: number;
+}
+
+/**
  * Render a single text span to SVG
+ *
+ * Characters that are custom glyphs (box drawing, block elements, etc.) are
+ * rendered as SVG primitives for pixel-perfect rendering, while regular text
+ * is rendered as tspan elements.
  */
 export function renderSpan(
   span: TextSpan,
   x: number,
   y: number,
   font: FontConfig,
-  theme: Theme
-): { text: string; background: string | null; width: number } {
+  theme: Theme,
+  customGlyphs: boolean = true
+): SpanRenderResult {
   const charWidth = font.size * font.charWidth;
+  const cellHeight = font.size * font.lineHeight;
   const width = span.text.length * charWidth;
-  const lineHeight = font.size * font.lineHeight;
 
   // Background (positioned at top of line)
   const bgY = y - font.size; // Move up by font size to cover the line
@@ -120,20 +144,85 @@ export function renderSpan(
     x,
     bgY,
     width,
-    lineHeight,
+    cellHeight,
     span.style,
     theme
   );
 
-  // Text element
+  // Get the foreground color for this span
   const attrs = getStyleAttributes(span.style, theme);
-  const attrStr = Object.entries(attrs)
-    .map(([k, v]) => `${k}="${v}"`)
-    .join(' ');
+  const color = attrs['fill'];
 
-  const text = `<tspan x="${x}" ${attrStr}>${escapeXml(span.text)}</tspan>`;
+  // Line widths for box drawing
+  const lineWidth = Math.max(1, font.size / 14);
+  const heavyLineWidth = lineWidth * 2;
 
-  return { text, background, width };
+  // Process each character, separating custom glyphs from regular text
+  const glyphs: string[] = [];
+  let textParts: string[] = [];
+  let currentTextStart = -1;
+  let currentText = '';
+  let charX = x;
+
+  for (let i = 0; i < span.text.length; i++) {
+    const char = span.text[i];
+    const codePoint = char.codePointAt(0);
+
+    if (customGlyphs && codePoint !== undefined && isCustomGlyph(codePoint)) {
+      // Flush any accumulated regular text
+      if (currentText.length > 0) {
+        const attrStr = Object.entries(attrs)
+          .map(([k, v]) => `${k}="${v}"`)
+          .join(' ');
+        textParts.push(
+          `<tspan x="${currentTextStart}" ${attrStr}>${escapeXml(currentText)}</tspan>`
+        );
+        currentText = '';
+        currentTextStart = -1;
+      }
+
+      // Render custom glyph
+      const ctx: GlyphContext = {
+        cellWidth: charWidth,
+        cellHeight: cellHeight,
+        x: charX,
+        y: bgY, // Use top of cell (same as background)
+        color,
+        lineWidth,
+        heavyLineWidth,
+      };
+
+      const result = renderCustomGlyph(char, ctx);
+      if (result.handled && result.svg) {
+        glyphs.push(result.svg);
+      }
+    } else {
+      // Accumulate regular text
+      if (currentTextStart === -1) {
+        currentTextStart = charX;
+      }
+      currentText += char;
+    }
+
+    charX += charWidth;
+  }
+
+  // Flush any remaining regular text
+  if (currentText.length > 0) {
+    const attrStr = Object.entries(attrs)
+      .map(([k, v]) => `${k}="${v}"`)
+      .join(' ');
+    textParts.push(
+      `<tspan x="${currentTextStart}" ${attrStr}>${escapeXml(currentText)}</tspan>`
+    );
+  }
+
+  return {
+    text: textParts.join(''),
+    background,
+    glyphs,
+    width,
+  };
 }
 
 /**

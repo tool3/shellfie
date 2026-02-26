@@ -2,15 +2,15 @@
  * Template exports
  */
 
-import type { Template } from '../types.js';
-import { macosTemplate } from './macos.js';
-import { windowsTemplate } from './windows.js';
-import { minimalTemplate } from './minimal.js';
+import type { Template } from '../types';
+import { macosTemplate } from './macos';
+import { windowsTemplate } from './windows';
+import { minimalTemplate } from './minimal';
 
-export { macosTemplate } from './macos.js';
-export { windowsTemplate } from './windows.js';
-export { minimalTemplate } from './minimal.js';
-export { createTemplate, defaultChrome, defaultWindowControlStyle } from './base.js';
+export { macosTemplate } from './macos';
+export { windowsTemplate } from './windows';
+export { minimalTemplate } from './minimal';
+export { createTemplate, defaultChrome, defaultWindowControlStyle } from './base';
 
 /**
  * Available templates

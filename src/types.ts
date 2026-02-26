@@ -131,6 +131,22 @@ export interface SnapttyOptions {
     data: string;
     format: 'woff2' | 'woff' | 'ttf';
   };
+  /**
+   * Whether to draw custom glyphs for box drawing, block elements, and other
+   * terminal graphics characters instead of using the font.
+   *
+   * This results in pixel-perfect rendering with continuous lines, similar to
+   * how terminals like VSCode render these characters. Enabled by default.
+   *
+   * Supported Unicode ranges:
+   * - Box Drawing (U+2500-U+257F)
+   * - Block Elements (U+2580-U+259F)
+   * - Braille Patterns (U+2800-U+28FF)
+   * - Symbols for Legacy Computing (U+1FB00-U+1FBFF)
+   *
+   * @default true
+   */
+  customGlyphs?: boolean;
 }
 
 /** Internal render options (resolved from SnapttyOptions) */
@@ -143,4 +159,6 @@ export interface RenderOptions {
   width: number | null;
   watermark: string | null;
   windowControls: boolean;
+  /** Whether to render custom glyphs for box drawing and block elements */
+  customGlyphs: boolean;
 }

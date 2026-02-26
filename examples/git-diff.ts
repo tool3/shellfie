@@ -24,5 +24,7 @@ const svg = snaptty(gitDiffOutput, {
   title: 'git diff',
 });
 
-writeFileSync('examples/example-git-diff.svg', svg);
-console.log('✓ Created examples/example-git-diff.svg');
+writeFileSync('examples/git-diff.svg', svg);
+console.log('✓ Created examples/git-diff.svg');
+
+export { svg };
