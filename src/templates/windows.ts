@@ -1,0 +1,33 @@
+/**
+ * Windows-style terminal template
+ *
+ * Features:
+ * - Square window control buttons on the right
+ * - Sharp corners
+ * - Left-aligned title
+ * - Border instead of shadow
+ */
+
+import type { Template } from '../types.js';
+import { createTemplate } from './base.js';
+
+export const windowsTemplate: Template = createTemplate('windows', {
+  titleBar: true,
+  titleBarHeight: 36,
+  borderRadius: 0,
+  windowControls: true,
+  windowControlsPosition: 'right',
+  windowControlStyle: {
+    close: '#e81123',
+    minimize: '#333333',
+    maximize: '#333333',
+    radius: 0,
+    spacing: 46,
+    size: 10,
+  },
+  padding: 12,
+  shadow: false,
+  border: true,
+  borderColor: '#333333',
+  borderWidth: 1,
+});

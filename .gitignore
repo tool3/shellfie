@@ -1,0 +1,7 @@
+node_modules/
+dist/
+*.svg
+!example-*.svg
+.DS_Store
+*.log
+coverage/

@@ -1,0 +1,24 @@
+/**
+ * Minimal template example
+ *
+ * Run: npx tsx examples/minimal.ts
+ */
+
+import { snaptty } from '../src/index.js';
+import { writeFileSync } from 'node:fs';
+
+const terminalOutput = `\x1b[1;32m❯\x1b[0m ls -la
+\x1b[1;34mdrwxr-xr-x\x1b[0m  12 user  staff   384 Jan 15 10:30 \x1b[1;34m.\x1b[0m
+\x1b[1;34mdrwxr-xr-x\x1b[0m   8 user  staff   256 Jan 14 09:15 \x1b[1;34m..\x1b[0m
+-rw-r--r--   1 user  staff  1420 Jan 15 10:30 \x1b[32mpackage.json\x1b[0m
+-rw-r--r--   1 user  staff   380 Jan 15 10:25 \x1b[32mtsconfig.json\x1b[0m
+\x1b[1;34mdrwxr-xr-x\x1b[0m   6 user  staff   192 Jan 15 10:28 \x1b[1;34msrc\x1b[0m
+\x1b[1;36mlrwxr-xr-x\x1b[0m   1 user  staff    12 Jan 14 15:00 \x1b[1;36mlink\x1b[0m -> \x1b[32mtarget\x1b[0m
+-rwxr-xr-x   1 user  staff  8192 Jan 15 10:20 \x1b[1;31mexecutable\x1b[0m`;
+
+const svg = snaptty(terminalOutput, {
+  template: 'minimal',
+});
+
+writeFileSync('examples/example-minimal.svg', svg);
+console.log('✓ Created examples/example-minimal.svg');
