@@ -1,15 +1,15 @@
 /**
- * snaptty - Convert terminal output to crystal-clear SVG images
+ * shellfie - Convert terminal output to crystal-clear SVG images
  *
  * @example
  * ```typescript
- * import { snaptty } from 'snaptty';
+ * import { shellfie } from 'shellfie';
  *
  * // Simple usage
- * const svg = snaptty('Hello \x1b[32mWorld\x1b[0m');
+ * const svg = shellfie('Hello \x1b[32mWorld\x1b[0m');
  *
  * // With options
- * const svg = snaptty(terminalOutput, {
+ * const svg = shellfie(terminalOutput, {
  *   template: 'macos',
  *   title: 'my-script.sh',
  *   fontSize: 14,
@@ -26,7 +26,7 @@ import type {
   ParsedLine,
   RenderOptions,
   ResolvedPadding,
-  SnapttyOptions
+  shellfieOptions
 } from './types';
 
 /**
@@ -66,7 +66,7 @@ const defaults = {
 /**
  * Resolve user options into internal render options
  */
-function resolveOptions(options: SnapttyOptions = {}): RenderOptions {
+function resolveOptions(options: shellfieOptions = {}): RenderOptions {
   const template = resolveTemplate(options.template);
   const theme = options.theme ?? defaults.theme;
   const fontSize = options.fontSize ?? defaults.fontSize;
@@ -116,7 +116,7 @@ function resolveOptions(options: SnapttyOptions = {}): RenderOptions {
  * @param options - Rendering options
  * @returns SVG string
  */
-export function snaptty(input: string, options: SnapttyOptions = {}): string {
+export function shellfie(input: string, options: shellfieOptions = {}): string {
   const lines = parseAnsi(input);
   const renderOptions = resolveOptions(options);
 
@@ -138,9 +138,9 @@ export function snaptty(input: string, options: SnapttyOptions = {}): string {
  * @param options - Rendering options
  * @returns Promise resolving to SVG string
  */
-export async function snapttyAsync(
+export async function shellfieAsync(
   input: string,
-  options: SnapttyOptions = {}
+  options: shellfieOptions = {}
 ): Promise<string> {
   const lines = parseAnsi(input);
   const renderOptions = resolveOptions(options);
@@ -179,7 +179,7 @@ export function parse(input: string): ParsedLine[] {
  */
 export function render(
   lines: ParsedLine[],
-  options: SnapttyOptions = {}
+  options: shellfieOptions = {}
 ): string {
   const renderOptions = resolveOptions(options);
 
@@ -194,7 +194,7 @@ export function render(
 // Re-export types
 export type {
   ChromeConfig, FontConfig,
-  ParsedLine, RGB, SnapttyOptions, Template, TextSpan,
+  ParsedLine, RGB, shellfieOptions, Template, TextSpan,
   TextStyle, Theme, WindowControlStyle
 } from './types';
 
@@ -205,4 +205,4 @@ export { createTheme, darkTheme } from './renderer';
 export { createTemplate, resolveTemplate, templates } from './templates';
 
 // Default export
-export default snaptty;
+export default shellfie;

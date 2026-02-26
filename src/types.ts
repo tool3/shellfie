@@ -1,5 +1,5 @@
 /**
- * Core types for snaptty
+ * Core types for shellfie
  */
 
 /** RGB color representation */
@@ -118,8 +118,8 @@ export interface FontConfig {
   embedFormat?: 'woff2' | 'woff' | 'ttf';
 }
 
-/** Main options for snaptty */
-export interface SnapttyOptions {
+/** Main options for shellfie */
+export interface shellfieOptions {
   /** Template name or custom template object */
   template?: 'macos' | 'windows' | 'minimal' | Template;
   /** Window title */
@@ -178,7 +178,7 @@ export interface SnapttyOptions {
   customGlyphs?: boolean;
 }
 
-/** Internal render options (resolved from SnapttyOptions) */
+/** Internal render options (resolved from shellfieOptions) */
 export interface RenderOptions {
   template: Template;
   title: string;

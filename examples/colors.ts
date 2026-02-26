@@ -4,7 +4,7 @@
  * Run: npx tsx examples/colors.ts
  */
 
-import { snaptty } from '../src';
+import { shellfie } from '../src';
 import { writeFileSync } from 'node:fs';
 
 const colorDemo = `\x1b[1m256 Color Palette Sample:\x1b[0m
@@ -16,10 +16,10 @@ const colorDemo = `\x1b[1m256 Color Palette Sample:\x1b[0m
 \x1b[1mText Styles:\x1b[0m
 \x1b[1mBold\x1b[0m  \x1b[3mItalic\x1b[0m  \x1b[4mUnderline\x1b[0m  \x1b[9mStrikethrough\x1b[0m  \x1b[2mDim\x1b[0m  \x1b[7mInverse\x1b[0m`;
 
-const svg = snaptty(colorDemo, {
+const svg = shellfie(colorDemo, {
   template: 'macos',
   title: 'Color Support Demo',
-  watermark: 'Full \x1b[31mANSI\x1b[0m color support',
+  watermark: 'Full \x1b[38;5;200mANSI\x1b[0m color support',
 });
 
 writeFileSync('examples/svgs/colors.svg', svg);

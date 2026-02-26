@@ -4,7 +4,7 @@
  * Run: npx ts-node examples/windows.ts
  */
 
-import { snaptty } from '../src';
+import { shellfie } from '../src';
 import { writeFileSync } from 'node:fs';
 
 const terminalOutput = `\x1b[1;32m❯\x1b[0m ls -la
@@ -16,7 +16,7 @@ const terminalOutput = `\x1b[1;32m❯\x1b[0m ls -la
 \x1b[1;36mlrwxr-xr-x\x1b[0m   1 user  staff    12 Jan 14 15:00 \x1b[1;36mlink\x1b[0m -> \x1b[32mtarget\x1b[0m
 -rwxr-xr-x   1 user  staff  8192 Jan 15 10:20 \x1b[1;31mexecutable\x1b[0m`;
 
-const svg = snaptty(terminalOutput, {
+const svg = shellfie(terminalOutput, {
   template: 'windows',
   title: 'Command Prompt',
 });

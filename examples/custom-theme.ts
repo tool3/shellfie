@@ -4,7 +4,7 @@
  * Run: npx tsx examples/custom-theme.ts
  */
 
-import { snaptty } from '../src';
+import { shellfie } from '../src';
 import { writeFileSync } from 'node:fs';
 
 const terminalOutput = `\x1b[1;32m❯\x1b[0m ls -la
@@ -40,7 +40,7 @@ const oceanTheme = {
   brightWhite: '#ffffff',
 };
 
-const svg = snaptty(terminalOutput, {
+const svg = shellfie(terminalOutput, {
   template: 'macos',
   title: 'Custom Theme',
   theme: oceanTheme,

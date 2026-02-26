@@ -6,11 +6,12 @@
 
 import './macos';
 import './windows';
+import './chartscii';
 import './minimal';
 import './git-diff';
 import './npm';
 import './colors';
 import './custom-theme';
-import './realtime';
+import './git-log';
 
 console.log('\nAll examples generated! see ./svgs folder for output.');
