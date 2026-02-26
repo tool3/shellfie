@@ -1,7 +1,7 @@
 /**
  * Header and Footer demo
  *
- * Demonstrates structural chrome customization:
+ * Demonstrates structural shell customization:
  * - header: styles the title bar (background color, border)
  * - footer: adds a mirrored bar at the bottom
  *
