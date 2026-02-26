@@ -110,6 +110,19 @@ shellfie(output, { theme });
 
 ## Works With Everything
 
+### gradient-string
+
+Full 24-bit true color and 256-color support:
+
+```typescript
+import gradient from 'gradient-string';
+
+const coolGradient = gradient(['#FF0000', '#00FF00', '#0000FF']);
+const svg = shellfie(coolGradient('Hello World'), { title: 'gradient string' });
+```
+
+![Gradient String](examples/svgs/gradient-string.svg)
+
 ### Chartscii
 
 ```typescript

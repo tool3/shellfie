@@ -27,6 +27,8 @@ export function isCustomGlyph(codePoint: number): boolean {
     (codePoint >= 0x2500 && codePoint <= 0x257f) ||
     // Block Elements (U+2580-U+259F) - includes shade characters
     (codePoint >= 0x2580 && codePoint <= 0x259f) ||
+    // Black Square (U+25A0) - renders as cell-width square for seamless gradients
+    codePoint === 0x25a0 ||
     // Braille Patterns (U+2800-U+28FF)
     (codePoint >= 0x2800 && codePoint <= 0x28ff) ||
     // Symbols for Legacy Computing (U+1FB00-U+1FBFF)
@@ -97,6 +99,19 @@ export function renderCustomGlyph(
   // Block Elements (U+2580-U+259F)
   if (codePoint >= 0x2580 && codePoint <= 0x259f) {
     return renderBlockElement(codePoint, ctx);
+  }
+
+  // Black Square (U+25A0) - render as cell-width square, vertically centered
+  if (codePoint === 0x25a0) {
+    const { cellWidth, cellHeight, x, y, color } = ctx;
+    // Square size equals cell width for seamless horizontal tiling
+    const size = cellWidth;
+    // Center vertically within the cell
+    const squareY = y + (cellHeight - size) / 2;
+    return {
+      svg: `<rect x="${x}" y="${squareY}" width="${size}" height="${size}" fill="${color}" shape-rendering="crispEdges"/>`,
+      handled: true,
+    };
   }
 
   // Braille Patterns (U+2800-U+28FF)

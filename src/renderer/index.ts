@@ -161,7 +161,7 @@ function renderWatermark(
     currentX += result.width;
   }
 
-  return `<text y="${y}" font-family="${font.family}" font-size="${wmFont.size}" opacity="0.3" xml:space="preserve">${tspans.join('')}</text>`;
+  return `<text y="${y}" font-family="${font.family}" font-size="${wmFont.size}" xml:space="preserve">${tspans.join('')}</text>`;
 }
 
 /**
