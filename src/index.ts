@@ -22,11 +22,16 @@ import { parseAnsi } from './parser';
 import { darkTheme, renderSvg } from './renderer';
 import { resolveTemplate } from './templates';
 import type {
+  FooterConfig,
+  HeaderConfig,
   PaddingInput,
   ParsedLine,
   RenderOptions,
+  ResolvedFooterConfig,
+  ResolvedHeaderConfig,
   ResolvedPadding,
-  shellfieOptions
+  shellfieOptions,
+  Theme
 } from './types';
 
 /**
@@ -42,6 +47,52 @@ function resolvePadding(input: PaddingInput): ResolvedPadding {
   }
   const [top, right, bottom, left] = input;
   return { top, right, bottom, left };
+}
+
+/**
+ * Add alpha to hex color (append 2-char hex alpha)
+ */
+function addAlpha(hex: string, alpha: number): string {
+  const alphaHex = Math.round(alpha * 255).toString(16).padStart(2, '0');
+  return `${hex}${alphaHex}`;
+}
+
+/**
+ * Resolve header configuration (title bar styling)
+ */
+function resolveHeader(
+  header: HeaderConfig | undefined,
+  theme: Theme,
+  defaultHeight: number
+): ResolvedHeaderConfig | null {
+  if (!header) return null;
+
+  return {
+    backgroundColor: header.backgroundColor ?? theme.headerBackground ?? theme.background,
+    height: header.height ?? defaultHeight,
+    border: header.border ?? true,
+    borderColor: header.borderColor ?? addAlpha(theme.foreground, 0.1),
+    borderWidth: header.borderWidth ?? 1,
+  };
+}
+
+/**
+ * Resolve footer configuration (bottom bar styling)
+ */
+function resolveFooter(
+  footer: FooterConfig | undefined,
+  theme: Theme,
+  defaultHeight: number
+): ResolvedFooterConfig | null {
+  if (!footer) return null;
+
+  return {
+    backgroundColor: footer.backgroundColor ?? theme.footerBackground ?? theme.background,
+    height: footer.height ?? defaultHeight,
+    border: footer.border ?? true,
+    borderColor: footer.borderColor ?? addAlpha(theme.foreground, 0.1),
+    borderWidth: footer.borderWidth ?? 1,
+  };
 }
 
 /**
@@ -95,6 +146,18 @@ function resolveOptions(options: shellfieOptions = {}): RenderOptions {
   const watermarkPaddingInput = options.watermarkPadding ?? paddingInput;
   const watermarkPadding = resolvePadding(watermarkPaddingInput);
 
+  // Resolve header and footer (structural chrome elements)
+  const header = resolveHeader(
+    options.header,
+    theme,
+    template.chrome.titleBarHeight
+  );
+  const footer = resolveFooter(
+    options.footer,
+    theme,
+    template.chrome.titleBarHeight
+  );
+
   return {
     template,
     title: options.title ?? defaults.title,
@@ -106,6 +169,8 @@ function resolveOptions(options: shellfieOptions = {}): RenderOptions {
     watermarkPadding,
     windowControls: options.windowControls ?? defaults.windowControls,
     customGlyphs: options.customGlyphs ?? defaults.customGlyphs,
+    header,
+    footer,
   };
 }
 

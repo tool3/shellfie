@@ -8,6 +8,8 @@ import type {
   FontConfig,
   ParsedLine,
   RenderOptions,
+  ResolvedFooterConfig,
+  ResolvedHeaderConfig,
   Template,
   Theme,
 } from '../types';
@@ -64,30 +66,52 @@ function renderTitleBar(
   title: string,
   contentWidth: number,
   theme: Theme,
-  font: FontConfig
+  font: FontConfig,
+  header: ResolvedHeaderConfig | null
 ): string {
   if (!template.chrome.titleBar) {
     return '';
   }
 
-  const { titleBarHeight, borderRadius, windowControls, windowControlsPosition } =
-    template.chrome;
+  const { borderRadius, windowControls, windowControlsPosition } = template.chrome;
+
+  // Use header height if specified, otherwise use template's titleBarHeight
+  const titleBarHeight = header?.height ?? template.chrome.titleBarHeight;
+
+  // Use header background color if provided, otherwise use theme background
+  const backgroundColor = header?.backgroundColor ?? theme.background;
 
   const parts: string[] = [];
 
-  // Title bar background
+  // Determine border settings
+  const showBorder = header ? header.border : true;
+  const borderColor = header?.borderColor ?? `${theme.foreground}1a`; // 10% opacity default
+  const borderWidth = header?.borderWidth ?? 1;
+
+  // Title bar background (leave room for border at the bottom)
+  const bgHeight = showBorder ? titleBarHeight - borderWidth : titleBarHeight;
   parts.push(
-    `<rect x="0" y="0" width="${contentWidth}" height="${titleBarHeight}" fill="${theme.background}" rx="${borderRadius}" ry="${borderRadius}"/>`
+    `<rect x="0" y="0" width="${contentWidth}" height="${bgHeight}" fill="${backgroundColor}" rx="${borderRadius}" ry="${borderRadius}"/>`
   );
 
   // Cover bottom corners of title bar (they should be square where content meets)
-  parts.push(
-    `<rect x="0" y="${titleBarHeight - borderRadius}" width="${contentWidth}" height="${borderRadius}" fill="${theme.background}"/>`
-  );
+  if (bgHeight > borderRadius) {
+    parts.push(
+      `<rect x="0" y="${bgHeight - borderRadius}" width="${contentWidth}" height="${borderRadius}" fill="${backgroundColor}"/>`
+    );
+  }
+
+  // Separator line at the bottom of title bar area
+  if (showBorder) {
+    const borderY = titleBarHeight - borderWidth / 2;
+    parts.push(
+      `<line x1="0" y1="${borderY}" x2="${contentWidth}" y2="${borderY}" stroke="${borderColor}" stroke-width="${borderWidth}"/>`
+    );
+  }
 
   // Window controls
   if (windowControls) {
-    const controlY = titleBarHeight / 2;
+    const controlY = bgHeight / 2;
     const controlX =
       windowControlsPosition === 'left'
         ? template.chrome.padding
@@ -96,18 +120,49 @@ function renderTitleBar(
     parts.push(renderWindowControls(template, controlX, controlY));
   }
 
-  // Title text (centered)
+  // Title text (centered in background area)
   if (title) {
     const titleX = contentWidth / 2;
-    const titleY = titleBarHeight / 2 + font.size / 3;
+    const titleY = bgHeight / 2 + font.size / 3;
     parts.push(
       `<text x="${titleX}" y="${titleY}" fill="${theme.foreground}" font-family="${font.family}" font-size="${font.size - 2}" text-anchor="middle" opacity="0.8">${escapeXml(title)}</text>`
     );
   }
 
-  // Separator line
+  return parts.join('\n    ');
+}
+
+/**
+ * Render footer bar (structural chrome element at the bottom)
+ */
+function renderFooterBar(
+  footer: ResolvedFooterConfig,
+  contentWidth: number,
+  y: number,
+  borderRadius: number
+): string {
+  const parts: string[] = [];
+
+  // Border line at the top of footer area
+  if (footer.border) {
+    const borderY = y + footer.borderWidth / 2;
+    parts.push(
+      `<line x1="0" y1="${borderY}" x2="${contentWidth}" y2="${borderY}" stroke="${footer.borderColor}" stroke-width="${footer.borderWidth}"/>`
+    );
+  }
+
+  // Footer background starts after the border
+  const bgY = footer.border ? y + footer.borderWidth : y;
+  const bgHeight = footer.border ? footer.height - footer.borderWidth : footer.height;
+
+  // Footer background
   parts.push(
-    `<line x1="0" y1="${titleBarHeight}" x2="${contentWidth}" y2="${titleBarHeight}" stroke="${theme.foreground}" stroke-opacity="0.1"/>`
+    `<rect x="0" y="${bgY}" width="${contentWidth}" height="${bgHeight}" fill="${footer.backgroundColor}" rx="${borderRadius}" ry="${borderRadius}"/>`
+  );
+
+  // Cover top corners of footer (they should be square where content meets)
+  parts.push(
+    `<rect x="0" y="${bgY}" width="${contentWidth}" height="${borderRadius}" fill="${footer.backgroundColor}"/>`
   );
 
   return parts.join('\n    ');
@@ -201,7 +256,7 @@ export function renderSvg(
   lines: ParsedLine[],
   options: RenderOptions
 ): RenderResult {
-  const { template, title, theme, font, padding, watermark, watermarkPadding, windowControls, customGlyphs } =
+  const { template, title, theme, font, padding, watermark, watermarkPadding, windowControls, customGlyphs, header, footer } =
     options;
 
   const charWidth = font.size * font.charWidth;
@@ -225,9 +280,13 @@ export function renderSvg(
   const textHeight = lines.length * lineHeight;
 
   // Calculate total dimensions with chrome
+  // Use header height if specified, otherwise use template's titleBarHeight
   const titleBarHeight = template.chrome.titleBar
-    ? template.chrome.titleBarHeight
+    ? (header?.height ?? template.chrome.titleBarHeight)
     : 0;
+
+  // Footer height
+  const footerHeight = footer ? footer.height : 0;
 
   // Watermark height accounts for its own padding
   const wmFontSize = font.size - 4;
@@ -235,7 +294,7 @@ export function renderSvg(
 
   const contentWidth = textWidth + padding.left + padding.right;
   const contentHeight =
-    textHeight + padding.top + padding.bottom + titleBarHeight + watermarkHeight;
+    textHeight + padding.top + padding.bottom + titleBarHeight + footerHeight + watermarkHeight;
 
   // Start building SVG
   const svgParts: string[] = [];
@@ -281,10 +340,10 @@ export function renderSvg(
     );
   }
 
-  // Title bar
+  // Title bar (with optional header styling)
   if (template.chrome.titleBar) {
     svgParts.push(`  <g class="title-bar">`);
-    svgParts.push(`    ${renderTitleBar(template, title, contentWidth, theme, font)}`);
+    svgParts.push(`    ${renderTitleBar(template, title, contentWidth, theme, font, header)}`);
     svgParts.push(`  </g>`);
   }
 
@@ -372,11 +431,21 @@ export function renderSvg(
   }
   svgParts.push(`  </g>`);
 
-  // Watermark
+  // Watermark (positioned above footer, at bottom of content area)
   if (watermark) {
     const wmX = contentWidth - watermarkPadding.right;
-    const wmY = contentHeight - watermarkPadding.bottom;
+    // Position watermark at bottom of content area, before footer
+    const contentAreaBottom = titleBarHeight + padding.top + textHeight + padding.bottom;
+    const wmY = contentAreaBottom - watermarkPadding.bottom + wmFontSize;
     svgParts.push(`  ${renderWatermark(watermark, wmX, wmY, theme, font)}`);
+  }
+
+  // Footer (after watermark so it doesn't overlap)
+  if (footer) {
+    const footerY = titleBarHeight + padding.top + textHeight + padding.bottom + watermarkHeight;
+    svgParts.push(`  <g class="footer">`);
+    svgParts.push(`    ${renderFooterBar(footer, contentWidth, footerY, template.chrome.borderRadius)}`);
+    svgParts.push(`  </g>`);
   }
 
   // Close SVG
