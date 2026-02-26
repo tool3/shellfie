@@ -118,8 +118,10 @@ export interface SnapttyOptions {
   padding?: number;
   /** Terminal width in columns (auto-detect if not specified) */
   width?: number;
-  /** Watermark text */
+  /** Watermark text (supports ANSI escape codes for styling) */
   watermark?: string;
+  /** Padding from edge for watermark in pixels (default: same as content padding) */
+  watermarkPadding?: number;
   /** Show window control buttons */
   windowControls?: boolean;
   /** Font family */
@@ -158,6 +160,7 @@ export interface RenderOptions {
   padding: number;
   width: number | null;
   watermark: string | null;
+  watermarkPadding: number;
   windowControls: boolean;
   /** Whether to render custom glyphs for box drawing and block elements */
   customGlyphs: boolean;

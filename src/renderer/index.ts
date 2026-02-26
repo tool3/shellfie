@@ -11,6 +11,7 @@ import type {
   Template,
   Theme,
 } from '../types';
+import { parseAnsi } from '../parser';
 import { escapeXml, renderSpan } from './text';
 
 export interface RenderResult {
@@ -113,7 +114,7 @@ function renderTitleBar(
 }
 
 /**
- * Render watermark
+ * Render watermark with ANSI styling support
  */
 function renderWatermark(
   watermark: string,
@@ -122,7 +123,45 @@ function renderWatermark(
   theme: Theme,
   font: FontConfig
 ): string {
-  return `<text x="${x}" y="${y}" fill="${theme.foreground}" font-family="${font.family}" font-size="${font.size - 4}" text-anchor="end" opacity="0.3">${escapeXml(watermark)}</text>`;
+  // Parse the watermark for ANSI codes
+  const lines = parseAnsi(watermark);
+
+  // Find first non-empty line
+  const line = lines.find(l => l.spans.length > 0);
+  if (!line) {
+    return '';
+  }
+
+  // Use smaller font for watermark
+  const wmFont: FontConfig = {
+    ...font,
+    size: font.size - 4,
+  };
+  const charWidth = wmFont.size * wmFont.charWidth;
+
+  // Calculate total width of watermark text
+  let totalChars = 0;
+  for (const span of line.spans) {
+    totalChars += span.text.length;
+  }
+  const totalWidth = totalChars * charWidth;
+
+  // Start position (right-aligned from x)
+  const startX = x - totalWidth;
+
+  // Render spans
+  const tspans: string[] = [];
+  let currentX = startX;
+
+  for (const span of line.spans) {
+    const result = renderSpan(span, currentX, y, wmFont, theme, false);
+    if (result.text) {
+      tspans.push(result.text);
+    }
+    currentX += result.width;
+  }
+
+  return `<text y="${y}" font-family="${font.family}" font-size="${wmFont.size}" opacity="0.3" xml:space="preserve">${tspans.join('')}</text>`;
 }
 
 /**
@@ -162,7 +201,7 @@ export function renderSvg(
   lines: ParsedLine[],
   options: RenderOptions
 ): RenderResult {
-  const { template, title, theme, font, padding, watermark, windowControls, customGlyphs } =
+  const { template, title, theme, font, padding, watermark, watermarkPadding, windowControls, customGlyphs } =
     options;
 
   const charWidth = font.size * font.charWidth;
@@ -325,7 +364,7 @@ export function renderSvg(
     // Only add text element if there's actual text content
     if (hasText && tspans.some(t => t.length > 0)) {
       svgParts.push(
-        `    <text y="${y}" font-family="${fontFamily}" font-size="${font.size}">${tspans.join('')}</text>`
+        `    <text y="${y}" font-family="${fontFamily}" font-size="${font.size}" xml:space="preserve">${tspans.join('')}</text>`
       );
     }
   }
@@ -333,8 +372,8 @@ export function renderSvg(
 
   // Watermark
   if (watermark) {
-    const wmX = contentWidth - padding;
-    const wmY = contentHeight - 6;
+    const wmX = contentWidth - watermarkPadding;
+    const wmY = contentHeight - watermarkPadding + font.size - 4;
     svgParts.push(`  ${renderWatermark(watermark, wmX, wmY, theme, font)}`);
   }
 

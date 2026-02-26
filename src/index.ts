@@ -31,8 +31,8 @@ import type {
  * Default options
  */
 const defaults: Required<
-  Omit<SnapttyOptions, 'customFont' | 'width' | 'watermark'>
-> & { width: number | null; watermark: string | null } = {
+  Omit<SnapttyOptions, 'customFont' | 'width' | 'watermark' | 'watermarkPadding'>
+> & { width: number | null; watermark: string | null; watermarkPadding: number | null } = {
   template: 'macos',
   title: '',
   theme: darkTheme,
@@ -41,6 +41,7 @@ const defaults: Required<
   padding: 16,
   width: null,
   watermark: null,
+  watermarkPadding: null,
   windowControls: true,
   fontFamily: "'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace",
   embedFont: false,
@@ -74,14 +75,17 @@ function resolveOptions(options: SnapttyOptions = {}): RenderOptions {
     embedFormat,
   });
 
+  const padding = options.padding ?? template.chrome.padding;
+
   return {
     template,
     title: options.title ?? defaults.title,
     theme,
     font,
-    padding: options.padding ?? template.chrome.padding,
+    padding,
     width: options.width ?? defaults.width,
     watermark: options.watermark ?? defaults.watermark,
+    watermarkPadding: options.watermarkPadding ?? padding,
     windowControls: options.windowControls ?? defaults.windowControls,
     customGlyphs: options.customGlyphs ?? defaults.customGlyphs,
   };

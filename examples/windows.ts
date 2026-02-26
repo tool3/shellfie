@@ -4,7 +4,7 @@
  * Run: npx ts-node examples/windows.ts
  */
 
-import { snaptty } from '../src/index.js';
+import { snaptty } from '../src';
 import { writeFileSync } from 'node:fs';
 
 const terminalOutput = `\x1b[1;32m❯\x1b[0m ls -la
@@ -24,4 +24,3 @@ const svg = snaptty(terminalOutput, {
 writeFileSync('examples/windows.svg', svg);
 console.log('✓ Created examples/windows.svg');
 
-export { svg };

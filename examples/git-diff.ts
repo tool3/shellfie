@@ -4,7 +4,7 @@
  * Run: npx tsx examples/git-diff.ts
  */
 
-import { snaptty } from '../src/index.js';
+import { snaptty } from '../src';
 import { writeFileSync } from 'node:fs';
 
 const gitDiffOutput = `\x1b[1mdiff --git a/src/index.ts b/src/index.ts\x1b[0m
@@ -27,4 +27,3 @@ const svg = snaptty(gitDiffOutput, {
 writeFileSync('examples/git-diff.svg', svg);
 console.log('✓ Created examples/git-diff.svg');
 
-export { svg };

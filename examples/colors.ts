@@ -4,7 +4,7 @@
  * Run: npx tsx examples/colors.ts
  */
 
-import { snaptty } from '../src/index.js';
+import { snaptty } from '../src';
 import { writeFileSync } from 'node:fs';
 
 const colorDemo = `\x1b[1m256 Color Palette Sample:\x1b[0m
@@ -20,9 +20,10 @@ const svg = snaptty(colorDemo, {
   template: 'macos',
   title: 'Color Support Demo',
   watermark: 'Full ANSI color support',
+  // watermarkPadding: 10,
+  lineHeight: 1.5
 });
 
 writeFileSync('examples/colors.svg', svg);
 console.log('✓ Created examples/example-colors.svg');
 
-export { svg };

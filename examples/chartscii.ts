@@ -1,5 +1,5 @@
 import Chartscii from 'chartscii';
-import { snaptty } from '../dist/index.js';
+import { snaptty } from '../src';
 import { writeFileSync } from 'fs';
 
 const colors = [
@@ -38,4 +38,3 @@ const svg = snaptty(chart.create(), {
 });
 
 writeFileSync('examples/chartscii.svg', svg);
-export { svg };

@@ -4,7 +4,7 @@
  * Run: npx tsx examples/custom-theme.ts
  */
 
-import { snaptty } from '../src/index.js';
+import { snaptty } from '../src';
 import { writeFileSync } from 'node:fs';
 
 const terminalOutput = `\x1b[1;32m❯\x1b[0m ls -la
@@ -49,4 +49,3 @@ const svg = snaptty(terminalOutput, {
 writeFileSync('examples/custom-theme.svg', svg);
 console.log('✓ Created examples/example-custom-theme.svg');
 
-export { svg };
