@@ -1,0 +1,28 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 771.2 248.39999999999998" width="771.2" height="248.39999999999998">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect x="0" y="0" width="771.2" height="248.39999999999998" fill="#1e1e1e" rx="10" ry="10" filter="url(#shadow)"/>
+  <g class="title-bar">
+    <rect x="0" y="0" width="771.2" height="40" fill="#1e1e1e" rx="10" ry="10"/>
+    <rect x="0" y="30" width="771.2" height="10" fill="#1e1e1e"/>
+    <circle cx="16" cy="20" r="6" fill="#ff5f56"/>
+    <circle cx="36" cy="20" r="6" fill="#ffbd2e"/>
+    <circle cx="56" cy="20" r="6" fill="#27c93f"/>
+    <text x="385.6" y="24.666666666666668" fill="#d4d4d4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">git log</text>
+    <line x1="0" y1="40" x2="771.2" y2="40" stroke="#d4d4d4" stroke-opacity="0.1"/>
+  </g>
+  <g class="text">
+    <text y="70" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#d4d4d4">* </tspan><tspan x="32.8" fill="#cd3131">b63bb46</tspan><tspan x="91.6" fill="#d4d4d4"> -</tspan><tspan x="108.39999999999999" fill="#e5e510"> (HEAD -&gt; master)</tspan><tspan x="251.2" fill="#d4d4d4"> chore: gradient-string example </tspan><tspan x="520" fill="#0dbc79">(20 minutes ago) </tspan><tspan x="662.8" fill="#2472c8" font-weight="bold">&lt;Tal Hayut&gt;</tspan></text>
+    <text y="89.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#d4d4d4">* </tspan><tspan x="32.8" fill="#cd3131">fdc576e</tspan><tspan x="91.6" fill="#d4d4d4"> -</tspan><tspan x="108.39999999999999" fill="#d4d4d4"> docs: readme </tspan><tspan x="226" fill="#0dbc79">(70 minutes ago) </tspan><tspan x="368.8" fill="#2472c8" font-weight="bold">&lt;Tal Hayut&gt;</tspan></text>
+    <text y="109.19999999999999" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#d4d4d4">* </tspan><tspan x="32.8" fill="#cd3131">032277f</tspan><tspan x="91.6" fill="#d4d4d4"> -</tspan><tspan x="108.39999999999999" fill="#e5e510"> (fix/unicode)</tspan><tspan x="226" fill="#d4d4d4"> chore: examples </tspan><tspan x="368.8" fill="#0dbc79">(2 hours ago) </tspan><tspan x="486.40000000000003" fill="#2472c8" font-weight="bold">&lt;Tal Hayut&gt;</tspan></text>
+    <text y="128.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#d4d4d4">* </tspan><tspan x="32.8" fill="#cd3131">87d6a2b</tspan><tspan x="91.6" fill="#d4d4d4"> -</tspan><tspan x="108.39999999999999" fill="#d4d4d4"> chore: examples </tspan><tspan x="251.2" fill="#0dbc79">(2 hours ago) </tspan><tspan x="368.8" fill="#2472c8" font-weight="bold">&lt;Tal Hayut&gt;</tspan></text>
+    <text y="148.39999999999998" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#d4d4d4">* </tspan><tspan x="32.8" fill="#cd3131">f2d8c5b</tspan><tspan x="91.6" fill="#d4d4d4"> -</tspan><tspan x="108.39999999999999" fill="#d4d4d4"> chore: added real time </tspan><tspan x="310" fill="#0dbc79">(2 hours ago) </tspan><tspan x="427.6" fill="#2472c8" font-weight="bold">&lt;Tal Hayut&gt;</tspan></text>
+    <text y="168" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#d4d4d4">* </tspan><tspan x="32.8" fill="#cd3131">ad627fd</tspan><tspan x="91.6" fill="#d4d4d4"> -</tspan><tspan x="108.39999999999999" fill="#d4d4d4"> chore: working padding </tspan><tspan x="310" fill="#0dbc79">(2 hours ago) </tspan><tspan x="427.6" fill="#2472c8" font-weight="bold">&lt;Tal Hayut&gt;</tspan></text>
+    <text y="187.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#d4d4d4">* </tspan><tspan x="32.8" fill="#cd3131">a9fdbed</tspan><tspan x="91.6" fill="#d4d4d4"> -</tspan><tspan x="108.39999999999999" fill="#d4d4d4"> chore: progress on unicode </tspan><tspan x="343.6" fill="#0dbc79">(2 hours ago) </tspan><tspan x="461.20000000000005" fill="#2472c8" font-weight="bold">&lt;Tal Hayut&gt;</tspan></text>
+    <text y="207.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#d4d4d4">* </tspan><tspan x="32.8" fill="#cd3131">b9e000d</tspan><tspan x="91.6" fill="#d4d4d4"> -</tspan><tspan x="108.39999999999999" fill="#d4d4d4"> fix: unicode handling of ascii </tspan><tspan x="377.2" fill="#0dbc79">(2 hours ago) </tspan><tspan x="494.8" fill="#2472c8" font-weight="bold">&lt;Tal Hayut&gt;</tspan></text>
+    <text y="226.79999999999998" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#d4d4d4">* </tspan><tspan x="32.8" fill="#cd3131">045b738</tspan><tspan x="91.6" fill="#d4d4d4"> -</tspan><tspan x="108.39999999999999" fill="#d4d4d4"> chore: initial </tspan><tspan x="242.8" fill="#0dbc79">(4 hours ago) </tspan><tspan x="360.40000000000003" fill="#2472c8" font-weight="bold">&lt;Tal Hayut&gt;</tspan></text>
+  </g>
+</svg>
