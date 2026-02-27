@@ -17,6 +17,7 @@ const logo = `
 const svg = shellfie(gradient.teen.multiline(logo), {
   template: 'macos',
   title: 'shellfie',
+  padding: 50,
   footer: {
     backgroundColor: '#1e1e1e',
     border: true,
