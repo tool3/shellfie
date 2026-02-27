@@ -1,10 +1,10 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 468.8 254.79999999999998" width="468.8" height="254.79999999999998">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 468.8 270.79999999999995" width="468.8" height="270.79999999999995">
   <defs>
     <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
       <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
     </filter>
   </defs>
-  <rect x="0" y="0" width="468.8" height="254.79999999999998" fill="#1e1e1e" rx="10" ry="10" filter="url(#shadow)"/>
+  <rect x="0" y="0" width="468.8" height="270.79999999999995" fill="#1e1e1e" rx="10" ry="10" filter="url(#shadow)"/>
   <g class="title-bar">
     <rect x="0" y="0" width="468.8" height="39" fill="#1e1e1e" rx="10" ry="10"/>
     <rect x="0" y="29" width="468.8" height="10" fill="#1e1e1e"/>
@@ -73,5 +73,5 @@
     <text y="187.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#d4d4d4" font-weight="bold">Text Styles:</tspan></text>
     <text y="207.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#d4d4d4" font-weight="bold">Bold</tspan><tspan x="49.6" fill="#d4d4d4">  </tspan><tspan x="66.4" fill="#d4d4d4" font-style="italic">Italic</tspan><tspan x="116.80000000000001" fill="#d4d4d4">  </tspan><tspan x="133.60000000000002" fill="#d4d4d4" text-decoration="underline">Underline</tspan><tspan x="209.20000000000005" fill="#d4d4d4">  </tspan><tspan x="226.00000000000006" fill="#d4d4d4" text-decoration="line-through">Strikethrough</tspan><tspan x="335.20000000000005" fill="#d4d4d4">  </tspan><tspan x="352.00000000000006" fill="#6a6a6a">Dim</tspan><tspan x="377.20000000000005" fill="#d4d4d4">  </tspan><tspan x="394.00000000000006" fill="#1e1e1e">Inverse</tspan></text>
   </g>
-  <text y="222.79999999999998" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="10" xml:space="preserve"><tspan x="314.8" fill="#d4d4d4">Full </tspan><tspan x="344.8" fill="#ff00d7">ANSI</tspan><tspan x="368.8" fill="#d4d4d4"> color support</tspan></text>
+  <text y="254.79999999999998" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="10" xml:space="preserve"><tspan x="314.8" fill="#d4d4d4">Full </tspan><tspan x="344.8" fill="#ff00d7">ANSI</tspan><tspan x="368.8" fill="#d4d4d4"> color support</tspan></text>
 </svg>

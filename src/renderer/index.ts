@@ -45,7 +45,7 @@ const calculateDimensions = (lines: ParsedLine[], options: RenderOptions): Dimen
   const titleBarHeight = template.shell.titleBar ? (header?.height ?? template.shell.titleBarHeight) : 0;
   const footerHeight = footer?.height ?? 0;
   const wmFontSize = font.size - 4;
-  const watermarkHeight = watermark ? wmFontSize + watermarkPadding.bottom : 0;
+  const watermarkHeight = watermark ? watermarkPadding.top + wmFontSize + watermarkPadding.bottom : 0;
 
   return {
     charWidth,
@@ -282,8 +282,9 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
 
   // Watermark
   if (watermark) {
+    const wmFontSize = font.size - 4;
     const wmX = dim.contentWidth - watermarkPadding.right;
-    const wmY = dim.titleBarHeight + padding.top + dim.textHeight + padding.bottom - watermarkPadding.bottom + (font.size - 4);
+    const wmY = dim.titleBarHeight + padding.top + dim.textHeight + padding.bottom + watermarkPadding.top + wmFontSize;
     svgParts.push(`  ${renderWatermark(watermark, wmX, wmY, theme, font)}`);
   }
 

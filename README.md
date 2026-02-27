@@ -121,9 +121,12 @@ Full 24-bit true color and 256-color support:
 
 ```typescript
 import gradient from 'gradient-string';
+import shellfie from 'shellfie';
 
-const coolGradient = gradient(['#FF0000', '#00FF00', '#0000FF']);
-const svg = shellfie(coolGradient('Hello World'), { title: 'gradient string' });
+const svg = shellfie(gradient.rainbow('Hello World'), {
+  template: 'macos',
+  title: 'gradient string',
+});
 ```
 
 ![Gradient String](examples/svgs/gradient-string.svg)
@@ -132,9 +135,21 @@ const svg = shellfie(coolGradient('Hello World'), { title: 'gradient string' });
 
 ```typescript
 import Chartscii from 'chartscii';
+import shellfie from 'shellfie';
 
-const chart = new Chartscii(data, { colorLabels: true });
-const svg = shellfie(chart.create(), { title: 'Analytics' });
+const chart = new Chartscii(data, {
+  barSize: 2,
+  fill: '▒',
+  colorLabels: true,
+  orientation: 'vertical',
+  valueLabels: true
+});
+
+const svg = shellfie(chart.create(), {
+  template: 'macos',
+  title: 'Chartscii',
+  padding: 50,
+});
 ```
 
 ![Chartscii](examples/svgs/chartscii.svg)
@@ -172,8 +187,3 @@ getMaxWidth(lines); // 80
 ## License
 
 MIT
-
-
-<!-- TODOs -->
-<!-- watermark padding doesn't increase total height/width -->
-<!-- default watermark padding should be around 10 -->
