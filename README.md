@@ -229,6 +229,10 @@ stripAnsi("\x1b[31mred\x1b[0m"); // 'red'
 getMaxWidth(lines); // 80
 ```
 
+## Related
+- See [shellfie-cli](https://github.com/tool3/shellfie-cli) for command line usage
+
 ## License
 
 MIT — do whatever you want with it. If you build something cool, I'd love to see it.
+
