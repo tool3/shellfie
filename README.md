@@ -50,6 +50,21 @@ const svg = shellfie(terminalOutput, {
 });
 ```
 
+## Browser
+
+```html
+<script type="module">
+  import shellfie from "https://esm.sh/shellfie";
+
+  const svg = shellfie("\x1b[32m$ npm test\x1b[0m\nAll tests passed!", {
+    template: "macos",
+    title: "terminal",
+  });
+
+  document.body.innerHTML = svg;
+</script>
+```
+
 ## Templates
 
 | macOS                             | Windows                               | Minimal                               |
