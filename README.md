@@ -1,6 +1,6 @@
 # shellfie
 
-Take a shell selfie.   
+Take a shell selfie.  
 Your terminal output deserves better than a blurry screenshot.
 
 ![shellfie](examples/svgs/logo-2.svg)
@@ -10,12 +10,24 @@ I spent way too long looking for a simple library that converts terminal output 
 So I built shellfie: a pure TypeScript ANSI-to-SVG renderer. No native bindings. No canvas. No puppeteer. No sharp. No external processes. Just string in, SVG out.
 
 ```typescript
-import shellfie from 'shellfie';
+import shellfie from "shellfie";
 
-const svg = shellfie('\x1b[32m✓\x1b[0m All tests passed');
+const svg = shellfie("\x1b[32m✓\x1b[0m All tests passed");
 ```
 
 ![macOS Terminal](examples/svgs/macos.svg)
+
+## Why shellfie?
+
+| Feature             | shellfie | carbon-now-cli | svg-term | termtosvg |
+| ------------------- | -------- | -------------- | -------- | --------- |
+| Zero dependencies   | ✅       | ❌             | ❌       | ❌        |
+| No native bindings  | ✅       | ❌             | ❌       | ❌        |
+| No headless browser | ✅       | ❌             | ✅       | ✅        |
+| Full ANSI support   | ✅       | ✅             | ✅       | ✅        |
+| 24-bit true color   | ✅       | ✅             | ❌       | ✅        |
+| Runs in browser     | ✅       | ❌             | ❌       | ❌        |
+| Synchronous API     | ✅       | ❌             | ❌       | ❌        |
 
 ## Why SVG?
 
@@ -23,18 +35,6 @@ const svg = shellfie('\x1b[32m✓\x1b[0m All tests passed');
 - **Selectable text** — copy code directly from the image
 - **Tiny files** — 2-10KB vs 100KB+ PNGs, your docs will thank you
 - **No rendering pipeline** — runs anywhere JavaScript runs
-
-## Why shellfie?
-
-| Feature | shellfie | carbon-now-cli | svg-term | termtosvg |
-|---------|----------|----------------|----------|-----------|
-| Zero dependencies | ✅ | ❌ | ❌ | ❌ |
-| No native bindings | ✅ | ❌ | ❌ | ❌ |
-| No headless browser | ✅ | ❌ | ✅ | ✅ |
-| Full ANSI support | ✅ | ✅ | ✅ | ✅ |
-| 24-bit true color | ✅ | ✅ | ❌ | ✅ |
-| Runs in browser | ✅ | ❌ | ❌ | ❌ |
-| Synchronous API | ✅ | ❌ | ❌ | ❌ |
 
 ## Install
 
@@ -45,33 +45,33 @@ npm install shellfie
 ## Usage
 
 ```typescript
-import shellfie from 'shellfie';
+import shellfie from "shellfie";
 
 const svg = shellfie(terminalOutput, {
-  template: 'macos',
-  title: 'npm test'
+  template: "macos",
+  title: "npm test",
 });
 ```
 
 ## Templates
 
-| macOS | Windows | Minimal |
-|-------|---------|---------|
+| macOS                             | Windows                               | Minimal                               |
+| --------------------------------- | ------------------------------------- | ------------------------------------- |
 | ![macos](examples/svgs/macos.svg) | ![windows](examples/svgs/windows.svg) | ![minimal](examples/svgs/minimal.svg) |
 
 ```typescript
-shellfie(output, { template: 'macos' });   // default
-shellfie(output, { template: 'windows' });
-shellfie(output, { template: 'minimal' });
+shellfie(output, { template: "macos" }); // default
+shellfie(output, { template: "windows" });
+shellfie(output, { template: "minimal" });
 ```
 
 ## Real Commands
 
 ```typescript
-import { execSync } from 'child_process';
+import { execSync } from "child_process";
 
-const log = execSync('git log --oneline --graph --color=always').toString();
-const svg = shellfie(log, { title: 'git log' });
+const log = execSync("git log --oneline --graph --color=always").toString();
+const svg = shellfie(log, { title: "git log" });
 ```
 
 ![Git Log](examples/svgs/git-log.svg)
@@ -80,48 +80,35 @@ const svg = shellfie(log, { title: 'git log' });
 
 ```typescript
 shellfie(input, {
-  // Layout
-  template: 'macos',                          // 'macos' | 'windows' | 'minimal' | Template
-  title: 'my-terminal',                       // window title
+  template: "macos",                          // 'macos' | 'windows' | 'minimal' | Template
+  title: "my-terminal",                       // window title
   width: 80,                                  // terminal columns (auto-detected if not set)
   padding: 16,                                // number | [v, h] | [top, right, bottom, left]
   controls: true,                             // show window control buttons
-
-  // Typography
   fontSize: 14,                               // font size in pixels
   lineHeight: 1.4,                            // line height multiplier
   fontFamily: "'SF Mono', Monaco, monospace", // font stack
   customGlyphs: true,                         // pixel-perfect box drawing characters
-
-  // Fonts
   embedFont: true,                            // embed default font as base64 (async only)
   customFont: {                               // use your own font
     data: base64FontData,                     // base64-encoded font data
-    format: 'woff2',                          // 'woff2' | 'woff' | 'ttf'
+    format: "woff2",                          // 'woff2' | 'woff' | 'ttf'
   },
-
-  // Theming
   theme: customTheme,                         // custom color theme
-
-  // Watermark
-  watermark: 'Generated by shellfie',         // bottom-right text (supports ANSI)
+  watermark: "Generated by shellfie",         // bottom-right text (supports ANSI)
   watermarkPadding: 16,                       // number | [v, h] | [top, right, bottom, left]
-
-  // Header (title bar)
   header: {
-    backgroundColor: '#2d2d2d',               // title bar background color
+    backgroundColor: "#2d2d2d",               // title bar background color
     height: 40,                               // title bar height in pixels
     border: true,                             // show bottom border
-    borderColor: '#1a1a1a',                   // border color
+    borderColor: "#1a1a1a",                   // border color
     borderWidth: 1,                           // border width in pixels
   },
-
-  // Footer
   footer: {
-    backgroundColor: '#2d2d2d',               // footer background color
+    backgroundColor: "#2d2d2d",               // footer background color
     height: 30,                               // footer height in pixels
     border: true,                             // show top border
-    borderColor: '#1a1a1a',                   // border color
+    borderColor: "#1a1a1a",                   // border color
     borderWidth: 1,                           // border width in pixels
   },
 });
@@ -132,24 +119,50 @@ shellfie(input, {
 For portable SVGs that render identically everywhere:
 
 ```typescript
-import { shellfieAsync } from 'shellfie';
+import { shellfieAsync } from "shellfie";
 
 const svg = await shellfieAsync(input, { embedFont: true });
 ```
 
 The font gets base64-encoded directly into the SVG. No external requests, no CORS issues, no "why does this look different on their machine" debugging sessions.
 
+## Themes
+
+shellfie comes with 12 built-in themes:
+
+```typescript
+import shellfie, { dracula, nord, tokyoNight } from "shellfie";
+
+shellfie(output, { theme: dracula });
+```
+
+| Dracula                                      | Nord                                   | Tokyo Night                                          |
+| -------------------------------------------- | -------------------------------------- | ---------------------------------------------------- |
+| ![Dracula](examples/svgs/themes/dracula.svg) | ![Nord](examples/svgs/themes/nord.svg) | ![Tokyo Night](examples/svgs/themes/tokyo-night.svg) |
+
+| One Dark                                       | Monokai                                      | Catppuccin Mocha                                               |
+| ---------------------------------------------- | -------------------------------------------- | -------------------------------------------------------------- |
+| ![One Dark](examples/svgs/themes/one-dark.svg) | ![Monokai](examples/svgs/themes/monokai.svg) | ![Catppuccin Mocha](examples/svgs/themes/catppuccin-mocha.svg) |
+
+| GitHub Dark                                          | GitHub Light                                           | Gruvbox Dark                                           |
+| ---------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------ |
+| ![GitHub Dark](examples/svgs/themes/github-dark.svg) | ![GitHub Light](examples/svgs/themes/github-light.svg) | ![Gruvbox Dark](examples/svgs/themes/gruvbox-dark.svg) |
+
+| Gruvbox Light                                            | Solarized Dark                                             | Solarized Light                                              |
+| -------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
+| ![Gruvbox Light](examples/svgs/themes/gruvbox-light.svg) | ![Solarized Dark](examples/svgs/themes/solarized-dark.svg) | ![Solarized Light](examples/svgs/themes/solarized-light.svg) |
+
 ## Custom Themes
 
 ```typescript
-import shellfie, { createTheme } from 'shellfie';
+import shellfie, { createTheme } from "shellfie";
 
 const theme = createTheme({
-  name: 'ocean',
-  background: '#0a2540',
-  foreground: '#e6f1ff',
-  red: '#ff6b6b',
-  green: '#69db7c',
+  name: "ocean",
+  background: "#0a2540",
+  foreground: "#e6f1ff",
+  red: "#ff6b6b",
+  green: "#69db7c",
   // ... all 16 ANSI colors
 });
 
@@ -161,12 +174,12 @@ shellfie(output, { theme });
 ### 24-bit True Color & 256-color palette
 
 ```typescript
-import gradient from 'gradient-string';
-import shellfie from 'shellfie';
+import gradient from "gradient-string";
+import shellfie from "shellfie";
 
-const svg = shellfie(gradient.rainbow('Hello World'), {
-  template: 'macos',
-  title: 'gradient string',
+const svg = shellfie(gradient.rainbow("Hello World"), {
+  template: "macos",
+  title: "gradient string",
 });
 ```
 
@@ -175,20 +188,20 @@ const svg = shellfie(gradient.rainbow('Hello World'), {
 ### Works with any ANSI output
 
 ```typescript
-import Chartscii from 'chartscii';
-import shellfie from 'shellfie';
+import Chartscii from "chartscii";
+import shellfie from "shellfie";
 
 const chart = new Chartscii(data, {
   barSize: 2,
-  fill: '▒',
+  fill: "▒",
   colorLabels: true,
-  orientation: 'vertical',
-  valueLabels: true
+  orientation: "vertical",
+  valueLabels: true,
 });
 
 const svg = shellfie(chart.create(), {
-  template: 'macos',
-  title: 'Chartscii',
+  template: "macos",
+  title: "Chartscii",
   padding: 50,
 });
 ```
@@ -198,23 +211,23 @@ const svg = shellfie(chart.create(), {
 ### CLI tools, test runners, anything
 
 ```typescript
-shellfie(execSync('git diff --color=always').toString());
-shellfie(execSync('npm test 2>&1').toString());
-shellfie(execSync('ls -la --color=always').toString());
+shellfie(execSync("git diff --color=always").toString());
+shellfie(execSync("npm test 2>&1").toString());
+shellfie(execSync("ls -la --color=always").toString());
 ```
 
 ## Utilities
 
 ```typescript
-import { parse, render, stripAnsi, getMaxWidth } from 'shellfie';
+import { parse, render, stripAnsi, getMaxWidth } from "shellfie";
 
-const lines = parse('\x1b[31mred\x1b[0m text');
+const lines = parse("\x1b[31mred\x1b[0m text");
 const svg = render(lines, options);
 
-stripAnsi('\x1b[31mred\x1b[0m'); // 'red'
+stripAnsi("\x1b[31mred\x1b[0m"); // 'red'
 getMaxWidth(lines); // 80
 ```
 
 ## License
 
-MIT
+MIT — do whatever you want with it. If you build something cool, I'd love to see it.

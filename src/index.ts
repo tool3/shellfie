@@ -138,5 +138,7 @@ export { createFontConfig, loadEmbeddedFont, loadFont } from './fonts';
 export { getMaxWidth, parseAnsi, stripAnsi } from './parser';
 export { createTheme, darkTheme } from './renderer';
 export { createTemplate, resolveTemplate, templates } from './templates';
+export * from './themes';
+export { themes } from './themes';
 
 export default shellfie;

@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 477.20000000000005 376.79999999999995" width="477.20000000000005" height="376.79999999999995">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect x="0" y="0" width="477.20000000000005" height="376.79999999999995" fill="#1e1e2e" rx="10" ry="10" filter="url(#shadow)"/>
+  <g class="title-bar">
+    <rect x="0" y="0" width="477.20000000000005" height="39" fill="#1e1e2e" rx="10" ry="10"/>
+    <rect x="0" y="29" width="477.20000000000005" height="10" fill="#1e1e2e"/>
+    <line x1="0" y1="39.5" x2="477.20000000000005" y2="39.5" stroke="#cdd6f41a" stroke-width="1"/>
+    <circle cx="16" cy="19.5" r="6" fill="#ff5f56"/>
+    <circle cx="36" cy="19.5" r="6" fill="#ffbd2e"/>
+    <circle cx="56" cy="19.5" r="6" fill="#27c93f"/>
+    <text x="238.60000000000002" y="24.166666666666668" fill="#cdd6f4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">Catppuccin Mocha</text>
+  </g>
+  <g class="text">
+    <text y="70" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#a6e3a1" font-weight="bold">❯</tspan><tspan x="24.4" fill="#cdd6f4"> git log --oneline --graph</tspan></text>
+    <text y="89.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#f38ba8" font-weight="bold">*</tspan><tspan x="24.4" fill="#cdd6f4">   </tspan><tspan x="49.6" fill="#f9e2af" font-weight="bold">e4f5a6b</tspan><tspan x="108.4" fill="#cdd6f4"> </tspan><tspan x="116.80000000000001" fill="#94e2d5" font-weight="bold">(HEAD -&gt; main)</tspan><tspan x="234.40000000000003" fill="#cdd6f4"> Merge pull request #42</tspan></text>
+    <text y="109.19999999999999" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#f38ba8" font-weight="bold">|\</tspan></text>
+    <text y="128.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#f38ba8" font-weight="bold">| *</tspan><tspan x="41.2" fill="#cdd6f4"> </tspan><tspan x="49.6" fill="#f9e2af" font-weight="bold">9c8d7e6</tspan><tspan x="108.4" fill="#cdd6f4"> </tspan><tspan x="116.80000000000001" fill="#a6e3a1">feat: add dark mode support</tspan></text>
+    <text y="148.39999999999998" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#f38ba8" font-weight="bold">| *</tspan><tspan x="41.2" fill="#cdd6f4"> </tspan><tspan x="49.6" fill="#f9e2af" font-weight="bold">5b4a3c2</tspan><tspan x="108.4" fill="#cdd6f4"> </tspan><tspan x="116.80000000000001" fill="#a6e3a1">style: update color palette</tspan></text>
+    <text y="168" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#f38ba8" font-weight="bold">|/</tspan></text>
+    <text y="187.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#f38ba8" font-weight="bold">*</tspan><tspan x="24.4" fill="#cdd6f4">   </tspan><tspan x="49.6" fill="#f9e2af" font-weight="bold">1a2b3c4</tspan><tspan x="108.4" fill="#cdd6f4"> </tspan><tspan x="116.80000000000001" fill="#94e2d5" font-weight="bold">(origin/main)</tspan><tspan x="226" fill="#cdd6f4"> Merge branch &#39;feature/auth&#39;</tspan></text>
+    <text y="207.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#f38ba8" font-weight="bold">|\</tspan></text>
+    <text y="226.79999999999998" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#f38ba8" font-weight="bold">| *</tspan><tspan x="41.2" fill="#cdd6f4"> </tspan><tspan x="49.6" fill="#f9e2af" font-weight="bold">f7e6d5c</tspan><tspan x="108.4" fill="#cdd6f4"> </tspan><tspan x="116.80000000000001" fill="#a6e3a1">feat: implement OAuth2 flow</tspan></text>
+    <text y="246.39999999999998" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#f38ba8" font-weight="bold">| *</tspan><tspan x="41.2" fill="#cdd6f4"> </tspan><tspan x="49.6" fill="#f9e2af" font-weight="bold">b8a9c0d</tspan><tspan x="108.4" fill="#cdd6f4"> </tspan><tspan x="116.80000000000001" fill="#a6e3a1">chore: add auth dependencies</tspan></text>
+    <text y="266" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#f38ba8" font-weight="bold">|/</tspan></text>
+    <text y="285.59999999999997" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#f38ba8" font-weight="bold">*</tspan><tspan x="24.4" fill="#cdd6f4">   </tspan><tspan x="49.6" fill="#f9e2af" font-weight="bold">2d3e4f5</tspan><tspan x="108.4" fill="#cdd6f4"> </tspan><tspan x="116.80000000000001" fill="#a6e3a1">fix: resolve memory leak in worker</tspan></text>
+    <text y="305.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#f38ba8" font-weight="bold">*</tspan><tspan x="24.4" fill="#cdd6f4">   </tspan><tspan x="49.6" fill="#f9e2af" font-weight="bold">6g7h8i9</tspan><tspan x="108.4" fill="#cdd6f4"> </tspan><tspan x="116.80000000000001" fill="#a6e3a1">docs: update API reference</tspan></text>
+  </g>
+  <text y="356.79999999999995" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="10" xml:space="preserve"><tspan x="331.20000000000005" fill="#6c6c6c">Generated by shellfie</tspan></text>
+</svg>
