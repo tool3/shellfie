@@ -61,8 +61,6 @@ const calculateDimensions = (lines: ParsedLine[], options: RenderOptions): Dimen
 };
 
 const renderControls = (template: Template, x: number, y: number): string => {
-  if (!template.shell.controls) return '';
-
   const { size, spacing, radius, close, minimize, maximize } = template.shell.controlStyle;
 
   const buttons = template.shell.controlsPosition === 'left'
@@ -86,11 +84,13 @@ const renderTitleBar = (
   contentWidth: number,
   theme: Theme,
   font: FontConfig,
-  header: ResolvedHeaderConfig | null
+  header: ResolvedHeaderConfig | null,
+  showControls: boolean
 ): string => {
   if (!template.shell.titleBar) return '';
 
-  const { borderRadius, controls, controlsPosition, padding: shellPadding } = template.shell;
+  const { borderRadius, controlsPosition, padding: shellPadding } = template.shell;
+  const controls = showControls;
   const titleBarHeight = header?.height ?? template.shell.titleBarHeight;
   const backgroundColor = header?.backgroundColor ?? theme.background;
   const showBorder = header?.border ?? true;
@@ -187,7 +187,7 @@ const SHADOW_FILTER = `<filter id="shadow" x="-10%" y="-10%" width="120%" height
     </filter>`;
 
 export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderResult => {
-  const { template, title, theme, font, padding, watermark, watermarkPadding, customGlyphs, header, footer } = options;
+  const { template, title, theme, font, padding, watermark, watermarkPadding, customGlyphs, header, footer, controls } = options;
   const dim = calculateDimensions(lines, options);
   const fontFamily = font.embedData ? `'EmbeddedFont', ${font.family}` : font.family;
 
@@ -222,7 +222,7 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
   if (template.shell.titleBar) {
     svgParts.push(
       `  <g class="title-bar">`,
-      `    ${renderTitleBar(template, title, dim.contentWidth, theme, font, header)}`,
+      `    ${renderTitleBar(template, title, dim.contentWidth, theme, font, header, controls)}`,
       `  </g>`
     );
   }
