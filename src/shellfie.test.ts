@@ -31,7 +31,7 @@ describe('shellfie', () => {
 
   it('renders with windows template', () => {
     const svg = shellfie('Test', { template: 'windows', controls: true });
-    expect(svg).toContain('#e81123'); // windows close button color
+    expect(svg).toContain('stroke="#ffffff"'); // windows control icons are white
   });
 
   it('renders with minimal template', () => {

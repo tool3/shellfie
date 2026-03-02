@@ -67,7 +67,13 @@ const resolveShellConfig = (
 };
 
 const resolveOptions = (options: shellfieOptions = {}): RenderOptions => {
-  const template = resolveTemplate(options.template);
+  const baseTemplate = resolveTemplate(options.template);
+  const template = options.controlsPosition
+    ? {
+        ...baseTemplate,
+        shell: { ...baseTemplate.shell, controlsPosition: options.controlsPosition },
+      }
+    : baseTemplate;
   const theme = options.theme ?? DEFAULTS.theme;
   const paddingInput = options.padding ?? template.shell.padding;
   const watermarkPaddingInput = options.watermarkPadding ?? paddingInput;

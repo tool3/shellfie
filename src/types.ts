@@ -123,6 +123,7 @@ export interface shellfieOptions {
   watermark?: string;
   watermarkPadding?: PaddingInput;
   controls?: boolean;
+  controlsPosition?: 'left' | 'right';
   fontFamily?: string;
   embedFont?: boolean;
   customFont?: {

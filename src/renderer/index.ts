@@ -60,20 +60,81 @@ const calculateDimensions = (lines: ParsedLine[], options: RenderOptions): Dimen
   };
 };
 
+const renderWindowsButton = (
+  centerX: number,
+  centerY: number,
+  size: number,
+  type: 'minimize' | 'maximize' | 'close',
+  color: string
+): string => {
+  const iconSize = type === 'close' ? size * 0.7 : size * 0.5;
+  const halfIcon = iconSize / 2;
+
+  switch (type) {
+    case 'minimize':
+      // Horizontal dash "-"
+      return `<line x1="${centerX - halfIcon}" y1="${centerY}" x2="${centerX + halfIcon}" y2="${centerY}" stroke="${color}" stroke-width="1"/>`;
+    case 'maximize':
+      // Square outline "□"
+      return `<rect x="${centerX - halfIcon}" y="${centerY - halfIcon}" width="${iconSize}" height="${iconSize}" fill="none" stroke="${color}" stroke-width="1"/>`;
+    case 'close':
+      // X mark "×"
+      return `<g>
+        <line x1="${centerX - halfIcon}" y1="${centerY - halfIcon}" x2="${centerX + halfIcon}" y2="${centerY + halfIcon}" stroke="${color}" stroke-width="1.5"/>
+        <line x1="${centerX + halfIcon}" y1="${centerY - halfIcon}" x2="${centerX - halfIcon}" y2="${centerY + halfIcon}" stroke="${color}" stroke-width="1.5"/>
+      </g>`;
+  }
+};
+
 const renderControls = (template: Template, x: number, y: number): string => {
   const { size, spacing, radius, close, minimize, maximize } = template.shell.controlStyle;
+  const position = template.shell.controlsPosition;
+  const useCircles = radius > 0;
 
-  const buttons = template.shell.controlsPosition === 'left'
-    ? [
+  let buttons: string[];
+
+  if (useCircles) {
+    if (position === 'left') {
+      // macOS default: close, minimize, maximize from left to right
+      buttons = [
         `<circle cx="${x}" cy="${y}" r="${radius}" fill="${close}"/>`,
         `<circle cx="${x + spacing}" cy="${y}" r="${radius}" fill="${minimize}"/>`,
         `<circle cx="${x + spacing * 2}" cy="${y}" r="${radius}" fill="${maximize}"/>`,
-      ]
-    : [
-        `<rect x="${x - size * 3 - spacing * 2}" y="${y - size / 2}" width="${size}" height="${size}" fill="${minimize}" rx="1"/>`,
-        `<rect x="${x - size * 2 - spacing}" y="${y - size / 2}" width="${size}" height="${size}" fill="${maximize}" rx="1"/>`,
-        `<rect x="${x - size}" y="${y - size / 2}" width="${size}" height="${size}" fill="${close}" rx="1"/>`,
       ];
+    } else {
+      // macOS right: reversed order, aligned to right (maximize, minimize, close from left to right)
+      buttons = [
+        `<circle cx="${x - spacing * 2}" cy="${y}" r="${radius}" fill="${maximize}"/>`,
+        `<circle cx="${x - spacing}" cy="${y}" r="${radius}" fill="${minimize}"/>`,
+        `<circle cx="${x}" cy="${y}" r="${radius}" fill="${close}"/>`,
+      ];
+    }
+  } else {
+    // Windows style with icon symbols - all icons are white
+    const iconColor = '#ffffff';
+    if (position === 'right') {
+      // Windows default: minimize, maximize, close from left to right (aligned right)
+      // spacing is the distance between button centers
+      const closeX = x - spacing / 2;
+      const maxX = closeX - spacing;
+      const minX = maxX - spacing;
+      buttons = [
+        renderWindowsButton(minX, y, size, 'minimize', iconColor),
+        renderWindowsButton(maxX, y, size, 'maximize', iconColor),
+        renderWindowsButton(closeX, y, size, 'close', iconColor),
+      ];
+    } else {
+      // Windows left: reversed order, aligned to left (close, maximize, minimize from left to right)
+      const closeX = x + spacing / 2;
+      const maxX = closeX + spacing;
+      const minX = maxX + spacing;
+      buttons = [
+        renderWindowsButton(closeX, y, size, 'close', iconColor),
+        renderWindowsButton(maxX, y, size, 'maximize', iconColor),
+        renderWindowsButton(minX, y, size, 'minimize', iconColor),
+      ];
+    }
+  }
 
   return buttons.join('\n    ');
 };
