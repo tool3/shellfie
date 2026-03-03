@@ -8,9 +8,9 @@
     ".": {
       "types": "./dist/index.d.ts",
       "require": "./dist/index.js",
-      "default": "./dist/index.js",
+      "module": "./dist/index.js",
       "import": "./dist/index.js",
-      "module": "./dist/index.js"
+      "default": "./dist/index.js"
     }
   },
   "files": [
