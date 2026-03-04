@@ -22,7 +22,8 @@ const DEFAULTS = {
   fontSize: 14,
   lineHeight: 1.4,
   padding: 16,
-  width: null,
+  width: null, // Auto-size by default
+  height: null, // Auto-size by default
   watermark: null,
   watermarkPadding: null,
   controls: true,
@@ -93,6 +94,7 @@ const resolveOptions = (options: shellfieOptions = {}): RenderOptions => {
     font,
     padding: resolvePadding(paddingInput),
     width: options.width ?? DEFAULTS.width,
+    height: options.height ?? DEFAULTS.height,
     watermark: options.watermark ?? DEFAULTS.watermark,
     watermarkPadding: resolvePadding(watermarkPaddingInput),
     controls: options.controls ?? template.shell.controls,

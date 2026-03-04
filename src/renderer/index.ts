@@ -154,9 +154,9 @@ const renderTitleBar = (
   const controls = showControls;
   const titleBarHeight = header?.height ?? template.shell.titleBarHeight;
   const backgroundColor = header?.backgroundColor ?? theme.background;
-  const showBorder = header?.border ?? true;
-  const borderColor = header?.borderColor ?? `${theme.foreground}1a`;
-  const borderWidth = header?.borderWidth ?? 1;
+  const showBorder = header?.border ?? template.shell.border;
+  const borderColor = header?.borderColor ?? template.shell.borderColor ?? `${theme.foreground}1a`;
+  const borderWidth = header?.borderWidth ?? template.shell.borderWidth;
   const bgHeight = showBorder ? titleBarHeight - borderWidth : titleBarHeight;
 
   const parts: string[] = [
@@ -252,8 +252,12 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
   const dim = calculateDimensions(lines, options);
   const fontFamily = font.embedData ? `'EmbeddedFont', ${font.family}` : font.family;
 
+  // Use exact dimensions if provided, otherwise use calculated content dimensions
+  const svgWidth = options.width ?? dim.contentWidth;
+  const svgHeight = options.height ?? dim.contentHeight;
+
   const svgParts: string[] = [
-    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${dim.contentWidth} ${dim.contentHeight}" width="${dim.contentWidth}" height="${dim.contentHeight}">`,
+    `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${svgWidth} ${svgHeight}" width="${svgWidth}" height="${svgHeight}">`,
   ];
 
   // Defs
@@ -267,7 +271,7 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
   // Background
   const bgAttrs = [
     `x="0" y="0"`,
-    `width="${dim.contentWidth}" height="${dim.contentHeight}"`,
+    `width="${svgWidth}" height="${svgHeight}"`,
     `fill="${theme.background}"`,
     `rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}"`,
     template.shell.shadow ? `filter="url(#shadow)"` : '',
@@ -276,14 +280,14 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
 
   // Border
   if (template.shell.border) {
-    svgParts.push(`  <rect x="0.5" y="0.5" width="${dim.contentWidth - 1}" height="${dim.contentHeight - 1}" fill="none" stroke="${template.shell.borderColor}" stroke-width="${template.shell.borderWidth}" rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}"/>`);
+    svgParts.push(`  <rect x="0.5" y="0.5" width="${svgWidth - 1}" height="${svgHeight - 1}" fill="none" stroke="${template.shell.borderColor}" stroke-width="${template.shell.borderWidth}" rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}"/>`);
   }
 
   // Title bar
   if (template.shell.titleBar) {
     svgParts.push(
       `  <g class="title-bar">`,
-      `    ${renderTitleBar(template, title, dim.contentWidth, theme, font, header, controls)}`,
+      `    ${renderTitleBar(template, title, svgWidth, theme, font, header, controls)}`,
       `  </g>`
     );
   }
@@ -344,8 +348,9 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
   // Watermark
   if (watermark) {
     const wmFontSize = font.size - 4;
-    const wmX = dim.contentWidth - watermarkPadding.right;
-    const wmY = dim.titleBarHeight + padding.top + dim.textHeight + padding.bottom + watermarkPadding.top + wmFontSize;
+    const wmX = svgWidth - watermarkPadding.right;
+    // Position watermark at bottom of SVG (use exact height if provided, otherwise use content height)
+    const wmY = (options.height ?? dim.contentHeight) - watermarkPadding.bottom;
     svgParts.push(`  ${renderWatermark(watermark, wmX, wmY, theme, font)}`);
   }
 
@@ -354,7 +359,7 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
     const footerY = dim.titleBarHeight + padding.top + dim.textHeight + padding.bottom + dim.watermarkHeight;
     svgParts.push(
       `  <g class="footer">`,
-      `    ${renderFooterBar(footer, dim.contentWidth, footerY, template.shell.borderRadius)}`,
+      `    ${renderFooterBar(footer, svgWidth, footerY, template.shell.borderRadius)}`,
       `  </g>`
     );
   }
@@ -363,8 +368,8 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
 
   return {
     svg: svgParts.join('\n'),
-    width: dim.contentWidth,
-    height: dim.contentHeight,
+    width: svgWidth,
+    height: svgHeight,
   };
 };
 

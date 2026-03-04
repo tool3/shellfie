@@ -27,7 +27,7 @@ export const macosTemplate: Template = createTemplate('macos', {
   },
   padding: 16,
   shadow: true,
-  border: false,
+  border: false, // No outer shell border (matches macOS terminals)
   borderColor: '#333333',
-  borderWidth: 1,
+  borderWidth: 0,
 });

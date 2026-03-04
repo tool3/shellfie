@@ -119,7 +119,8 @@ export interface shellfieOptions {
   fontSize?: number;
   lineHeight?: number;
   padding?: PaddingInput;
-  width?: number;
+  width?: number; // If provided, sets exact SVG width (auto-size if omitted)
+  height?: number; // If provided, sets exact SVG height (auto-size if omitted)
   watermark?: string;
   watermarkPadding?: PaddingInput;
   controls?: boolean;
@@ -157,7 +158,8 @@ export interface RenderOptions {
   theme: Theme;
   font: FontConfig;
   padding: ResolvedPadding;
-  width: number | null;
+  width: number | null; // null = auto-size, number = exact width
+  height: number | null; // null = auto-size, number = exact height
   watermark: string | null;
   watermarkPadding: ResolvedPadding;
   header: ResolvedHeaderConfig | null;
