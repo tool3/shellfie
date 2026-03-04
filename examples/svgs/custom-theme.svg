@@ -6,13 +6,12 @@
   </defs>
   <rect x="0" y="0" width="536" height="228.79999999999998" fill="#0a2540" rx="10" ry="10" filter="url(#shadow)"/>
   <g class="title-bar">
-    <rect x="0" y="0" width="536" height="39" fill="#0a2540" rx="10" ry="10"/>
-    <rect x="0" y="29" width="536" height="10" fill="#0a2540"/>
-    <line x1="0" y1="39.5" x2="536" y2="39.5" stroke="#e6f1ff1a" stroke-width="1"/>
-    <circle cx="16" cy="19.5" r="6" fill="#ff5f56"/>
-    <circle cx="36" cy="19.5" r="6" fill="#ffbd2e"/>
-    <circle cx="56" cy="19.5" r="6" fill="#27c93f"/>
-    <text x="268" y="24.166666666666668" fill="#e6f1ff" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">Custom Theme</text>
+    <rect x="0" y="0" width="536" height="40" fill="#242526" rx="10" ry="10"/>
+    <rect x="0" y="30" width="536" height="10" fill="#242526"/>
+    <circle cx="16" cy="20" r="6" fill="#ff5f56"/>
+    <circle cx="36" cy="20" r="6" fill="#ffbd2e"/>
+    <circle cx="56" cy="20" r="6" fill="#27c93f"/>
+    <text x="268" y="24.666666666666668" fill="#e6f1ff" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">Custom Theme</text>
   </g>
   <g class="text">
     <text y="70" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#69db7c" font-weight="bold">❯</tspan><tspan x="24.4" fill="#e6f1ff"> ls -la</tspan></text>

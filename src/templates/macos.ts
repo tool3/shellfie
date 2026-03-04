@@ -25,9 +25,12 @@ export const macosTemplate: Template = createTemplate('macos', {
     spacing: 20,
     size: 12,
   },
+  header: {
+    backgroundColor: '#242526',
+    border: false
+  },
   padding: 16,
   shadow: true,
   border: false, // No outer shell border (matches macOS terminals)
-  borderColor: '#333333',
   borderWidth: 0,
 });

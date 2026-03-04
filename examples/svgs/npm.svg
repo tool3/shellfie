@@ -6,13 +6,12 @@
   </defs>
   <rect x="0" y="0" width="636.8000000000001" height="248.39999999999998" fill="#1e1e1e" rx="10" ry="10" filter="url(#shadow)"/>
   <g class="title-bar">
-    <rect x="0" y="0" width="636.8000000000001" height="39" fill="#1e1e1e" rx="10" ry="10"/>
-    <rect x="0" y="29" width="636.8000000000001" height="10" fill="#1e1e1e"/>
-    <line x1="0" y1="39.5" x2="636.8000000000001" y2="39.5" stroke="#d4d4d41a" stroke-width="1"/>
-    <circle cx="16" cy="19.5" r="6" fill="#ff5f56"/>
-    <circle cx="36" cy="19.5" r="6" fill="#ffbd2e"/>
-    <circle cx="56" cy="19.5" r="6" fill="#27c93f"/>
-    <text x="318.40000000000003" y="24.166666666666668" fill="#d4d4d4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">npm install</text>
+    <rect x="0" y="0" width="636.8000000000001" height="40" fill="#242526" rx="10" ry="10"/>
+    <rect x="0" y="30" width="636.8000000000001" height="10" fill="#242526"/>
+    <circle cx="16" cy="20" r="6" fill="#ff5f56"/>
+    <circle cx="36" cy="20" r="6" fill="#ffbd2e"/>
+    <circle cx="56" cy="20" r="6" fill="#27c93f"/>
+    <text x="318.40000000000003" y="24.666666666666668" fill="#d4d4d4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">npm install</text>
   </g>
   <g class="text">
     <text y="70" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#0dbc79">npm</tspan><tspan x="41.2" fill="#d4d4d4"> </tspan><tspan x="49.6" fill="#11a8cd">info</tspan><tspan x="83.2" fill="#d4d4d4"> using npm@10.2.0</tspan></text>

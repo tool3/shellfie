@@ -50,6 +50,17 @@ const addAlpha = (hex: string, alpha: number): string =>
 type DecorativeConfig = HeaderConfig | FooterConfig;
 type ResolvedDecorativeConfig = ResolvedHeaderConfig | ResolvedFooterConfig;
 
+const mergeConfigs = (
+  userConfig: DecorativeConfig | undefined,
+  templateConfig: DecorativeConfig | undefined
+): DecorativeConfig | undefined => {
+  if (!userConfig && !templateConfig) return undefined;
+  if (!templateConfig) return userConfig;
+  if (!userConfig) return templateConfig;
+  // User config overrides template config
+  return { ...templateConfig, ...userConfig };
+};
+
 const resolveShellConfig = (
   config: DecorativeConfig | undefined,
   theme: Theme,
@@ -99,8 +110,8 @@ const resolveOptions = (options: shellfieOptions = {}): RenderOptions => {
     watermarkPadding: resolvePadding(watermarkPaddingInput),
     controls: options.controls ?? template.shell.controls,
     customGlyphs: options.customGlyphs ?? DEFAULTS.customGlyphs,
-    header: resolveShellConfig(options.header, theme, template.shell.titleBarHeight, 'headerBackground'),
-    footer: resolveShellConfig(options.footer, theme, template.shell.titleBarHeight, 'footerBackground'),
+    header: resolveShellConfig(mergeConfigs(options.header, template.shell.header), theme, template.shell.titleBarHeight, 'headerBackground'),
+    footer: resolveShellConfig(mergeConfigs(options.footer, template.shell.footer), theme, template.shell.titleBarHeight, 'footerBackground'),
   };
 };
 

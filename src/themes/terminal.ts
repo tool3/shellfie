@@ -8,7 +8,7 @@ export const terminal: Theme = {
   background: '#292A2C',
   foreground: '#c9d1d9',
   cursor: '#c9d1d9',
-  selection: '#264f78',
+  selection: '#ffffff',
   black: '#484f58',
   red: '#ff7b72',
   green: '#3fb950',

@@ -6,13 +6,12 @@
   </defs>
   <rect x="0" y="0" width="477.20000000000005" height="376.79999999999995" fill="#002b36" rx="10" ry="10" filter="url(#shadow)"/>
   <g class="title-bar">
-    <rect x="0" y="0" width="477.20000000000005" height="39" fill="#002b36" rx="10" ry="10"/>
-    <rect x="0" y="29" width="477.20000000000005" height="10" fill="#002b36"/>
-    <line x1="0" y1="39.5" x2="477.20000000000005" y2="39.5" stroke="#8394961a" stroke-width="1"/>
-    <circle cx="16" cy="19.5" r="6" fill="#ff5f56"/>
-    <circle cx="36" cy="19.5" r="6" fill="#ffbd2e"/>
-    <circle cx="56" cy="19.5" r="6" fill="#27c93f"/>
-    <text x="238.60000000000002" y="24.166666666666668" fill="#839496" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">Solarized Dark</text>
+    <rect x="0" y="0" width="477.20000000000005" height="40" fill="#242526" rx="10" ry="10"/>
+    <rect x="0" y="30" width="477.20000000000005" height="10" fill="#242526"/>
+    <circle cx="16" cy="20" r="6" fill="#ff5f56"/>
+    <circle cx="36" cy="20" r="6" fill="#ffbd2e"/>
+    <circle cx="56" cy="20" r="6" fill="#27c93f"/>
+    <text x="238.60000000000002" y="24.666666666666668" fill="#839496" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">Solarized Dark</text>
   </g>
   <g class="text">
     <text y="70" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#859900" font-weight="bold">❯</tspan><tspan x="24.4" fill="#839496"> git log --oneline --graph</tspan></text>

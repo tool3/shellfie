@@ -59,6 +59,22 @@ export interface ControlStyle {
   size: number;
 }
 
+export interface HeaderConfig {
+  backgroundColor?: string;
+  height?: number;
+  border?: boolean;
+  borderColor?: string;
+  borderWidth?: number;
+}
+
+export interface FooterConfig {
+  backgroundColor?: string;
+  height?: number;
+  border?: boolean;
+  borderColor?: string;
+  borderWidth?: number;
+}
+
 export interface ShellConfig {
   titleBar: boolean;
   titleBarHeight: number;
@@ -71,6 +87,8 @@ export interface ShellConfig {
   border: boolean;
   borderColor: string;
   borderWidth: number;
+  header?: HeaderConfig;
+  footer?: FooterConfig;
 }
 
 export interface Template {
@@ -94,22 +112,6 @@ export interface FontConfig {
   charWidth: number;
   embedData?: string;
   embedFormat?: 'woff2' | 'woff' | 'ttf';
-}
-
-export interface HeaderConfig {
-  backgroundColor?: string;
-  height?: number;
-  border?: boolean;
-  borderColor?: string;
-  borderWidth?: number;
-}
-
-export interface FooterConfig {
-  backgroundColor?: string;
-  height?: number;
-  border?: boolean;
-  borderColor?: string;
-  borderWidth?: number;
 }
 
 export interface shellfieOptions {

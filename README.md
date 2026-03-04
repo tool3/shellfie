@@ -77,6 +77,51 @@ shellfie(output, { template: "windows" });
 shellfie(output, { template: "minimal" });
 ```
 
+## Custom Templates
+
+Create your own templates with `createTemplate`:
+
+```typescript
+import shellfie, { createTemplate } from "shellfie";
+
+const myTemplate = createTemplate("my-template", {
+  titleBar: true,
+  titleBarHeight: 40,
+  borderRadius: 10,
+  controls: true,
+  controlsPosition: "left",
+  controlStyle: {
+    close: "#ff5f56",
+    minimize: "#ffbd2e",
+    maximize: "#27c93f",
+    radius: 6,
+    spacing: 20,
+    size: 12,
+  },
+  padding: 16,
+  shadow: true,
+  border: false,
+  borderColor: "#333333",
+  borderWidth: 0,
+  header: {
+    backgroundColor: "rgb(36, 37, 38)",
+    border: false,
+  },
+});
+
+shellfie(output, { template: myTemplate });
+```
+
+Templates can include default `header` and `footer` configurations. User options always override template defaults:
+
+```typescript
+// Template has header.backgroundColor set, but user can override it
+shellfie(output, {
+  template: myTemplate,
+  header: { backgroundColor: "#000000" }, // overrides template default
+});
+```
+
 ## Options
 
 ```typescript
@@ -86,6 +131,7 @@ shellfie(input, {
   width?: 80,                                     // terminal columns (auto-detected if not set)
   padding?: 16,                                   // number | [v, h] | [top, right, bottom, left]
   controls?: true,                                // show window control buttons
+  controlsPosition?: "left",                      // 'left' (macOS) or 'right' (Windows)
   fontSize?: 14,                                  // font size in pixels
   lineHeight?: 1.4,                               // line height multiplier
   fontFamily?: "'SF Mono', Monaco, monospace",    // font stack
