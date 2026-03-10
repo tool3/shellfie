@@ -133,6 +133,7 @@ export function renderSpan(
         x: charX,
         y: bgY,
         color,
+        backgroundColor: theme.background,
         lineWidth,
         heavyLineWidth,
       };

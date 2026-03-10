@@ -12,12 +12,12 @@
     <circle cx="16" cy="19.5" r="6" fill="#ff5f56"/>
     <circle cx="36" cy="19.5" r="6" fill="#ffbd2e"/>
     <circle cx="56" cy="19.5" r="6" fill="#27c93f"/>
-    <text x="184" y="24.166666666666668" fill="#d4d4d4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">CI/CD Pipeline</text>
+    <text x="184" y="24.17" fill="#d4d4d4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">CI/CD Pipeline</text>
   </g>
   <g class="text">
     <text y="70" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#0dbc79">✓</tspan><tspan x="24.4" fill="#d4d4d4"> All tests passed</tspan></text>
     <text y="89.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#0dbc79">✓</tspan><tspan x="24.4" fill="#d4d4d4"> Build successful</tspan></text>
-    <text y="109.19999999999999" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#0dbc79">✓</tspan><tspan x="24.4" fill="#d4d4d4"> Deployment complete</tspan></text>
+    <text y="109.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#0dbc79">✓</tspan><tspan x="24.4" fill="#d4d4d4"> Deployment complete</tspan></text>
   </g>
   <g class="footer">
     <line x1="0" y1="131.3" x2="368" y2="131.3" stroke="#d4d4d41a" stroke-width="1"/>

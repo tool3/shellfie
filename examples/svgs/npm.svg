@@ -1,25 +1,25 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 636.8000000000001 248.39999999999998" width="636.8000000000001" height="248.39999999999998">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 636.8 248.4" width="636.8" height="248.4">
   <defs>
     <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
       <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
     </filter>
   </defs>
-  <rect x="0" y="0" width="636.8000000000001" height="248.39999999999998" fill="#1e1e1e" rx="10" ry="10" filter="url(#shadow)"/>
+  <rect x="0" y="0" width="636.8" height="248.4" fill="#1e1e1e" rx="10" ry="10" filter="url(#shadow)"/>
   <g class="title-bar">
-    <rect x="0" y="0" width="636.8000000000001" height="40" fill="#242526" rx="10" ry="10"/>
-    <rect x="0" y="30" width="636.8000000000001" height="10" fill="#242526"/>
+    <rect x="0" y="0" width="636.8" height="40" fill="#242526" rx="10" ry="10"/>
+    <rect x="0" y="30" width="636.8" height="10" fill="#242526"/>
     <circle cx="16" cy="20" r="6" fill="#ff5f56"/>
     <circle cx="36" cy="20" r="6" fill="#ffbd2e"/>
     <circle cx="56" cy="20" r="6" fill="#27c93f"/>
-    <text x="318.40000000000003" y="24.666666666666668" fill="#d4d4d4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">npm install</text>
+    <text x="318.4" y="24.67" fill="#d4d4d4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">npm install</text>
   </g>
   <g class="text">
     <text y="70" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#0dbc79">npm</tspan><tspan x="41.2" fill="#d4d4d4"> </tspan><tspan x="49.6" fill="#11a8cd">info</tspan><tspan x="83.2" fill="#d4d4d4"> using npm@10.2.0</tspan></text>
     <text y="89.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#0dbc79">npm</tspan><tspan x="41.2" fill="#d4d4d4"> </tspan><tspan x="49.6" fill="#11a8cd">info</tspan><tspan x="83.2" fill="#d4d4d4"> using node@v20.10.0</tspan></text>
-    <text y="109.19999999999999" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#0dbc79">npm</tspan><tspan x="41.2" fill="#d4d4d4"> </tspan><tspan x="49.6" fill="#e5e510">WARN</tspan><tspan x="83.2" fill="#d4d4d4"> deprecated inflight@1.0.6: This module is not supported</tspan></text>
+    <text y="109.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#0dbc79">npm</tspan><tspan x="41.2" fill="#d4d4d4"> </tspan><tspan x="49.6" fill="#e5e510">WARN</tspan><tspan x="83.2" fill="#d4d4d4"> deprecated inflight@1.0.6: This module is not supported</tspan></text>
     <text y="128.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#0dbc79">npm</tspan><tspan x="41.2" fill="#d4d4d4"> </tspan><tspan x="49.6" fill="#e5e510">WARN</tspan><tspan x="83.2" fill="#d4d4d4"> deprecated glob@7.2.3: Glob versions prior to v9 are deprecated</tspan></text>
-    <text y="168" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#d4d4d4">added </tspan><tspan x="66.4" fill="#0dbc79" font-weight="bold">127</tspan><tspan x="91.60000000000001" fill="#d4d4d4"> packages in </tspan><tspan x="200.8" fill="#d4d4d4" font-weight="bold">2s</tspan></text>
+    <text y="168" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#d4d4d4">added </tspan><tspan x="66.4" fill="#0dbc79" font-weight="bold">127</tspan><tspan x="91.6" fill="#d4d4d4"> packages in </tspan><tspan x="200.8" fill="#d4d4d4" font-weight="bold">2s</tspan></text>
     <text y="207.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#0dbc79" font-weight="bold">42</tspan><tspan x="32.8" fill="#d4d4d4"> packages are looking for funding</tspan></text>
-    <text y="226.79999999999998" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#d4d4d4">run </tspan><tspan x="49.6" fill="#11a8cd">npm fund</tspan><tspan x="116.80000000000001" fill="#d4d4d4"> for details</tspan></text>
+    <text y="226.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#d4d4d4">run </tspan><tspan x="49.6" fill="#11a8cd">npm fund</tspan><tspan x="116.8" fill="#d4d4d4"> for details</tspan></text>
   </g>
 </svg>

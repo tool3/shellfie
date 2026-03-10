@@ -13,6 +13,61 @@ function r(value: number): number {
   return Math.round(value * 100) / 100;
 }
 
+/**
+ * Parse a color string (hex, rgb, rgba) and return [r, g, b] components (0-255).
+ */
+function parseColor(color: string): [number, number, number] {
+  // Handle hex colors
+  if (color.startsWith('#')) {
+    const hex = color.slice(1);
+    if (hex.length === 3) {
+      return [
+        parseInt(hex[0] + hex[0], 16),
+        parseInt(hex[1] + hex[1], 16),
+        parseInt(hex[2] + hex[2], 16),
+      ];
+    }
+    if (hex.length >= 6) {
+      return [
+        parseInt(hex.slice(0, 2), 16),
+        parseInt(hex.slice(2, 4), 16),
+        parseInt(hex.slice(4, 6), 16),
+      ];
+    }
+  }
+
+  // Handle rgb/rgba colors
+  const rgbMatch = color.match(/rgba?\((\d+),\s*(\d+),\s*(\d+)/);
+  if (rgbMatch) {
+    return [
+      parseInt(rgbMatch[1], 10),
+      parseInt(rgbMatch[2], 10),
+      parseInt(rgbMatch[3], 10),
+    ];
+  }
+
+  // Fallback to black
+  return [0, 0, 0];
+}
+
+/**
+ * Blend foreground color with background color at given opacity.
+ * Returns a solid hex color that looks like the foreground at the given opacity over the background.
+ */
+function blendColors(fg: string, bg: string, opacity: number): string {
+  const [fgR, fgG, fgB] = parseColor(fg);
+  const [bgR, bgG, bgB] = parseColor(bg);
+
+  // Blend: result = fg * opacity + bg * (1 - opacity)
+  const r = Math.round(fgR * opacity + bgR * (1 - opacity));
+  const g = Math.round(fgG * opacity + bgG * (1 - opacity));
+  const b = Math.round(fgB * opacity + bgB * (1 - opacity));
+
+  // Return as hex
+  const toHex = (n: number) => n.toString(16).padStart(2, '0');
+  return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
+}
+
 export function isCustomGlyph(codePoint: number): boolean {
   return (
     (codePoint >= 0x2500 && codePoint <= 0x257f) ||
@@ -39,6 +94,7 @@ export interface GlyphContext {
   x: number;
   y: number;
   color: string;
+  backgroundColor: string;
   lineWidth: number;
   heavyLineWidth: number;
 }
@@ -515,7 +571,7 @@ function renderDiagonalLine(codePoint: number, ctx: GlyphContext): GlyphResult {
 // Block Elements (U+2580-U+259F)
 
 function renderBlockElement(codePoint: number, ctx: GlyphContext): GlyphResult {
-  const { cellWidth, cellHeight, x, y, color } = ctx;
+  const { cellWidth, cellHeight, x, y, color, backgroundColor } = ctx;
   const crisp = ' shape-rendering="crispEdges"';
 
   // Pre-compute rounded values for common fractions
@@ -592,14 +648,14 @@ function renderBlockElement(codePoint: number, ctx: GlyphContext): GlyphResult {
     case 0x2590: // Right half block
       svg = `<rect x="${r(x + w2)}" y="${ry}" width="${w2}" height="${h}" fill="${color}"${crisp}/>`;
       break;
-    case 0x2591: // Light shade (25%)
-      svg = `<rect x="${rx}" y="${ry}" width="${w}" height="${h}" fill="${color}" fill-opacity="0.25"${crisp}/>`;
+    case 0x2591: // Light shade (25%) - pre-blend to avoid subpixel seams on high-DPI
+      svg = `<rect x="${rx}" y="${ry}" width="${w}" height="${h}" fill="${blendColors(color, backgroundColor, 0.25)}"${crisp}/>`;
       break;
-    case 0x2592: // Medium shade (50%)
-      svg = `<rect x="${rx}" y="${ry}" width="${w}" height="${h}" fill="${color}" fill-opacity="0.5"${crisp}/>`;
+    case 0x2592: // Medium shade (50%) - pre-blend to avoid subpixel seams on high-DPI
+      svg = `<rect x="${rx}" y="${ry}" width="${w}" height="${h}" fill="${blendColors(color, backgroundColor, 0.5)}"${crisp}/>`;
       break;
-    case 0x2593: // Dark shade (75%)
-      svg = `<rect x="${rx}" y="${ry}" width="${w}" height="${h}" fill="${color}" fill-opacity="0.75"${crisp}/>`;
+    case 0x2593: // Dark shade (75%) - pre-blend to avoid subpixel seams on high-DPI
+      svg = `<rect x="${rx}" y="${ry}" width="${w}" height="${h}" fill="${blendColors(color, backgroundColor, 0.75)}"${crisp}/>`;
       break;
     case 0x2594: // Upper 1/8 block
       svg = `<rect x="${rx}" y="${ry}" width="${w}" height="${h8}" fill="${color}"${crisp}/>`;

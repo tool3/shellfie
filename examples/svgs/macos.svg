@@ -1,27 +1,27 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 536 258.79999999999995" width="536" height="258.79999999999995">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 536 258.8" width="536" height="258.8">
   <defs>
     <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
       <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
     </filter>
   </defs>
-  <rect x="0" y="0" width="536" height="258.79999999999995" fill="#1e1e1e" rx="10" ry="10" filter="url(#shadow)"/>
+  <rect x="0" y="0" width="536" height="258.8" fill="#1e1e1e" rx="10" ry="10" filter="url(#shadow)"/>
   <g class="title-bar">
     <rect x="0" y="0" width="536" height="40" fill="#242526" rx="10" ry="10"/>
     <rect x="0" y="30" width="536" height="10" fill="#242526"/>
     <circle cx="16" cy="20" r="6" fill="#ff5f56"/>
     <circle cx="36" cy="20" r="6" fill="#ffbd2e"/>
     <circle cx="56" cy="20" r="6" fill="#27c93f"/>
-    <text x="268" y="24.666666666666668" fill="#c9d1d9" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">Terminal — ls -la</text>
+    <text x="268" y="24.67" fill="#c9d1d9" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">Terminal — ls -la</text>
   </g>
   <g class="text">
     <text y="70" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#3fb950" font-weight="bold">❯</tspan><tspan x="24.4" fill="#c9d1d9"> ls -la</tspan></text>
-    <text y="89.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#58a6ff" font-weight="bold">drwxr-xr-x</tspan><tspan x="100" fill="#c9d1d9">  12 user  staff   384 Jan 15 10:30 </tspan><tspan x="402.40000000000003" fill="#58a6ff" font-weight="bold">.</tspan></text>
-    <text y="109.19999999999999" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#58a6ff" font-weight="bold">drwxr-xr-x</tspan><tspan x="100" fill="#c9d1d9">   8 user  staff   256 Jan 14 09:15 </tspan><tspan x="402.40000000000003" fill="#58a6ff" font-weight="bold">..</tspan></text>
-    <text y="128.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">-rw-r--r--   1 user  staff  1420 Jan 15 10:30 </tspan><tspan x="402.40000000000003" fill="#3fb950">package.json</tspan></text>
-    <text y="148.39999999999998" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">-rw-r--r--   1 user  staff   380 Jan 15 10:25 </tspan><tspan x="402.40000000000003" fill="#3fb950">tsconfig.json</tspan></text>
-    <text y="168" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#58a6ff" font-weight="bold">drwxr-xr-x</tspan><tspan x="100" fill="#c9d1d9">   6 user  staff   192 Jan 15 10:28 </tspan><tspan x="402.40000000000003" fill="#58a6ff" font-weight="bold">src</tspan></text>
-    <text y="187.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#39c5cf" font-weight="bold">lrwxr-xr-x</tspan><tspan x="100" fill="#c9d1d9">   1 user  staff    12 Jan 14 15:00 </tspan><tspan x="402.40000000000003" fill="#39c5cf" font-weight="bold">link</tspan><tspan x="436.00000000000006" fill="#c9d1d9"> -&gt; </tspan><tspan x="469.6000000000001" fill="#3fb950">target</tspan></text>
-    <text y="207.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">-rwxr-xr-x   1 user  staff  8192 Jan 15 10:20 </tspan><tspan x="402.40000000000003" fill="#ff7b72" font-weight="bold">executable</tspan></text>
+    <text y="89.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#58a6ff" font-weight="bold">drwxr-xr-x</tspan><tspan x="100" fill="#c9d1d9">  12 user  staff   384 Jan 15 10:30 </tspan><tspan x="402.4" fill="#58a6ff" font-weight="bold">.</tspan></text>
+    <text y="109.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#58a6ff" font-weight="bold">drwxr-xr-x</tspan><tspan x="100" fill="#c9d1d9">   8 user  staff   256 Jan 14 09:15 </tspan><tspan x="402.4" fill="#58a6ff" font-weight="bold">..</tspan></text>
+    <text y="128.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">-rw-r--r--   1 user  staff  1420 Jan 15 10:30 </tspan><tspan x="402.4" fill="#3fb950">package.json</tspan></text>
+    <text y="148.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">-rw-r--r--   1 user  staff   380 Jan 15 10:25 </tspan><tspan x="402.4" fill="#3fb950">tsconfig.json</tspan></text>
+    <text y="168" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#58a6ff" font-weight="bold">drwxr-xr-x</tspan><tspan x="100" fill="#c9d1d9">   6 user  staff   192 Jan 15 10:28 </tspan><tspan x="402.4" fill="#58a6ff" font-weight="bold">src</tspan></text>
+    <text y="187.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#39c5cf" font-weight="bold">lrwxr-xr-x</tspan><tspan x="100" fill="#c9d1d9">   1 user  staff    12 Jan 14 15:00 </tspan><tspan x="402.4" fill="#39c5cf" font-weight="bold">link</tspan><tspan x="436" fill="#c9d1d9"> -&gt; </tspan><tspan x="469.6" fill="#3fb950">target</tspan></text>
+    <text y="207.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">-rwxr-xr-x   1 user  staff  8192 Jan 15 10:20 </tspan><tspan x="402.4" fill="#ff7b72" font-weight="bold">executable</tspan></text>
   </g>
   <text y="248.79999999999995" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="10" xml:space="preserve"><tspan x="400" fill="#6c6c6c">Generated by shellfie</tspan></text>
 </svg>
