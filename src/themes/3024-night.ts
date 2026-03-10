@@ -1,0 +1,25 @@
+import type { Theme } from '../types';
+
+export const night3024: Theme = {
+  name: '3024-night',
+  background: '#090300',
+  foreground: '#a5a2a2',
+  cursor: '#a5a2a2',
+  selection: '#4a4543',
+  black: '#090300',
+  red: '#db2d20',
+  green: '#01a252',
+  yellow: '#fded02',
+  blue: '#01a0e4',
+  magenta: '#a16a94',
+  cyan: '#b5e4f4',
+  white: '#a5a2a2',
+  brightBlack: '#5c5855',
+  brightRed: '#e8bbd0',
+  brightGreen: '#3a3432',
+  brightYellow: '#4a4543',
+  brightBlue: '#807d7c',
+  brightMagenta: '#d6d5d4',
+  brightCyan: '#cdab53',
+  brightWhite: '#f7f7f7',
+};

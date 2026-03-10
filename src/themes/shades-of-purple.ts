@@ -1,0 +1,25 @@
+import type { Theme } from '../types';
+
+export const shadesOfPurple: Theme = {
+  name: 'shades-of-purple',
+  background: '#1e1e3f',
+  foreground: '#ffffff',
+  cursor: '#fad000',
+  selection: '#4d21fc',
+  black: '#000000',
+  red: '#ec3a37',
+  green: '#3ad900',
+  yellow: '#fad000',
+  blue: '#6943ff',
+  magenta: '#ff2c70',
+  cyan: '#80fcff',
+  white: '#ffffff',
+  brightBlack: '#5c5c61',
+  brightRed: '#ec3a37',
+  brightGreen: '#3ad900',
+  brightYellow: '#fad000',
+  brightBlue: '#6943ff',
+  brightMagenta: '#fb94ff',
+  brightCyan: '#80fcff',
+  brightWhite: '#ffffff',
+};

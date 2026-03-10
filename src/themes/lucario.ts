@@ -1,0 +1,25 @@
+import type { Theme } from '../types';
+
+export const lucario: Theme = {
+  name: 'lucario',
+  background: '#2b3e50',
+  foreground: '#f8f8f2',
+  cursor: '#f8f8f2',
+  selection: '#19242f',
+  black: '#1c1f26',
+  red: '#ff6541',
+  green: '#72c05d',
+  yellow: '#e6db74',
+  blue: '#66d9ef',
+  magenta: '#ca94ff',
+  cyan: '#61bbc8',
+  white: '#f8f8f2',
+  brightBlack: '#5c98cd',
+  brightRed: '#ff6541',
+  brightGreen: '#72c05d',
+  brightYellow: '#ffab28',
+  brightBlue: '#66d9ef',
+  brightMagenta: '#ca94ff',
+  brightCyan: '#61bbc8',
+  brightWhite: '#ffffff',
+};

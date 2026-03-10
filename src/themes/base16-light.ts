@@ -1,0 +1,25 @@
+import type { Theme } from '../types';
+
+export const base16Light: Theme = {
+  name: 'base16-light',
+  background: '#f8f8f8',
+  foreground: '#383838',
+  cursor: '#383838',
+  selection: '#d8d8d8',
+  black: '#181818',
+  red: '#ab4642',
+  green: '#a1b56c',
+  yellow: '#f7ca88',
+  blue: '#7cafc2',
+  magenta: '#ba8baf',
+  cyan: '#86c1b9',
+  white: '#f8f8f8',
+  brightBlack: '#585858',
+  brightRed: '#ab4642',
+  brightGreen: '#a1b56c',
+  brightYellow: '#f7ca88',
+  brightBlue: '#7cafc2',
+  brightMagenta: '#ba8baf',
+  brightCyan: '#86c1b9',
+  brightWhite: '#ffffff',
+};

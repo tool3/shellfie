@@ -1,0 +1,25 @@
+import type { Theme } from '../types';
+
+export const oneLight: Theme = {
+  name: 'one-light',
+  background: '#f9f9f9',
+  foreground: '#383a42',
+  cursor: '#383a42',
+  selection: '#e5e5e6',
+  black: '#000000',
+  red: '#e45649',
+  green: '#50a14f',
+  yellow: '#986801',
+  blue: '#4078f2',
+  magenta: '#a626a4',
+  cyan: '#0184bc',
+  white: '#a0a1a7',
+  brightBlack: '#5c6370',
+  brightRed: '#e45649',
+  brightGreen: '#50a14f',
+  brightYellow: '#986801',
+  brightBlue: '#4078f2',
+  brightMagenta: '#a626a4',
+  brightCyan: '#0184bc',
+  brightWhite: '#ffffff',
+};

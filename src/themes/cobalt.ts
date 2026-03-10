@@ -1,0 +1,25 @@
+import type { Theme } from '../types';
+
+export const cobalt: Theme = {
+  name: 'cobalt',
+  background: '#132738',
+  foreground: '#ffffff',
+  cursor: '#f0cc09',
+  selection: '#18354f',
+  black: '#000000',
+  red: '#ff0000',
+  green: '#38de21',
+  yellow: '#ffe50a',
+  blue: '#1460d2',
+  magenta: '#ff005d',
+  cyan: '#00bbbb',
+  white: '#bbbbbb',
+  brightBlack: '#555555',
+  brightRed: '#f40e17',
+  brightGreen: '#3bd01d',
+  brightYellow: '#edc809',
+  brightBlue: '#5555ff',
+  brightMagenta: '#ff55ff',
+  brightCyan: '#6ae3fa',
+  brightWhite: '#ffffff',
+};

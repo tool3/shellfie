@@ -1,0 +1,25 @@
+import type { Theme } from '../types';
+
+export const yeti: Theme = {
+  name: 'yeti',
+  background: '#eceae8',
+  foreground: '#546e7a',
+  cursor: '#546e7a',
+  selection: '#d2cdc8',
+  black: '#d2cdc8',
+  red: '#e25448',
+  green: '#50a14f',
+  yellow: '#c0a800',
+  blue: '#55a5db',
+  magenta: '#a074c4',
+  cyan: '#0997b3',
+  white: '#546e7a',
+  brightBlack: '#8d7e6d',
+  brightRed: '#e25448',
+  brightGreen: '#50a14f',
+  brightYellow: '#c0a800',
+  brightBlue: '#55a5db',
+  brightMagenta: '#a074c4',
+  brightCyan: '#0997b3',
+  brightWhite: '#4c5f67',
+};

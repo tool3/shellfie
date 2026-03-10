@@ -1,0 +1,25 @@
+import type { Theme } from '../types';
+
+export const paraisoDark: Theme = {
+  name: 'paraiso-dark',
+  background: '#2f1e2e',
+  foreground: '#a39e9b',
+  cursor: '#a39e9b',
+  selection: '#4f424c',
+  black: '#2f1e2e',
+  red: '#ef6155',
+  green: '#48b685',
+  yellow: '#fec418',
+  blue: '#06b6ef',
+  magenta: '#815ba4',
+  cyan: '#5bc4bf',
+  white: '#a39e9b',
+  brightBlack: '#776e71',
+  brightRed: '#ef6155',
+  brightGreen: '#48b685',
+  brightYellow: '#fec418',
+  brightBlue: '#06b6ef',
+  brightMagenta: '#815ba4',
+  brightCyan: '#5bc4bf',
+  brightWhite: '#e7e9db',
+};

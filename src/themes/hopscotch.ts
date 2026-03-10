@@ -1,0 +1,25 @@
+import type { Theme } from '../types';
+
+export const hopscotch: Theme = {
+  name: 'hopscotch',
+  background: '#322931',
+  foreground: '#b9b5b8',
+  cursor: '#b9b5b8',
+  selection: '#5c545b',
+  black: '#322931',
+  red: '#dd464c',
+  green: '#8fc13e',
+  yellow: '#fdcc59',
+  blue: '#1290bf',
+  magenta: '#c85e7c',
+  cyan: '#149b93',
+  white: '#b9b5b8',
+  brightBlack: '#797379',
+  brightRed: '#fd8b19',
+  brightGreen: '#8fc13e',
+  brightYellow: '#fdcc59',
+  brightBlue: '#1290bf',
+  brightMagenta: '#c85e7c',
+  brightCyan: '#149b93',
+  brightWhite: '#ffffff',
+};

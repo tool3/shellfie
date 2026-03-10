@@ -1,0 +1,25 @@
+import type { Theme } from '../types';
+
+export const a11yDark: Theme = {
+  name: 'a11y-dark',
+  background: '#2b2b2b',
+  foreground: '#f8f8f2',
+  cursor: '#f8f8f2',
+  selection: '#444444',
+  black: '#2b2b2b',
+  red: '#ffa07a',
+  green: '#abe338',
+  yellow: '#ffd700',
+  blue: '#00e0e0',
+  magenta: '#dcc6e0',
+  cyan: '#00e0e0',
+  white: '#f8f8f2',
+  brightBlack: '#545454',
+  brightRed: '#ffa07a',
+  brightGreen: '#abe338',
+  brightYellow: '#ffd700',
+  brightBlue: '#00e0e0',
+  brightMagenta: '#dcc6e0',
+  brightCyan: '#00e0e0',
+  brightWhite: '#ffffff',
+};

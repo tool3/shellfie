@@ -1,0 +1,25 @@
+import type { Theme } from '../types';
+
+export const twilight: Theme = {
+  name: 'twilight',
+  background: '#141414',
+  foreground: '#ffffd4',
+  cursor: '#ffffff',
+  selection: '#313131',
+  black: '#141414',
+  red: '#c06d44',
+  green: '#afb97a',
+  yellow: '#c2a86c',
+  blue: '#44474a',
+  magenta: '#b4be7c',
+  cyan: '#778385',
+  white: '#ffffd4',
+  brightBlack: '#404040',
+  brightRed: '#de7c4c',
+  brightGreen: '#ccd88c',
+  brightYellow: '#e2c47e',
+  brightBlue: '#5a5e62',
+  brightMagenta: '#d0dc8e',
+  brightCyan: '#8a989b',
+  brightWhite: '#ffffd4',
+};

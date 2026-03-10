@@ -1,0 +1,25 @@
+import type { Theme } from '../types';
+
+export const oceanicNext: Theme = {
+  name: 'oceanic-next',
+  background: '#1b2b34',
+  foreground: '#c0c5ce',
+  cursor: '#c0c5ce',
+  selection: '#4f5b66',
+  black: '#1b2b34',
+  red: '#ec5f67',
+  green: '#99c794',
+  yellow: '#fac863',
+  blue: '#6699cc',
+  magenta: '#c594c5',
+  cyan: '#5fb3b3',
+  white: '#c0c5ce',
+  brightBlack: '#65737e',
+  brightRed: '#ec5f67',
+  brightGreen: '#99c794',
+  brightYellow: '#fac863',
+  brightBlue: '#6699cc',
+  brightMagenta: '#c594c5',
+  brightCyan: '#5fb3b3',
+  brightWhite: '#d8dee9',
+};

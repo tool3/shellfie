@@ -1,0 +1,25 @@
+import type { Theme } from '../types';
+
+export const pandaSyntax: Theme = {
+  name: 'panda-syntax',
+  background: '#292a2b',
+  foreground: '#e6e6e6',
+  cursor: '#ff75b5',
+  selection: '#3e4250',
+  black: '#292a2b',
+  red: '#ff2c6d',
+  green: '#19f9d8',
+  yellow: '#ffb86c',
+  blue: '#45a9f9',
+  magenta: '#b084eb',
+  cyan: '#6fc1ff',
+  white: '#e6e6e6',
+  brightBlack: '#676b79',
+  brightRed: '#ff4b82',
+  brightGreen: '#6fe7d2',
+  brightYellow: '#ffcc95',
+  brightBlue: '#6fc1ff',
+  brightMagenta: '#bcaafe',
+  brightCyan: '#6fc1ff',
+  brightWhite: '#ffffff',
+};

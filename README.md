@@ -175,7 +175,7 @@ The font gets base64-encoded directly into the SVG. No external requests, no COR
 
 ## Themes
 
-shellfie comes with 12 built-in themes:
+shellfie comes with 35 built-in themes:
 
 ```typescript
 import shellfie, { dracula, nord, tokyoNight } from "shellfie";
@@ -183,21 +183,53 @@ import shellfie, { dracula, nord, tokyoNight } from "shellfie";
 shellfie(output, { theme: dracula });
 ```
 
-| Dracula                                      | Nord                                   | Tokyo Night                                          |
-| -------------------------------------------- | -------------------------------------- | ---------------------------------------------------- |
-| ![Dracula](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/dracula.svg) | ![Nord](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/nord.svg) | ![Tokyo Night](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/tokyo-night.svg) |
+| Dracula                                      | Dracula PRO                                   | Nord                                   |
+| -------------------------------------------- | --------------------------------------------- | -------------------------------------- |
+| ![Dracula](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/dracula.svg) | ![Dracula PRO](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/dracula-pro.svg) | ![Nord](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/nord.svg) |
 
-| One Dark                                       | Monokai                                      | Catppuccin Mocha                                               |
-| ---------------------------------------------- | -------------------------------------------- | -------------------------------------------------------------- |
-| ![One Dark](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/one-dark.svg) | ![Monokai](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/monokai.svg) | ![Catppuccin Mocha](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/catppuccin-mocha.svg) |
+| Tokyo Night                                          | One Dark                                       | One Light                                      |
+| ---------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| ![Tokyo Night](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/tokyo-night.svg) | ![One Dark](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/one-dark.svg) | ![One Light](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/one-light.svg) |
 
-| GitHub Dark                                          | GitHub Light                                           | Gruvbox Dark                                           |
+| Monokai                                      | Catppuccin Mocha                                               | Material                                       |
+| -------------------------------------------- | -------------------------------------------------------------- | ---------------------------------------------- |
+| ![Monokai](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/monokai.svg) | ![Catppuccin Mocha](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/catppuccin-mocha.svg) | ![Material](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/material.svg) |
+
+| GitHub Dark                                          | GitHub Light                                           | VS Code                                        |
+| ---------------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------- |
+| ![GitHub Dark](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/github-dark.svg) | ![GitHub Light](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/github-light.svg) | ![VS Code](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/vscode.svg) |
+
+| Gruvbox Dark                                           | Gruvbox Light                                            | Solarized Dark                                             |
+| ------------------------------------------------------ | -------------------------------------------------------- | ---------------------------------------------------------- |
+| ![Gruvbox Dark](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/gruvbox-dark.svg) | ![Gruvbox Light](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/gruvbox-light.svg) | ![Solarized Dark](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/solarized-dark.svg) |
+
+| Solarized Light                                              | SynthWave '84                                          | Shades of Purple                                               |
+| ------------------------------------------------------------ | ------------------------------------------------------ | -------------------------------------------------------------- |
+| ![Solarized Light](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/solarized-light.svg) | ![SynthWave '84](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/synthwave-84.svg) | ![Shades of Purple](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/shades-of-purple.svg) |
+
+| Cobalt                                       | Oceanic Next                                           | Lucario                                        |
+| -------------------------------------------- | ------------------------------------------------------ | ---------------------------------------------- |
+| ![Cobalt](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/cobalt.svg) | ![Oceanic Next](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/oceanic-next.svg) | ![Lucario](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/lucario.svg) |
+
+| Panda Syntax                                         | Hopscotch                                      | Paraiso Dark                                           |
+| ---------------------------------------------------- | ---------------------------------------------- | ------------------------------------------------------ |
+| ![Panda Syntax](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/panda-syntax.svg) | ![Hopscotch](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/hopscotch.svg) | ![Paraiso Dark](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/paraiso-dark.svg) |
+
+| Base16 Dark                                          | Base16 Light                                           | Duotone Dark                                           |
 | ---------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------ |
-| ![GitHub Dark](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/github-dark.svg) | ![GitHub Light](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/github-light.svg) | ![Gruvbox Dark](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/gruvbox-dark.svg) |
+| ![Base16 Dark](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/base16-dark.svg) | ![Base16 Light](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/base16-light.svg) | ![Duotone Dark](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/duotone-dark.svg) |
 
-| Gruvbox Light                                            | Solarized Dark                                             | Solarized Light                                              |
-| -------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
-| ![Gruvbox Light](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/gruvbox-light.svg) | ![Solarized Dark](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/solarized-dark.svg) | ![Solarized Light](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/solarized-light.svg) |
+| 3024 Night                                           | A11y Dark                                      | Blackboard                                     |
+| ---------------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| ![3024 Night](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/3024-night.svg) | ![A11y Dark](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/a11y-dark.svg) | ![Blackboard](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/blackboard.svg) |
+
+| Seti                                         | Twilight                                       | Verminal                                       |
+| -------------------------------------------- | ---------------------------------------------- | ---------------------------------------------- |
+| ![Seti](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/seti.svg) | ![Twilight](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/twilight.svg) | ![Verminal](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/verminal.svg) |
+
+| Yeti                                         | Zenburn                                        |
+| -------------------------------------------- | ---------------------------------------------- |
+| ![Yeti](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/yeti.svg) | ![Zenburn](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/zenburn.svg) |
 
 ## Custom Themes
 

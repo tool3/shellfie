@@ -1,0 +1,25 @@
+import type { Theme } from '../types';
+
+export const verminal: Theme = {
+  name: 'verminal',
+  background: '#000000',
+  foreground: '#ffffff',
+  cursor: '#ff3b30',
+  selection: '#0095ff',
+  black: '#000000',
+  red: '#ff3b30',
+  green: '#4cd964',
+  yellow: '#ffcc00',
+  blue: '#0095ff',
+  magenta: '#ff2d55',
+  cyan: '#5ac8fa',
+  white: '#d0d0d0',
+  brightBlack: '#686868',
+  brightRed: '#ff3b30',
+  brightGreen: '#4cd964',
+  brightYellow: '#ffcc00',
+  brightBlue: '#0095ff',
+  brightMagenta: '#ff2d55',
+  brightCyan: '#5ac8fa',
+  brightWhite: '#ffffff',
+};

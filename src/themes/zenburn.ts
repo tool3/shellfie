@@ -1,0 +1,25 @@
+import type { Theme } from '../types';
+
+export const zenburn: Theme = {
+  name: 'zenburn',
+  background: '#3f3f3f',
+  foreground: '#dcdccc',
+  cursor: '#73635a',
+  selection: '#21322f',
+  black: '#4d4d4d',
+  red: '#7d5d5d',
+  green: '#60b48a',
+  yellow: '#f0dfaf',
+  blue: '#5d6d7d',
+  magenta: '#dc8cc3',
+  cyan: '#8cd0d3',
+  white: '#dcdccc',
+  brightBlack: '#709080',
+  brightRed: '#dca3a3',
+  brightGreen: '#c3bf9f',
+  brightYellow: '#e0cf9f',
+  brightBlue: '#94bff3',
+  brightMagenta: '#ec93d3',
+  brightCyan: '#93e0e3',
+  brightWhite: '#ffffff',
+};

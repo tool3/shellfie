@@ -1,0 +1,25 @@
+import type { Theme } from '../types';
+
+export const draculaPro: Theme = {
+  name: 'dracula-pro',
+  background: '#22212c',
+  foreground: '#f8f8f2',
+  cursor: '#f8f8f2',
+  selection: '#454158',
+  black: '#21222c',
+  red: '#ff9580',
+  green: '#8aff80',
+  yellow: '#ffff80',
+  blue: '#9580ff',
+  magenta: '#ff80bf',
+  cyan: '#80ffea',
+  white: '#f8f8f2',
+  brightBlack: '#7970a9',
+  brightRed: '#ffaa99',
+  brightGreen: '#a2ff99',
+  brightYellow: '#ffff99',
+  brightBlue: '#aa99ff',
+  brightMagenta: '#ff99cc',
+  brightCyan: '#99ffee',
+  brightWhite: '#ffffff',
+};

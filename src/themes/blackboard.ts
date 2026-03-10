@@ -1,0 +1,25 @@
+import type { Theme } from '../types';
+
+export const blackboard: Theme = {
+  name: 'blackboard',
+  background: '#0c1021',
+  foreground: '#f8f8f8',
+  cursor: '#bbbbbb',
+  selection: '#253b76',
+  black: '#0c1021',
+  red: '#d13a82',
+  green: '#8fb000',
+  yellow: '#f8e32c',
+  blue: '#7a9bff',
+  magenta: '#c09bff',
+  cyan: '#8fdfda',
+  white: '#f8f8f8',
+  brightBlack: '#6a7586',
+  brightRed: '#ff5994',
+  brightGreen: '#a3d900',
+  brightYellow: '#f8e32c',
+  brightBlue: '#9bbaff',
+  brightMagenta: '#d3b5ff',
+  brightCyan: '#aef7f1',
+  brightWhite: '#ffffff',
+};

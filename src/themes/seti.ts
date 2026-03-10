@@ -1,0 +1,25 @@
+import type { Theme } from '../types';
+
+export const seti: Theme = {
+  name: 'seti',
+  background: '#111213',
+  foreground: '#cacecd',
+  cursor: '#e3bf21',
+  selection: '#303233',
+  black: '#323232',
+  red: '#c22832',
+  green: '#8ec43d',
+  yellow: '#e0c64f',
+  blue: '#43a5d5',
+  magenta: '#8b57b5',
+  cyan: '#8ec43d',
+  white: '#eeeeee',
+  brightBlack: '#3f3f3f',
+  brightRed: '#c22832',
+  brightGreen: '#8ec43d',
+  brightYellow: '#e0c64f',
+  brightBlue: '#43a5d5',
+  brightMagenta: '#8b57b5',
+  brightCyan: '#8ec43d',
+  brightWhite: '#ffffff',
+};

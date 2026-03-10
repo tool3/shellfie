@@ -1,0 +1,25 @@
+import type { Theme } from '../types';
+
+export const synthwave84: Theme = {
+  name: 'synthwave-84',
+  background: '#262335',
+  foreground: '#ffffff',
+  cursor: '#ffffff',
+  selection: '#614d85',
+  black: '#1a1a2e',
+  red: '#fe4450',
+  green: '#72f1b8',
+  yellow: '#f3e70f',
+  blue: '#03edf9',
+  magenta: '#ff7edb',
+  cyan: '#03edf9',
+  white: '#ffffff',
+  brightBlack: '#614d85',
+  brightRed: '#fe4450',
+  brightGreen: '#72f1b8',
+  brightYellow: '#fede5d',
+  brightBlue: '#03edf9',
+  brightMagenta: '#ff7edb',
+  brightCyan: '#03edf9',
+  brightWhite: '#ffffff',
+};
