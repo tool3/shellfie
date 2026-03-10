@@ -2,6 +2,13 @@ import type { TextSpan, TextStyle, Theme, FontConfig } from '../types';
 import { resolveColor, dimColor } from './colors';
 import { isCustomGlyph, renderCustomGlyph, type GlyphContext } from './customGlyphs';
 
+/**
+ * Round a coordinate value to avoid floating-point precision issues in SVG rendering.
+ */
+function r(value: number): number {
+  return Math.round(value * 100) / 100;
+}
+
 export function escapeXml(text: string): string {
   return text
     .replace(/&/g, '&amp;')
@@ -67,7 +74,7 @@ export function renderSpanBackground(
   const bgColor = resolveColor(bg, theme, false);
   if (bgColor === 'transparent') return null;
 
-  return `<rect x="${x}" y="${y}" width="${width}" height="${height}" fill="${bgColor}"/>`;
+  return `<rect x="${r(x)}" y="${r(y)}" width="${r(width)}" height="${r(height)}" fill="${bgColor}"/>`;
 }
 
 export interface SpanRenderResult {
@@ -114,7 +121,7 @@ export function renderSpan(
           .map(([k, v]) => `${k}="${v}"`)
           .join(' ');
         textParts.push(
-          `<tspan x="${currentTextStart}" ${attrStr}>${escapeXml(currentText)}</tspan>`
+          `<tspan x="${r(currentTextStart)}" ${attrStr}>${escapeXml(currentText)}</tspan>`
         );
         currentText = '';
         currentTextStart = -1;
@@ -149,7 +156,7 @@ export function renderSpan(
       .map(([k, v]) => `${k}="${v}"`)
       .join(' ');
     textParts.push(
-      `<tspan x="${currentTextStart}" ${attrStr}>${escapeXml(currentText)}</tspan>`
+      `<tspan x="${r(currentTextStart)}" ${attrStr}>${escapeXml(currentText)}</tspan>`
     );
   }
 

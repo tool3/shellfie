@@ -5,6 +5,14 @@
 // - Braille Patterns (U+2800-U+28FF)
 // - Symbols for Legacy Computing (U+1FB00-U+1FBFF)
 
+/**
+ * Round a coordinate value to 2 decimal places to eliminate floating-point precision artifacts
+ * (e.g., 19.599999999999998 → 19.6) while preserving enough precision to avoid gaps between blocks.
+ */
+function r(value: number): number {
+  return Math.round(value * 100) / 100;
+}
+
 export function isCustomGlyph(codePoint: number): boolean {
   return (
     (codePoint >= 0x2500 && codePoint <= 0x257f) ||
@@ -60,10 +68,10 @@ export function renderCustomGlyph(
   // Black Square (U+25A0) - render as cell-width square, vertically centered
   if (codePoint === 0x25a0) {
     const { cellWidth, cellHeight, x, y, color } = ctx;
-    const size = cellWidth;
-    const squareY = y + (cellHeight - size) / 2;
+    const size = r(cellWidth);
+    const squareY = r(y + (cellHeight - cellWidth) / 2);
     return {
-      svg: `<rect x="${x}" y="${squareY}" width="${size}" height="${size}" fill="${color}" shape-rendering="crispEdges"/>`,
+      svg: `<rect x="${r(x)}" y="${squareY}" width="${size}" height="${size}" fill="${color}" shape-rendering="crispEdges"/>`,
       handled: true,
     };
   }
@@ -496,121 +504,141 @@ function renderBlockElement(codePoint: number, ctx: GlyphContext): GlyphResult {
   const { cellWidth, cellHeight, x, y, color } = ctx;
   const crisp = ' shape-rendering="crispEdges"';
 
+  // Pre-compute rounded values for common fractions
+  const w = r(cellWidth);
+  const h = r(cellHeight);
+  const w2 = r(cellWidth / 2);
+  const w4 = r(cellWidth / 4);
+  const w8 = r(cellWidth / 8);
+  const w38 = r(cellWidth * 3 / 8);
+  const w58 = r(cellWidth * 5 / 8);
+  const w34 = r(cellWidth * 3 / 4);
+  const w78 = r(cellWidth * 7 / 8);
+  const h2 = r(cellHeight / 2);
+  const h4 = r(cellHeight / 4);
+  const h8 = r(cellHeight / 8);
+  const h38 = r(cellHeight * 3 / 8);
+  const h58 = r(cellHeight * 5 / 8);
+  const h34 = r(cellHeight * 3 / 4);
+  const h78 = r(cellHeight * 7 / 8);
+  const rx = r(x);
+  const ry = r(y);
+
   let svg = '';
 
   switch (codePoint) {
     case 0x2580: // Upper half block
-      svg = `<rect x="${x}" y="${y}" width="${cellWidth}" height="${cellHeight / 2}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${ry}" width="${w}" height="${h2}" fill="${color}"${crisp}/>`;
       break;
     case 0x2581: // Lower 1/8
-      svg = `<rect x="${x}" y="${y + cellHeight * 7 / 8}" width="${cellWidth}" height="${cellHeight / 8}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${r(y + h78)}" width="${w}" height="${h8}" fill="${color}"${crisp}/>`;
       break;
     case 0x2582: // Lower 1/4
-      svg = `<rect x="${x}" y="${y + cellHeight * 3 / 4}" width="${cellWidth}" height="${cellHeight / 4}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${r(y + h34)}" width="${w}" height="${h4}" fill="${color}"${crisp}/>`;
       break;
     case 0x2583: // Lower 3/8
-      svg = `<rect x="${x}" y="${y + cellHeight * 5 / 8}" width="${cellWidth}" height="${cellHeight * 3 / 8}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${r(y + h58)}" width="${w}" height="${h38}" fill="${color}"${crisp}/>`;
       break;
     case 0x2584: // Lower half
-      svg = `<rect x="${x}" y="${y + cellHeight / 2}" width="${cellWidth}" height="${cellHeight / 2}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${r(y + h2)}" width="${w}" height="${h2}" fill="${color}"${crisp}/>`;
       break;
     case 0x2585: // Lower 5/8
-      svg = `<rect x="${x}" y="${y + cellHeight * 3 / 8}" width="${cellWidth}" height="${cellHeight * 5 / 8}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${r(y + h38)}" width="${w}" height="${h58}" fill="${color}"${crisp}/>`;
       break;
     case 0x2586: // Lower 3/4
-      svg = `<rect x="${x}" y="${y + cellHeight / 4}" width="${cellWidth}" height="${cellHeight * 3 / 4}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${r(y + h4)}" width="${w}" height="${h34}" fill="${color}"${crisp}/>`;
       break;
     case 0x2587: // Lower 7/8
-      svg = `<rect x="${x}" y="${y + cellHeight / 8}" width="${cellWidth}" height="${cellHeight * 7 / 8}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${r(y + h8)}" width="${w}" height="${h78}" fill="${color}"${crisp}/>`;
       break;
     case 0x2588: // Full block
-      svg = `<rect x="${x}" y="${y}" width="${cellWidth}" height="${cellHeight}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${ry}" width="${w}" height="${h}" fill="${color}"${crisp}/>`;
       break;
     case 0x2589: // Left 7/8
-      svg = `<rect x="${x}" y="${y}" width="${cellWidth * 7 / 8}" height="${cellHeight}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${ry}" width="${w78}" height="${h}" fill="${color}"${crisp}/>`;
       break;
     case 0x258a: // Left 3/4
-      svg = `<rect x="${x}" y="${y}" width="${cellWidth * 3 / 4}" height="${cellHeight}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${ry}" width="${w34}" height="${h}" fill="${color}"${crisp}/>`;
       break;
     case 0x258b: // Left 5/8
-      svg = `<rect x="${x}" y="${y}" width="${cellWidth * 5 / 8}" height="${cellHeight}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${ry}" width="${w58}" height="${h}" fill="${color}"${crisp}/>`;
       break;
     case 0x258c: // Left half
-      svg = `<rect x="${x}" y="${y}" width="${cellWidth / 2}" height="${cellHeight}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${ry}" width="${w2}" height="${h}" fill="${color}"${crisp}/>`;
       break;
     case 0x258d: // Left 3/8
-      svg = `<rect x="${x}" y="${y}" width="${cellWidth * 3 / 8}" height="${cellHeight}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${ry}" width="${w38}" height="${h}" fill="${color}"${crisp}/>`;
       break;
     case 0x258e: // Left 1/4
-      svg = `<rect x="${x}" y="${y}" width="${cellWidth / 4}" height="${cellHeight}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${ry}" width="${w4}" height="${h}" fill="${color}"${crisp}/>`;
       break;
     case 0x258f: // Left 1/8
-      svg = `<rect x="${x}" y="${y}" width="${cellWidth / 8}" height="${cellHeight}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${ry}" width="${w8}" height="${h}" fill="${color}"${crisp}/>`;
       break;
     case 0x2590: // Right half block
-      svg = `<rect x="${x + cellWidth / 2}" y="${y}" width="${cellWidth / 2}" height="${cellHeight}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${r(x + w2)}" y="${ry}" width="${w2}" height="${h}" fill="${color}"${crisp}/>`;
       break;
     case 0x2591: // Light shade (25%)
-      svg = `<rect x="${x}" y="${y}" width="${cellWidth}" height="${cellHeight}" fill="${color}" fill-opacity="0.25"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${ry}" width="${w}" height="${h}" fill="${color}" fill-opacity="0.25"${crisp}/>`;
       break;
     case 0x2592: // Medium shade (50%)
-      svg = `<rect x="${x}" y="${y}" width="${cellWidth}" height="${cellHeight}" fill="${color}" fill-opacity="0.5"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${ry}" width="${w}" height="${h}" fill="${color}" fill-opacity="0.5"${crisp}/>`;
       break;
     case 0x2593: // Dark shade (75%)
-      svg = `<rect x="${x}" y="${y}" width="${cellWidth}" height="${cellHeight}" fill="${color}" fill-opacity="0.75"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${ry}" width="${w}" height="${h}" fill="${color}" fill-opacity="0.75"${crisp}/>`;
       break;
     case 0x2594: // Upper 1/8 block
-      svg = `<rect x="${x}" y="${y}" width="${cellWidth}" height="${cellHeight / 8}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${ry}" width="${w}" height="${h8}" fill="${color}"${crisp}/>`;
       break;
     case 0x2595: // Right 1/8 block
-      svg = `<rect x="${x + cellWidth * 7 / 8}" y="${y}" width="${cellWidth / 8}" height="${cellHeight}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${r(x + w78)}" y="${ry}" width="${w8}" height="${h}" fill="${color}"${crisp}/>`;
       break;
     case 0x2596: // Lower left
-      svg = `<rect x="${x}" y="${y + cellHeight / 2}" width="${cellWidth / 2}" height="${cellHeight / 2}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${r(y + h2)}" width="${w2}" height="${h2}" fill="${color}"${crisp}/>`;
       break;
     case 0x2597: // Lower right
-      svg = `<rect x="${x + cellWidth / 2}" y="${y + cellHeight / 2}" width="${cellWidth / 2}" height="${cellHeight / 2}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${r(x + w2)}" y="${r(y + h2)}" width="${w2}" height="${h2}" fill="${color}"${crisp}/>`;
       break;
     case 0x2598: // Upper left
-      svg = `<rect x="${x}" y="${y}" width="${cellWidth / 2}" height="${cellHeight / 2}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${rx}" y="${ry}" width="${w2}" height="${h2}" fill="${color}"${crisp}/>`;
       break;
     case 0x2599: // Upper left, lower left, lower right
       svg = [
-        `<rect x="${x}" y="${y}" width="${cellWidth / 2}" height="${cellHeight / 2}" fill="${color}"${crisp}/>`,
-        `<rect x="${x}" y="${y + cellHeight / 2}" width="${cellWidth}" height="${cellHeight / 2}" fill="${color}"${crisp}/>`,
+        `<rect x="${rx}" y="${ry}" width="${w2}" height="${h2}" fill="${color}"${crisp}/>`,
+        `<rect x="${rx}" y="${r(y + h2)}" width="${w}" height="${h2}" fill="${color}"${crisp}/>`,
       ].join('');
       break;
     case 0x259a: // Upper left, lower right
       svg = [
-        `<rect x="${x}" y="${y}" width="${cellWidth / 2}" height="${cellHeight / 2}" fill="${color}"${crisp}/>`,
-        `<rect x="${x + cellWidth / 2}" y="${y + cellHeight / 2}" width="${cellWidth / 2}" height="${cellHeight / 2}" fill="${color}"${crisp}/>`,
+        `<rect x="${rx}" y="${ry}" width="${w2}" height="${h2}" fill="${color}"${crisp}/>`,
+        `<rect x="${r(x + w2)}" y="${r(y + h2)}" width="${w2}" height="${h2}" fill="${color}"${crisp}/>`,
       ].join('');
       break;
     case 0x259b: // Upper left, upper right, lower left
       svg = [
-        `<rect x="${x}" y="${y}" width="${cellWidth}" height="${cellHeight / 2}" fill="${color}"${crisp}/>`,
-        `<rect x="${x}" y="${y + cellHeight / 2}" width="${cellWidth / 2}" height="${cellHeight / 2}" fill="${color}"${crisp}/>`,
+        `<rect x="${rx}" y="${ry}" width="${w}" height="${h2}" fill="${color}"${crisp}/>`,
+        `<rect x="${rx}" y="${r(y + h2)}" width="${w2}" height="${h2}" fill="${color}"${crisp}/>`,
       ].join('');
       break;
     case 0x259c: // Upper left, upper right, lower right
       svg = [
-        `<rect x="${x}" y="${y}" width="${cellWidth}" height="${cellHeight / 2}" fill="${color}"${crisp}/>`,
-        `<rect x="${x + cellWidth / 2}" y="${y + cellHeight / 2}" width="${cellWidth / 2}" height="${cellHeight / 2}" fill="${color}"${crisp}/>`,
+        `<rect x="${rx}" y="${ry}" width="${w}" height="${h2}" fill="${color}"${crisp}/>`,
+        `<rect x="${r(x + w2)}" y="${r(y + h2)}" width="${w2}" height="${h2}" fill="${color}"${crisp}/>`,
       ].join('');
       break;
     case 0x259d: // Upper right
-      svg = `<rect x="${x + cellWidth / 2}" y="${y}" width="${cellWidth / 2}" height="${cellHeight / 2}" fill="${color}"${crisp}/>`;
+      svg = `<rect x="${r(x + w2)}" y="${ry}" width="${w2}" height="${h2}" fill="${color}"${crisp}/>`;
       break;
     case 0x259e: // Upper right, lower left
       svg = [
-        `<rect x="${x + cellWidth / 2}" y="${y}" width="${cellWidth / 2}" height="${cellHeight / 2}" fill="${color}"${crisp}/>`,
-        `<rect x="${x}" y="${y + cellHeight / 2}" width="${cellWidth / 2}" height="${cellHeight / 2}" fill="${color}"${crisp}/>`,
+        `<rect x="${r(x + w2)}" y="${ry}" width="${w2}" height="${h2}" fill="${color}"${crisp}/>`,
+        `<rect x="${rx}" y="${r(y + h2)}" width="${w2}" height="${h2}" fill="${color}"${crisp}/>`,
       ].join('');
       break;
     case 0x259f: // Upper right, lower left, lower right
       svg = [
-        `<rect x="${x + cellWidth / 2}" y="${y}" width="${cellWidth / 2}" height="${cellHeight / 2}" fill="${color}"${crisp}/>`,
-        `<rect x="${x}" y="${y + cellHeight / 2}" width="${cellWidth}" height="${cellHeight / 2}" fill="${color}"${crisp}/>`,
+        `<rect x="${r(x + w2)}" y="${ry}" width="${w2}" height="${h2}" fill="${color}"${crisp}/>`,
+        `<rect x="${rx}" y="${r(y + h2)}" width="${w}" height="${h2}" fill="${color}"${crisp}/>`,
       ].join('');
       break;
     default:

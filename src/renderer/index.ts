@@ -10,6 +10,13 @@ import type {
 import { parseAnsi } from '../parser';
 import { escapeXml, renderSpan } from './text';
 
+/**
+ * Round a coordinate value to avoid floating-point precision issues in SVG rendering.
+ */
+function r(value: number): number {
+  return Math.round(value * 100) / 100;
+}
+
 export interface RenderResult {
   svg: string;
   width: number;
@@ -178,7 +185,7 @@ const renderTitleBar = (
   }
 
   if (title) {
-    parts.push(`<text x="${contentWidth / 2}" y="${bgHeight / 2 + font.size / 3}" fill="${theme.foreground}" font-family="${font.family}" font-size="${font.size - 2}" text-anchor="middle" opacity="0.8">${escapeXml(title)}</text>`);
+    parts.push(`<text x="${r(contentWidth / 2)}" y="${r(bgHeight / 2 + font.size / 3)}" fill="${theme.foreground}" font-family="${font.family}" font-size="${font.size - 2}" text-anchor="middle" opacity="0.8">${escapeXml(title)}</text>`);
   }
 
   return parts.join('\n    ');
@@ -253,8 +260,9 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
   const fontFamily = font.embedData ? `'EmbeddedFont', ${font.family}` : font.family;
 
   // Use exact dimensions if provided, otherwise use calculated content dimensions
-  const svgWidth = options.width ?? dim.contentWidth;
-  const svgHeight = options.height ?? dim.contentHeight;
+  // Round to avoid floating-point precision issues in SVG rendering
+  const svgWidth = r(options.width ?? dim.contentWidth);
+  const svgHeight = r(options.height ?? dim.contentHeight);
 
   const svgParts: string[] = [
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${svgWidth} ${svgHeight}" width="${svgWidth}" height="${svgHeight}">`,
@@ -340,7 +348,7 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
     });
 
     if (tspans.some(t => t.length > 0)) {
-      svgParts.push(`    <text y="${y}" font-family="${fontFamily}" font-size="${font.size}" xml:space="preserve">${tspans.join('')}</text>`);
+      svgParts.push(`    <text y="${r(y)}" font-family="${fontFamily}" font-size="${font.size}" xml:space="preserve">${tspans.join('')}</text>`);
     }
   });
   svgParts.push(`  </g>`);
