@@ -3,7 +3,7 @@
 Take a shell selfie.  
 Your terminal output deserves better than a blurry screenshot.
 
-![shellfie](examples/svgs/logo-2.svg)
+![shellfie](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/logo-2.svg)
 
 | Feature             | shellfie | carbon-now-cli | svg-term | termtosvg |
 | ------------------- | -------- | -------------- | -------- | --------- |
@@ -23,7 +23,7 @@ const log = execSync("git log --oneline --graph --color=always").toString();
 const svg = shellfie(log, { title: "git log" });
 ```
 
-![Git Log](examples/svgs/git-log.svg)
+![Git Log](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/git-log.svg)
 
 ## Why SVG?
 
@@ -69,7 +69,7 @@ const svg = shellfie(terminalOutput, {
 
 | macOS                             | Windows                               | Minimal                               |
 | --------------------------------- | ------------------------------------- | ------------------------------------- |
-| ![macos](examples/svgs/macos.svg) | ![windows](examples/svgs/windows.svg) | ![minimal](examples/svgs/minimal.svg) |
+| ![macos](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/macos.svg) | ![windows](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/windows.svg) | ![minimal](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/minimal.svg) |
 
 ```typescript
 shellfie(output, { template: "macos" }); // default
@@ -185,19 +185,19 @@ shellfie(output, { theme: dracula });
 
 | Dracula                                      | Nord                                   | Tokyo Night                                          |
 | -------------------------------------------- | -------------------------------------- | ---------------------------------------------------- |
-| ![Dracula](examples/svgs/themes/dracula.svg) | ![Nord](examples/svgs/themes/nord.svg) | ![Tokyo Night](examples/svgs/themes/tokyo-night.svg) |
+| ![Dracula](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/dracula.svg) | ![Nord](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/nord.svg) | ![Tokyo Night](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/tokyo-night.svg) |
 
 | One Dark                                       | Monokai                                      | Catppuccin Mocha                                               |
 | ---------------------------------------------- | -------------------------------------------- | -------------------------------------------------------------- |
-| ![One Dark](examples/svgs/themes/one-dark.svg) | ![Monokai](examples/svgs/themes/monokai.svg) | ![Catppuccin Mocha](examples/svgs/themes/catppuccin-mocha.svg) |
+| ![One Dark](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/one-dark.svg) | ![Monokai](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/monokai.svg) | ![Catppuccin Mocha](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/catppuccin-mocha.svg) |
 
 | GitHub Dark                                          | GitHub Light                                           | Gruvbox Dark                                           |
 | ---------------------------------------------------- | ------------------------------------------------------ | ------------------------------------------------------ |
-| ![GitHub Dark](examples/svgs/themes/github-dark.svg) | ![GitHub Light](examples/svgs/themes/github-light.svg) | ![Gruvbox Dark](examples/svgs/themes/gruvbox-dark.svg) |
+| ![GitHub Dark](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/github-dark.svg) | ![GitHub Light](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/github-light.svg) | ![Gruvbox Dark](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/gruvbox-dark.svg) |
 
 | Gruvbox Light                                            | Solarized Dark                                             | Solarized Light                                              |
 | -------------------------------------------------------- | ---------------------------------------------------------- | ------------------------------------------------------------ |
-| ![Gruvbox Light](examples/svgs/themes/gruvbox-light.svg) | ![Solarized Dark](examples/svgs/themes/solarized-dark.svg) | ![Solarized Light](examples/svgs/themes/solarized-light.svg) |
+| ![Gruvbox Light](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/gruvbox-light.svg) | ![Solarized Dark](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/solarized-dark.svg) | ![Solarized Light](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/themes/solarized-light.svg) |
 
 ## Custom Themes
 
@@ -230,7 +230,7 @@ const svg = shellfie(gradient.rainbow("Hello World"), {
 });
 ```
 
-![Gradient String](examples/svgs/gradient-string.svg)
+![Gradient String](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/gradient-string.svg)
 
 ### Works with any ANSI output
 
@@ -253,7 +253,7 @@ const svg = shellfie(chart.create(), {
 });
 ```
 
-![Chartscii](examples/svgs/chartscii.svg)
+![Chartscii](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/chartscii.svg)
 
 ### CLI tools, test runners, anything
 
