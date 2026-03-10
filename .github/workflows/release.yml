@@ -33,3 +33,15 @@ jobs:
 
       - name: Publish to npm
         run: npm publish --provenance --access public
+
+      - name: Get version from tag
+        id: version
+        run: echo "version=${GITHUB_REF#refs/tags/v}" >> $GITHUB_OUTPUT
+
+      - name: Trigger shellfie-cli update
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.REPO_DISPATCH_TOKEN }}
+          repository: tool3/shellfie-cli
+          event-type: dependency-update
+          client-payload: '{"package": "shellfie", "version": "${{ steps.version.outputs.version }}"}'
