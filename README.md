@@ -277,6 +277,7 @@ getMaxWidth(lines); // 80
 
 ## Related
 - See [shellfie-cli](https://github.com/tool3/shellfie-cli) for command line usage
+- See [shellfied](https://github.com/tool3/shellfied) the shellfie web app
 
 ## License
 
