@@ -280,6 +280,5 @@ getMaxWidth(lines); // 80
 - See [shellfied](https://github.com/tool3/shellfied) the shellfie web app
 
 ## License
-
-MIT — do whatever you want with it. If you build something cool, I'd love to see it.
+MIT
 
