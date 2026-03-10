@@ -27,7 +27,5 @@ export const windowsTemplate: Template = createTemplate('windows', {
   },
   padding: 12,
   shadow: false,
-  border: true,
-  borderColor: '#333333',
-  borderWidth: 1,
+  border: false,
 });
