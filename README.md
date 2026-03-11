@@ -14,6 +14,7 @@ Your terminal output deserves better than a blurry screenshot.
 | 24-bit true color   | ✅       | ✅             | ❌       | ✅        |
 | Runs in browser     | ✅       | ❌             | ❌       | ❌        |
 | Synchronous API     | ✅       | ❌             | ❌       | ❌        |
+| Built-in Syntax hightligher | ✅       | ❌             | ❌       | ❌        |
 
 ```typescript
 import { execSync } from "child_process";

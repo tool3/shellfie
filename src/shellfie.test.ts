@@ -59,7 +59,7 @@ describe('shellfie', () => {
   });
 
   it('escapes XML special characters', () => {
-    const svg = shellfie('<script>alert("XSS")</script>');
+    const svg = shellfie('<script>alert("XSS")</script>', { language: false });
     expect(svg).not.toContain('<script>');
     expect(svg).toContain('&lt;script&gt;');
   });

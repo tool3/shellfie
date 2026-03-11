@@ -136,6 +136,15 @@ export interface shellfieOptions {
   customGlyphs?: boolean;
   header?: HeaderConfig;
   footer?: FooterConfig;
+  /**
+   * Syntax highlighting language.
+   * - 'auto': Auto-detect language from code content (default)
+   * - Language name: Use specific language (e.g., 'typescript', 'python', 'bash')
+   * - false: Disable highlighting (preserves existing ANSI codes in input)
+   *
+   * Supported languages: bash, javascript, typescript, python, json, go, rust, java, c, cpp, csharp, html
+   */
+  language?: string | false;
 }
 
 export interface ResolvedHeaderConfig {

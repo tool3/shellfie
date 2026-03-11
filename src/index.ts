@@ -1,4 +1,5 @@
 import { createFontConfig, loadEmbeddedFont } from './fonts';
+import { highlight } from './highlight';
 import { parseAnsi } from './parser';
 import { darkTheme, renderSvg } from './renderer';
 import { resolveTemplate } from './templates';
@@ -115,8 +116,15 @@ const resolveOptions = (options: shellfieOptions = {}): RenderOptions => {
   };
 };
 
-export const shellfie = (input: string, options: shellfieOptions = {}): string =>
-  renderSvg(parseAnsi(input), resolveOptions(options)).svg;
+export const shellfie = (input: string, options: shellfieOptions = {}): string => {
+  // Apply syntax highlighting (default: auto-detect, use false to disable)
+  const language = options.language ?? 'auto';
+  const processedInput = language === false
+    ? input
+    : highlight(input, language);
+
+  return renderSvg(parseAnsi(processedInput), resolveOptions(options)).svg;
+};
 
 export const shellfieAsync = async (
   input: string,
@@ -132,7 +140,13 @@ export const shellfieAsync = async (
     }
   }
 
-  return renderSvg(parseAnsi(input), renderOptions).svg;
+  // Apply syntax highlighting (default: auto-detect, use false to disable)
+  const language = options.language ?? 'auto';
+  const processedInput = language === false
+    ? input
+    : highlight(input, language);
+
+  return renderSvg(parseAnsi(processedInput), renderOptions).svg;
 };
 
 export const parse = (input: string): ParsedLine[] => parseAnsi(input);
@@ -154,6 +168,14 @@ export type {
 } from './types';
 
 export { createFontConfig, loadEmbeddedFont, loadFont } from './fonts';
+export {
+  detectLanguage,
+  getLanguage,
+  getLanguageByExtension,
+  getLanguageNames,
+  highlight,
+  languages as highlightLanguages,
+} from './highlight';
 export { getMaxWidth, parseAnsi, stripAnsi } from './parser';
 export { createTheme, darkTheme } from './renderer';
 export { createTemplate, resolveTemplate, templates } from './templates';
