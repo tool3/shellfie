@@ -52,7 +52,9 @@ const DETECTION_PATTERNS: { language: string; patterns: RegExp[]; weight: number
   {
     language: 'bash',
     patterns: [
-      /^#!/,                                    // Shebang
+      /^#!.*\b(?:ba)?sh\b/m,                    // Bash/sh shebang
+      /^#!.*\bzsh\b/m,                          // Zsh shebang
+      /^#!.*\bfish\b/m,                         // Fish shebang
       /\$\([^)]+\)/,                            // Command substitution
       /\$\{[^}]+\}/,                            // Variable expansion
       /\b(echo|export|source|alias)\b/,         // Common builtins
@@ -80,6 +82,9 @@ const DETECTION_PATTERNS: { language: string; patterns: RegExp[]; weight: number
   {
     language: 'javascript',
     patterns: [
+      /^#!.*\bnode\b/m,                         // Node.js shebang
+      /^#!.*\bbun\b/m,                          // Bun shebang
+      /^#!.*\bdeno\b/m,                         // Deno shebang
       /\b(const|let|var)\s+\w+\s*=/,            // Variable declarations
       /\bfunction\s+\w+\s*\(/,                  // Function declarations
       /=>\s*[{(]/,                              // Arrow functions
