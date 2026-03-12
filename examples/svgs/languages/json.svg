@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 435.2 424.8" width="435.2" height="424.8">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect x="0" y="0" width="435.2" height="424.8" fill="#0d1117" rx="10" ry="10" filter="url(#shadow)"/>
+  <g class="title-bar">
+    <rect x="0" y="0" width="435.2" height="40" fill="#242526" rx="10" ry="10"/>
+    <rect x="0" y="30" width="435.2" height="10" fill="#242526"/>
+    <circle cx="16" cy="20" r="6" fill="#ff5f56"/>
+    <circle cx="36" cy="20" r="6" fill="#ffbd2e"/>
+    <circle cx="56" cy="20" r="6" fill="#27c93f"/>
+  </g>
+  <g class="text">
+    <text y="70" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">{</tspan></text>
+    <text y="89.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">  </tspan><tspan x="32.8" fill="#39c5cf">&quot;name&quot;</tspan><tspan x="83.2" fill="#c9d1d9">: </tspan><tspan x="100" fill="#3fb950">&quot;shellfie&quot;</tspan><tspan x="184" fill="#c9d1d9">,</tspan></text>
+    <text y="109.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">  </tspan><tspan x="32.8" fill="#39c5cf">&quot;version&quot;</tspan><tspan x="108.4" fill="#c9d1d9">: </tspan><tspan x="125.2" fill="#3fb950">&quot;2.0.0&quot;</tspan><tspan x="184" fill="#c9d1d9">,</tspan></text>
+    <text y="128.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">  </tspan><tspan x="32.8" fill="#39c5cf">&quot;description&quot;</tspan><tspan x="142" fill="#c9d1d9">: </tspan><tspan x="158.8" fill="#3fb950">&quot;Terminal screenshots as SVG&quot;</tspan><tspan x="402.4" fill="#c9d1d9">,</tspan></text>
+    <text y="148.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">  </tspan><tspan x="32.8" fill="#39c5cf">&quot;keywords&quot;</tspan><tspan x="116.8" fill="#c9d1d9">: [</tspan><tspan x="142" fill="#3fb950">&quot;terminal&quot;</tspan><tspan x="226" fill="#c9d1d9">, </tspan><tspan x="242.8" fill="#3fb950">&quot;svg&quot;</tspan><tspan x="284.8" fill="#c9d1d9">, </tspan><tspan x="301.6" fill="#3fb950">&quot;screenshot&quot;</tspan><tspan x="402.4" fill="#c9d1d9">],</tspan></text>
+    <text y="168" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">  </tspan><tspan x="32.8" fill="#39c5cf">&quot;author&quot;</tspan><tspan x="100" fill="#c9d1d9">: {</tspan></text>
+    <text y="187.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">    </tspan><tspan x="49.6" fill="#39c5cf">&quot;name&quot;</tspan><tspan x="100" fill="#c9d1d9">: </tspan><tspan x="116.8" fill="#3fb950">&quot;tool3&quot;</tspan><tspan x="175.6" fill="#c9d1d9">,</tspan></text>
+    <text y="207.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">    </tspan><tspan x="49.6" fill="#39c5cf">&quot;email&quot;</tspan><tspan x="108.4" fill="#c9d1d9">: </tspan><tspan x="125.2" fill="#3fb950">&quot;user@example.com&quot;</tspan></text>
+    <text y="226.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">  },</tspan></text>
+    <text y="246.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">  </tspan><tspan x="32.8" fill="#39c5cf">&quot;dependencies&quot;</tspan><tspan x="150.4" fill="#c9d1d9">: {</tspan></text>
+    <text y="266" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">    </tspan><tspan x="49.6" fill="#39c5cf">&quot;typescript&quot;</tspan><tspan x="150.4" fill="#c9d1d9">: </tspan><tspan x="167.2" fill="#3fb950">&quot;^5.0.0&quot;</tspan></text>
+    <text y="285.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">  },</tspan></text>
+    <text y="305.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">  </tspan><tspan x="32.8" fill="#39c5cf">&quot;config&quot;</tspan><tspan x="100" fill="#c9d1d9">: {</tspan></text>
+    <text y="324.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">    </tspan><tspan x="49.6" fill="#39c5cf">&quot;port&quot;</tspan><tspan x="100" fill="#c9d1d9">: </tspan><tspan x="116.8" fill="#d29922">3000</tspan><tspan x="150.4" fill="#c9d1d9">,</tspan></text>
+    <text y="344.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">    </tspan><tspan x="49.6" fill="#39c5cf">&quot;debug&quot;</tspan><tspan x="108.4" fill="#c9d1d9">: </tspan><tspan x="125.2" fill="#e3b341">true</tspan><tspan x="158.8" fill="#c9d1d9">,</tspan></text>
+    <text y="364" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">    </tspan><tspan x="49.6" fill="#39c5cf">&quot;features&quot;</tspan><tspan x="133.6" fill="#c9d1d9">: [</tspan><tspan x="158.8" fill="#3fb950">&quot;highlighting&quot;</tspan><tspan x="276.4" fill="#c9d1d9">, </tspan><tspan x="293.2" fill="#3fb950">&quot;themes&quot;</tspan><tspan x="360.4" fill="#c9d1d9">]</tspan></text>
+    <text y="383.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">  }</tspan></text>
+    <text y="403.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">}</tspan></text>
+  </g>
+</svg>

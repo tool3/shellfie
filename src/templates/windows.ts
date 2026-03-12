@@ -13,7 +13,7 @@ import { createTemplate } from './base';
 
 export const windowsTemplate: Template = createTemplate('windows', {
   titleBar: true,
-  titleBarHeight: 36,
+  titleBarHeight: 40,
   borderRadius: 0,
   controls: true,
   controlsPosition: 'right',

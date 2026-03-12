@@ -77,6 +77,12 @@ const patterns: TokenPattern[] = [
   // Self and cls
   { type: 'variable', pattern: /\b(self|cls)\b/ },
 
+  // Function calls - identifier followed by (
+  { type: 'function', pattern: /[a-zA-Z_][a-zA-Z0-9_]*(?=\s*\()/ },
+
+  // Method calls - .identifier followed by (
+  { type: 'function', pattern: /(?<=\.)[a-zA-Z_][a-zA-Z0-9_]*(?=\s*\()/ },
+
   // Operators
   { type: 'operator', pattern: /->|:=|[+\-*/%@=<>!&|^~]=?|\*\*|\/\/|<<|>>/ },
 

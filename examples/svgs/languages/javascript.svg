@@ -1,0 +1,35 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 460.4 483.6" width="460.4" height="483.6">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect x="0" y="0" width="460.4" height="483.6" fill="#0d1117" rx="10" ry="10" filter="url(#shadow)"/>
+  <g class="title-bar">
+    <rect x="0" y="0" width="460.4" height="40" fill="#242526" rx="10" ry="10"/>
+    <rect x="0" y="30" width="460.4" height="10" fill="#242526"/>
+    <circle cx="16" cy="20" r="6" fill="#ff5f56"/>
+    <circle cx="36" cy="20" r="6" fill="#ffbd2e"/>
+    <circle cx="56" cy="20" r="6" fill="#27c93f"/>
+  </g>
+  <g class="text">
+    <text y="70" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#6e7681">// Async function with arrow functions</tspan></text>
+    <text y="89.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#bc8cff">const</tspan><tspan x="58" fill="#c9d1d9"> fetchUser </tspan><tspan x="150.4" fill="#39c5cf">=</tspan><tspan x="158.8" fill="#c9d1d9"> </tspan><tspan x="167.2" fill="#bc8cff">async</tspan><tspan x="209.2" fill="#c9d1d9"> (id) </tspan><tspan x="259.6" fill="#bc8cff">=&gt;</tspan><tspan x="276.4" fill="#c9d1d9"> {</tspan></text>
+    <text y="109.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">  </tspan><tspan x="32.8" fill="#bc8cff">const</tspan><tspan x="74.8" fill="#c9d1d9"> response </tspan><tspan x="158.8" fill="#39c5cf">=</tspan><tspan x="167.2" fill="#c9d1d9"> </tspan><tspan x="175.6" fill="#bc8cff">await</tspan><tspan x="217.6" fill="#c9d1d9"> </tspan><tspan x="226" fill="#56d4dd">fetch</tspan><tspan x="268" fill="#c9d1d9">(</tspan><tspan x="276.4" fill="#3fb950">`/api/users/${id}`</tspan><tspan x="427.6" fill="#c9d1d9">);</tspan></text>
+    <text y="128.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">  </tspan><tspan x="32.8" fill="#bc8cff">return</tspan><tspan x="83.2" fill="#c9d1d9"> response.</tspan><tspan x="167.2" fill="#58a6ff">json</tspan><tspan x="200.8" fill="#c9d1d9">();</tspan></text>
+    <text y="148.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">};</tspan></text>
+    <text y="187.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#6e7681">// Class with methods</tspan></text>
+    <text y="207.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#bc8cff">class</tspan><tspan x="58" fill="#c9d1d9"> UserService {</tspan></text>
+    <text y="226.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">  </tspan><tspan x="32.8" fill="#58a6ff">constructor</tspan><tspan x="125.2" fill="#c9d1d9">(baseUrl) {</tspan></text>
+    <text y="246.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">    </tspan><tspan x="49.6" fill="#bc8cff">this</tspan><tspan x="83.2" fill="#c9d1d9">.baseUrl </tspan><tspan x="158.8" fill="#39c5cf">=</tspan><tspan x="167.2" fill="#c9d1d9"> baseUrl;</tspan></text>
+    <text y="266" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">  }</tspan></text>
+    <text y="305.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">  </tspan><tspan x="32.8" fill="#bc8cff">async</tspan><tspan x="74.8" fill="#c9d1d9"> </tspan><tspan x="83.2" fill="#58a6ff">getUsers</tspan><tspan x="150.4" fill="#c9d1d9">() {</tspan></text>
+    <text y="324.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">    </tspan><tspan x="49.6" fill="#bc8cff">const</tspan><tspan x="91.6" fill="#c9d1d9"> users </tspan><tspan x="150.4" fill="#39c5cf">=</tspan><tspan x="158.8" fill="#c9d1d9"> </tspan><tspan x="167.2" fill="#bc8cff">await</tspan><tspan x="209.2" fill="#c9d1d9"> </tspan><tspan x="217.6" fill="#58a6ff">fetchUser</tspan><tspan x="293.2" fill="#c9d1d9">(</tspan><tspan x="301.6" fill="#d29922">1</tspan><tspan x="310" fill="#c9d1d9">);</tspan></text>
+    <text y="344.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">    </tspan><tspan x="49.6" fill="#56d4dd">console</tspan><tspan x="108.4" fill="#c9d1d9">.</tspan><tspan x="116.8" fill="#58a6ff">log</tspan><tspan x="142" fill="#c9d1d9">(</tspan><tspan x="150.4" fill="#3fb950">&#39;Users:&#39;</tspan><tspan x="217.6" fill="#c9d1d9">, users);</tspan></text>
+    <text y="364" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">    </tspan><tspan x="49.6" fill="#bc8cff">return</tspan><tspan x="100" fill="#c9d1d9"> users;</tspan></text>
+    <text y="383.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">  }</tspan></text>
+    <text y="403.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">}</tspan></text>
+    <text y="442.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#6e7681">// Export and destructuring</tspan></text>
+    <text y="462" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#bc8cff">export</tspan><tspan x="66.4" fill="#c9d1d9"> </tspan><tspan x="74.8" fill="#bc8cff">const</tspan><tspan x="116.8" fill="#c9d1d9"> { name, age } </tspan><tspan x="242.8" fill="#39c5cf">=</tspan><tspan x="251.2" fill="#c9d1d9"> user;</tspan></text>
+  </g>
+</svg>

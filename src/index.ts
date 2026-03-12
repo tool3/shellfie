@@ -4,6 +4,7 @@ import { parseAnsi } from './parser';
 import { darkTheme, renderSvg } from './renderer';
 import { resolveTemplate } from './templates';
 import type {
+  CSSShorthand,
   FooterConfig,
   HeaderConfig,
   PaddingInput,
@@ -12,8 +13,12 @@ import type {
   ResolvedFooterConfig,
   ResolvedHeaderConfig,
   ResolvedPadding,
+  ResolvedWatermark,
+  ResolvedWatermarkStyle,
   shellfieOptions,
-  Theme
+  Theme,
+  WatermarkConfig,
+  WatermarkStyle
 } from './types';
 
 const DEFAULTS = {
@@ -26,7 +31,6 @@ const DEFAULTS = {
   width: null, // Auto-size by default
   height: null, // Auto-size by default
   watermark: null,
-  watermarkPadding: null,
   controls: true,
   fontFamily: "'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace",
   embedFont: false,
@@ -79,6 +83,92 @@ const resolveShellConfig = (
   };
 };
 
+const resolveCSSShorthand = (
+  value: CSSShorthand | undefined,
+  fallback: number
+): { top: number; right: number; bottom: number; left: number } => {
+  if (value === undefined) {
+    return { top: fallback, right: fallback, bottom: fallback, left: fallback };
+  }
+  if (typeof value === 'number') {
+    return { top: value, right: value, bottom: value, left: value };
+  }
+  if (value.length === 2) {
+    const [vertical, horizontal] = value;
+    return { top: vertical, right: horizontal, bottom: vertical, left: horizontal };
+  }
+  const [top, right, bottom, left] = value;
+  return { top, right, bottom, left };
+};
+
+// CSS properties that are handled specially (not included in cssString)
+const SPECIAL_STYLE_PROPS = new Set([
+  'padding', 'paddingTop', 'paddingRight', 'paddingBottom', 'paddingLeft',
+  'margin', 'marginTop', 'marginRight', 'marginBottom', 'marginLeft',
+]);
+
+// Convert camelCase to kebab-case for CSS
+const toKebabCase = (str: string): string =>
+  str.replace(/([A-Z])/g, '-$1').toLowerCase();
+
+const resolveWatermarkStyle = (
+  style: WatermarkStyle | undefined,
+  fallbackPadding: number
+): ResolvedWatermarkStyle => {
+  const padding = resolveCSSShorthand(style?.padding, fallbackPadding);
+  const margin = resolveCSSShorthand(style?.margin, 0);
+
+  // Build CSS string from remaining properties
+  const cssProps: string[] = [];
+  if (style) {
+    for (const [key, value] of Object.entries(style)) {
+      if (SPECIAL_STYLE_PROPS.has(key) || value === undefined) continue;
+      cssProps.push(`${toKebabCase(key)}: ${value}`);
+    }
+  }
+
+  return {
+    paddingTop: style?.paddingTop ?? padding.top,
+    paddingRight: style?.paddingRight ?? padding.right,
+    paddingBottom: style?.paddingBottom ?? padding.bottom,
+    paddingLeft: style?.paddingLeft ?? padding.left,
+    marginTop: style?.marginTop ?? margin.top,
+    marginRight: style?.marginRight ?? margin.right,
+    marginBottom: style?.marginBottom ?? margin.bottom,
+    marginLeft: style?.marginLeft ?? margin.left,
+    cssString: cssProps.join('; '),
+  };
+};
+
+// SVG elements that are valid for watermark markup
+const SVG_ELEMENT_REGEX = /^\s*<(a|circle|defs|ellipse|g|image|line|path|polygon|polyline|rect|svg|text|tspan|use)\b/i;
+
+// Auto-detect if content is SVG markup by checking for common SVG elements
+const detectWatermarkType = (content: string): 'text' | 'markup' => {
+  return SVG_ELEMENT_REGEX.test(content) ? 'markup' : 'text';
+};
+
+const resolveWatermark = (
+  watermark: string | WatermarkConfig | undefined,
+  fallbackPadding: number
+): ResolvedWatermark | null => {
+  if (!watermark) return null;
+
+  if (typeof watermark === 'string') {
+    return {
+      type: detectWatermarkType(watermark),
+      content: watermark,
+      style: resolveWatermarkStyle(undefined, fallbackPadding),
+    };
+  }
+
+  return {
+    type: watermark.type ?? detectWatermarkType(watermark.content),
+    content: watermark.content,
+    style: resolveWatermarkStyle(watermark.style, fallbackPadding),
+  };
+};
+
 const resolveOptions = (options: shellfieOptions = {}): RenderOptions => {
   const baseTemplate = resolveTemplate(options.template);
   const template = options.controlsPosition
@@ -89,7 +179,7 @@ const resolveOptions = (options: shellfieOptions = {}): RenderOptions => {
     : baseTemplate;
   const theme = options.theme ?? DEFAULTS.theme;
   const paddingInput = options.padding ?? template.shell.padding;
-  const watermarkPaddingInput = options.watermarkPadding ?? paddingInput;
+  const defaultWatermarkPadding = typeof paddingInput === 'number' ? paddingInput : paddingInput[0];
 
   const font = createFontConfig({
     family: options.fontFamily ?? DEFAULTS.fontFamily,
@@ -107,8 +197,7 @@ const resolveOptions = (options: shellfieOptions = {}): RenderOptions => {
     padding: resolvePadding(paddingInput),
     width: options.width ?? DEFAULTS.width,
     height: options.height ?? DEFAULTS.height,
-    watermark: options.watermark ?? DEFAULTS.watermark,
-    watermarkPadding: resolvePadding(watermarkPaddingInput),
+    watermark: resolveWatermark(options.watermark, defaultWatermarkPadding),
     controls: options.controls ?? template.shell.controls,
     customGlyphs: options.customGlyphs ?? DEFAULTS.customGlyphs,
     header: resolveShellConfig(mergeConfigs(options.header, template.shell.header), theme, template.shell.titleBarHeight, 'headerBackground'),
@@ -156,6 +245,7 @@ export const render = (lines: ParsedLine[], options: shellfieOptions = {}): stri
 
 export type {
   ControlStyle,
+  CSSShorthand,
   FontConfig,
   ParsedLine,
   RGB,
@@ -164,7 +254,9 @@ export type {
   Template,
   TextSpan,
   TextStyle,
-  Theme
+  Theme,
+  WatermarkConfig,
+  WatermarkStyle
 } from './types';
 
 export { createFontConfig, loadEmbeddedFont, loadFont } from './fonts';

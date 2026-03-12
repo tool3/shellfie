@@ -105,9 +105,11 @@ const DETECTION_PATTERNS: { language: string; patterns: RegExp[]; weight: number
       /\bclass\s+\w+[:(]/,                      // Class def
       /\bimport\s+\w+/,                         // Import
       /\bfrom\s+\w+\s+import\b/,                // From import
-      /:\s*$/m,                                 // Colon at end of line
+      /\b(?:if|elif|else|while|for|with|try|except|finally)\b[^{]*:\s*$/m, // Python control flow with colon
       /__\w+__/,                                // Magic methods
       /\bself\./,                               // Self reference
+      /\bprint\s*\(/,                           // Print function
+      /\b(?:True|False|None)\b/,                // Python literals
     ],
     weight: 1,
   },

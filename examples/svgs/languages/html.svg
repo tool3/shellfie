@@ -1,0 +1,41 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 653.6 542.4" width="653.6" height="542.4">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect x="0" y="0" width="653.6" height="542.4" fill="#0d1117" rx="10" ry="10" filter="url(#shadow)"/>
+  <g class="title-bar">
+    <rect x="0" y="0" width="653.6" height="40" fill="#242526" rx="10" ry="10"/>
+    <rect x="0" y="30" width="653.6" height="10" fill="#242526"/>
+    <circle cx="16" cy="20" r="6" fill="#ff5f56"/>
+    <circle cx="36" cy="20" r="6" fill="#ffbd2e"/>
+    <circle cx="56" cy="20" r="6" fill="#27c93f"/>
+  </g>
+  <g class="text">
+    <text y="70" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#bc8cff">&lt;!DOCTYPE html&gt;</tspan></text>
+    <text y="89.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7b72">&lt;html</tspan><tspan x="58" fill="#c9d1d9"> lang=&quot;en&quot;</tspan><tspan x="142" fill="#ff7b72">&gt;</tspan></text>
+    <text y="109.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7b72">&lt;head&gt;</tspan></text>
+    <text y="128.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">    </tspan><tspan x="49.6" fill="#ff7b72">&lt;meta</tspan><tspan x="91.6" fill="#c9d1d9"> charset=&quot;UTF-8&quot;</tspan><tspan x="226" fill="#ff7b72">&gt;</tspan></text>
+    <text y="148.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">    </tspan><tspan x="49.6" fill="#ff7b72">&lt;meta</tspan><tspan x="91.6" fill="#c9d1d9"> name=&quot;viewport&quot; content=&quot;width=device-width, initial-scale=1.0&quot;</tspan><tspan x="629.2" fill="#ff7b72">&gt;</tspan></text>
+    <text y="168" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">    </tspan><tspan x="49.6" fill="#ff7b72">&lt;title&gt;</tspan><tspan x="108.4" fill="#c9d1d9">Shellfie Demo</tspan><tspan x="217.6" fill="#ff7b72">&lt;/title&gt;</tspan></text>
+    <text y="187.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">    </tspan><tspan x="49.6" fill="#ff7b72">&lt;link</tspan><tspan x="91.6" fill="#c9d1d9"> rel=&quot;stylesheet&quot; href=&quot;styles.css&quot;</tspan><tspan x="385.6" fill="#ff7b72">&gt;</tspan></text>
+    <text y="207.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7b72">&lt;/head&gt;</tspan></text>
+    <text y="226.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7b72">&lt;body&gt;</tspan></text>
+    <text y="246.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">    </tspan><tspan x="49.6" fill="#ff7b72">&lt;header</tspan><tspan x="108.4" fill="#c9d1d9"> class=&quot;main-header&quot;</tspan><tspan x="276.4" fill="#ff7b72">&gt;</tspan></text>
+    <text y="266" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">        </tspan><tspan x="83.2" fill="#ff7b72">&lt;h1&gt;</tspan><tspan x="116.8" fill="#c9d1d9">Welcome to Shellfie</tspan><tspan x="276.4" fill="#ff7b72">&lt;/h1&gt;</tspan></text>
+    <text y="285.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">        </tspan><tspan x="83.2" fill="#ff7b72">&lt;nav</tspan><tspan x="116.8" fill="#c9d1d9"> id=&quot;main-nav&quot;</tspan><tspan x="234.4" fill="#ff7b72">&gt;</tspan></text>
+    <text y="305.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">            </tspan><tspan x="116.8" fill="#ff7b72">&lt;a</tspan><tspan x="133.6" fill="#c9d1d9"> href=&quot;#features&quot;</tspan><tspan x="276.4" fill="#ff7b72">&gt;</tspan><tspan x="284.8" fill="#c9d1d9">Features</tspan><tspan x="352" fill="#ff7b72">&lt;/a&gt;</tspan></text>
+    <text y="324.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">            </tspan><tspan x="116.8" fill="#ff7b72">&lt;a</tspan><tspan x="133.6" fill="#c9d1d9"> href=&quot;#docs&quot;</tspan><tspan x="242.8" fill="#ff7b72">&gt;</tspan><tspan x="251.2" fill="#c9d1d9">Documentation</tspan><tspan x="360.4" fill="#ff7b72">&lt;/a&gt;</tspan></text>
+    <text y="344.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">        </tspan><tspan x="83.2" fill="#ff7b72">&lt;/nav&gt;</tspan></text>
+    <text y="364" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">    </tspan><tspan x="49.6" fill="#ff7b72">&lt;/header&gt;</tspan></text>
+    <text y="383.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">    </tspan><tspan x="49.6" fill="#ff7b72">&lt;main&gt;</tspan></text>
+    <text y="403.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">        </tspan><tspan x="83.2" fill="#ff7b72">&lt;section</tspan><tspan x="150.4" fill="#c9d1d9"> id=&quot;features&quot;</tspan><tspan x="268" fill="#ff7b72">&gt;</tspan></text>
+    <text y="422.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">            </tspan><tspan x="116.8" fill="#ff7b72">&lt;h2&gt;</tspan><tspan x="150.4" fill="#c9d1d9">Features</tspan><tspan x="217.6" fill="#ff7b72">&lt;/h2&gt;</tspan></text>
+    <text y="442.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">            </tspan><tspan x="116.8" fill="#ff7b72">&lt;p&gt;</tspan><tspan x="142" fill="#c9d1d9">Terminal screenshots as beautiful SVGs.</tspan><tspan x="469.6" fill="#ff7b72">&lt;/p&gt;</tspan></text>
+    <text y="462" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">        </tspan><tspan x="83.2" fill="#ff7b72">&lt;/section&gt;</tspan></text>
+    <text y="481.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">    </tspan><tspan x="49.6" fill="#ff7b72">&lt;/main&gt;</tspan></text>
+    <text y="501.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7b72">&lt;/body&gt;</tspan></text>
+    <text y="520.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7b72">&lt;/html&gt;</tspan></text>
+  </g>
+</svg>

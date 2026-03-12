@@ -4,6 +4,7 @@ import type {
   RenderOptions,
   ResolvedFooterConfig,
   ResolvedHeaderConfig,
+  ResolvedWatermark,
   Template,
   Theme,
 } from '../types';
@@ -36,7 +37,7 @@ interface Dimensions {
 }
 
 const calculateDimensions = (lines: ParsedLine[], options: RenderOptions): Dimensions => {
-  const { template, font, padding, watermark, watermarkPadding, header, footer } = options;
+  const { template, font, padding, watermark, header, footer } = options;
 
   const charWidth = font.size * font.charWidth;
   const lineHeight = font.size * font.lineHeight;
@@ -52,7 +53,9 @@ const calculateDimensions = (lines: ParsedLine[], options: RenderOptions): Dimen
   const titleBarHeight = template.shell.titleBar ? (header?.height ?? template.shell.titleBarHeight) : 0;
   const footerHeight = footer?.height ?? 0;
   const wmFontSize = font.size - 4;
-  const watermarkHeight = watermark ? watermarkPadding.top + wmFontSize + watermarkPadding.bottom : 0;
+  const watermarkHeight = watermark
+    ? watermark.style.paddingTop + watermark.style.marginTop + wmFontSize + watermark.style.paddingBottom + watermark.style.marginBottom
+    : 0;
 
   return {
     charWidth,
@@ -214,8 +217,8 @@ const renderFooterBar = (
   return parts.join('\n    ');
 };
 
-const renderWatermark = (watermark: string, x: number, y: number, theme: Theme, font: FontConfig): string => {
-  const lines = parseAnsi(watermark);
+const renderTextWatermark = (text: string, x: number, y: number, theme: Theme, font: FontConfig): string => {
+  const lines = parseAnsi(text);
   const line = lines.find(l => l.spans.length > 0);
   if (!line) return '';
 
@@ -225,13 +228,49 @@ const renderWatermark = (watermark: string, x: number, y: number, theme: Theme, 
   const startX = x - totalChars * charWidth;
 
   let currentX = startX;
-  const tspans = line.spans.reduce<string[]>((acc, span) => {
-    const result = renderSpan(span, currentX, y, wmFont, theme, false);
-    currentX += result.width;
-    return result.text ? [...acc, result.text] : acc;
-  }, []);
+  const tspans: string[] = [];
+  const backgrounds: string[] = [];
 
-  return `<text y="${y}" font-family="${font.family}" font-size="${wmFont.size}" xml:space="preserve">${tspans.join('')}</text>`;
+  for (const span of line.spans) {
+    const result = renderSpan(span, currentX, y, wmFont, theme, false);
+    if (result.text) tspans.push(result.text);
+    if (result.background) backgrounds.push(result.background);
+    currentX += result.width;
+  }
+
+  const textElement = `<text y="${y}" font-family="${font.family}" font-size="${wmFont.size}" xml:space="preserve">${tspans.join('')}</text>`;
+
+  // Include backgrounds for inverse text
+  if (backgrounds.length > 0) {
+    return `<g>${backgrounds.join('')}${textElement}</g>`;
+  }
+
+  return textElement;
+};
+
+const renderWatermark = (
+  watermark: ResolvedWatermark,
+  x: number,
+  y: number,
+  theme: Theme,
+  font: FontConfig
+): string => {
+  const { cssString } = watermark.style;
+  const styleAttr = cssString ? ` style="${cssString}"` : '';
+
+  if (watermark.type === 'text') {
+    const textContent = renderTextWatermark(watermark.content, x, y, theme, font);
+    if (styleAttr && textContent) {
+      return textContent.replace('<text ', `<text${styleAttr} `);
+    }
+    return textContent;
+  }
+
+  // Markup type - render raw SVG markup
+  // x,y is the bottom-right anchor point
+  // Use text-anchor="end" for right-aligned text elements
+  const wmFontSize = font.size - 4;
+  return `<g transform="translate(${x}, ${y})" font-family="${font.family}" font-size="${wmFontSize}" fill="${theme.foreground}"${styleAttr}>${watermark.content}</g>`;
 };
 
 const generateFontFace = (font: FontConfig): string => {
@@ -255,7 +294,7 @@ const SHADOW_FILTER = `<filter id="shadow" x="-10%" y="-10%" width="120%" height
     </filter>`;
 
 export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderResult => {
-  const { template, title, theme, font, padding, watermark, watermarkPadding, customGlyphs, header, footer, controls } = options;
+  const { template, title, theme, font, padding, watermark, customGlyphs, header, footer, controls } = options;
   const dim = calculateDimensions(lines, options);
   const fontFamily = font.embedData ? `'EmbeddedFont', ${font.family}` : font.family;
 
@@ -355,10 +394,9 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
 
   // Watermark
   if (watermark) {
-    const wmFontSize = font.size - 4;
-    const wmX = svgWidth - watermarkPadding.right;
+    const wmX = svgWidth - watermark.style.paddingRight - watermark.style.marginRight;
     // Position watermark at bottom of SVG (use exact height if provided, otherwise use content height)
-    const wmY = (options.height ?? dim.contentHeight) - watermarkPadding.bottom;
+    const wmY = (options.height ?? dim.contentHeight) - watermark.style.paddingBottom - watermark.style.marginBottom;
     svgParts.push(`  ${renderWatermark(watermark, wmX, wmY, theme, font)}`);
   }
 

@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 376.4 640.4" width="376.4" height="640.4">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect x="0" y="0" width="376.4" height="640.4" fill="#0d1117" rx="10" ry="10" filter="url(#shadow)"/>
+  <g class="title-bar">
+    <rect x="0" y="0" width="376.4" height="40" fill="#242526" rx="10" ry="10"/>
+    <rect x="0" y="30" width="376.4" height="10" fill="#242526"/>
+    <circle cx="16" cy="20" r="6" fill="#ff5f56"/>
+    <circle cx="36" cy="20" r="6" fill="#ffbd2e"/>
+    <circle cx="56" cy="20" r="6" fill="#27c93f"/>
+  </g>
+  <g class="text">
+    <text y="70" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#bc8cff">package</tspan><tspan x="74.8" fill="#c9d1d9"> main</tspan></text>
+    <text y="109.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#bc8cff">import</tspan><tspan x="66.4" fill="#c9d1d9"> (</tspan></text>
+    <text y="128.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">	</tspan><tspan x="24.4" fill="#3fb950">&quot;fmt&quot;</tspan></text>
+    <text y="148.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">	</tspan><tspan x="24.4" fill="#3fb950">&quot;sync&quot;</tspan></text>
+    <text y="168" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">)</tspan></text>
+    <text y="207.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#bc8cff">type</tspan><tspan x="49.6" fill="#c9d1d9"> User </tspan><tspan x="100" fill="#bc8cff">struct</tspan><tspan x="150.4" fill="#c9d1d9"> {</tspan></text>
+    <text y="226.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">	ID   </tspan><tspan x="66.4" fill="#d29922">int</tspan></text>
+    <text y="246.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">	Name </tspan><tspan x="66.4" fill="#d29922">string</tspan></text>
+    <text y="266" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">}</tspan></text>
+    <text y="305.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#bc8cff">func</tspan><tspan x="49.6" fill="#c9d1d9"> (u </tspan><tspan x="83.2" fill="#39c5cf">*</tspan><tspan x="91.6" fill="#c9d1d9">User) </tspan><tspan x="142" fill="#58a6ff">Greet</tspan><tspan x="184" fill="#c9d1d9">() </tspan><tspan x="209.2" fill="#d29922">string</tspan><tspan x="259.6" fill="#c9d1d9"> {</tspan></text>
+    <text y="324.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">	</tspan><tspan x="24.4" fill="#bc8cff">return</tspan><tspan x="74.8" fill="#c9d1d9"> fmt.</tspan><tspan x="116.8" fill="#58a6ff">Sprintf</tspan><tspan x="175.6" fill="#c9d1d9">(</tspan><tspan x="184" fill="#3fb950">&quot;Hello, %s!&quot;</tspan><tspan x="284.8" fill="#c9d1d9">, u.Name)</tspan></text>
+    <text y="344.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">}</tspan></text>
+    <text y="383.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#bc8cff">func</tspan><tspan x="49.6" fill="#c9d1d9"> </tspan><tspan x="58" fill="#58a6ff">main</tspan><tspan x="91.6" fill="#c9d1d9">() {</tspan></text>
+    <text y="403.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">	</tspan><tspan x="24.4" fill="#bc8cff">var</tspan><tspan x="49.6" fill="#c9d1d9"> wg sync.WaitGroup</tspan></text>
+    <text y="422.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">	users </tspan><tspan x="74.8" fill="#39c5cf">:=</tspan><tspan x="91.6" fill="#c9d1d9"> </tspan><tspan x="100" fill="#56d4dd">make</tspan><tspan x="133.6" fill="#c9d1d9">(</tspan><tspan x="142" fill="#bc8cff">chan</tspan><tspan x="175.6" fill="#c9d1d9"> User, </tspan><tspan x="234.4" fill="#d29922">10</tspan><tspan x="251.2" fill="#c9d1d9">)</tspan></text>
+    <text y="462" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">	</tspan><tspan x="24.4" fill="#bc8cff">go</tspan><tspan x="41.2" fill="#c9d1d9"> </tspan><tspan x="49.6" fill="#bc8cff">func</tspan><tspan x="83.2" fill="#c9d1d9">() {</tspan></text>
+    <text y="481.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">		</tspan><tspan x="32.8" fill="#bc8cff">defer</tspan><tspan x="74.8" fill="#c9d1d9"> </tspan><tspan x="83.2" fill="#56d4dd">close</tspan><tspan x="125.2" fill="#c9d1d9">(users)</tspan></text>
+    <text y="501.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">		users </tspan><tspan x="83.2" fill="#39c5cf">&lt;-</tspan><tspan x="100" fill="#c9d1d9"> User{ID</tspan><tspan x="167.2" fill="#39c5cf">:</tspan><tspan x="175.6" fill="#c9d1d9"> </tspan><tspan x="184" fill="#d29922">1</tspan><tspan x="192.4" fill="#c9d1d9">, Name</tspan><tspan x="242.8" fill="#39c5cf">:</tspan><tspan x="251.2" fill="#c9d1d9"> </tspan><tspan x="259.6" fill="#3fb950">&quot;Alice&quot;</tspan><tspan x="318.4" fill="#c9d1d9">}</tspan></text>
+    <text y="520.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">	}()</tspan></text>
+    <text y="560" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">	</tspan><tspan x="24.4" fill="#bc8cff">for</tspan><tspan x="49.6" fill="#c9d1d9"> user </tspan><tspan x="100" fill="#39c5cf">:=</tspan><tspan x="116.8" fill="#c9d1d9"> </tspan><tspan x="125.2" fill="#bc8cff">range</tspan><tspan x="167.2" fill="#c9d1d9"> users {</tspan></text>
+    <text y="579.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">		fmt.</tspan><tspan x="66.4" fill="#58a6ff">Println</tspan><tspan x="125.2" fill="#c9d1d9">(user.</tspan><tspan x="175.6" fill="#58a6ff">Greet</tspan><tspan x="217.6" fill="#c9d1d9">())</tspan></text>
+    <text y="599.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">	}</tspan></text>
+    <text y="618.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#c9d1d9">}</tspan></text>
+  </g>
+</svg>

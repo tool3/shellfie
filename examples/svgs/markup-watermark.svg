@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368 231.6" width="368" height="231.6">
+  <defs>
+    <filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
+      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  <rect x="0" y="0" width="368" height="231.6" fill="#22212c" rx="10" ry="10" filter="url(#shadow)"/>
+  <g class="title-bar">
+    <rect x="0" y="0" width="368" height="40" fill="#242526" rx="10" ry="10"/>
+    <rect x="0" y="30" width="368" height="10" fill="#242526"/>
+    <circle cx="16" cy="20" r="6" fill="#ff5f56"/>
+    <circle cx="36" cy="20" r="6" fill="#ffbd2e"/>
+    <circle cx="56" cy="20" r="6" fill="#27c93f"/>
+  </g>
+  <g class="text">
+    <text y="89.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff80bf">const</tspan><tspan x="58" fill="#f8f8f2"> cool</tspan><tspan x="100" fill="#80ffea">:</tspan><tspan x="108.4" fill="#f8f8f2"> </tspan><tspan x="116.8" fill="#ffff80">boolean</tspan><tspan x="175.6" fill="#f8f8f2"> </tspan><tspan x="184" fill="#80ffea">=</tspan><tspan x="192.4" fill="#f8f8f2"> </tspan><tspan x="200.8" fill="#ffff99">true</tspan><tspan x="234.4" fill="#f8f8f2">;</tspan></text>
+    <text y="128.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff80bf">if</tspan><tspan x="32.8" fill="#f8f8f2"> (cool) {</tspan></text>
+    <text y="148.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#f8f8f2">    </tspan><tspan x="49.6" fill="#9580ff">starShellfieOnGitub</tspan><tspan x="209.2" fill="#f8f8f2">(</tspan><tspan x="217.6" fill="#ffff80">10000</tspan><tspan x="259.6" fill="#f8f8f2">);</tspan></text>
+    <text y="168" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#f8f8f2">}</tspan></text>
+  </g>
+  <g transform="translate(352, 215.6)" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="10" fill="#f8f8f2">
+<a href="https://github.com/tool3/shellfie">
+  <g transform="translate(-90, -5)">
+    <defs>
+      <clipPath id="wm-clip">
+        <rect width="100" height="15" rx="3" fill="#fff"/>
+      </clipPath>
+    </defs>
+    <g clip-path="url(#wm-clip)">
+      <rect width="60" height="15" fill="#555"/>
+      <rect x="60" width="40" height="15" fill="pink"/>
+    </g>
+    <g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" font-size="110">
+      <text x="385" y="130" transform="scale(.08)" fill="#fff" textLength="650">powered by</text>
+      <text x="985" y="130" transform="scale(.08)" fill="#333" textLength="390">shellfie</text>
+    </g>
+  </g>
+</a>
+</g>
+</svg>

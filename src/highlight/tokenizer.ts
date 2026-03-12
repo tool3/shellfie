@@ -184,6 +184,19 @@ export function createCLikePatterns(options: {
     patterns.push({ type: 'builtin', pattern: wordBoundary(options.builtins) });
   }
 
+  // Function calls - identifier followed by (
+  // Uses lookahead to not consume the parenthesis
+  patterns.push({
+    type: 'function',
+    pattern: /[a-zA-Z_$][a-zA-Z0-9_$]*(?=\s*\()/,
+  });
+
+  // Method calls - .identifier followed by (
+  patterns.push({
+    type: 'function',
+    pattern: /(?<=\.)[a-zA-Z_$][a-zA-Z0-9_$]*(?=\s*\()/,
+  });
+
   // Operators and punctuation
   patterns.push(
     { type: 'operator', pattern: COMMON_PATTERNS.operator },
