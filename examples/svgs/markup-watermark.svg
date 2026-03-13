@@ -28,7 +28,7 @@
     </defs>
     <g clip-path="url(#wm-clip)">
       <rect width="60" height="15" fill="#555"/>
-      <rect x="60" width="40" height="15" fill="pink"/>
+      <rect x="60" width="40" height="15" fill="#34D399"/>
     </g>
     <g fill="#fff" text-anchor="middle" font-family="Verdana,Geneva,DejaVu Sans,sans-serif" font-size="110">
       <text x="385" y="130" transform="scale(.08)" fill="#fff" textLength="650">powered by</text>
