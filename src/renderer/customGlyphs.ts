@@ -340,8 +340,10 @@ function renderBoxDrawing(codePoint: number, ctx: GlyphContext): GlyphResult {
       );
     } else {
       const w = getWidth(segments.up);
+      // If there are double horizontal lines, stop the single vertical at the inner edge
+      const endY = (hasDoubleLeft || hasDoubleRight) ? r(centerY - doubleOffset) : centerY;
       paths.push(
-        `<line x1="${centerX}" y1="${ry}" x2="${centerX}" y2="${centerY}" stroke="${color}" stroke-width="${w}"/>`
+        `<line x1="${centerX}" y1="${ry}" x2="${centerX}" y2="${endY}" stroke="${color}" stroke-width="${w}"/>`
       );
     }
   }
@@ -354,8 +356,10 @@ function renderBoxDrawing(codePoint: number, ctx: GlyphContext): GlyphResult {
       );
     } else {
       const w = getWidth(segments.down);
+      // If there are double horizontal lines, start the single vertical from the inner edge
+      const startY = (hasDoubleLeft || hasDoubleRight) ? r(centerY + doubleOffset) : centerY;
       paths.push(
-        `<line x1="${centerX}" y1="${centerY}" x2="${centerX}" y2="${rBottom}" stroke="${color}" stroke-width="${w}"/>`
+        `<line x1="${centerX}" y1="${startY}" x2="${centerX}" y2="${rBottom}" stroke="${color}" stroke-width="${w}"/>`
       );
     }
   }
@@ -368,8 +372,10 @@ function renderBoxDrawing(codePoint: number, ctx: GlyphContext): GlyphResult {
       );
     } else {
       const w = getWidth(segments.left);
+      // If there are double vertical lines, stop the single horizontal at the inner edge
+      const endX = (hasDoubleUp || hasDoubleDown) ? r(centerX - doubleOffset) : centerX;
       paths.push(
-        `<line x1="${rx}" y1="${centerY}" x2="${centerX}" y2="${centerY}" stroke="${color}" stroke-width="${w}"/>`
+        `<line x1="${rx}" y1="${centerY}" x2="${endX}" y2="${centerY}" stroke="${color}" stroke-width="${w}"/>`
       );
     }
   }
@@ -382,13 +388,16 @@ function renderBoxDrawing(codePoint: number, ctx: GlyphContext): GlyphResult {
       );
     } else {
       const w = getWidth(segments.right);
+      // If there are double vertical lines, start the single horizontal from the inner edge
+      const startX = (hasDoubleUp || hasDoubleDown) ? r(centerX + doubleOffset) : centerX;
       paths.push(
-        `<line x1="${centerX}" y1="${centerY}" x2="${rRight}" y2="${centerY}" stroke="${color}" stroke-width="${w}"/>`
+        `<line x1="${startX}" y1="${centerY}" x2="${rRight}" y2="${centerY}" stroke="${color}" stroke-width="${w}"/>`
       );
     }
   }
 
-  return { svg: paths.join(''), handled: true };
+  // Wrap in group with crispEdges for pixel-perfect rendering
+  return { svg: `<g shape-rendering="crispEdges">${paths.join('')}</g>`, handled: true };
 }
 
 function renderDoubleLineCorner(
@@ -542,7 +551,8 @@ function renderDoubleLineCorner(
     }
   }
 
-  return { svg: paths.join(''), handled: true };
+  // Wrap in group with crispEdges for pixel-perfect rendering
+  return { svg: `<g shape-rendering="crispEdges">${paths.join('')}</g>`, handled: true };
 }
 
 function renderDiagonalLine(codePoint: number, ctx: GlyphContext): GlyphResult {
