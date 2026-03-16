@@ -5,7 +5,7 @@ export const nord: Theme = {
   background: '#2e3440',
   foreground: '#d8dee9',
   cursor: '#d8dee9',
-  selection: '#434c5e',
+  selection: '#d8dee9',
   black: '#3b4252',
   red: '#bf616a',
   green: '#a3be8c',

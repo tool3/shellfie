@@ -5,7 +5,7 @@ export const pandaSyntax: Theme = {
   background: '#292a2b',
   foreground: '#e6e6e6',
   cursor: '#ff75b5',
-  selection: '#3e4250',
+  selection: '#ff75b5',
   black: '#292a2b',
   red: '#ff2c6d',
   green: '#19f9d8',

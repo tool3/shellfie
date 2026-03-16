@@ -5,7 +5,7 @@ export const oceanicNext: Theme = {
   background: '#1b2b34',
   foreground: '#c0c5ce',
   cursor: '#c0c5ce',
-  selection: '#4f5b66',
+  selection: '#c0c5ce',
   black: '#1b2b34',
   red: '#ec5f67',
   green: '#99c794',

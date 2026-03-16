@@ -5,7 +5,7 @@ export const solarizedDark: Theme = {
   background: '#002b36',
   foreground: '#839496',
   cursor: '#839496',
-  selection: '#073642',
+  selection: '#839496',
   black: '#073642',
   red: '#dc322f',
   green: '#859900',

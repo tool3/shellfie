@@ -5,7 +5,7 @@ export const monokai: Theme = {
   background: '#272822',
   foreground: '#f8f8f2',
   cursor: '#f8f8f2',
-  selection: '#49483e',
+  selection: '#f8f8f2',
   black: '#272822',
   red: '#f92672',
   green: '#a6e22e',

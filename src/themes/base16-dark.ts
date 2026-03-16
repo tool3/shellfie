@@ -5,7 +5,7 @@ export const base16Dark: Theme = {
   background: '#181818',
   foreground: '#d8d8d8',
   cursor: '#d8d8d8',
-  selection: '#383838',
+  selection: '#d8d8d8',
   black: '#181818',
   red: '#ab4642',
   green: '#a1b56c',

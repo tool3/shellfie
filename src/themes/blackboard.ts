@@ -5,7 +5,7 @@ export const blackboard: Theme = {
   background: '#0c1021',
   foreground: '#f8f8f8',
   cursor: '#bbbbbb',
-  selection: '#253b76',
+  selection: '#bbbbbb',
   black: '#0c1021',
   red: '#d13a82',
   green: '#8fb000',

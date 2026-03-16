@@ -5,7 +5,7 @@ export const gruvboxLight: Theme = {
   background: '#fbf1c7',
   foreground: '#3c3836',
   cursor: '#3c3836',
-  selection: '#ebdbb2',
+  selection: '#3c3836',
   black: '#fbf1c7',
   red: '#cc241d',
   green: '#98971a',

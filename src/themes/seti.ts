@@ -5,7 +5,7 @@ export const seti: Theme = {
   background: '#111213',
   foreground: '#cacecd',
   cursor: '#e3bf21',
-  selection: '#303233',
+  selection: '#e3bf21',
   black: '#323232',
   red: '#c22832',
   green: '#8ec43d',

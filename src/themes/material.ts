@@ -5,7 +5,7 @@ export const material: Theme = {
   background: '#263238',
   foreground: '#eeffff',
   cursor: '#ffcc00',
-  selection: '#314549',
+  selection: '#ffcc00',
   black: '#212121',
   red: '#b7141f',
   green: '#457b24',

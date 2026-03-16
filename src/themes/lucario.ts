@@ -5,7 +5,7 @@ export const lucario: Theme = {
   background: '#2b3e50',
   foreground: '#f8f8f2',
   cursor: '#f8f8f2',
-  selection: '#19242f',
+  selection: '#f8f8f2',
   black: '#1c1f26',
   red: '#ff6541',
   green: '#72c05d',

@@ -5,7 +5,7 @@ export const duotoneDark: Theme = {
   background: '#1f1d27',
   foreground: '#b7a1ff',
   cursor: '#ff9839',
-  selection: '#353147',
+  selection: '#ff9839',
   black: '#1f1d27',
   red: '#d9393e',
   green: '#2dcd73',

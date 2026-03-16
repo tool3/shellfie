@@ -5,7 +5,7 @@ export const catppuccinMocha: Theme = {
   background: '#1e1e2e',
   foreground: '#cdd6f4',
   cursor: '#f5e0dc',
-  selection: '#45475a',
+  selection: '#f5e0dc',
   black: '#45475a',
   red: '#f38ba8',
   green: '#a6e3a1',

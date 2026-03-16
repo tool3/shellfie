@@ -5,7 +5,7 @@ export const yeti: Theme = {
   background: '#eceae8',
   foreground: '#546e7a',
   cursor: '#546e7a',
-  selection: '#d2cdc8',
+  selection: '#546e7a',
   black: '#d2cdc8',
   red: '#e25448',
   green: '#50a14f',

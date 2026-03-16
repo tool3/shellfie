@@ -5,7 +5,7 @@ export const draculaPro: Theme = {
   background: '#22212c',
   foreground: '#f8f8f2',
   cursor: '#f8f8f2',
-  selection: '#454158',
+  selection: '#f8f8f2',
   black: '#21222c',
   red: '#ff9580',
   green: '#8aff80',

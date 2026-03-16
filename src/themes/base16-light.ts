@@ -5,7 +5,7 @@ export const base16Light: Theme = {
   background: '#f8f8f8',
   foreground: '#383838',
   cursor: '#383838',
-  selection: '#d8d8d8',
+  selection: '#383838',
   black: '#181818',
   red: '#ab4642',
   green: '#a1b56c',

@@ -5,7 +5,7 @@ export const oneDark: Theme = {
   background: '#282c34',
   foreground: '#abb2bf',
   cursor: '#528bff',
-  selection: '#3e4451',
+  selection: '#528bff',
   black: '#282c34',
   red: '#e06c75',
   green: '#98c379',

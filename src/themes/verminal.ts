@@ -5,7 +5,7 @@ export const verminal: Theme = {
   background: '#000000',
   foreground: '#ffffff',
   cursor: '#ff3b30',
-  selection: '#0095ff',
+  selection: '#ff3b30',
   black: '#000000',
   red: '#ff3b30',
   green: '#4cd964',

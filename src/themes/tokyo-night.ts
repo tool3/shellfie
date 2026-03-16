@@ -5,7 +5,7 @@ export const tokyoNight: Theme = {
   background: '#1a1b26',
   foreground: '#a9b1d6',
   cursor: '#c0caf5',
-  selection: '#33467c',
+  selection: '#c0caf5',
   black: '#15161e',
   red: '#f7768e',
   green: '#9ece6a',

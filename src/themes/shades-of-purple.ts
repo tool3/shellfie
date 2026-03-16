@@ -5,7 +5,7 @@ export const shadesOfPurple: Theme = {
   background: '#1e1e3f',
   foreground: '#ffffff',
   cursor: '#fad000',
-  selection: '#4d21fc',
+  selection: '#fad000',
   black: '#000000',
   red: '#ec3a37',
   green: '#3ad900',

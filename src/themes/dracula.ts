@@ -5,7 +5,7 @@ export const dracula: Theme = {
   background: '#282a36',
   foreground: '#f8f8f2',
   cursor: '#f8f8f2',
-  selection: '#44475a',
+  selection: '#f8f8f2',
   black: '#21222c',
   red: '#ff5555',
   green: '#50fa7b',

@@ -5,7 +5,7 @@ export const dark: Theme = {
   background: '#1e1e1e',
   foreground: '#c9d1d9',
   cursor: '#c9d1d9',
-  selection: '#264f78',
+  selection: '#c9d1d9',
   black: '#000000',
   red: '#ff7b72',
   green: '#3fb950',

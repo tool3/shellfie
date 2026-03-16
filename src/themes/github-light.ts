@@ -5,7 +5,7 @@ export const githubLight: Theme = {
   background: '#ffffff',
   foreground: '#24292f',
   cursor: '#24292f',
-  selection: '#0969da33',
+  selection: '#24292f',
   black: '#24292f',
   red: '#cf222e',
   green: '#116329',

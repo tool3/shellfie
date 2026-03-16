@@ -5,7 +5,7 @@ export const twilight: Theme = {
   background: '#141414',
   foreground: '#ffffd4',
   cursor: '#ffffff',
-  selection: '#313131',
+  selection: '#ffffff',
   black: '#141414',
   red: '#c06d44',
   green: '#afb97a',

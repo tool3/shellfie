@@ -5,7 +5,7 @@ export const a11yDark: Theme = {
   background: '#2b2b2b',
   foreground: '#f8f8f2',
   cursor: '#f8f8f2',
-  selection: '#444444',
+  selection: '#f8f8f2',
   black: '#2b2b2b',
   red: '#ffa07a',
   green: '#abe338',

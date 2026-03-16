@@ -5,7 +5,7 @@ export const paraisoDark: Theme = {
   background: '#2f1e2e',
   foreground: '#a39e9b',
   cursor: '#a39e9b',
-  selection: '#4f424c',
+  selection: '#a39e9b',
   black: '#2f1e2e',
   red: '#ef6155',
   green: '#48b685',

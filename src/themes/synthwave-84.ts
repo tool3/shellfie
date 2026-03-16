@@ -5,7 +5,7 @@ export const synthwave84: Theme = {
   background: '#262335',
   foreground: '#ffffff',
   cursor: '#ffffff',
-  selection: '#614d85',
+  selection: '#ffffff',
   black: '#1a1a2e',
   red: '#fe4450',
   green: '#72f1b8',

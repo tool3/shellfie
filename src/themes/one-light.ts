@@ -5,7 +5,7 @@ export const oneLight: Theme = {
   background: '#f9f9f9',
   foreground: '#383a42',
   cursor: '#383a42',
-  selection: '#e5e5e6',
+  selection: '#383a42',
   black: '#000000',
   red: '#e45649',
   green: '#50a14f',

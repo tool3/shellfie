@@ -5,7 +5,7 @@ export const cobalt: Theme = {
   background: '#132738',
   foreground: '#ffffff',
   cursor: '#f0cc09',
-  selection: '#18354f',
+  selection: '#f0cc09',
   black: '#000000',
   red: '#ff0000',
   green: '#38de21',

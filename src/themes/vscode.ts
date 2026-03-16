@@ -5,7 +5,7 @@ export const vscode: Theme = {
   background: '#1e1e1e',
   foreground: '#cccccc',
   cursor: '#ffffff',
-  selection: '#264f78',
+  selection: '#ffffff',
   black: '#000000',
   red: '#cd3131',
   green: '#0dbc79',

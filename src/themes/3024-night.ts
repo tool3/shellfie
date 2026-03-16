@@ -5,7 +5,7 @@ export const night3024: Theme = {
   background: '#090300',
   foreground: '#a5a2a2',
   cursor: '#a5a2a2',
-  selection: '#4a4543',
+  selection: '#a5a2a2',
   black: '#090300',
   red: '#db2d20',
   green: '#01a252',

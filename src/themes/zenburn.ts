@@ -5,7 +5,7 @@ export const zenburn: Theme = {
   background: '#3f3f3f',
   foreground: '#dcdccc',
   cursor: '#73635a',
-  selection: '#21322f',
+  selection: '#73635a',
   black: '#4d4d4d',
   red: '#7d5d5d',
   green: '#60b48a',

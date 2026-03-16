@@ -5,7 +5,7 @@ export const hopscotch: Theme = {
   background: '#322931',
   foreground: '#b9b5b8',
   cursor: '#b9b5b8',
-  selection: '#5c545b',
+  selection: '#b9b5b8',
   black: '#322931',
   red: '#dd464c',
   green: '#8fc13e',

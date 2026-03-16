@@ -5,7 +5,7 @@ export const solarizedLight: Theme = {
   background: '#fdf6e3',
   foreground: '#657b83',
   cursor: '#657b83',
-  selection: '#eee8d5',
+  selection: '#657b83',
   black: '#073642',
   red: '#dc322f',
   green: '#859900',

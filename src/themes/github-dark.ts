@@ -5,7 +5,7 @@ export const githubDark: Theme = {
   background: '#0d1117',
   foreground: '#c9d1d9',
   cursor: '#c9d1d9',
-  selection: '#264f78',
+  selection: '#c9d1d9',
   black: '#484f58',
   red: '#ff7b72',
   green: '#3fb950',
