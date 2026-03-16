@@ -169,12 +169,18 @@ const renderTitleBar = (
   const borderWidth = header?.borderWidth ?? template.shell.borderWidth;
   const bgHeight = showBorder ? titleBarHeight - borderWidth : titleBarHeight;
 
-  const parts: string[] = [
-    `<rect x="0" y="0" width="${contentWidth}" height="${bgHeight}" fill="${backgroundColor}" rx="${borderRadius}" ry="${borderRadius}"/>`,
-  ];
+  const parts: string[] = [];
 
-  if (bgHeight > borderRadius) {
-    parts.push(`<rect x="0" y="${bgHeight - borderRadius}" width="${contentWidth}" height="${borderRadius}" fill="${backgroundColor}"/>`);
+  // Only draw separate title bar background if it differs from the main background
+  // This avoids anti-aliasing artifacts from overlapping shapes with rounded corners
+  const needsBackground = backgroundColor !== theme.background || showBorder;
+
+  if (needsBackground) {
+    parts.push(`<rect x="0" y="0" width="${contentWidth}" height="${bgHeight}" fill="${backgroundColor}" rx="${borderRadius}" ry="${borderRadius}"/>`);
+
+    if (bgHeight > borderRadius) {
+      parts.push(`<rect x="0" y="${bgHeight - borderRadius}" width="${contentWidth}" height="${borderRadius}" fill="${backgroundColor}"/>`);
+    }
   }
 
   if (showBorder) {
@@ -289,9 +295,18 @@ const generateFontFace = (font: FontConfig): string => {
     }`;
 };
 
-const SHADOW_FILTER = `<filter id="shadow" x="-10%" y="-10%" width="120%" height="120%">
-      <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
-    </filter>`;
+const createShadowDefs = (width: number, height: number, borderRadius: number): string => {
+  return `<filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8" result="blur"/>
+      <feOffset in="blur" dx="0" dy="4" result="offsetBlur"/>
+      <feFlood flood-color="#000000" flood-opacity="0.3" result="color"/>
+      <feComposite in="color" in2="offsetBlur" operator="in" result="shadow"/>
+    </filter>
+    <mask id="shadow-mask">
+      <rect x="-50" y="-50" width="${width + 100}" height="${height + 100}" fill="white"/>
+      <rect x="0" y="0" width="${width}" height="${height}" rx="${borderRadius}" ry="${borderRadius}" fill="black"/>
+    </mask>`;
+};
 
 export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderResult => {
   const { template, title, theme, font, padding, watermark, customGlyphs, header, footer, controls } = options;
@@ -309,21 +324,21 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
 
   // Defs
   const defs: string[] = [];
-  if (template.shell.shadow) defs.push(SHADOW_FILTER);
+  if (template.shell.shadow) defs.push(createShadowDefs(svgWidth, svgHeight, template.shell.borderRadius));
   if (font.embedData) defs.push(`<style>${generateFontFace(font)}</style>`);
   if (defs.length > 0) {
     svgParts.push(`  <defs>\n    ${defs.join('\n    ')}\n  </defs>`);
   }
 
+  // Shadow layer (masked to only show outside the rounded rect)
+  if (template.shell.shadow) {
+    svgParts.push(`  <g mask="url(#shadow-mask)">
+    <rect x="0" y="0" width="${svgWidth}" height="${svgHeight}" fill="${theme.background}" rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}" filter="url(#shadow)"/>
+  </g>`);
+  }
+
   // Background
-  const bgAttrs = [
-    `x="0" y="0"`,
-    `width="${svgWidth}" height="${svgHeight}"`,
-    `fill="${theme.background}"`,
-    `rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}"`,
-    template.shell.shadow ? `filter="url(#shadow)"` : '',
-  ].filter(Boolean);
-  svgParts.push(`  <rect ${bgAttrs.join(' ')}/>`);
+  svgParts.push(`  <rect x="0" y="0" width="${svgWidth}" height="${svgHeight}" fill="${theme.background}" rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}"/>`);
 
   // Border
   if (template.shell.border) {

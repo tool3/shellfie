@@ -5,7 +5,6 @@
  * - Traffic light buttons (close, minimize, maximize)
  * - Rounded corners
  * - Centered title
- * - Drop shadow
  */
 
 import type { Template } from '../types';
@@ -25,12 +24,11 @@ export const macosTemplate: Template = createTemplate('macos', {
     spacing: 20,
     size: 12,
   },
-  header: {
-    backgroundColor: '#242526',
-    border: false
-  },
   padding: 16,
-  shadow: true,
-  border: false, // No outer shell border (matches macOS terminals)
+  shadow: false,
+  border: false,
   borderWidth: 0,
+  header: {
+    border: false,
+  },
 });

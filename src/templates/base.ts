@@ -17,7 +17,7 @@ export const defaultShell: ShellConfig = {
   controlsPosition: 'left',
   controlStyle: defaultControlStyle,
   padding: 16,
-  shadow: true,
+  shadow: false,
   border: false,
   borderColor: '#333333',
   borderWidth: 1,
