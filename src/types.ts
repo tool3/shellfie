@@ -4,6 +4,19 @@ export interface RGB {
   b: number;
 }
 
+export interface Gradient {
+  type: 'gradient';
+  colors: string[];
+  direction?: 'horizontal' | 'vertical' | 'diagonal';
+  reverse?: boolean;
+}
+
+export interface BackgroundConfig {
+  color: string | Gradient;
+  padding?: number;
+  borderRadius?: number;
+}
+
 export interface TextStyle {
   foreground?: string | RGB;
   background?: string | RGB;
@@ -237,6 +250,25 @@ export interface shellfieOptions {
    * - false: Disable highlighting (preserves existing ANSI codes in input)
    */
   language?: 'auto' | 'bash' | 'javascript' | 'typescript' | 'python' | 'json' | 'go' | 'rust' | 'java' | 'c' | 'cpp' | 'csharp' | 'html' | (string & {}) | false;
+  /**
+   * Background color or gradient for the outer container surrounding the terminal.
+   *
+   * Can be specified as:
+   * - String: Hex color or gradient string
+   *   @example '#1a1a2e'
+   *   @example 'gradient(#ff0000, #0000ff)'
+   *   @example 'gradient(#ff0000, #0000ff:diagonal:reverse)'
+   *
+   * - Object: { color, padding? } for explicit padding control
+   *   @example { color: '#1a1a2e', padding: 30 }
+   *   @example { color: 'gradient(#ff0000, #0000ff:vertical)', padding: 40 }
+   *
+   * Gradient directions: 'horizontal' (default), 'vertical', 'diagonal'
+   * Use :reverse to reverse color order
+   *
+   * @default padding is 20 when background is set
+   */
+  background?: string | BackgroundConfig;
 }
 
 export interface ResolvedHeaderConfig {
@@ -261,6 +293,12 @@ export interface ResolvedWatermark {
   style: ResolvedWatermarkStyle;
 }
 
+export interface ResolvedBackground {
+  value: string | Gradient;
+  padding: number;
+  borderRadius: number;
+}
+
 export interface RenderOptions {
   template: Template;
   title: string;
@@ -274,4 +312,5 @@ export interface RenderOptions {
   footer: ResolvedFooterConfig | null;
   controls: boolean;
   customGlyphs: boolean;
+  background: ResolvedBackground | null;
 }

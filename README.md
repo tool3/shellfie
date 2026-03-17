@@ -172,8 +172,63 @@ shellfie(input, {
     borderColor?: "#1a1a1a",                      //   border color
     borderWidth?: 1,                              //   border width in pixels
   },
+  background?: "#1a1a2e",                         // outer background (see Background section below)
 });
 ```
+
+## Background
+
+Add a background container around the terminal with solid colors or gradients:
+
+```typescript
+// Simple hex color
+shellfie(output, {
+  background: "#1a1a2e",
+});
+
+// Gradient string with direction
+shellfie(output, {
+  background: "gradient(hotpink, cyan:diagonal)",
+});
+
+// Full configuration with padding and border radius
+shellfie(output, {
+  background: {
+    color: "gradient(#ff0000, #0000ff:vertical)",
+    padding: 50,
+    borderRadius: 20,
+  },
+});
+```
+
+![Gradient Background](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/gradient.svg)
+
+### Background Options
+
+| Option         | Type               | Default | Description                                   |
+| -------------- | ------------------ | ------- | --------------------------------------------- |
+| `color`        | `string \| Gradient` | -       | Hex color or gradient string                  |
+| `padding`      | `number`           | `20`    | Space between terminal and background edge    |
+| `borderRadius` | `number`           | `12`    | Border radius of background container         |
+
+### Gradient Syntax
+
+Gradients use the format `gradient(color1, color2:direction:reverse)`:
+
+```typescript
+"gradient(#ff0000, #0000ff)"           // horizontal (default)
+"gradient(hotpink, cyan:vertical)"     // vertical
+"gradient(#ff6b6b, #4ecdc4:diagonal)"  // diagonal (top-left to bottom-right)
+"gradient(pink, purple:horizontal:reverse)"  // reversed direction
+```
+
+| Direction    | Description                        |
+| ------------ | ---------------------------------- |
+| `horizontal` | Left to right (default)            |
+| `vertical`   | Top to bottom                      |
+| `diagonal`   | Top-left to bottom-right           |
+
+Add `:reverse` to reverse the gradient direction.
 
 ## Watermarks
 

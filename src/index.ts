@@ -1,15 +1,19 @@
 import { createFontConfig, loadEmbeddedFont } from './fonts';
+import { isGradient, parseGradient } from './gradient';
 import { highlight } from './highlight';
 import { parseAnsi } from './parser';
 import { darkTheme, renderSvg } from './renderer';
 import { resolveTemplate } from './templates';
 import type {
+  BackgroundConfig,
   CSSShorthand,
   FooterConfig,
+  Gradient,
   HeaderConfig,
   PaddingInput,
   ParsedLine,
   RenderOptions,
+  ResolvedBackground,
   ResolvedFooterConfig,
   ResolvedHeaderConfig,
   ResolvedPadding,
@@ -169,6 +173,39 @@ const resolveWatermark = (
   };
 };
 
+const DEFAULT_BACKGROUND_PADDING = 20;
+const DEFAULT_BACKGROUND_BORDER_RADIUS = 12;
+
+const isBackgroundConfig = (bg: unknown): bg is BackgroundConfig =>
+  typeof bg === 'object' && bg !== null && 'color' in bg;
+
+const resolveBackground = (
+  background: string | BackgroundConfig | undefined
+): ResolvedBackground | null => {
+  if (!background) return null;
+
+  // Handle { color, padding?, borderRadius? } object format
+  if (isBackgroundConfig(background)) {
+    const colorValue = typeof background.color === 'string'
+      ? parseGradient(background.color)
+      : background.color;
+    return {
+      value: colorValue,
+      padding: background.padding ?? DEFAULT_BACKGROUND_PADDING,
+      borderRadius: background.borderRadius ?? DEFAULT_BACKGROUND_BORDER_RADIUS,
+    };
+  }
+
+  // Handle string format (hex color or gradient string)
+  const value = parseGradient(background);
+
+  return {
+    value,
+    padding: DEFAULT_BACKGROUND_PADDING,
+    borderRadius: DEFAULT_BACKGROUND_BORDER_RADIUS,
+  };
+};
+
 const resolveOptions = (options: shellfieOptions = {}): RenderOptions => {
   const baseTemplate = resolveTemplate(options.template);
   const template = options.controlsPosition
@@ -202,6 +239,7 @@ const resolveOptions = (options: shellfieOptions = {}): RenderOptions => {
     customGlyphs: options.customGlyphs ?? DEFAULTS.customGlyphs,
     header: resolveShellConfig(mergeConfigs(options.header, template.shell.header), theme, template.shell.titleBarHeight, 'headerBackground'),
     footer: resolveShellConfig(mergeConfigs(options.footer, template.shell.footer), theme, template.shell.titleBarHeight, 'footerBackground'),
+    background: resolveBackground(options.background),
   };
 };
 
@@ -244,9 +282,11 @@ export const render = (lines: ParsedLine[], options: shellfieOptions = {}): stri
   renderSvg(lines, resolveOptions(options)).svg;
 
 export type {
+  BackgroundConfig,
   ControlStyle,
   CSSShorthand,
   FontConfig,
+  Gradient,
   ParsedLine,
   RGB,
   ShellConfig,
@@ -258,6 +298,8 @@ export type {
   WatermarkConfig,
   WatermarkStyle
 } from './types';
+
+export { isGradient, parseGradient } from './gradient';
 
 export { createFontConfig, loadEmbeddedFont, loadFont } from './fonts';
 export {

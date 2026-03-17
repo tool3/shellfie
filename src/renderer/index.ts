@@ -1,7 +1,9 @@
 import type {
   FontConfig,
+  Gradient,
   ParsedLine,
   RenderOptions,
+  ResolvedBackground,
   ResolvedFooterConfig,
   ResolvedHeaderConfig,
   ResolvedWatermark,
@@ -10,6 +12,7 @@ import type {
 } from '../types';
 import { parseAnsi } from '../parser';
 import { escapeXml, renderSpan } from './text';
+import { createGradientDef, isGradient } from '../gradient';
 
 /**
  * Round a coordinate value to avoid floating-point precision issues in SVG rendering.
@@ -309,14 +312,19 @@ const createShadowDefs = (width: number, height: number, borderRadius: number): 
 };
 
 export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderResult => {
-  const { template, title, theme, font, padding, watermark, customGlyphs, header, footer, controls } = options;
+  const { template, title, theme, font, padding, watermark, customGlyphs, header, footer, controls, background } = options;
   const dim = calculateDimensions(lines, options);
   const fontFamily = font.embedData ? `'EmbeddedFont', ${font.family}` : font.family;
 
   // Use exact dimensions if provided, otherwise use calculated content dimensions
   // Round to avoid floating-point precision issues in SVG rendering
-  const svgWidth = r(options.width ?? dim.contentWidth);
-  const svgHeight = r(options.height ?? dim.contentHeight);
+  const terminalWidth = r(options.width ?? dim.contentWidth);
+  const terminalHeight = r(options.height ?? dim.contentHeight);
+
+  // If background is specified, add padding around the terminal
+  const bgPadding = background?.padding ?? 0;
+  const svgWidth = terminalWidth + bgPadding * 2;
+  const svgHeight = terminalHeight + bgPadding * 2;
 
   const svgParts: string[] = [
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${svgWidth} ${svgHeight}" width="${svgWidth}" height="${svgHeight}">`,
@@ -324,33 +332,60 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
 
   // Defs
   const defs: string[] = [];
-  if (template.shell.shadow) defs.push(createShadowDefs(svgWidth, svgHeight, template.shell.borderRadius));
+  if (template.shell.shadow) defs.push(createShadowDefs(terminalWidth, terminalHeight, template.shell.borderRadius));
   if (font.embedData) defs.push(`<style>${generateFontFace(font)}</style>`);
+
+  // Add gradient definition if background is a gradient
+  let bgFill = 'none';
+  if (background) {
+    if (isGradient(background.value)) {
+      defs.push(createGradientDef(background.value, 'bg-gradient', svgWidth, svgHeight));
+      bgFill = 'url(#bg-gradient)';
+    } else {
+      bgFill = background.value;
+    }
+  }
+
   if (defs.length > 0) {
     svgParts.push(`  <defs>\n    ${defs.join('\n    ')}\n  </defs>`);
   }
 
-  // Shadow layer (masked to only show outside the rounded rect)
-  if (template.shell.shadow) {
-    svgParts.push(`  <g mask="url(#shadow-mask)">
-    <rect x="0" y="0" width="${svgWidth}" height="${svgHeight}" fill="${theme.background}" rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}" filter="url(#shadow)"/>
-  </g>`);
+  // Outer background (only if specified)
+  if (background) {
+    const bgRadius = background.borderRadius;
+    svgParts.push(`  <rect x="0" y="0" width="${svgWidth}" height="${svgHeight}" fill="${bgFill}" rx="${bgRadius}" ry="${bgRadius}"/>`);
   }
 
-  // Background
-  svgParts.push(`  <rect x="0" y="0" width="${svgWidth}" height="${svgHeight}" fill="${theme.background}" rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}"/>`);
+  // Terminal group (offset by background padding)
+  const terminalOffset = bgPadding > 0 ? `  <g transform="translate(${bgPadding}, ${bgPadding})">` : '';
+  const terminalEnd = bgPadding > 0 ? '  </g>' : '';
+  const indent = bgPadding > 0 ? '    ' : '  ';
+
+  if (terminalOffset) {
+    svgParts.push(terminalOffset);
+  }
+
+  // Shadow layer (masked to only show outside the rounded rect)
+  if (template.shell.shadow) {
+    svgParts.push(`${indent}<g mask="url(#shadow-mask)">
+${indent}  <rect x="0" y="0" width="${terminalWidth}" height="${terminalHeight}" fill="${theme.background}" rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}" filter="url(#shadow)"/>
+${indent}</g>`);
+  }
+
+  // Terminal Background
+  svgParts.push(`${indent}<rect x="0" y="0" width="${terminalWidth}" height="${terminalHeight}" fill="${theme.background}" rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}"/>`);
 
   // Border
   if (template.shell.border) {
-    svgParts.push(`  <rect x="0.5" y="0.5" width="${svgWidth - 1}" height="${svgHeight - 1}" fill="none" stroke="${template.shell.borderColor}" stroke-width="${template.shell.borderWidth}" rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}"/>`);
+    svgParts.push(`${indent}<rect x="0.5" y="0.5" width="${terminalWidth - 1}" height="${terminalHeight - 1}" fill="none" stroke="${template.shell.borderColor}" stroke-width="${template.shell.borderWidth}" rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}"/>`);
   }
 
   // Title bar
   if (template.shell.titleBar) {
     svgParts.push(
-      `  <g class="title-bar">`,
-      `    ${renderTitleBar(template, title, svgWidth, theme, font, header, controls)}`,
-      `  </g>`
+      `${indent}<g class="title-bar">`,
+      `${indent}  ${renderTitleBar(template, title, terminalWidth, theme, font, header, controls)}`,
+      `${indent}</g>`
     );
   }
 
@@ -374,20 +409,20 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
 
   // Backgrounds layer
   if (backgrounds.length > 0) {
-    svgParts.push(`  <g class="backgrounds">`);
-    backgrounds.forEach(bg => svgParts.push(`    ${bg}`));
-    svgParts.push(`  </g>`);
+    svgParts.push(`${indent}<g class="backgrounds">`);
+    backgrounds.forEach(bg => svgParts.push(`${indent}  ${bg}`));
+    svgParts.push(`${indent}</g>`);
   }
 
   // Glyphs layer
   if (glyphs.length > 0) {
-    svgParts.push(`  <g class="glyphs">`);
-    glyphs.forEach(glyph => svgParts.push(`    ${glyph}`));
-    svgParts.push(`  </g>`);
+    svgParts.push(`${indent}<g class="glyphs">`);
+    glyphs.forEach(glyph => svgParts.push(`${indent}  ${glyph}`));
+    svgParts.push(`${indent}</g>`);
   }
 
   // Text layer
-  svgParts.push(`  <g class="text">`);
+  svgParts.push(`${indent}<g class="text">`);
   lines.forEach((line, lineIndex) => {
     if (line.spans.length === 0) return;
 
@@ -402,27 +437,32 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
     });
 
     if (tspans.some(t => t.length > 0)) {
-      svgParts.push(`    <text y="${r(y)}" font-family="${fontFamily}" font-size="${font.size}" xml:space="preserve">${tspans.join('')}</text>`);
+      svgParts.push(`${indent}  <text y="${r(y)}" font-family="${fontFamily}" font-size="${font.size}" xml:space="preserve">${tspans.join('')}</text>`);
     }
   });
-  svgParts.push(`  </g>`);
+  svgParts.push(`${indent}</g>`);
 
   // Watermark
   if (watermark) {
-    const wmX = svgWidth - watermark.style.paddingRight - watermark.style.marginRight;
+    const wmX = terminalWidth - watermark.style.paddingRight - watermark.style.marginRight;
     // Position watermark at bottom of SVG (use exact height if provided, otherwise use content height)
     const wmY = (options.height ?? dim.contentHeight) - watermark.style.paddingBottom - watermark.style.marginBottom;
-    svgParts.push(`  ${renderWatermark(watermark, wmX, wmY, theme, font)}`);
+    svgParts.push(`${indent}${renderWatermark(watermark, wmX, wmY, theme, font)}`);
   }
 
   // Footer
   if (footer) {
     const footerY = dim.titleBarHeight + padding.top + dim.textHeight + padding.bottom + dim.watermarkHeight;
     svgParts.push(
-      `  <g class="footer">`,
-      `    ${renderFooterBar(footer, svgWidth, footerY, template.shell.borderRadius)}`,
-      `  </g>`
+      `${indent}<g class="footer">`,
+      `${indent}  ${renderFooterBar(footer, terminalWidth, footerY, template.shell.borderRadius)}`,
+      `${indent}</g>`
     );
+  }
+
+  // Close terminal group if we opened one
+  if (terminalEnd) {
+    svgParts.push(terminalEnd);
   }
 
   svgParts.push('</svg>');
