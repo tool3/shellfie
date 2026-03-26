@@ -104,8 +104,8 @@ describe('shellfie', () => {
     const svg = shellfie('Test', { padding: 32 });
     // SVG should be wider due to more padding
     const defaultSvg = shellfie('Test', { padding: 16 });
-    const widthMatch = svg.match(/width="(\d+)"/);
-    const defaultWidthMatch = defaultSvg.match(/width="(\d+)"/);
+    const widthMatch = svg.match(/width="([\d.]+)"/);
+    const defaultWidthMatch = defaultSvg.match(/width="([\d.]+)"/);
     expect(Number(widthMatch?.[1])).toBeGreaterThan(Number(defaultWidthMatch?.[1]));
   });
 });

@@ -50,7 +50,7 @@ const calculateDimensions = (lines: ParsedLine[], options: RenderOptions): Dimen
     return Math.max(max, width);
   }, 0);
 
-  const columns = options.width ?? Math.max(maxLineWidth, 40);
+  const columns = options.width ?? Math.min(maxLineWidth, 40);
   const textWidth = columns * charWidth;
   const textHeight = lines.length * lineHeight;
   const titleBarHeight = template.shell.titleBar ? (header?.height ?? template.shell.titleBarHeight) : 0;
