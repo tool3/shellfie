@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 355.6 240" width="355.6" height="240">
+  <rect x="0" y="0" width="355.6" height="240" fill="#0c0c0c" rx="0" ry="0"/>
+  <g class="overlay"><path d="M 0 40 L 355.6 40 L 355.6 41 L 0 41 Z M 0 200 L 355.6 200 L 355.6 201 L 0 201 Z M 40 0 L 41 0 L 41 240 L 40 240 Z M 315.6 0 L 316.6 0 L 316.6 240 L 315.6 240 Z" fill="#262626" fill-rule="nonzero" shape-rendering="crispEdges"/></g>
+  <g transform="translate(40, 40)">
+    <rect x="0" y="0" width="275.6" height="160" fill="transparent" rx="0" ry="0"/>
+    <g class="title-bar">
+      <rect x="1" y="1" width="273.6" height="28" fill="#0f0f0f" rx="0" ry="0"/>
+    <rect x="1" y="29" width="273.6" height="0" fill="#0f0f0f"/>
+    <rect x="0" y="29" width="275.6" height="1" fill="#262626" shape-rendering="crispEdges"/>
+    <text x="16" y="19.17" fill="#E8E8E8" font-family="'JetBrains Mono', monospace" font-size="12" text-anchor="start" opacity="0.8">cloudflare</text>
+    <text x="229.6" y="17.83" fill="gray" font-family="'JetBrains Mono', monospace" font-size="10" text-anchor="middle" opacity="0.8">Typescript</text>
+    </g>
+    <g class="text">
+      <text x="41.2" y="60" font-family="'JetBrains Mono', monospace" font-size="14" fill="#E8E8E866" text-anchor="end" xml:space="preserve">1</text>
+      <text y="60" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="49.6" fill="#FF7F4D">const</tspan><tspan x="91.6" fill="#E8E8E8"> a</tspan><tspan x="108.4" fill="#79b8ff">:</tspan><tspan x="116.8" fill="#E8E8E8"> </tspan><tspan x="125.2" fill="#79b8ff">string</tspan><tspan x="175.6" fill="#E8E8E8"> </tspan><tspan x="184" fill="#79b8ff">=</tspan><tspan x="192.4" fill="#E8E8E8"> </tspan><tspan x="200.8" fill="#0A95FF">&#39;cool&#39;</tspan><tspan x="251.2" fill="#E8E8E8">;</tspan></text>
+      <text x="41.2" y="79.6" font-family="'JetBrains Mono', monospace" font-size="14" fill="#E8E8E866" text-anchor="end" xml:space="preserve">2</text>
+      <text x="41.2" y="99.2" font-family="'JetBrains Mono', monospace" font-size="14" fill="#E8E8E866" text-anchor="end" xml:space="preserve">3</text>
+      <text y="99.2" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="49.6" fill="#FF7F4D">function</tspan><tspan x="116.8" fill="#E8E8E8"> </tspan><tspan x="125.2" fill="#B084FF">hello</tspan><tspan x="167.2" fill="#E8E8E8">() {</tspan></text>
+      <text x="41.2" y="118.8" font-family="'JetBrains Mono', monospace" font-size="14" fill="#E8E8E866" text-anchor="end" xml:space="preserve">4</text>
+      <text y="118.8" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="49.6" fill="#E8E8E8">    </tspan><tspan x="83.2" fill="#FF7F4D">const</tspan><tspan x="125.2" fill="#E8E8E8"> a </tspan><tspan x="150.4" fill="#79b8ff">=</tspan><tspan x="158.8" fill="#E8E8E8"> </tspan><tspan x="167.2" fill="#0A95FF">&#39;a&#39;</tspan><tspan x="192.4" fill="#E8E8E8">;</tspan></text>
+      <text x="41.2" y="138.4" font-family="'JetBrains Mono', monospace" font-size="14" fill="#E8E8E866" text-anchor="end" xml:space="preserve">5</text>
+      <text y="138.4" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="49.6" fill="#E8E8E8">}</tspan></text>
+    </g>
+  </g>
+</svg>

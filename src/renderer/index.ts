@@ -5,12 +5,16 @@ import type {
   RenderOptions,
   ResolvedBackground,
   ResolvedFooterConfig,
+  ResolvedGlow,
   ResolvedHeaderConfig,
+  ResolvedBadge,
+  ResolvedLineNumbers,
   ResolvedWatermark,
   Template,
   Theme,
 } from '../types';
 import { parseAnsi } from '../parser';
+import { createPatternDef } from '../patterns';
 import { escapeXml, renderSpan } from './text';
 import { createGradientDef, isGradient } from '../gradient';
 
@@ -35,12 +39,13 @@ interface Dimensions {
   titleBarHeight: number;
   footerHeight: number;
   watermarkHeight: number;
+  gutterWidth: number;
   contentWidth: number;
   contentHeight: number;
 }
 
 const calculateDimensions = (lines: ParsedLine[], options: RenderOptions): Dimensions => {
-  const { template, font, padding, watermark, header, footer } = options;
+  const { template, font, padding, watermark, header, footer, lineNumbers } = options;
 
   const charWidth = font.size * font.charWidth;
   const lineHeight = font.size * font.lineHeight;
@@ -50,7 +55,15 @@ const calculateDimensions = (lines: ParsedLine[], options: RenderOptions): Dimen
     return Math.max(max, width);
   }, 0);
 
-  const columns = options.width ?? Math.min(maxLineWidth, 40);
+  // Compute gutter width for line numbers
+  let gutterWidth = 0;
+  if (lineNumbers) {
+    const lastLineNum = lineNumbers.startFrom + lines.length - 1;
+    const digitCount = Math.max(2, String(lastLineNum).length);
+    gutterWidth = charWidth * digitCount + charWidth * 2; // digits + gap
+  }
+
+  const columns = options.width ?? maxLineWidth;
   const textWidth = columns * charWidth;
   const textHeight = lines.length * lineHeight;
   const titleBarHeight = template.shell.titleBar ? (header?.height ?? template.shell.titleBarHeight) : 0;
@@ -68,7 +81,8 @@ const calculateDimensions = (lines: ParsedLine[], options: RenderOptions): Dimen
     titleBarHeight,
     footerHeight,
     watermarkHeight,
-    contentWidth: textWidth + padding.left + padding.right,
+    gutterWidth,
+    contentWidth: textWidth + gutterWidth + padding.left + padding.right,
     contentHeight: textHeight + padding.top + padding.bottom + titleBarHeight + footerHeight + watermarkHeight,
   };
 };
@@ -159,35 +173,46 @@ const renderTitleBar = (
   theme: Theme,
   font: FontConfig,
   header: ResolvedHeaderConfig | null,
-  showControls: boolean
+  showControls: boolean,
+  titleAlignment: 'left' | 'center' | 'right',
+  titleStyle: 'text' | 'tab-underline' | 'tab-box',
+  badge: ResolvedBadge | null
 ): string => {
   if (!template.shell.titleBar) return '';
 
-  const { borderRadius, controlsPosition, padding: shellPadding } = template.shell;
+  const { borderRadius, controlsPosition, padding: shellPadding, controlStyle } = template.shell;
+  const shellBorder = template.shell.border;
+  const shellBorderWidth = shellBorder ? template.shell.borderWidth : 0;
   const controls = showControls;
   const titleBarHeight = header?.height ?? template.shell.titleBarHeight;
   const backgroundColor = header?.backgroundColor ?? theme.background;
-  const showBorder = header?.border ?? template.shell.border;
-  const borderColor = header?.borderColor ?? template.shell.borderColor ?? `${theme.foreground}1a`;
-  const borderWidth = header?.borderWidth ?? template.shell.borderWidth;
-  const bgHeight = showBorder ? titleBarHeight - borderWidth : titleBarHeight;
+  const showHeaderBorder = header?.border ?? false;
+  const headerBorderColor = header?.borderColor ?? `${theme.foreground}1a`;
+  const borderWidth = header?.borderWidth ?? 1;
+  const bgHeight = showHeaderBorder ? titleBarHeight - borderWidth : titleBarHeight;
 
   const parts: string[] = [];
 
   // Only draw separate title bar background if it differs from the main background
   // This avoids anti-aliasing artifacts from overlapping shapes with rounded corners
-  const needsBackground = backgroundColor !== theme.background || showBorder;
+  const needsBackground = backgroundColor !== theme.background;
 
   if (needsBackground) {
-    parts.push(`<rect x="0" y="0" width="${contentWidth}" height="${bgHeight}" fill="${backgroundColor}" rx="${borderRadius}" ry="${borderRadius}"/>`);
+    // When terminal bg is transparent, inset by 1px so overlay gridlines remain visible as borders
+    const bgInset = (theme.background === 'transparent' && !shellBorder) ? 1 : 0;
+    const bgX = bgInset;
+    const bgY = bgInset;
+    const bgW = contentWidth - bgInset * 2;
+    const bgH = bgHeight - bgInset;
+    parts.push(`<rect x="${bgX}" y="${bgY}" width="${bgW}" height="${bgH}" fill="${backgroundColor}" rx="${borderRadius}" ry="${borderRadius}"/>`);
 
-    if (bgHeight > borderRadius) {
-      parts.push(`<rect x="0" y="${bgHeight - borderRadius}" width="${contentWidth}" height="${borderRadius}" fill="${backgroundColor}"/>`);
+    if (bgH > borderRadius) {
+      parts.push(`<rect x="${bgX}" y="${bgH - borderRadius + bgY}" width="${bgW}" height="${borderRadius}" fill="${backgroundColor}"/>`);
     }
   }
 
-  if (showBorder) {
-    parts.push(`<line x1="0" y1="${titleBarHeight - borderWidth / 2}" x2="${contentWidth}" y2="${titleBarHeight - borderWidth / 2}" stroke="${borderColor}" stroke-width="${borderWidth}"/>`);
+  if (showHeaderBorder) {
+    parts.push(`<rect x="0" y="${titleBarHeight - borderWidth}" width="${contentWidth}" height="${borderWidth}" fill="${headerBorderColor}" shape-rendering="crispEdges"/>`);
   }
 
   if (controls) {
@@ -196,8 +221,93 @@ const renderTitleBar = (
     parts.push(renderControls(template, controlX, controlY));
   }
 
+  // Compute badge dimensions early so title can account for badge space
+  const badgeFontSize = badge ? font.size - 4 : 0;
+  const hasPill = badge ? (badge.backgroundColor || badge.borderColor) : false;
+  const badgePadH = hasPill ? 6 : 0;
+  const badgeTextWidth = badge ? badge.label.length * badgeFontSize * font.charWidth : 0;
+  const badgeTotalWidth = badge ? badgeTextWidth + badgePadH * 2 : 0;
+  const badgeGap = badge ? 8 : 0; // gap between title and badge
+
   if (title) {
-    parts.push(`<text x="${r(contentWidth / 2)}" y="${r(bgHeight / 2 + font.size / 3)}" fill="${theme.foreground}" font-family="${font.family}" font-size="${font.size - 2}" text-anchor="middle" opacity="0.8">${escapeXml(title)}</text>`);
+    // Compute title position based on alignment
+    const controlsWidth = controls ? controlStyle.spacing * 2 + controlStyle.size + shellPadding : 0;
+    // Reserve space on the right for badge
+    const rightReserved = badgeTotalWidth + badgeGap;
+    let textX: number;
+    let textAnchor: string;
+
+    switch (titleAlignment) {
+      case 'left':
+        textX = controlsPosition === 'left' && controls ? controlsWidth + shellPadding : shellPadding;
+        textAnchor = 'start';
+        break;
+      case 'right':
+        textX = controlsPosition === 'right' && controls
+          ? contentWidth - controlsWidth - shellPadding - rightReserved
+          : contentWidth - shellPadding - rightReserved;
+        textAnchor = 'end';
+        break;
+      case 'center':
+      default:
+        textX = contentWidth / 2;
+        textAnchor = 'middle';
+        break;
+    }
+
+    const textY = bgHeight / 2 + font.size / 3;
+    const titleFontSize = font.size - 2;
+    parts.push(`<text x="${r(textX)}" y="${r(textY)}" fill="${theme.foreground}" font-family="${font.family}" font-size="${titleFontSize}" text-anchor="${textAnchor}" opacity="0.8">${escapeXml(title)}</text>`);
+
+    // Title style decorations
+    if (titleStyle === 'tab-underline') {
+      const titleWidth = title.length * titleFontSize * font.charWidth;
+      let underlineX: number;
+      if (textAnchor === 'start') underlineX = textX;
+      else if (textAnchor === 'end') underlineX = textX - titleWidth;
+      else underlineX = textX - titleWidth / 2;
+      const underlineY = bgHeight - 2;
+      parts.push(`<rect x="${r(underlineX)}" y="${r(underlineY)}" width="${r(titleWidth)}" height="2" fill="${theme.blue}" rx="1" ry="1"/>`);
+    } else if (titleStyle === 'tab-box') {
+      const titleWidth = title.length * titleFontSize * font.charWidth;
+      const tabPadH = 8;
+      const tabPadV = 4;
+      let tabX: number;
+      if (textAnchor === 'start') tabX = textX - tabPadH;
+      else if (textAnchor === 'end') tabX = textX - titleWidth - tabPadH;
+      else tabX = textX - titleWidth / 2 - tabPadH;
+      const tabY = (bgHeight - titleFontSize) / 2 - tabPadV;
+      const tabW = titleWidth + tabPadH * 2;
+      const tabH = titleFontSize + tabPadV * 2;
+      const tabRadius = 4;
+      // Tab box: rounded top corners, flat bottom (achieved with clip)
+      parts.push(`<rect x="${r(tabX)}" y="${r(tabY)}" width="${r(tabW)}" height="${r(tabH)}" fill="${theme.foreground}15" rx="${tabRadius}" ry="${tabRadius}"/>`);
+      // Flat bottom edge: cover bottom rounded corners
+      parts.push(`<rect x="${r(tabX)}" y="${r(tabY + tabH - tabRadius)}" width="${r(tabW)}" height="${tabRadius}" fill="${theme.foreground}15"/>`);
+    }
+  }
+
+  // Badge (right-aligned)
+  if (badge) {
+    const badgePadV = hasPill ? 4 : 0;
+    const badgeWidth = badgeTotalWidth;
+    const badgeHeight = badgeFontSize + badgePadV * 2;
+    const badgeX = controlsPosition === 'right' && controls
+      ? contentWidth - shellPadding - controlStyle.spacing * 2 - controlStyle.size - shellPadding - badgeWidth
+      : contentWidth - shellPadding - badgeWidth;
+    const badgeY = (bgHeight - badgeHeight) / 2;
+
+    if (hasPill) {
+      const badgeRadius = badge.borderRadius ?? badgeHeight / 2;
+      let badgeRect = `<rect x="${r(badgeX)}" y="${r(badgeY)}" width="${r(badgeWidth)}" height="${r(badgeHeight)}" fill="${badge.backgroundColor ?? 'none'}" rx="${r(badgeRadius)}" ry="${r(badgeRadius)}"`;
+      if (badge.borderColor) {
+        badgeRect += ` stroke="${badge.borderColor}" stroke-width="${badge.borderWidth}"`;
+      }
+      badgeRect += '/>';
+      parts.push(badgeRect);
+    }
+
+    parts.push(`<text x="${r(badgeX + badgeWidth / 2)}" y="${r(badgeY + badgeHeight / 2 + badgeFontSize / 3)}" fill="${badge.color}" font-family="${font.family}" font-size="${badgeFontSize}" text-anchor="middle" opacity="${badge.opacity}">${escapeXml(badge.label)}</text>`);
   }
 
   return parts.join('\n    ');
@@ -298,6 +408,14 @@ const generateFontFace = (font: FontConfig): string => {
     }`;
 };
 
+const createGlowDefs = (glow: ResolvedGlow): string => {
+  return `<filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="${glow.strength}" result="blur"/>
+      <feFlood flood-color="${glow.color}" flood-opacity="${glow.opacity}"/>
+      <feComposite in2="blur" operator="in"/>
+    </filter>`;
+};
+
 const createShadowDefs = (width: number, height: number, borderRadius: number): string => {
   return `<filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
       <feGaussianBlur in="SourceAlpha" stdDeviation="8" result="blur"/>
@@ -312,7 +430,11 @@ const createShadowDefs = (width: number, height: number, borderRadius: number): 
 };
 
 export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderResult => {
-  const { template, title, theme, font, padding, watermark, customGlyphs, header, footer, controls, background } = options;
+  const {
+    template, title, titleAlignment, titleStyle, theme, font, padding,
+    watermark, customGlyphs, header, footer, controls, background,
+    lineNumbers, badge, backgroundOpacity, glow, overlays,
+  } = options;
   const dim = calculateDimensions(lines, options);
   const fontFamily = font.embedData ? `'EmbeddedFont', ${font.family}` : font.family;
 
@@ -333,6 +455,7 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
   // Defs
   const defs: string[] = [];
   if (template.shell.shadow) defs.push(createShadowDefs(terminalWidth, terminalHeight, template.shell.borderRadius));
+  if (glow) defs.push(createGlowDefs(glow));
   if (font.embedData) defs.push(`<style>${generateFontFace(font)}</style>`);
 
   // Add gradient definition if background is a gradient
@@ -344,6 +467,20 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
     } else {
       bgFill = background.value;
     }
+    // Add pattern definition if specified
+    if (background.pattern) {
+      defs.push(createPatternDef(background.pattern, 'bg-pattern'));
+    }
+  }
+
+  // Add gradient border definition if border color is a gradient
+  const { borderColor } = template.shell;
+  let borderStroke: string;
+  if (isGradient(borderColor)) {
+    defs.push(createGradientDef(borderColor, 'border-gradient', terminalWidth, terminalHeight));
+    borderStroke = 'url(#border-gradient)';
+  } else {
+    borderStroke = borderColor;
   }
 
   if (defs.length > 0) {
@@ -354,6 +491,17 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
   if (background) {
     const bgRadius = background.borderRadius;
     svgParts.push(`  <rect x="0" y="0" width="${svgWidth}" height="${svgHeight}" fill="${bgFill}" rx="${bgRadius}" ry="${bgRadius}"/>`);
+    // Pattern overlay on background
+    if (background.pattern) {
+      svgParts.push(`  <rect x="0" y="0" width="${svgWidth}" height="${svgHeight}" fill="url(#bg-pattern)" rx="${bgRadius}" ry="${bgRadius}"/>`);
+    }
+  }
+
+  // Decorative overlays (between background and terminal)
+  const rawOverlays = typeof overlays === 'function' ? overlays(svgWidth, svgHeight) : overlays;
+  const resolvedOverlays = typeof rawOverlays === 'string' ? [rawOverlays] : rawOverlays ?? [];
+  for (const overlay of resolvedOverlays) {
+    svgParts.push(`  <g class="overlay">${overlay}</g>`);
   }
 
   // Terminal group (offset by background padding)
@@ -372,25 +520,42 @@ ${indent}  <rect x="0" y="0" width="${terminalWidth}" height="${terminalHeight}"
 ${indent}</g>`);
   }
 
-  // Terminal Background
-  svgParts.push(`${indent}<rect x="0" y="0" width="${terminalWidth}" height="${terminalHeight}" fill="${theme.background}" rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}"/>`);
-
-  // Border
-  if (template.shell.border) {
-    svgParts.push(`${indent}<rect x="0.5" y="0.5" width="${terminalWidth - 1}" height="${terminalHeight - 1}" fill="none" stroke="${template.shell.borderColor}" stroke-width="${template.shell.borderWidth}" rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}"/>`);
+  // Glow layer (colored blur around terminal)
+  if (glow) {
+    svgParts.push(`${indent}<rect x="0.5" y="0.5" width="${terminalWidth - 1}" height="${terminalHeight - 1}" fill="none" stroke="${glow.color}" stroke-width="${template.shell.borderWidth + 2}" rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}" filter="url(#glow)"/>`);
   }
 
-  // Title bar
+  // Terminal Background
+  const bgOpacityAttr = backgroundOpacity < 1 ? ` opacity="${backgroundOpacity}"` : '';
+  svgParts.push(`${indent}<rect x="0" y="0" width="${terminalWidth}" height="${terminalHeight}" fill="${theme.background}" rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}"${bgOpacityAttr}/>`);
+
+  // Title bar (rendered before border so border paints on top)
   if (template.shell.titleBar) {
     svgParts.push(
       `${indent}<g class="title-bar">`,
-      `${indent}  ${renderTitleBar(template, title, terminalWidth, theme, font, header, controls)}`,
+      `${indent}  ${renderTitleBar(template, title, terminalWidth, theme, font, header, controls, titleAlignment, titleStyle, badge)}`,
       `${indent}</g>`
     );
   }
 
+  // Border (rendered after title bar so it sits on top of header bg)
+  if (template.shell.border) {
+    const bw = template.shell.borderWidth;
+    const br = template.shell.borderRadius;
+    if (br > 0) {
+      // Rounded borders use stroke (no overlap issue with rounded corners)
+      const halfBw = bw / 2;
+      svgParts.push(`${indent}<rect x="${halfBw}" y="${halfBw}" width="${terminalWidth - bw}" height="${terminalHeight - bw}" fill="none" stroke="${borderStroke}" stroke-width="${bw}" rx="${br}" ry="${br}"/>`);
+    } else {
+      // Sharp corners: use filled rects for pixel-perfect alignment (no anti-aliasing artifacts)
+      const tw = terminalWidth;
+      const th = terminalHeight;
+      svgParts.push(`${indent}<path d="M 0 0 L ${tw} 0 L ${tw} ${bw} L 0 ${bw} Z M 0 ${th - bw} L ${tw} ${th - bw} L ${tw} ${th} L 0 ${th} Z M 0 ${bw} L ${bw} ${bw} L ${bw} ${th - bw} L 0 ${th - bw} Z M ${tw - bw} ${bw} L ${tw} ${bw} L ${tw} ${th - bw} L ${tw - bw} ${th - bw} Z" fill="${borderStroke}" fill-rule="nonzero" shape-rendering="crispEdges"/>`);
+    }
+  }
+
   // Process content
-  const contentX = padding.left;
+  const contentX = padding.left + dim.gutterWidth;
   const contentY = dim.titleBarHeight + padding.top;
   const backgrounds: string[] = [];
   const glyphs: string[] = [];
@@ -421,12 +586,20 @@ ${indent}</g>`);
     svgParts.push(`${indent}</g>`);
   }
 
-  // Text layer
+  // Text layer (includes line numbers)
   svgParts.push(`${indent}<g class="text">`);
   lines.forEach((line, lineIndex) => {
+    const y = contentY + lineIndex * dim.lineHeight + font.size;
+
+    // Render line number
+    if (lineNumbers) {
+      const lineNum = lineNumbers.startFrom + lineIndex;
+      const gutterX = padding.left + dim.gutterWidth - dim.charWidth; // right edge of gutter minus gap
+      svgParts.push(`${indent}  <text x="${r(gutterX)}" y="${r(y)}" font-family="${fontFamily}" font-size="${font.size}" fill="${lineNumbers.color}" text-anchor="end" xml:space="preserve">${lineNum}</text>`);
+    }
+
     if (line.spans.length === 0) return;
 
-    const y = contentY + lineIndex * dim.lineHeight + font.size;
     let x = contentX;
     const tspans: string[] = [];
 

@@ -11,10 +11,20 @@ export interface Gradient {
   reverse?: boolean;
 }
 
+export type PatternType = 'grid' | 'dots' | 'stripes' | 'crosshatch' | 'diagonal-stripes';
+
+export interface PatternConfig {
+  type: PatternType;
+  color?: string;
+  size?: number;
+  strokeWidth?: number;
+}
+
 export interface BackgroundConfig {
   color: string | Gradient;
   padding?: number;
   borderRadius?: number;
+  pattern?: PatternType | PatternConfig;
 }
 
 export interface TextStyle {
@@ -75,7 +85,7 @@ export interface ControlStyle {
 export interface HeaderConfig {
   backgroundColor?: string;
   height?: number;
-  border?: boolean;
+  border?: boolean | string;
   borderColor?: string;
   borderWidth?: number;
 }
@@ -83,7 +93,7 @@ export interface HeaderConfig {
 export interface FooterConfig {
   backgroundColor?: string;
   height?: number;
-  border?: boolean;
+  border?: boolean | string;
   borderColor?: string;
   borderWidth?: number;
 }
@@ -97,8 +107,8 @@ export interface ShellConfig {
   controlStyle: ControlStyle;
   padding: number;
   shadow: boolean;
-  border: boolean;
-  borderColor: string;
+  border: boolean | string;
+  borderColor: string | Gradient;
   borderWidth: number;
   header?: HeaderConfig;
   footer?: FooterConfig;
@@ -217,9 +227,14 @@ export interface WatermarkConfig {
   style?: WatermarkStyle;
 }
 
+export type Preset = Omit<shellfieOptions, 'preset'>;
+
 export interface shellfieOptions {
+  preset?: 'browserbase' | 'clerk' | 'cloudflare' | 'elevenlabs' | 'firecrawl' | 'gemini' | 'mintlify' | 'nuxt' | 'openai' | 'prisma' | 'resend' | 'supabase' | 'tailwind' | 'triggerdev' | 'vercel' | (string & {}) | Preset;
   template?: 'macos' | 'windows' | 'minimal' | Template;
   title?: string;
+  titleAlignment?: 'left' | 'center' | 'right';
+  titleStyle?: 'text' | 'tab-underline' | 'tab-box';
   theme?: Theme;
   fontSize?: number;
   lineHeight?: number;
@@ -269,6 +284,27 @@ export interface shellfieOptions {
    * @default padding is 20 when background is set
    */
   background?: string | BackgroundConfig;
+  lineNumbers?: boolean | {
+    color?: string;
+    startFrom?: number;
+  };
+  badge?: boolean | {
+    label?: string;
+    color?: string;
+    backgroundColor?: string;
+    borderRadius?: number;
+    borderColor?: string;
+    borderWidth?: number;
+    opacity?: number;
+  };
+  backgroundOpacity?: number;
+  borderColor?: string;
+  glow?: boolean | {
+    color?: string;
+    strength?: number;
+    opacity?: number;
+  };
+  overlays?: string | string[] | ((width: number, height: number) => string | string[]);
 }
 
 export interface ResolvedHeaderConfig {
@@ -297,20 +333,56 @@ export interface ResolvedBackground {
   value: string | Gradient;
   padding: number;
   borderRadius: number;
+  pattern: ResolvedPattern | null;
+}
+
+export interface ResolvedPattern {
+  type: PatternType;
+  color: string;
+  size: number;
+  strokeWidth: number;
+}
+
+export interface ResolvedLineNumbers {
+  color: string;
+  startFrom: number;
+}
+
+export interface ResolvedBadge {
+  label: string;
+  color: string;
+  backgroundColor: string | null;
+  borderRadius: number | null;
+  borderColor: string | null;
+  borderWidth: number;
+  opacity: number;
+}
+
+export interface ResolvedGlow {
+  color: string;
+  strength: number;
+  opacity: number;
 }
 
 export interface RenderOptions {
   template: Template;
   title: string;
+  titleAlignment: 'left' | 'center' | 'right';
+  titleStyle: 'text' | 'tab-underline' | 'tab-box';
   theme: Theme;
   font: FontConfig;
   padding: ResolvedPadding;
-  width: number | null; // null = auto-size, number = exact width
-  height: number | null; // null = auto-size, number = exact height
+  width: number | null;
+  height: number | null;
   watermark: ResolvedWatermark | null;
   header: ResolvedHeaderConfig | null;
   footer: ResolvedFooterConfig | null;
   controls: boolean;
   customGlyphs: boolean;
   background: ResolvedBackground | null;
+  lineNumbers: ResolvedLineNumbers | null;
+  badge: ResolvedBadge | null;
+  backgroundOpacity: number;
+  glow: ResolvedGlow | null;
+  overlays: shellfieOptions['overlays'];
 }

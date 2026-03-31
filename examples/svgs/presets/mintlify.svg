@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 355.6 250" width="355.6" height="250">
+  <defs>
+    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
+      <feGaussianBlur in="SourceAlpha" stdDeviation="8" result="blur"/>
+      <feOffset in="blur" dx="0" dy="4" result="offsetBlur"/>
+      <feFlood flood-color="#000000" flood-opacity="0.3" result="color"/>
+      <feComposite in="color" in2="offsetBlur" operator="in" result="shadow"/>
+    </filter>
+    <mask id="shadow-mask">
+      <rect x="-50" y="-50" width="375.6" height="270" fill="white"/>
+      <rect x="0" y="0" width="275.6" height="170" rx="12" ry="12" fill="black"/>
+    </mask>
+    <pattern id="bg-pattern" width="50" height="50" patternUnits="userSpaceOnUse">
+      <line x1="0" y1="0" x2="50" y2="50" stroke="#181818" stroke-width="1"/>
+      <line x1="50" y1="0" x2="0" y2="50" stroke="#181818" stroke-width="1"/>
+    </pattern>
+  </defs>
+  <rect x="0" y="0" width="355.6" height="250" fill="#121212" rx="12" ry="12"/>
+  <rect x="0" y="0" width="355.6" height="250" fill="url(#bg-pattern)" rx="12" ry="12"/>
+  <g class="overlay"><defs><filter id="mintlify-shadow" x="-20%" y="-20%" width="140%" height="140%"><feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="rgba(0,0,0,0.5)"/><feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="rgba(0,0,0,0.3)"/><feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="rgba(0,0,0,0.2)"/></filter></defs></g>
+  <g class="overlay"><defs><radialGradient id="mintlify-glow"><stop offset="0%" stop-color="#4EC9B0" stop-opacity="0.06"/><stop offset="100%" stop-color="#4EC9B0" stop-opacity="0"/></radialGradient></defs></g>
+  <g class="overlay"><rect x="40" y="40" width="275.6" height="170" fill="url(#mintlify-glow)" rx="12" ry="12"/></g>
+  <g transform="translate(40, 40)">
+    <g mask="url(#shadow-mask)">
+      <rect x="0" y="0" width="275.6" height="170" fill="#070a08" rx="12" ry="12" filter="url(#shadow)"/>
+    </g>
+    <rect x="0" y="0" width="275.6" height="170" fill="#070a08" rx="12" ry="12"/>
+    <g class="title-bar">
+      <rect x="0" y="0" width="275.6" height="39" fill="#010201" rx="12" ry="12"/>
+    <rect x="0" y="27" width="275.6" height="12" fill="#010201"/>
+    <rect x="0" y="39" width="275.6" height="1" fill="#141818" shape-rendering="crispEdges"/>
+    <circle cx="16" cy="19.5" r="4" fill="#ffffff33"/>
+    <circle cx="32" cy="19.5" r="4" fill="#ffffff33"/>
+    <circle cx="48" cy="19.5" r="4" fill="#ffffff33"/>
+    </g>
+    <rect x="0.5" y="0.5" width="274.6" height="169" fill="none" stroke="#ffffff1a" stroke-width="1" rx="12" ry="12"/>
+    <g class="text">
+      <text x="41.2" y="70" font-family="'JetBrains Mono', monospace" font-size="14" fill="#F3F7F666" text-anchor="end" xml:space="preserve">1</text>
+      <text y="70" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="49.6" fill="#569cd6">const</tspan><tspan x="91.6" fill="#F3F7F6"> a</tspan><tspan x="108.4" fill="#4ec9b0">:</tspan><tspan x="116.8" fill="#F3F7F6"> </tspan><tspan x="125.2" fill="#b5cea8">string</tspan><tspan x="175.6" fill="#F3F7F6"> </tspan><tspan x="184" fill="#4ec9b0">=</tspan><tspan x="192.4" fill="#F3F7F6"> </tspan><tspan x="200.8" fill="#F3F7F6">&#39;cool&#39;</tspan><tspan x="251.2" fill="#F3F7F6">;</tspan></text>
+      <text x="41.2" y="89.6" font-family="'JetBrains Mono', monospace" font-size="14" fill="#F3F7F666" text-anchor="end" xml:space="preserve">2</text>
+      <text x="41.2" y="109.2" font-family="'JetBrains Mono', monospace" font-size="14" fill="#F3F7F666" text-anchor="end" xml:space="preserve">3</text>
+      <text y="109.2" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="49.6" fill="#569cd6">function</tspan><tspan x="116.8" fill="#F3F7F6"> </tspan><tspan x="125.2" fill="#9cdcfe">hello</tspan><tspan x="167.2" fill="#F3F7F6">() {</tspan></text>
+      <text x="41.2" y="128.8" font-family="'JetBrains Mono', monospace" font-size="14" fill="#F3F7F666" text-anchor="end" xml:space="preserve">4</text>
+      <text y="128.8" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="49.6" fill="#F3F7F6">    </tspan><tspan x="83.2" fill="#569cd6">const</tspan><tspan x="125.2" fill="#F3F7F6"> a </tspan><tspan x="150.4" fill="#4ec9b0">=</tspan><tspan x="158.8" fill="#F3F7F6"> </tspan><tspan x="167.2" fill="#F3F7F6">&#39;a&#39;</tspan><tspan x="192.4" fill="#F3F7F6">;</tspan></text>
+      <text x="41.2" y="148.4" font-family="'JetBrains Mono', monospace" font-size="14" fill="#F3F7F666" text-anchor="end" xml:space="preserve">5</text>
+      <text y="148.4" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="49.6" fill="#F3F7F6">}</tspan></text>
+    </g>
+  </g>
+</svg>
