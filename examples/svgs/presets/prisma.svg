@@ -15,16 +15,15 @@
       <rect x="0" y="0" width="275.6" height="39" fill="#090d15" rx="10" ry="10"/>
     <rect x="0" y="29" width="275.6" height="10" fill="#090d15"/>
     <rect x="0" y="39" width="275.6" height="1" fill="#141818" shape-rendering="crispEdges"/>
-    <circle cx="16" cy="19.5" r="4" fill="#ffffff33"/>
-    <circle cx="32" cy="19.5" r="4" fill="#ffffff33"/>
-    <circle cx="48" cy="19.5" r="4" fill="#ffffff33"/>
+    <text x="16" y="24.17" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="12" text-anchor="start" opacity="0.8">prisma</text>
+    <rect x="16" y="37" width="43.2" height="2" fill="#31BAAF" rx="1" ry="1"/>
     </g>
     <g class="text">
       <text x="41.2" y="70" font-family="'JetBrains Mono', monospace" font-size="14" fill="#ffffff66" text-anchor="end" xml:space="preserve">1</text>
       <text y="70" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="49.6" fill="#71E8DF">const</tspan><tspan x="91.6" fill="#ffffff"> a</tspan><tspan x="108.4" fill="#7F9CF5">:</tspan><tspan x="116.8" fill="#ffffff"> </tspan><tspan x="125.2" fill="#71E8DF">string</tspan><tspan x="175.6" fill="#ffffff"> </tspan><tspan x="184" fill="#7F9CF5">=</tspan><tspan x="192.4" fill="#ffffff"> </tspan><tspan x="200.8" fill="#71E8DF">&#39;cool&#39;</tspan><tspan x="251.2" fill="#ffffff">;</tspan></text>
       <text x="41.2" y="89.6" font-family="'JetBrains Mono', monospace" font-size="14" fill="#ffffff66" text-anchor="end" xml:space="preserve">2</text>
       <text x="41.2" y="109.2" font-family="'JetBrains Mono', monospace" font-size="14" fill="#ffffff66" text-anchor="end" xml:space="preserve">3</text>
-      <text y="109.2" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="49.6" fill="#71E8DF">function</tspan><tspan x="116.8" fill="#ffffff"> </tspan><tspan x="125.2" fill="#71E8DF">hello</tspan><tspan x="167.2" fill="#ffffff">() {</tspan></text>
+      <text y="109.2" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="49.6" fill="#71E8DF">function</tspan><tspan x="116.8" fill="#ffffff"> </tspan><tspan x="125.2" fill="#31BAAF">hello</tspan><tspan x="167.2" fill="#ffffff">() {</tspan></text>
       <text x="41.2" y="128.8" font-family="'JetBrains Mono', monospace" font-size="14" fill="#ffffff66" text-anchor="end" xml:space="preserve">4</text>
       <text y="128.8" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="49.6" fill="#ffffff">    </tspan><tspan x="83.2" fill="#71E8DF">const</tspan><tspan x="125.2" fill="#ffffff"> a </tspan><tspan x="150.4" fill="#7F9CF5">=</tspan><tspan x="158.8" fill="#ffffff"> </tspan><tspan x="167.2" fill="#71E8DF">&#39;a&#39;</tspan><tspan x="192.4" fill="#ffffff">;</tspan></text>
       <text x="41.2" y="148.4" font-family="'JetBrains Mono', monospace" font-size="14" fill="#ffffff66" text-anchor="end" xml:space="preserve">5</text>
