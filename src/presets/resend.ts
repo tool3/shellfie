@@ -1,0 +1,50 @@
+import type { Preset } from '../types';
+import { createTemplate } from '../templates';
+
+export const resend: Preset = {
+  template: createTemplate('resend', {
+    titleBar: true,
+    titleBarHeight: 34,
+    borderRadius: 8,
+    controls: false,
+    controlsPosition: 'left',
+    controlStyle: { close: '', minimize: '', maximize: '', radius: 0, spacing: 0, size: 0 },
+    padding: 16,
+    shadow: true,
+    border: false,
+    borderColor: '#333333',
+    borderWidth: 1,
+  }),
+  theme: {
+    name: 'resend',
+    background: '#191919',
+    foreground: '#e0e0e0',
+    cursor: '#e0e0e0',
+    selection: '#3a3a3a',
+    black: '#1a1a1a',
+    red: '#FF6B6B',
+    green: '#69DB7C',
+    yellow: '#FFD43B',
+    blue: '#4DABF7',
+    magenta: '#DA77F2',
+    cyan: '#3BC9DB',
+    white: '#e0e0e0',
+    brightBlack: '#555555',
+    brightRed: '#FF8787',
+    brightGreen: '#8CE99A',
+    brightYellow: '#FFE066',
+    brightBlue: '#74C0FC',
+    brightMagenta: '#E599F7',
+    brightCyan: '#66D9E8',
+    brightWhite: '#ffffff',
+  },
+  lineNumbers: true,
+  background: {
+    color: 'gradient(#0d0d0d, #1a1a1a, #0d0d0d:diagonal)',
+    padding: 20,
+  },
+  overlays: [
+    '<polygon points="400,0 600,0 300,400 100,400" fill="#ffffff06"/>',
+    '<polygon points="500,0 700,0 400,400 200,400" fill="#ffffff04"/>',
+  ],
+};

@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 568.8 505.2" width="568.8" height="505.2">
+  <defs>
+    <filter id="glow" x="-30%" y="-30%" width="160%" height="160%">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="12" result="blur"/>
+      <feFlood flood-color="#00ffff" flood-opacity="0.5"/>
+      <feComposite in2="blur" operator="in"/>
+    </filter>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0a0a1a"/>
+      <stop offset="50%" stop-color="#1a0a2e"/>
+      <stop offset="100%" stop-color="#0a1a2e"/>
+    </linearGradient>
+    <pattern id="bg-pattern" width="24" height="24" patternUnits="userSpaceOnUse">
+      <path d="M 0 0 L 24 24 M 24 0 L 0 24" stroke="#ffffff08" stroke-width="1" fill="none"/>
+    </pattern>
+    <linearGradient id="border-gradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00ffff"/>
+      <stop offset="100%" stop-color="#ff00ff"/>
+    </linearGradient>
+  </defs>
+  <rect x="0" y="0" width="568.8" height="505.2" fill="url(#bg-gradient)" rx="12" ry="12"/>
+  <rect x="0" y="0" width="568.8" height="505.2" fill="url(#bg-pattern)" rx="12" ry="12"/>
+  <g transform="translate(50, 50)">
+    <rect x="0.5" y="0.5" width="467.8" height="404.2" fill="none" stroke="#00ffff" stroke-width="2" rx="10" ry="10" filter="url(#glow)"/>
+    <rect x="0" y="0" width="468.8" height="405.2" fill="#262335" rx="10" ry="10" opacity="0.85"/>
+    <g class="title-bar">
+      <circle cx="16" cy="20" r="6" fill="#ff5f56"/>
+    <circle cx="36" cy="20" r="6" fill="#ffbd2e"/>
+    <circle cx="56" cy="20" r="6" fill="#27c93f"/>
+    <text x="234.4" y="24.67" fill="#ffffff" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="12" text-anchor="middle" opacity="0.8">System Info</text>
+    </g>
+    <g class="text">
+      <text y="70" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#03edf9" font-weight="bold">❯</tspan><tspan x="24.4" fill="#ffffff"> neofetch</tspan></text>
+      <text y="89.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7edb" font-weight="bold">       _,met$$$$$gg.</tspan><tspan x="184" fill="#ffffff">          </tspan><tspan x="268" fill="#03edf9" font-weight="bold">user</tspan><tspan x="301.6" fill="#ffffff">@</tspan><tspan x="310" fill="#03edf9" font-weight="bold">workstation</tspan></text>
+      <text y="109.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7edb" font-weight="bold">    ,g$$$$$$$$$$$$$$P.</tspan><tspan x="200.8" fill="#ffffff">        </tspan><tspan x="268" fill="#f3e70f" font-weight="bold">OS:</tspan><tspan x="293.2" fill="#ffffff"> Debian 12</tspan></text>
+      <text y="128.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7edb" font-weight="bold">  ,g$$P&quot;     &quot;&quot;&quot;Y$$.&quot;.</tspan><tspan x="200.8" fill="#ffffff">       </tspan><tspan x="259.6" fill="#f3e70f" font-weight="bold">Kernel:</tspan><tspan x="318.4" fill="#ffffff"> 6.1.0-amd64</tspan></text>
+      <text y="148.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7edb" font-weight="bold"> ,$$P&#39;              `$$$.</tspan><tspan x="226" fill="#ffffff">     </tspan><tspan x="268" fill="#f3e70f" font-weight="bold">Uptime:</tspan><tspan x="326.8" fill="#ffffff"> 42 days</tspan></text>
+      <text y="168" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7edb" font-weight="bold">&#39;,$$P       ,ggs.     `$$b:</tspan><tspan x="242.8" fill="#ffffff">   </tspan><tspan x="268" fill="#f3e70f" font-weight="bold">Shell:</tspan><tspan x="318.4" fill="#ffffff"> zsh 5.9</tspan></text>
+      <text y="187.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7edb" font-weight="bold"> d$$&#39;     ,$P&quot;&#39;   .    $$$</tspan><tspan x="234.4" fill="#ffffff">    </tspan><tspan x="268" fill="#f3e70f" font-weight="bold">Memory:</tspan><tspan x="326.8" fill="#ffffff"> 4.2G / 16G</tspan></text>
+      <text y="207.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7edb" font-weight="bold"> $$P      d$&#39;     ,    $$P</tspan><tspan x="234.4" fill="#ffffff">    </tspan><tspan x="268" fill="#f3e70f" font-weight="bold">CPU:</tspan><tspan x="301.6" fill="#ffffff"> AMD Ryzen 9 5900X</tspan></text>
+      <text y="226.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7edb" font-weight="bold"> $$:      $$.   -    ,d$$&#39;</tspan><tspan x="234.4" fill="#ffffff">    </tspan><tspan x="268" fill="#f3e70f" font-weight="bold">GPU:</tspan><tspan x="301.6" fill="#ffffff"> NVIDIA RTX 3080</tspan></text>
+      <text y="246.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7edb" font-weight="bold"> $$;      Y$b._   _,d$P&#39;</tspan><tspan x="217.6" fill="#ffffff">     </tspan><tspan x="259.6" fill="#f3e70f" font-weight="bold">Disk:</tspan><tspan x="301.6" fill="#ffffff"> 120G / 500G (24%)</tspan></text>
+      <text y="266" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7edb" font-weight="bold"> Y$$.    `.`&quot;Y$$$$P&quot;&#39;</tspan></text>
+      <text y="285.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7edb" font-weight="bold"> `$$b      &quot;-.__</tspan></text>
+      <text y="305.2" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7edb" font-weight="bold">  `Y$$</tspan></text>
+      <text y="324.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7edb" font-weight="bold">   `Y$$.</tspan></text>
+      <text y="344.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7edb" font-weight="bold">     `$$b.</tspan></text>
+      <text y="364" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7edb" font-weight="bold">       `Y$$b.</tspan></text>
+      <text y="383.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ff7edb" font-weight="bold">          `&quot;Y$b._</tspan></text>
+    </g>
+  </g>
+</svg>
