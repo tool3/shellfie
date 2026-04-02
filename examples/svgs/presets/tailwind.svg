@@ -1,45 +1,26 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 347.6 236" width="347.6" height="236">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 395.6 284" width="395.6" height="284">
   <defs>
-    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="8" result="blur"/>
-      <feOffset in="blur" dx="0" dy="4" result="offsetBlur"/>
-      <feFlood flood-color="#000000" flood-opacity="0.3" result="color"/>
-      <feComposite in="color" in2="offsetBlur" operator="in" result="shadow"/>
-    </filter>
-    <mask id="shadow-mask">
-      <rect x="-50" y="-50" width="367.6" height="256" fill="white"/>
-      <rect x="0" y="0" width="267.6" height="156" rx="8" ry="8" fill="black"/>
-    </mask>
     <pattern id="bg-pattern" width="50" height="50" patternUnits="userSpaceOnUse">
-      <line x1="0" y1="50" x2="50" y2="50" stroke="#171717" stroke-width="1"/>
-      <line x1="50" y1="0" x2="50" y2="50" stroke="#171717" stroke-width="1"/>
+      <line x1="0" y1="50" x2="50" y2="50" stroke="#171f33" stroke-width="1"/>
+      <line x1="50" y1="0" x2="50" y2="50" stroke="#171f33" stroke-width="1"/>
     </pattern>
   </defs>
-  <rect x="0" y="0" width="347.6" height="236" fill="#0f172a" rx="12" ry="12"/>
-  <rect x="0" y="0" width="347.6" height="236" fill="url(#bg-pattern)" rx="12" ry="12"/>
-  <g class="overlay"><line x1="0" y1="40" x2="40" y2="40" stroke="#272727" stroke-width="1"/></g>
-  <g class="overlay"><line x1="307.6" y1="40" x2="347.6" y2="40" stroke="#272727" stroke-width="1"/></g>
-  <g class="overlay"><line x1="0" y1="196" x2="40" y2="196" stroke="#272727" stroke-width="1"/></g>
-  <g class="overlay"><line x1="307.6" y1="196" x2="347.6" y2="196" stroke="#272727" stroke-width="1"/></g>
-  <g class="overlay"><line x1="40" y1="0" x2="40" y2="40" stroke="#272727" stroke-width="1"/></g>
-  <g class="overlay"><line x1="40" y1="196" x2="40" y2="236" stroke="#272727" stroke-width="1"/></g>
-  <g class="overlay"><line x1="307.6" y1="0" x2="307.6" y2="40" stroke="#272727" stroke-width="1"/></g>
-  <g class="overlay"><line x1="307.6" y1="196" x2="307.6" y2="236" stroke="#272727" stroke-width="1"/></g>
+  <rect x="0" y="0" width="395.6" height="284" fill="#0f172a" rx="12" ry="12"/>
+  <rect x="0" y="0" width="395.6" height="284" fill="url(#bg-pattern)" rx="12" ry="12"/>
+  <g class="overlay"><path d="M 0 64 L 395.6 64 L 395.6 65 L 0 65 Z M 0 220 L 395.6 220 L 395.6 221 L 0 221 Z M 64 0 L 65 0 L 65 284 L 64 284 Z M 331.6 0 L 332.6 0 L 332.6 284 L 331.6 284 Z" fill="#272727" fill-rule="nonzero" shape-rendering="crispEdges"/></g>
   <g class="overlay"><defs><linearGradient id="tw-beam" x1="0%" y1="0%" x2="100%" y2="0%"><stop offset="0%" stop-color="#06b6d4"/><stop offset="50%" stop-color="#ec4899"/><stop offset="100%" stop-color="#8b5cf6"/></linearGradient><filter id="tw-blur"><feGaussianBlur stdDeviation="8"/></filter></defs></g>
-  <g class="overlay"><rect x="52.14" y="246" width="243.32" height="30" rx="15" fill="url(#tw-beam)" opacity="0.6" filter="url(#tw-blur)"/></g>
-  <g class="overlay"><rect x="69.52000000000001" y="256" width="208.56" height="20" rx="10" fill="url(#tw-beam)" opacity="0.3" filter="url(#tw-blur)"/></g>
-  <g transform="translate(40, 40)">
-    <g mask="url(#shadow-mask)">
-      <rect x="0" y="0" width="267.6" height="156" fill="#1e293b" rx="8" ry="8" filter="url(#shadow)"/>
-    </g>
-    <rect x="0" y="0" width="267.6" height="156" fill="#1e293b" rx="8" ry="8"/>
+  <g class="overlay"><rect x="59.34" y="269" width="276.92" height="30" rx="15" fill="url(#tw-beam)" opacity="0.6" filter="url(#tw-blur)"/></g>
+  <g class="overlay"><rect x="79.12" y="279" width="237.36" height="20" rx="10" fill="url(#tw-beam)" opacity="0.3" filter="url(#tw-blur)"/></g>
+  <g transform="translate(64, 64)">
+    <rect x="0" y="0" width="267.6" height="156" fill="transparent" rx="8" ry="8"/>
     <g class="title-bar">
-      <rect x="0" y="33" width="267.6" height="1" fill="#ffffff1a" shape-rendering="crispEdges"/>
-    <circle cx="12" cy="16.5" r="4" fill="#ffffff33"/>
-    <circle cx="28" cy="16.5" r="4" fill="#ffffff33"/>
-    <circle cx="44" cy="16.5" r="4" fill="#ffffff33"/>
+      <rect x="0" y="33" width="267.6" height="1" fill="#222222" shape-rendering="crispEdges"/>
+    <circle cx="12" cy="16.5" r="4" fill="#444444"/>
+    <circle cx="28" cy="16.5" r="4" fill="#444444"/>
+    <circle cx="44" cy="16.5" r="4" fill="#444444"/>
+    <text x="133.8" y="21.17" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="12" text-anchor="middle" opacity="0.8">tailwind</text>
     </g>
-    <rect x="0.5" y="0.5" width="266.6" height="155" fill="none" stroke="#ffffff40" stroke-width="1" rx="8" ry="8"/>
+    <rect x="0.5" y="0.5" width="266.6" height="155" fill="none" stroke="#2a2a2a" stroke-width="1" rx="8" ry="8"/>
     <g class="text">
       <text x="37.2" y="60" font-family="'JetBrains Mono', monospace" font-size="14" fill="#ffffff66" text-anchor="end" xml:space="preserve">1</text>
       <text y="60" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="45.6" fill="#e5e7eb">const</tspan><tspan x="87.6" fill="#ffffff"> a</tspan><tspan x="104.4" fill="#e5e7eb">:</tspan><tspan x="112.8" fill="#ffffff"> </tspan><tspan x="121.2" fill="#ffffff">string</tspan><tspan x="171.6" fill="#ffffff"> </tspan><tspan x="180" fill="#e5e7eb">=</tspan><tspan x="188.4" fill="#ffffff"> </tspan><tspan x="196.8" fill="#d1d5db">&#39;cool&#39;</tspan><tspan x="247.2" fill="#ffffff">;</tspan></text>

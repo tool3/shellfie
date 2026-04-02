@@ -13,6 +13,7 @@ import type {
   Template,
   Theme,
 } from '../types';
+import { generateAnimation } from '../animations';
 import { parseAnsi } from '../parser';
 import { createPatternDef } from '../patterns';
 import { escapeXml, renderSpan } from './text';
@@ -433,7 +434,7 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
   const {
     template, title, titleAlignment, titleStyle, theme, font, padding,
     watermark, customGlyphs, header, footer, controls, background,
-    lineNumbers, badge, backgroundOpacity, glow, overlays,
+    lineNumbers, badge, backgroundOpacity, glow, overlays, animation,
   } = options;
   const dim = calculateDimensions(lines, options);
   const fontFamily = font.embedData ? `'EmbeddedFont', ${font.family}` : font.family;
@@ -502,6 +503,14 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
   const resolvedOverlays = typeof rawOverlays === 'string' ? [rawOverlays] : rawOverlays ?? [];
   for (const overlay of resolvedOverlays) {
     svgParts.push(`  <g class="overlay">${overlay}</g>`);
+  }
+
+  // Animation (SMIL elements between background/overlays and terminal)
+  if (animation) {
+    const animSvg = generateAnimation(animation, svgWidth, svgHeight, bgPadding, template.shell.borderRadius);
+    if (animSvg) {
+      svgParts.push(`  <g class="animation">${animSvg}</g>`);
+    }
   }
 
   // Terminal group (offset by background padding)

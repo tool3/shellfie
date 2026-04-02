@@ -388,6 +388,7 @@ const resolveOptions = (options: shellfieOptions = {}, input: string = ''): Rend
     backgroundOpacity: merged.backgroundOpacity ?? 1,
     glow: resolveGlow(merged.glow, template.shell.borderColor),
     overlays: resolveOverlays(merged.overlays),
+    animation: merged.animation ?? null,
   };
 };
 
@@ -449,6 +450,8 @@ export type {
   WatermarkConfig,
   WatermarkStyle
 } from './types';
+
+export type { AnimationType } from './animations';
 
 export { presets } from './presets';
 

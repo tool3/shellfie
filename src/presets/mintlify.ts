@@ -1,9 +1,12 @@
 import type { Preset } from '../types';
 import { createTemplate } from '../templates';
 
-const pad = 40;
+const pad = 64;
 
 export const mintlify: Preset = {
+  title: 'mintlify',
+  titleAlignment: 'left',
+  titleStyle: 'tab-underline',
   template: createTemplate('mintlify', {
     titleBar: true,
     titleBarHeight: 40,
@@ -11,19 +14,17 @@ export const mintlify: Preset = {
     controls: true,
     controlsPosition: 'left',
     controlStyle: {
-      close: '#ffffff33',
-      minimize: '#ffffff33',
-      maximize: '#ffffff33',
+      close: '#444444',
+      minimize: '#444444',
+      maximize: '#444444',
       radius: 4,
       spacing: 16,
       size: 8,
     },
     padding: 16,
-    shadow: true,
-    border: true,
-    borderColor: '#ffffff1a',
-    borderWidth: 1,
-    header: { border: true, borderColor: '#141818', borderWidth: 1, backgroundColor: '#010201' },
+    shadow: false,
+    border: '1px solid #1a1a1a',
+    header: { border: '1px solid #141818', backgroundColor: '#010201' },
   }),
   fontFamily: "'JetBrains Mono', monospace",
   theme: {
@@ -61,18 +62,9 @@ export const mintlify: Preset = {
     const tw = w - pad * 2;
     const th = h - pad * 2;
     return [
-      // Heavy layered shadow on terminal
-      `<defs><filter id="mintlify-shadow" x="-20%" y="-20%" width="140%" height="140%">` +
-        `<feDropShadow dx="0" dy="8" stdDeviation="16" flood-color="rgba(0,0,0,0.5)"/>` +
-        `<feDropShadow dx="0" dy="4" stdDeviation="8" flood-color="rgba(0,0,0,0.3)"/>` +
-        `<feDropShadow dx="0" dy="2" stdDeviation="4" flood-color="rgba(0,0,0,0.2)"/>` +
-      `</filter></defs>`,
-      // Teal-tinted accent glow
-      `<defs><radialGradient id="mintlify-glow">` +
-        `<stop offset="0%" stop-color="#4EC9B0" stop-opacity="0.06"/>` +
-        `<stop offset="100%" stop-color="#4EC9B0" stop-opacity="0"/>` +
-      `</radialGradient></defs>`,
-      `<rect x="${tx}" y="${ty}" width="${tw}" height="${th}" fill="url(#mintlify-glow)" rx="12" ry="12"/>`,
+      // Heavy layered shadow beneath terminal — using solid dark rects
+      `<rect x="${tx + 4}" y="${ty + 8}" width="${tw}" height="${th}" rx="12" ry="12" fill="#050505" shape-rendering="crispEdges"/>`,
+      `<rect x="${tx + 2}" y="${ty + 4}" width="${tw}" height="${th}" rx="12" ry="12" fill="#080808" shape-rendering="crispEdges"/>`,
     ];
   },
 };
