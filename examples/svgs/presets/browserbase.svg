@@ -1,43 +1,31 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 355.6 240" width="355.6" height="240">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 403.6 288" width="403.6" height="288">
   <defs>
-    <filter id="shadow" x="-50%" y="-50%" width="200%" height="200%">
-      <feGaussianBlur in="SourceAlpha" stdDeviation="8" result="blur"/>
-      <feOffset in="blur" dx="0" dy="4" result="offsetBlur"/>
-      <feFlood flood-color="#000000" flood-opacity="0.3" result="color"/>
-      <feComposite in="color" in2="offsetBlur" operator="in" result="shadow"/>
-    </filter>
-    <mask id="shadow-mask">
-      <rect x="-50" y="-50" width="375.6" height="260" fill="white"/>
-      <rect x="0" y="0" width="275.6" height="160" rx="7" ry="7" fill="black"/>
-    </mask>
     <pattern id="bg-pattern" width="50" height="50" patternUnits="userSpaceOnUse">
       <line x1="0" y1="50" x2="50" y2="50" stroke="#121212" stroke-width="1"/>
       <line x1="50" y1="0" x2="50" y2="50" stroke="#121212" stroke-width="1"/>
     </pattern>
   </defs>
-  <rect x="0" y="0" width="355.6" height="240" fill="#080808" rx="12" ry="12"/>
-  <rect x="0" y="0" width="355.6" height="240" fill="url(#bg-pattern)" rx="12" ry="12"/>
-  <g class="overlay"><line x1="40" y1="40" x2="315.6" y2="40" stroke="#101010" stroke-width="1"/></g>
-  <g class="overlay"><line x1="40" y1="60" x2="315.6" y2="60" stroke="#101010" stroke-width="1"/></g>
-  <g class="overlay"><line x1="40" y1="80" x2="315.6" y2="80" stroke="#101010" stroke-width="1"/></g>
-  <g class="overlay"><line x1="40" y1="100" x2="315.6" y2="100" stroke="#101010" stroke-width="1"/></g>
-  <g class="overlay"><line x1="40" y1="120" x2="315.6" y2="120" stroke="#101010" stroke-width="1"/></g>
-  <g class="overlay"><line x1="40" y1="140" x2="315.6" y2="140" stroke="#101010" stroke-width="1"/></g>
-  <g class="overlay"><line x1="40" y1="160" x2="315.6" y2="160" stroke="#101010" stroke-width="1"/></g>
-  <g class="overlay"><line x1="40" y1="180" x2="315.6" y2="180" stroke="#101010" stroke-width="1"/></g>
-  <g class="overlay"><line x1="40" y1="200" x2="315.6" y2="200" stroke="#101010" stroke-width="1"/></g>
-  <g transform="translate(40, 40)">
-    <g mask="url(#shadow-mask)">
-      <rect x="0" y="0" width="275.6" height="160" fill="#0f0f0f" rx="7" ry="7" filter="url(#shadow)"/>
-    </g>
-    <rect x="0" y="0" width="275.6" height="160" fill="#0f0f0f" rx="7" ry="7"/>
+  <rect x="0" y="0" width="403.6" height="288" fill="#080808" rx="12" ry="12"/>
+  <rect x="0" y="0" width="403.6" height="288" fill="url(#bg-pattern)" rx="12" ry="12"/>
+  <g class="overlay"><rect x="64" y="64" width="275.6" height="1" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
+  <g class="overlay"><rect x="64" y="84" width="275.6" height="1" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
+  <g class="overlay"><rect x="64" y="104" width="275.6" height="1" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
+  <g class="overlay"><rect x="64" y="124" width="275.6" height="1" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
+  <g class="overlay"><rect x="64" y="144" width="275.6" height="1" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
+  <g class="overlay"><rect x="64" y="164" width="275.6" height="1" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
+  <g class="overlay"><rect x="64" y="184" width="275.6" height="1" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
+  <g class="overlay"><rect x="64" y="204" width="275.6" height="1" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
+  <g class="overlay"><rect x="64" y="224" width="275.6" height="1" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
+  <g transform="translate(64, 64)">
+    <rect x="0" y="0" width="275.6" height="160" fill="transparent" rx="7" ry="7"/>
     <g class="title-bar">
-      <rect x="0" y="29" width="275.6" height="1" fill="#ffffff1a" shape-rendering="crispEdges"/>
-    <circle cx="16" cy="14.5" r="4" fill="#ffffff33"/>
-    <circle cx="32" cy="14.5" r="4" fill="#ffffff33"/>
-    <circle cx="48" cy="14.5" r="4" fill="#ffffff33"/>
+      <rect x="0" y="29" width="275.6" height="1" fill="#1a1a1a" shape-rendering="crispEdges"/>
+    <circle cx="16" cy="14.5" r="4" fill="#444444"/>
+    <circle cx="32" cy="14.5" r="4" fill="#444444"/>
+    <circle cx="48" cy="14.5" r="4" fill="#444444"/>
+    <text x="72" y="19.17" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="12" text-anchor="start" opacity="0.8">browserbase</text>
     </g>
-    <rect x="1" y="1" width="273.6" height="158" fill="none" stroke="#ffffff1a" stroke-width="2" rx="7" ry="7"/>
+    <rect x="0.5" y="0.5" width="274.6" height="159" fill="none" stroke="#222222" stroke-width="1" rx="7" ry="7"/>
     <g class="text">
       <text x="41.2" y="60" font-family="'JetBrains Mono', monospace" font-size="14" fill="#FFFFFF66" text-anchor="end" xml:space="preserve">1</text>
       <text y="60" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="49.6" fill="#FF4500">const</tspan><tspan x="91.6" fill="#FFFFFF"> a</tspan><tspan x="108.4" fill="#FF6B35">:</tspan><tspan x="116.8" fill="#FFFFFF"> </tspan><tspan x="125.2" fill="#FF6B35">string</tspan><tspan x="175.6" fill="#FFFFFF"> </tspan><tspan x="184" fill="#FF6B35">=</tspan><tspan x="192.4" fill="#FFFFFF"> </tspan><tspan x="200.8" fill="#FFB800">&#39;cool&#39;</tspan><tspan x="251.2" fill="#FFFFFF">;</tspan></text>

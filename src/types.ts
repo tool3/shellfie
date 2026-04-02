@@ -1,3 +1,5 @@
+import type { AnimationType } from './animations';
+
 export interface RGB {
   r: number;
   g: number;
@@ -305,6 +307,7 @@ export interface shellfieOptions {
     opacity?: number;
   };
   overlays?: string | string[] | ((width: number, height: number) => string | string[]);
+  animation?: AnimationType;
 }
 
 export interface ResolvedHeaderConfig {
@@ -385,4 +388,5 @@ export interface RenderOptions {
   backgroundOpacity: number;
   glow: ResolvedGlow | null;
   overlays: shellfieOptions['overlays'];
+  animation: AnimationType | null;
 }

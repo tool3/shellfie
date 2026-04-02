@@ -11,15 +11,13 @@ export const firecrawl: Preset = {
     borderRadius: 0,
     controls: false,
     padding: 16,
-    shadow: true,
-    border: true,
-    borderColor: '#ffffff1a',
-    borderWidth: 1,
+    shadow: false,
+    border: '1px solid #222222',
   }),
   fontFamily: "'JetBrains Mono', monospace",
   theme: {
     name: 'firecrawl',
-    background: '#0a0a0a',
+    background: 'transparent',
     foreground: '#ffffff',
     cursor: '#ffffff',
     selection: '#3a3a3a',
@@ -53,7 +51,7 @@ export const firecrawl: Preset = {
     for (let x = 0; x <= w; x += gridSize) {
       for (let y = 0; y <= h; y += gridSize) {
         diamonds.push(
-          `<polygon points="${x},${y - diamondSize} ${x + diamondSize},${y} ${x},${y + diamondSize} ${x - diamondSize},${y}" fill="${gridColor}"/>`
+          `<polygon points="${x},${y - diamondSize} ${x + diamondSize},${y} ${x},${y + diamondSize} ${x - diamondSize},${y}" fill="${gridColor}" shape-rendering="crispEdges"/>`
         );
       }
     }

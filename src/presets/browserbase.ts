@@ -1,9 +1,12 @@
 import type { Preset } from '../types';
 import { createTemplate } from '../templates';
 
-const pad = 40;
+const pad = 64;
+const lineColor = '#1a1a1a';
 
 export const browserbase: Preset = {
+  title: 'browserbase',
+  titleAlignment: 'left',
   template: createTemplate('browserbase', {
     titleBar: true,
     titleBarHeight: 30,
@@ -11,24 +14,22 @@ export const browserbase: Preset = {
     controls: true,
     controlsPosition: 'left',
     controlStyle: {
-      close: '#ffffff33',
-      minimize: '#ffffff33',
-      maximize: '#ffffff33',
+      close: '#444444',
+      minimize: '#444444',
+      maximize: '#444444',
       radius: 4,
       spacing: 16,
       size: 8,
     },
     padding: 16,
-    shadow: true,
-    border: true,
-    borderColor: '#ffffff1a',
-    borderWidth: 2,
-    header: { border: true, borderColor: '#ffffff1a', borderWidth: 1 },
+    shadow: false,
+    border: '1px solid #222222',
+    header: { border: '1px solid #1a1a1a' },
   }),
   fontFamily: "'JetBrains Mono', monospace",
   theme: {
     name: 'browserbase',
-    background: '#0f0f0f',
+    background: 'transparent',
     foreground: '#FFFFFF',
     cursor: '#FFFFFF',
     selection: '#3a3a3a',
@@ -57,11 +58,10 @@ export const browserbase: Preset = {
   },
   overlays: (w, h) => {
     const lines: string[] = [];
-    const lineColor = '#101010';
     const spacing = 20;
-    // Horizontal gridlines across the background area
+    // Horizontal gridlines across the background area using filled rects
     for (let y = pad; y <= h - pad; y += spacing) {
-      lines.push(`<line x1="${pad}" y1="${y}" x2="${w - pad}" y2="${y}" stroke="${lineColor}" stroke-width="1"/>`);
+      lines.push(`<rect x="${pad}" y="${y}" width="${w - pad * 2}" height="1" fill="${lineColor}" shape-rendering="crispEdges"/>`);
     }
     return lines;
   },

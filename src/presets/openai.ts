@@ -7,10 +7,8 @@ export const openai: Preset = {
     borderRadius: 8,
     controls: false,
     padding: 16,
-    shadow: true,
-    border: true,
-    borderColor: '#ffffff1a',
-    borderWidth: 1,
+    shadow: false,
+    border: '1px solid #222222',
   }),
   fontFamily: "'JetBrains Mono', monospace",
   theme: {

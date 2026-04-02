@@ -1,10 +1,15 @@
 import type { Preset } from '../types';
 import { createTemplate } from '../templates';
 
-const pad = 40;
+const pad = 64;
 const lineColor = '#1b1b1b';
 
 export const triggerdev: Preset = {
+  title: 'triggerdev',
+  titleAlignment: 'left',
+  badge: {
+    color: '#878C99',
+  },
   template: createTemplate('triggerdev', {
     titleBar: true,
     titleBarHeight: 40,
@@ -12,19 +17,17 @@ export const triggerdev: Preset = {
     controls: true,
     controlsPosition: 'left',
     controlStyle: {
-      close: '#ffffff33',
-      minimize: '#ffffff33',
-      maximize: '#ffffff33',
+      close: '#444444',
+      minimize: '#444444',
+      maximize: '#444444',
       radius: 4,
       spacing: 16,
       size: 8,
     },
     padding: 16,
-    shadow: true,
-    border: true,
-    borderColor: '#ffffff1a',
-    borderWidth: 1,
-    header: { border: true, borderColor: '#ffffff1a', borderWidth: 1, backgroundColor: '#16181d' },
+    shadow: false,
+    border: '1px solid #1e1e1e',
+    header: { border: '1px solid #1e1e1e', backgroundColor: '#16181d' },
   }),
   fontFamily: "'JetBrains Mono', monospace",
   theme: {
@@ -56,15 +59,12 @@ export const triggerdev: Preset = {
     padding: pad,
     pattern: { type: 'diagonal-stripes', color: '#181818', size: 8 },
   },
-  overlays: (w, h) => [
-    // Grid lines at terminal boundary (segments outside terminal box)
-    `<line x1="0" y1="${pad}" x2="${pad}" y2="${pad}" stroke="${lineColor}" stroke-width="1"/>`,
-    `<line x1="${w - pad}" y1="${pad}" x2="${w}" y2="${pad}" stroke="${lineColor}" stroke-width="1"/>`,
-    `<line x1="0" y1="${h - pad}" x2="${pad}" y2="${h - pad}" stroke="${lineColor}" stroke-width="1"/>`,
-    `<line x1="${w - pad}" y1="${h - pad}" x2="${w}" y2="${h - pad}" stroke="${lineColor}" stroke-width="1"/>`,
-    `<line x1="${pad}" y1="0" x2="${pad}" y2="${pad}" stroke="${lineColor}" stroke-width="1"/>`,
-    `<line x1="${pad}" y1="${h - pad}" x2="${pad}" y2="${h}" stroke="${lineColor}" stroke-width="1"/>`,
-    `<line x1="${w - pad}" y1="0" x2="${w - pad}" y2="${pad}" stroke="${lineColor}" stroke-width="1"/>`,
-    `<line x1="${w - pad}" y1="${h - pad}" x2="${w - pad}" y2="${h}" stroke="${lineColor}" stroke-width="1"/>`,
-  ],
+  overlays: (w, h) => {
+    const bx = w - pad;
+    const by = h - pad;
+    return [
+      // Grid lines at terminal boundary using filled path
+      `<path d="M 0 ${pad} L ${w} ${pad} L ${w} ${pad + 1} L 0 ${pad + 1} Z M 0 ${by} L ${w} ${by} L ${w} ${by + 1} L 0 ${by + 1} Z M ${pad} 0 L ${pad + 1} 0 L ${pad + 1} ${h} L ${pad} ${h} Z M ${bx} 0 L ${bx + 1} 0 L ${bx + 1} ${h} L ${bx} ${h} Z" fill="${lineColor}" fill-rule="nonzero" shape-rendering="crispEdges"/>`,
+    ];
+  },
 };

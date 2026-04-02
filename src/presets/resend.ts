@@ -10,11 +10,12 @@ export const resend: Preset = {
     controlsPosition: 'left',
     controlStyle: { close: '', minimize: '', maximize: '', radius: 0, spacing: 0, size: 0 },
     padding: 16,
-    shadow: true,
+    shadow: false,
     border: false,
     borderColor: '#333333',
     borderWidth: 1,
   }),
+  fontFamily: "'JetBrains Mono', monospace",
   theme: {
     name: 'resend',
     background: '#191919',
@@ -44,7 +45,7 @@ export const resend: Preset = {
     padding: 20,
   },
   overlays: [
-    '<polygon points="400,0 600,0 300,400 100,400" fill="#ffffff06"/>',
-    '<polygon points="500,0 700,0 400,400 200,400" fill="#ffffff04"/>',
+    '<polygon points="400,0 600,0 300,400 100,400" fill="#151515" shape-rendering="crispEdges"/>',
+    '<polygon points="500,0 700,0 400,400 200,400" fill="#131313" shape-rendering="crispEdges"/>',
   ],
 };
