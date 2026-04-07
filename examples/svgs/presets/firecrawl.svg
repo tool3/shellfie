@@ -1,50 +1,12 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 403.6 258" width="403.6" height="258">
-  <defs>
-    <pattern id="bg-pattern" width="60" height="60" patternUnits="userSpaceOnUse">
-      <line x1="0" y1="60" x2="60" y2="60" stroke="#222222" stroke-width="1"/>
-      <line x1="60" y1="0" x2="60" y2="60" stroke="#222222" stroke-width="1"/>
-    </pattern>
-  </defs>
-  <rect x="0" y="0" width="403.6" height="258" fill="#000000" rx="12" ry="12"/>
-  <rect x="0" y="0" width="403.6" height="258" fill="url(#bg-pattern)" rx="12" ry="12"/>
-  <g class="overlay"><polygon points="0,-4 4,0 0,4 -4,0" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="0,56 4,60 0,64 -4,60" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="0,116 4,120 0,124 -4,120" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="0,176 4,180 0,184 -4,180" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="0,236 4,240 0,244 -4,240" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="60,-4 64,0 60,4 56,0" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="60,56 64,60 60,64 56,60" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="60,116 64,120 60,124 56,120" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="60,176 64,180 60,184 56,180" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="60,236 64,240 60,244 56,240" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="120,-4 124,0 120,4 116,0" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="120,56 124,60 120,64 116,60" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="120,116 124,120 120,124 116,120" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="120,176 124,180 120,184 116,180" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="120,236 124,240 120,244 116,240" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="180,-4 184,0 180,4 176,0" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="180,56 184,60 180,64 176,60" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="180,116 184,120 180,124 176,120" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="180,176 184,180 180,184 176,180" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="180,236 184,240 180,244 176,240" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="240,-4 244,0 240,4 236,0" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="240,56 244,60 240,64 236,60" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="240,116 244,120 240,124 236,120" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="240,176 244,180 240,184 236,180" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="240,236 244,240 240,244 236,240" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="300,-4 304,0 300,4 296,0" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="300,56 304,60 300,64 296,60" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="300,116 304,120 300,124 296,120" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="300,176 304,180 300,184 296,180" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="300,236 304,240 300,244 296,240" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="360,-4 364,0 360,4 356,0" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="360,56 364,60 360,64 356,60" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="360,116 364,120 360,124 356,120" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="360,176 364,180 360,184 356,180" fill="#222222" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><polygon points="360,236 364,240 360,244 356,240" fill="#222222" shape-rendering="crispEdges"/></g>
+  <rect x="0" y="0" width="403.6" height="258" fill="#000000" rx="0" ry="0"/>
+  <g class="overlay"><path d="M 0 64 L 403.6 64 L 403.6 65 L 0 65 ZM 0 194 L 403.6 194 L 403.6 195 L 0 195 ZM 64 0 L 65 0 L 65 258 L 64 258 ZM 339.6 0 L 340.6 0 L 340.6 258 L 339.6 258 Z" fill="#222222" fill-rule="nonzero" shape-rendering="crispEdges"/></g>
+  <g class="overlay"><path d="M 64.5 56.5 L 66.9 62.1 L 72.5 64.5 L 66.9 66.9 L 64.5 72.5 L 62.1 66.9 L 56.5 64.5 L 62.1 62.1 Z" fill="#222222"/></g>
+  <g class="overlay"><path d="M 340.1 56.5 L 342.5 62.1 L 348.1 64.5 L 342.5 66.9 L 340.1 72.5 L 337.70000000000005 66.9 L 332.1 64.5 L 337.70000000000005 62.1 Z" fill="#222222"/></g>
+  <g class="overlay"><path d="M 64.5 186.5 L 66.9 192.1 L 72.5 194.5 L 66.9 196.9 L 64.5 202.5 L 62.1 196.9 L 56.5 194.5 L 62.1 192.1 Z" fill="#222222"/></g>
+  <g class="overlay"><path d="M 340.1 186.5 L 342.5 192.1 L 348.1 194.5 L 342.5 196.9 L 340.1 202.5 L 337.70000000000005 196.9 L 332.1 194.5 L 337.70000000000005 192.1 Z" fill="#222222"/></g>
   <g transform="translate(64, 64)">
     <rect x="0" y="0" width="275.6" height="130" fill="transparent" rx="0" ry="0"/>
-    <path d="M 0 0 L 275.6 0 L 275.6 1 L 0 1 Z M 0 129 L 275.6 129 L 275.6 130 L 0 130 Z M 0 1 L 1 1 L 1 129 L 0 129 Z M 274.6 1 L 275.6 1 L 275.6 129 L 274.6 129 Z" fill="#222222" fill-rule="nonzero" shape-rendering="crispEdges"/>
     <g class="text">
       <text x="41.2" y="30" font-family="'JetBrains Mono', monospace" font-size="14" fill="#ffffff66" text-anchor="end" xml:space="preserve">1</text>
       <text y="30" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="49.6" fill="#a7a7a7">const</tspan><tspan x="91.6" fill="#ffffff"> a</tspan><tspan x="108.4" fill="#e97317">:</tspan><tspan x="116.8" fill="#ffffff"> </tspan><tspan x="125.2" fill="#ffffff">string</tspan><tspan x="175.6" fill="#ffffff"> </tspan><tspan x="184" fill="#e97317">=</tspan><tspan x="192.4" fill="#ffffff"> </tspan><tspan x="200.8" fill="#e97317">&#39;cool&#39;</tspan><tspan x="251.2" fill="#ffffff">;</tspan></text>

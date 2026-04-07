@@ -12,7 +12,7 @@
   <g class="overlay"><rect x="59.34" y="269" width="276.92" height="30" rx="15" fill="url(#tw-beam)" opacity="0.6" filter="url(#tw-blur)"/></g>
   <g class="overlay"><rect x="79.12" y="279" width="237.36" height="20" rx="10" fill="url(#tw-beam)" opacity="0.3" filter="url(#tw-blur)"/></g>
   <g transform="translate(64, 64)">
-    <rect x="0" y="0" width="267.6" height="156" fill="transparent" rx="8" ry="8"/>
+    <rect x="0" y="0" width="267.6" height="156" fill="#0f172a" rx="8" ry="8"/>
     <g class="title-bar">
       <rect x="0" y="33" width="267.6" height="1" fill="#222222" shape-rendering="crispEdges"/>
     <circle cx="12" cy="16.5" r="4" fill="#444444"/>

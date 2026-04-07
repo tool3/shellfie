@@ -1,31 +1,20 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 403.6 288" width="403.6" height="288">
-  <defs>
-    <pattern id="bg-pattern" width="50" height="50" patternUnits="userSpaceOnUse">
-      <line x1="0" y1="50" x2="50" y2="50" stroke="#121212" stroke-width="1"/>
-      <line x1="50" y1="0" x2="50" y2="50" stroke="#121212" stroke-width="1"/>
-    </pattern>
-  </defs>
-  <rect x="0" y="0" width="403.6" height="288" fill="#080808" rx="12" ry="12"/>
-  <rect x="0" y="0" width="403.6" height="288" fill="url(#bg-pattern)" rx="12" ry="12"/>
-  <g class="overlay"><rect x="64" y="64" width="275.6" height="1" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><rect x="64" y="84" width="275.6" height="1" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><rect x="64" y="104" width="275.6" height="1" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><rect x="64" y="124" width="275.6" height="1" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><rect x="64" y="144" width="275.6" height="1" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><rect x="64" y="164" width="275.6" height="1" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><rect x="64" y="184" width="275.6" height="1" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><rect x="64" y="204" width="275.6" height="1" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><rect x="64" y="224" width="275.6" height="1" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
+  <rect x="0" y="0" width="403.6" height="288" fill="#080808" rx="0" ry="0"/>
+  <g class="overlay"><rect x="90" y="0" width="2" height="288" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
+  <g class="overlay"><rect x="168" y="0" width="2" height="288" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
+  <g class="overlay"><rect x="246" y="0" width="2" height="288" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
+  <g class="overlay"><rect x="324" y="0" width="2" height="288" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
+  <g class="overlay"><rect x="402" y="0" width="2" height="288" fill="#1a1a1a" shape-rendering="crispEdges"/></g>
   <g transform="translate(64, 64)">
-    <rect x="0" y="0" width="275.6" height="160" fill="transparent" rx="7" ry="7"/>
+    <rect x="0" y="0" width="275.6" height="160" fill="#0f0f0f" rx="0" ry="0"/>
     <g class="title-bar">
       <rect x="0" y="29" width="275.6" height="1" fill="#1a1a1a" shape-rendering="crispEdges"/>
     <circle cx="16" cy="14.5" r="4" fill="#444444"/>
     <circle cx="32" cy="14.5" r="4" fill="#444444"/>
     <circle cx="48" cy="14.5" r="4" fill="#444444"/>
-    <text x="72" y="19.17" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="12" text-anchor="start" opacity="0.8">browserbase</text>
+    <text x="137.8" y="19.17" fill="#FFFFFF" font-family="'JetBrains Mono', monospace" font-size="12" text-anchor="middle" opacity="0.8">browserbase</text>
     </g>
-    <rect x="0.5" y="0.5" width="274.6" height="159" fill="none" stroke="#222222" stroke-width="1" rx="7" ry="7"/>
+    <path d="M 0 0 L 275.6 0 L 275.6 2 L 0 2 Z M 0 158 L 275.6 158 L 275.6 160 L 0 160 Z M 0 2 L 2 2 L 2 158 L 0 158 Z M 273.6 2 L 275.6 2 L 275.6 158 L 273.6 158 Z" fill="#222222" fill-rule="nonzero" shape-rendering="crispEdges"/>
     <g class="text">
       <text x="41.2" y="60" font-family="'JetBrains Mono', monospace" font-size="14" fill="#FFFFFF66" text-anchor="end" xml:space="preserve">1</text>
       <text y="60" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="49.6" fill="#FF4500">const</tspan><tspan x="91.6" fill="#FFFFFF"> a</tspan><tspan x="108.4" fill="#FF6B35">:</tspan><tspan x="116.8" fill="#FFFFFF"> </tspan><tspan x="125.2" fill="#FF6B35">string</tspan><tspan x="175.6" fill="#FFFFFF"> </tspan><tspan x="184" fill="#FF6B35">=</tspan><tspan x="192.4" fill="#FFFFFF"> </tspan><tspan x="200.8" fill="#FFB800">&#39;cool&#39;</tspan><tspan x="251.2" fill="#FFFFFF">;</tspan></text>

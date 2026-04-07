@@ -16,8 +16,7 @@
   <g class="overlay"><rect x="63" y="193" width="3" height="3" fill="white"/></g>
   <g class="overlay"><rect x="338.6" y="193" width="3" height="3" fill="white"/></g>
   <g transform="translate(64, 64)">
-    <rect x="0" y="0" width="275.6" height="130" fill="transparent" rx="24" ry="24"/>
-    <rect x="0.5" y="0.5" width="274.6" height="129" fill="none" stroke="#414141" stroke-width="1" rx="24" ry="24"/>
+    <rect x="0" y="0" width="275.6" height="130" fill="#111111" rx="24" ry="24"/>
     <g class="text">
       <text x="41.2" y="30" font-family="'JetBrains Mono', monospace" font-size="14" fill="#ffffff66" text-anchor="end" xml:space="preserve">1</text>
       <text y="30" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="49.6" fill="#fff9b2">const</tspan><tspan x="91.6" fill="#ffffff"> a</tspan><tspan x="108.4" fill="#8F8FFF">:</tspan><tspan x="116.8" fill="#ffffff"> </tspan><tspan x="125.2" fill="#8F8FFF">string</tspan><tspan x="175.6" fill="#ffffff"> </tspan><tspan x="184" fill="#8F8FFF">=</tspan><tspan x="192.4" fill="#ffffff"> </tspan><tspan x="200.8" fill="#a1ffe0">&#39;cool&#39;</tspan><tspan x="251.2" fill="#ffffff">;</tspan></text>
