@@ -28,7 +28,7 @@ export const tailwind: Preset = {
   fontFamily: "'JetBrains Mono', monospace",
   theme: {
     name: 'tailwind',
-    background: 'transparent',
+    background: '#0f172a',
     foreground: '#ffffff',
     cursor: '#ffffff',
     selection: '#3a3a3a',

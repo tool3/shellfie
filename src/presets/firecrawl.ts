@@ -2,8 +2,15 @@ import type { Preset } from '../types';
 import { createTemplate } from '../templates';
 
 const pad = 64;
-const gridColor = '#222222';
-const gridSize = 60;
+const lineColor = '#222222';
+const starColor = '#222222';
+
+// 4-pointed star shape at a given center point
+const star = (cx: number, cy: number, size: number = 8) => {
+  const s = size;
+  const inner = size * 0.3;
+  return `<path d="M ${cx} ${cy - s} L ${cx + inner} ${cy - inner} L ${cx + s} ${cy} L ${cx + inner} ${cy + inner} L ${cx} ${cy + s} L ${cx - inner} ${cy + inner} L ${cx - s} ${cy} L ${cx - inner} ${cy - inner} Z" fill="${starColor}"/>`;
+};
 
 export const firecrawl: Preset = {
   template: createTemplate('firecrawl', {
@@ -12,7 +19,7 @@ export const firecrawl: Preset = {
     controls: false,
     padding: 16,
     shadow: false,
-    border: '1px solid #222222',
+    border: false,
   }),
   fontFamily: "'JetBrains Mono', monospace",
   theme: {
@@ -21,7 +28,7 @@ export const firecrawl: Preset = {
     foreground: '#ffffff',
     cursor: '#ffffff',
     selection: '#3a3a3a',
-    black: '#1a1a1a',
+    black: '#000000',
     red: '#e97317',
     green: '#e97317',
     yellow: '#ffffff',
@@ -42,19 +49,23 @@ export const firecrawl: Preset = {
   background: {
     color: '#000000',
     padding: pad,
-    pattern: { type: 'grid', color: gridColor, size: gridSize },
+    borderRadius: 0,
   },
   overlays: (w, h) => {
-    const diamonds: string[] = [];
-    const diamondSize = 4;
-    // Diamond shapes at grid intersections
-    for (let x = 0; x <= w; x += gridSize) {
-      for (let y = 0; y <= h; y += gridSize) {
-        diamonds.push(
-          `<polygon points="${x},${y - diamondSize} ${x + diamondSize},${y} ${x},${y + diamondSize} ${x - diamondSize},${y}" fill="${gridColor}" shape-rendering="crispEdges"/>`
-        );
-      }
-    }
-    return diamonds;
+    const bx = w - pad;
+    const by = h - pad;
+    // 4 lines forming terminal boundary + 4 stars at corners (like vercel with stars)
+    const lines = `M 0 ${pad} L ${w} ${pad} L ${w} ${pad + 1} L 0 ${pad + 1} Z` +
+                  `M 0 ${by} L ${w} ${by} L ${w} ${by + 1} L 0 ${by + 1} Z` +
+                  `M ${pad} 0 L ${pad + 1} 0 L ${pad + 1} ${h} L ${pad} ${h} Z` +
+                  `M ${bx} 0 L ${bx + 1} 0 L ${bx + 1} ${h} L ${bx} ${h} Z`;
+    return [
+      `<path d="${lines}" fill="${lineColor}" fill-rule="nonzero" shape-rendering="crispEdges"/>`,
+      // 4-pointed stars at each corner of the terminal
+      star(pad + 0.5, pad + 0.5),
+      star(bx + 0.5, pad + 0.5),
+      star(pad + 0.5, by + 0.5),
+      star(bx + 0.5, by + 0.5),
+    ];
   },
 };

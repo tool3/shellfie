@@ -3,14 +3,15 @@ import { createTemplate } from '../templates';
 
 const pad = 64;
 const lineColor = '#1a1a1a';
+const gridSpacing = 78;
 
 export const browserbase: Preset = {
   title: 'browserbase',
-  titleAlignment: 'left',
+  titleAlignment: 'center',
   template: createTemplate('browserbase', {
     titleBar: true,
     titleBarHeight: 30,
-    borderRadius: 7,
+    borderRadius: 0,
     controls: true,
     controlsPosition: 'left',
     controlStyle: {
@@ -23,13 +24,13 @@ export const browserbase: Preset = {
     },
     padding: 16,
     shadow: false,
-    border: '1px solid #222222',
+    border: '2px solid #222222',
     header: { border: '1px solid #1a1a1a' },
   }),
   fontFamily: "'JetBrains Mono', monospace",
   theme: {
     name: 'browserbase',
-    background: 'transparent',
+    background: '#0f0f0f',
     foreground: '#FFFFFF',
     cursor: '#FFFFFF',
     selection: '#3a3a3a',
@@ -54,14 +55,16 @@ export const browserbase: Preset = {
   background: {
     color: '#080808',
     padding: pad,
-    pattern: { type: 'grid', color: '#121212', size: 50 },
+    borderRadius: 0,
   },
   overlays: (w, h) => {
+    // Vertical gridlines at regular intervals spanning full height
     const lines: string[] = [];
-    const spacing = 20;
-    // Horizontal gridlines across the background area using filled rects
-    for (let y = pad; y <= h - pad; y += spacing) {
-      lines.push(`<rect x="${pad}" y="${y}" width="${w - pad * 2}" height="1" fill="${lineColor}" shape-rendering="crispEdges"/>`);
+    for (let i = 0; i < 7; i++) {
+      const x = pad + 26 + i * gridSpacing;
+      if (x < w) {
+        lines.push(`<rect x="${x}" y="0" width="2" height="${h}" fill="${lineColor}" shape-rendering="crispEdges"/>`);
+      }
     }
     return lines;
   },

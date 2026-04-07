@@ -4,7 +4,6 @@ import { createTemplate } from '../templates';
 const pad = 64;
 const lineColor = '#353535';
 const dotColor = 'white';
-const borderColor = '#414141';
 
 export const elevenlabs: Preset = {
   template: createTemplate('elevenlabs', {
@@ -13,12 +12,12 @@ export const elevenlabs: Preset = {
     controls: false,
     padding: 16,
     shadow: false,
-    border: `1px solid ${borderColor}`,
+    border: false,
   }),
   fontFamily: "'JetBrains Mono', monospace",
   theme: {
     name: 'elevenlabs',
-    background: 'transparent',
+    background: '#111111',
     foreground: '#ffffff',
     cursor: '#ffffff',
     selection: '#3a3a3a',
@@ -76,7 +75,7 @@ export const elevenlabs: Preset = {
       `<line x1="${tx}" y1="${by}" x2="0" y2="${h}" stroke="${lineColor}" stroke-width="1"/>`,
       `<line x1="${bx}" y1="${by}" x2="${w}" y2="${h}" stroke="${lineColor}" stroke-width="1"/>`,
 
-      // 4 corner dots (white, 3x3, on top of everything)
+      // 4 corner dots (white, 3x3)
       `<rect x="${tx - 1}" y="${ty - 1}" width="3" height="3" fill="${dotColor}"/>`,
       `<rect x="${bx - 1}" y="${ty - 1}" width="3" height="3" fill="${dotColor}"/>`,
       `<rect x="${tx - 1}" y="${by - 1}" width="3" height="3" fill="${dotColor}"/>`,
