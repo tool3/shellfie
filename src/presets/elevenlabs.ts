@@ -2,7 +2,7 @@ import type { Preset } from '../types';
 import { createTemplate } from '../templates';
 
 const pad = 64;
-const lineColor = '#353535';
+const gridColor = '#353535';
 const dotColor = 'white';
 
 export const elevenlabs: Preset = {
@@ -14,14 +14,14 @@ export const elevenlabs: Preset = {
     shadow: false,
     border: false,
   }),
-  fontFamily: "'JetBrains Mono', monospace",
+  fontFamily: "'Roboto Mono', monospace",
   theme: {
     name: 'elevenlabs',
-    background: '#111111',
+    background: 'transparent',
     foreground: '#ffffff',
     cursor: '#ffffff',
     selection: '#3a3a3a',
-    black: '#1a1a1a',
+    black: '#191919',
     red: '#8F8FFF',
     green: '#a1ffe0',
     yellow: '#8F8FFF',
@@ -38,9 +38,9 @@ export const elevenlabs: Preset = {
     brightCyan: '#8F8FFF',
     brightWhite: '#ffffff',
   },
-  lineNumbers: true,
+  lineNumbers: false,
   background: {
-    color: '#111111',
+    color: '#0d0d0d',
     padding: pad,
     borderRadius: 0,
   },
@@ -56,24 +56,30 @@ export const elevenlabs: Preset = {
     const circleR = Math.max(tw, th) * 0.55;
 
     return [
-      // Large decorative circle centered on terminal
-      `<circle cx="${cx}" cy="${cy}" r="${circleR}" fill="none" stroke="${lineColor}" stroke-width="1"/>`,
+      // Large decorative circle
+      `<circle cx="${cx}" cy="${cy}" r="${circleR}" fill="none" stroke="${gridColor}" stroke-width="1"/>`,
 
-      // 3 horizontal gridlines (full width, solid fill)
-      `<rect x="0" y="${ty}" width="${w}" height="1" fill="${lineColor}" shape-rendering="crispEdges"/>`,
-      `<rect x="0" y="${Math.round(cy)}" width="${w}" height="1" fill="${lineColor}" shape-rendering="crispEdges"/>`,
-      `<rect x="0" y="${by}" width="${w}" height="1" fill="${lineColor}" shape-rendering="crispEdges"/>`,
+      // 3 horizontal gridlines (full SVG width)
+      `<rect x="0" y="${ty}" width="${w}" height="1" fill="${gridColor}" shape-rendering="crispEdges"/>`,
+      `<rect x="0" y="${Math.round(cy)}" width="${w}" height="1" fill="${gridColor}" shape-rendering="crispEdges"/>`,
+      `<rect x="0" y="${by}" width="${w}" height="1" fill="${gridColor}" shape-rendering="crispEdges"/>`,
 
-      // 3 vertical gridlines (full height, solid fill)
-      `<rect x="${tx}" y="0" width="1" height="${h}" fill="${lineColor}" shape-rendering="crispEdges"/>`,
-      `<rect x="${Math.round(cx)}" y="0" width="1" height="${h}" fill="${lineColor}" shape-rendering="crispEdges"/>`,
-      `<rect x="${bx}" y="0" width="1" height="${h}" fill="${lineColor}" shape-rendering="crispEdges"/>`,
+      // 3 vertical gridlines (full SVG height)
+      `<rect x="${tx}" y="0" width="1" height="${h}" fill="${gridColor}" shape-rendering="crispEdges"/>`,
+      `<rect x="${Math.round(cx)}" y="0" width="1" height="${h}" fill="${gridColor}" shape-rendering="crispEdges"/>`,
+      `<rect x="${bx}" y="0" width="1" height="${h}" fill="${gridColor}" shape-rendering="crispEdges"/>`,
 
-      // Diagonal lines from corners of terminal to corners of SVG
-      `<line x1="${tx}" y1="${ty}" x2="0" y2="0" stroke="${lineColor}" stroke-width="1"/>`,
-      `<line x1="${bx}" y1="${ty}" x2="${w}" y2="0" stroke="${lineColor}" stroke-width="1"/>`,
-      `<line x1="${tx}" y1="${by}" x2="0" y2="${h}" stroke="${lineColor}" stroke-width="1"/>`,
-      `<line x1="${bx}" y1="${by}" x2="${w}" y2="${h}" stroke="${lineColor}" stroke-width="1"/>`,
+      // Terminal background (opaque, rounded corners — covers gridlines in center)
+      `<rect x="${tx}" y="${ty}" width="${tw}" height="${th}" fill="#191919" rx="24" ry="24"/>`,
+
+      // Terminal border (same coordinate space as gridlines)
+      `<rect x="${tx}" y="${ty}" width="${tw}" height="${th}" fill="none" stroke="${gridColor}" stroke-width="1" rx="24" ry="24"/>`,
+
+      // Diagonal lines from terminal corners to SVG corners
+      `<line x1="${tx}" y1="${ty}" x2="0" y2="0" stroke="${gridColor}" stroke-width="1"/>`,
+      `<line x1="${bx}" y1="${ty}" x2="${w}" y2="0" stroke="${gridColor}" stroke-width="1"/>`,
+      `<line x1="${tx}" y1="${by}" x2="0" y2="${h}" stroke="${gridColor}" stroke-width="1"/>`,
+      `<line x1="${bx}" y1="${by}" x2="${w}" y2="${h}" stroke="${gridColor}" stroke-width="1"/>`,
 
       // 4 corner dots (white, 3x3)
       `<rect x="${tx - 1}" y="${ty - 1}" width="3" height="3" fill="${dotColor}"/>`,

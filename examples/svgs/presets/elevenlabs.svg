@@ -1,32 +1,29 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 403.6 258" width="403.6" height="258">
-  <rect x="0" y="0" width="403.6" height="258" fill="#111111" rx="0" ry="0"/>
-  <g class="overlay"><circle cx="201.8" cy="129" r="151.58" fill="none" stroke="#353535" stroke-width="1"/></g>
-  <g class="overlay"><rect x="0" y="64" width="403.6" height="1" fill="#353535" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><rect x="0" y="129" width="403.6" height="1" fill="#353535" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><rect x="0" y="194" width="403.6" height="1" fill="#353535" shape-rendering="crispEdges"/></g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 370 258" width="370" height="258">
+  <rect x="0" y="0" width="370" height="258" fill="#0d0d0d" rx="0" ry="0"/>
+  <g class="overlay"><circle cx="185" cy="129" r="133.10000000000002" fill="none" stroke="#353535" stroke-width="1"/></g>
+  <g class="overlay"><rect x="0" y="64" width="370" height="1" fill="#353535" shape-rendering="crispEdges"/></g>
+  <g class="overlay"><rect x="0" y="129" width="370" height="1" fill="#353535" shape-rendering="crispEdges"/></g>
+  <g class="overlay"><rect x="0" y="194" width="370" height="1" fill="#353535" shape-rendering="crispEdges"/></g>
   <g class="overlay"><rect x="64" y="0" width="1" height="258" fill="#353535" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><rect x="202" y="0" width="1" height="258" fill="#353535" shape-rendering="crispEdges"/></g>
-  <g class="overlay"><rect x="339.6" y="0" width="1" height="258" fill="#353535" shape-rendering="crispEdges"/></g>
+  <g class="overlay"><rect x="185" y="0" width="1" height="258" fill="#353535" shape-rendering="crispEdges"/></g>
+  <g class="overlay"><rect x="306" y="0" width="1" height="258" fill="#353535" shape-rendering="crispEdges"/></g>
+  <g class="overlay"><rect x="64" y="64" width="242" height="130" fill="#191919" rx="24" ry="24"/></g>
+  <g class="overlay"><rect x="64" y="64" width="242" height="130" fill="none" stroke="#353535" stroke-width="1" rx="24" ry="24"/></g>
   <g class="overlay"><line x1="64" y1="64" x2="0" y2="0" stroke="#353535" stroke-width="1"/></g>
-  <g class="overlay"><line x1="339.6" y1="64" x2="403.6" y2="0" stroke="#353535" stroke-width="1"/></g>
+  <g class="overlay"><line x1="306" y1="64" x2="370" y2="0" stroke="#353535" stroke-width="1"/></g>
   <g class="overlay"><line x1="64" y1="194" x2="0" y2="258" stroke="#353535" stroke-width="1"/></g>
-  <g class="overlay"><line x1="339.6" y1="194" x2="403.6" y2="258" stroke="#353535" stroke-width="1"/></g>
+  <g class="overlay"><line x1="306" y1="194" x2="370" y2="258" stroke="#353535" stroke-width="1"/></g>
   <g class="overlay"><rect x="63" y="63" width="3" height="3" fill="white"/></g>
-  <g class="overlay"><rect x="338.6" y="63" width="3" height="3" fill="white"/></g>
+  <g class="overlay"><rect x="305" y="63" width="3" height="3" fill="white"/></g>
   <g class="overlay"><rect x="63" y="193" width="3" height="3" fill="white"/></g>
-  <g class="overlay"><rect x="338.6" y="193" width="3" height="3" fill="white"/></g>
+  <g class="overlay"><rect x="305" y="193" width="3" height="3" fill="white"/></g>
   <g transform="translate(64, 64)">
-    <rect x="0" y="0" width="275.6" height="130" fill="#111111" rx="24" ry="24"/>
+    <rect x="0" y="0" width="242" height="130" fill="transparent" rx="24" ry="24"/>
     <g class="text">
-      <text x="41.2" y="30" font-family="'JetBrains Mono', monospace" font-size="14" fill="#ffffff66" text-anchor="end" xml:space="preserve">1</text>
-      <text y="30" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="49.6" fill="#fff9b2">const</tspan><tspan x="91.6" fill="#ffffff"> a</tspan><tspan x="108.4" fill="#8F8FFF">:</tspan><tspan x="116.8" fill="#ffffff"> </tspan><tspan x="125.2" fill="#8F8FFF">string</tspan><tspan x="175.6" fill="#ffffff"> </tspan><tspan x="184" fill="#8F8FFF">=</tspan><tspan x="192.4" fill="#ffffff"> </tspan><tspan x="200.8" fill="#a1ffe0">&#39;cool&#39;</tspan><tspan x="251.2" fill="#ffffff">;</tspan></text>
-      <text x="41.2" y="49.6" font-family="'JetBrains Mono', monospace" font-size="14" fill="#ffffff66" text-anchor="end" xml:space="preserve">2</text>
-      <text x="41.2" y="69.2" font-family="'JetBrains Mono', monospace" font-size="14" fill="#ffffff66" text-anchor="end" xml:space="preserve">3</text>
-      <text y="69.2" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="49.6" fill="#fff9b2">function</tspan><tspan x="116.8" fill="#ffffff"> </tspan><tspan x="125.2" fill="#ff8080">hello</tspan><tspan x="167.2" fill="#ffffff">() {</tspan></text>
-      <text x="41.2" y="88.8" font-family="'JetBrains Mono', monospace" font-size="14" fill="#ffffff66" text-anchor="end" xml:space="preserve">4</text>
-      <text y="88.8" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="49.6" fill="#ffffff">    </tspan><tspan x="83.2" fill="#fff9b2">const</tspan><tspan x="125.2" fill="#ffffff"> a </tspan><tspan x="150.4" fill="#8F8FFF">=</tspan><tspan x="158.8" fill="#ffffff"> </tspan><tspan x="167.2" fill="#a1ffe0">&#39;a&#39;</tspan><tspan x="192.4" fill="#ffffff">;</tspan></text>
-      <text x="41.2" y="108.4" font-family="'JetBrains Mono', monospace" font-size="14" fill="#ffffff66" text-anchor="end" xml:space="preserve">5</text>
-      <text y="108.4" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="49.6" fill="#ffffff">}</tspan></text>
+      <text y="30" font-family="'Roboto Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#fff9b2">const</tspan><tspan x="58" fill="#ffffff"> a</tspan><tspan x="74.8" fill="#8F8FFF">:</tspan><tspan x="83.2" fill="#ffffff"> </tspan><tspan x="91.6" fill="#8F8FFF">string</tspan><tspan x="142" fill="#ffffff"> </tspan><tspan x="150.4" fill="#8F8FFF">=</tspan><tspan x="158.8" fill="#ffffff"> </tspan><tspan x="167.2" fill="#a1ffe0">&#39;cool&#39;</tspan><tspan x="217.6" fill="#ffffff">;</tspan></text>
+      <text y="69.2" font-family="'Roboto Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#fff9b2">function</tspan><tspan x="83.2" fill="#ffffff"> </tspan><tspan x="91.6" fill="#ff8080">hello</tspan><tspan x="133.6" fill="#ffffff">() {</tspan></text>
+      <text y="88.8" font-family="'Roboto Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ffffff">    </tspan><tspan x="49.6" fill="#fff9b2">const</tspan><tspan x="91.6" fill="#ffffff"> a </tspan><tspan x="116.8" fill="#8F8FFF">=</tspan><tspan x="125.2" fill="#ffffff"> </tspan><tspan x="133.6" fill="#a1ffe0">&#39;a&#39;</tspan><tspan x="158.8" fill="#ffffff">;</tspan></text>
+      <text y="108.4" font-family="'Roboto Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ffffff">}</tspan></text>
     </g>
   </g>
 </svg>
