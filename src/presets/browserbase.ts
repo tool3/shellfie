@@ -2,8 +2,10 @@ import type { Preset } from '../types';
 import { createTemplate } from '../templates';
 
 const pad = 64;
-const lineColor = '#1a1a1a';
-const gridSpacing = 78;
+const dashColor = '#252525';  // rgba(255,255,255,0.1) pre-blended on #0d0d0d
+const dashWidth = 2;
+const dashLength = 6;
+const dashGap = 4;
 
 export const browserbase: Preset = {
   title: 'browserbase',
@@ -15,26 +17,26 @@ export const browserbase: Preset = {
     controls: true,
     controlsPosition: 'left',
     controlStyle: {
-      close: '#444444',
-      minimize: '#444444',
-      maximize: '#444444',
+      close: '#ffffff33',
+      minimize: '#ffffff33',
+      maximize: '#ffffff33',
       radius: 4,
       spacing: 16,
       size: 8,
     },
     padding: 16,
     shadow: false,
-    border: '2px solid #222222',
+    border: '1px solid #222222',
     header: { border: '1px solid #1a1a1a' },
   }),
-  fontFamily: "'JetBrains Mono', monospace",
+  fontFamily: "'Space Mono', monospace",
   theme: {
     name: 'browserbase',
-    background: '#0f0f0f',
+    background: '#191919',
     foreground: '#FFFFFF',
     cursor: '#FFFFFF',
     selection: '#3a3a3a',
-    black: '#1a1a1a',
+    black: '#191919',
     red: '#FF6B35',
     green: '#FFB800',
     yellow: '#FF6B35',
@@ -53,19 +55,26 @@ export const browserbase: Preset = {
   },
   lineNumbers: true,
   background: {
-    color: '#080808',
+    color: '#0d0d0d',
     padding: pad,
     borderRadius: 0,
   },
   overlays: (w, h) => {
-    // Vertical gridlines at regular intervals spanning full height
+    // 7 dashed vertical lines, evenly distributed across the SVG width
+    // Centered: total span = 6 gaps * spacing, first line at center - 3*spacing
+    const numLines = 7;
+    const spacing = Math.round(w / (numLines + 1));
     const lines: string[] = [];
-    for (let i = 0; i < 7; i++) {
-      const x = pad + 26 + i * gridSpacing;
-      if (x < w) {
-        lines.push(`<rect x="${x}" y="0" width="2" height="${h}" fill="${lineColor}" shape-rendering="crispEdges"/>`);
+
+    for (let i = 1; i <= numLines; i++) {
+      const x = Math.round(i * spacing);
+      // Build dashed line as series of small rects
+      for (let y = 0; y < h; y += dashLength + dashGap) {
+        const segH = Math.min(dashLength, h - y);
+        lines.push(`<rect x="${x}" y="${y}" width="${dashWidth}" height="${segH}" fill="${dashColor}" shape-rendering="crispEdges"/>`);
       }
     }
+
     return lines;
   },
 };
