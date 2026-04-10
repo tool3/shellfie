@@ -44,7 +44,7 @@ export const prisma: Preset = {
     brightCyan: '#71E8DF',
     brightWhite: '#ffffff',
   },
-  lineNumbers: true,
+  lineNumbers: false,
   background: {
     color: 'gradient(#0c1d26, #0a0c17:diagonal)',
     padding: pad,
