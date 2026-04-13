@@ -389,6 +389,7 @@ const resolveOptions = (options: shellfieOptions = {}, input: string = ''): Rend
     glow: resolveGlow(merged.glow, template.shell.borderColor),
     overlays: resolveOverlays(merged.overlays),
     animation: merged.animation ?? null,
+    animationColor: merged.animationColor ?? null,
   };
 };
 
