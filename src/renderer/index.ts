@@ -56,12 +56,13 @@ const calculateDimensions = (lines: ParsedLine[], options: RenderOptions): Dimen
     return Math.max(max, width);
   }, 0);
 
-  // Compute gutter width for line numbers
+  // Line numbers sit in the left padding zone, code shifts right to accommodate
+  // Layout: [padding.left] [digits right-aligned] [1 char gap] [code...]
   let gutterWidth = 0;
   if (lineNumbers) {
     const lastLineNum = lineNumbers.startFrom + lines.length - 1;
     const digitCount = Math.max(2, String(lastLineNum).length);
-    gutterWidth = charWidth * digitCount + charWidth * 2; // digits + gap
+    gutterWidth = charWidth * digitCount; // digits only, gap comes from padding
   }
 
   const columns = options.width ?? maxLineWidth;
@@ -434,7 +435,7 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
   const {
     template, title, titleAlignment, titleStyle, theme, font, padding,
     watermark, customGlyphs, header, footer, controls, background,
-    lineNumbers, badge, backgroundOpacity, glow, overlays, animation,
+    lineNumbers, badge, backgroundOpacity, glow, overlays, animation, animationColor,
   } = options;
   const dim = calculateDimensions(lines, options);
   const fontFamily = font.embedData ? `'EmbeddedFont', ${font.family}` : font.family;
@@ -507,7 +508,7 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
 
   // Animation (SMIL elements between background/overlays and terminal)
   if (animation) {
-    const animSvg = generateAnimation(animation, svgWidth, svgHeight, bgPadding, template.shell.borderRadius);
+    const animSvg = generateAnimation(animation, svgWidth, svgHeight, bgPadding, template.shell.borderRadius, animationColor ?? undefined);
     if (animSvg) {
       svgParts.push(`  <g class="animation">${animSvg}</g>`);
     }
@@ -600,10 +601,10 @@ ${indent}</g>`);
   lines.forEach((line, lineIndex) => {
     const y = contentY + lineIndex * dim.lineHeight + font.size;
 
-    // Render line number
+    // Render line number (positioned in the padding zone, left of content)
     if (lineNumbers) {
       const lineNum = lineNumbers.startFrom + lineIndex;
-      const gutterX = padding.left + dim.gutterWidth - dim.charWidth; // right edge of gutter minus gap
+      const gutterX = contentX - dim.charWidth; // right-align 1 char before code starts
       svgParts.push(`${indent}  <text x="${r(gutterX)}" y="${r(y)}" font-family="${fontFamily}" font-size="${font.size}" fill="${lineNumbers.color}" text-anchor="end" xml:space="preserve">${lineNum}</text>`);
     }
 

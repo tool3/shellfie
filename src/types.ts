@@ -308,6 +308,7 @@ export interface shellfieOptions {
   };
   overlays?: string | string[] | ((width: number, height: number) => string | string[]);
   animation?: AnimationType;
+  animationColor?: string;
 }
 
 export interface ResolvedHeaderConfig {
@@ -389,4 +390,5 @@ export interface RenderOptions {
   glow: ResolvedGlow | null;
   overlays: shellfieOptions['overlays'];
   animation: AnimationType | null;
+  animationColor: string | null;
 }
