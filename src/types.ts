@@ -251,6 +251,11 @@ export interface shellfieOptions {
   watermark?: string | WatermarkConfig;
   controls?: boolean;
   controlsPosition?: 'left' | 'right';
+  /**
+   * Customize window control button appearance.
+   * @example { close: '#ff5f57', minimize: '#febc2e', maximize: '#28c840', size: 12 }
+   */
+  controlStyle?: Partial<ControlStyle>;
   fontFamily?: string;
   embedFont?: boolean;
   customFont?: {

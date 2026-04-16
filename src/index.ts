@@ -351,6 +351,9 @@ const resolveOptions = (options: shellfieOptions = {}, input: string = ''): Rend
   const shellOverrides: Partial<typeof baseTemplate.shell> = {};
   if (merged.controlsPosition) shellOverrides.controlsPosition = merged.controlsPosition;
   if (merged.borderColor) shellOverrides.borderColor = parseGradient(merged.borderColor);
+  if (merged.controlStyle) {
+    shellOverrides.controlStyle = { ...baseTemplate.shell.controlStyle, ...merged.controlStyle };
+  }
   const template = Object.keys(shellOverrides).length > 0
     ? { ...baseTemplate, shell: { ...baseTemplate.shell, ...shellOverrides } }
     : baseTemplate;
