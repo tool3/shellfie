@@ -507,10 +507,34 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
   }
 
   // Animation (SMIL elements between background/overlays and terminal)
+  // Clip animation to exclude the terminal area so it doesn't bleed through
+  // transparent terminal backgrounds used by partner presets.
   if (animation) {
     const animSvg = generateAnimation(animation, svgWidth, svgHeight, bgPadding, template.shell.borderRadius, animationColor ?? undefined);
     if (animSvg) {
-      svgParts.push(`  <g class="animation">${animSvg}</g>`);
+      if (bgPadding > 0 && theme.background === 'transparent') {
+        const br = template.shell.borderRadius;
+        const clipDef =
+          `<defs><clipPath id="anim-clip">` +
+          `<path d="M0,0 H${svgWidth} V${svgHeight} H0 Z ` +
+          `M${bgPadding},${bgPadding} ` +
+          (br > 0
+            ? `Q${bgPadding},${bgPadding} ${bgPadding + br},${bgPadding} ` +
+              `H${bgPadding + terminalWidth - br} ` +
+              `Q${bgPadding + terminalWidth},${bgPadding} ${bgPadding + terminalWidth},${bgPadding + br} ` +
+              `V${bgPadding + terminalHeight - br} ` +
+              `Q${bgPadding + terminalWidth},${bgPadding + terminalHeight} ${bgPadding + terminalWidth - br},${bgPadding + terminalHeight} ` +
+              `H${bgPadding + br} ` +
+              `Q${bgPadding},${bgPadding + terminalHeight} ${bgPadding},${bgPadding + terminalHeight - br} Z`
+            : `H${bgPadding + terminalWidth} V${bgPadding + terminalHeight} H${bgPadding} Z`
+          ) +
+          `" fill-rule="evenodd"/>` +
+          `</clipPath></defs>`;
+        svgParts.push(`  ${clipDef}`);
+        svgParts.push(`  <g class="animation" clip-path="url(#anim-clip)">${animSvg}</g>`);
+      } else {
+        svgParts.push(`  <g class="animation">${animSvg}</g>`);
+      }
     }
   }
 
@@ -536,8 +560,14 @@ ${indent}</g>`);
   }
 
   // Terminal Background
+  // When theme background is 'transparent', use the outer background color
+  // so the terminal window is always opaque and readable.
+  let terminalBg = theme.background;
+  if (terminalBg === 'transparent' && background) {
+    terminalBg = isGradient(background.value) ? '#000000' : background.value;
+  }
   const bgOpacityAttr = backgroundOpacity < 1 ? ` opacity="${backgroundOpacity}"` : '';
-  svgParts.push(`${indent}<rect x="0" y="0" width="${terminalWidth}" height="${terminalHeight}" fill="${theme.background}" rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}"${bgOpacityAttr}/>`);
+  svgParts.push(`${indent}<rect x="0" y="0" width="${terminalWidth}" height="${terminalHeight}" fill="${terminalBg}" rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}"${bgOpacityAttr}/>`);
 
   // Title bar (rendered before border so border paints on top)
   if (template.shell.titleBar) {
