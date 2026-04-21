@@ -312,6 +312,7 @@ export interface shellfieOptions {
     opacity?: number;
   };
   overlays?: string | string[] | ((width: number, height: number) => string | string[]);
+  topOverlays?: string | string[] | ((width: number, height: number) => string | string[]);
   animation?: AnimationType;
   animationColor?: string;
 }
@@ -394,6 +395,7 @@ export interface RenderOptions {
   backgroundOpacity: number;
   glow: ResolvedGlow | null;
   overlays: shellfieOptions['overlays'];
+  topOverlays: shellfieOptions['topOverlays'];
   animation: AnimationType | null;
   animationColor: string | null;
 }

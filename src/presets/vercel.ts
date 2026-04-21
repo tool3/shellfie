@@ -19,9 +19,7 @@ export const vercel: Preset = {
     controls: false,
     padding: 16,
     shadow: false,
-    border: false,
-    borderColor: '#ffffff1a',
-    borderWidth: 1,
+    border: `1px solid ${lineColor}`,
   }),
   fontFamily: "'JetBrains Mono', monospace",
   theme: {
@@ -64,9 +62,11 @@ export const vercel: Preset = {
               `M ${bx} 0 L ${bx + 1} 0 L ${bx + 1} ${h} L ${bx} ${h} Z`;          // full right line
     return [
       `<path d="${p}" fill="${lineColor}" fill-rule="nonzero" shape-rendering="crispEdges"/>`,
-      // Plus signs at corners
-      plus(pad, pad),
-      plus(bx, by),
     ];
+  },
+  topOverlays: (w, h) => {
+    const bx = w - pad;
+    const by = h - pad;
+    return [plus(pad, pad), plus(bx, by)];
   },
 };

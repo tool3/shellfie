@@ -19,7 +19,7 @@ export const firecrawl: Preset = {
     controls: false,
     padding: 16,
     shadow: false,
-    border: false,
+    border: `1px solid ${lineColor}`,
   }),
   fontFamily: "'JetBrains Mono', monospace",
   theme: {
@@ -61,7 +61,12 @@ export const firecrawl: Preset = {
                   `M ${bx} 0 L ${bx + 1} 0 L ${bx + 1} ${h} L ${bx} ${h} Z`;
     return [
       `<path d="${lines}" fill="${lineColor}" fill-rule="nonzero" shape-rendering="crispEdges"/>`,
-      // 4-pointed stars at each corner of the terminal
+    ];
+  },
+  topOverlays: (w, h) => {
+    const bx = w - pad;
+    const by = h - pad;
+    return [
       star(pad + 0.5, pad + 0.5),
       star(bx + 0.5, pad + 0.5),
       star(pad + 0.5, by + 0.5),

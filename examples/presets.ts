@@ -7,11 +7,22 @@
 import shellfie from '../src';
 import { writeFileSync, mkdirSync } from 'node:fs';
 
-const code = `const a: string = 'cool';
+const code = `import { useState, useEffect } from 'react';
+import { createConnection } from './chat.js';
 
-function hello() {
-    const a = 'a';
-}`;
+function ChatRoom({ roomId }) {
+  const [serverUrl, setServerUrl] = useState('https://localhost:1234');
+
+  useEffect(() => {
+    const connection = createConnection(serverUrl, roomId);
+    connection.connect();
+    return () => {
+      connection.disconnect();
+    };
+  }, [serverUrl, roomId]);
+  // ...
+}
+`;
 
 const presetNames = [
   'browserbase',

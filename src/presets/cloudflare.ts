@@ -18,7 +18,7 @@ export const cloudflare: Preset = {
     controlsPosition: 'left',
     padding: 16,
     shadow: false,
-    border: false,
+    border: `1px solid ${lineColor}`,
     header: {
       height: 30,
       border: '1px solid #262626',

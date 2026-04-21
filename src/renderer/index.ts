@@ -1,23 +1,20 @@
+import { generateAnimation } from '../animations';
+import { createGradientDef, isGradient } from '../gradient';
+import { parseAnsi } from '../parser';
+import { createPatternDef } from '../patterns';
 import type {
   FontConfig,
-  Gradient,
   ParsedLine,
   RenderOptions,
-  ResolvedBackground,
+  ResolvedBadge,
   ResolvedFooterConfig,
   ResolvedGlow,
   ResolvedHeaderConfig,
-  ResolvedBadge,
-  ResolvedLineNumbers,
   ResolvedWatermark,
   Template,
-  Theme,
+  Theme
 } from '../types';
-import { generateAnimation } from '../animations';
-import { parseAnsi } from '../parser';
-import { createPatternDef } from '../patterns';
 import { escapeXml, renderSpan } from './text';
-import { createGradientDef, isGradient } from '../gradient';
 
 /**
  * Round a coordinate value to avoid floating-point precision issues in SVG rendering.
@@ -435,7 +432,7 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
   const {
     template, title, titleAlignment, titleStyle, theme, font, padding,
     watermark, customGlyphs, header, footer, controls, background,
-    lineNumbers, badge, backgroundOpacity, glow, overlays, animation, animationColor,
+    lineNumbers, badge, backgroundOpacity, glow, overlays, topOverlays, animation, animationColor,
   } = options;
   const dim = calculateDimensions(lines, options);
   const fontFamily = font.embedData ? `'EmbeddedFont', ${font.family}` : font.family;
@@ -499,14 +496,14 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
     }
   }
 
-  // Decorative overlays (between background and terminal)
+  // Resolve overlays — background overlays render behind the terminal,
+  // topOverlays render on top of the terminal border.
   const rawOverlays = typeof overlays === 'function' ? overlays(svgWidth, svgHeight) : overlays;
   const resolvedOverlays = typeof rawOverlays === 'string' ? [rawOverlays] : rawOverlays ?? [];
-  for (const overlay of resolvedOverlays) {
-    svgParts.push(`  <g class="overlay">${overlay}</g>`);
-  }
+  const rawTopOverlays = typeof topOverlays === 'function' ? topOverlays(svgWidth, svgHeight) : topOverlays;
+  const resolvedTopOverlays = typeof rawTopOverlays === 'string' ? [rawTopOverlays] : rawTopOverlays ?? [];
 
-  // Animation (SMIL elements between background/overlays and terminal)
+  // Animation (SMIL elements between background and terminal)
   // Clip animation to exclude the terminal area so it doesn't bleed through
   // transparent terminal backgrounds used by partner presets.
   if (animation) {
@@ -559,6 +556,16 @@ ${indent}</g>`);
     svgParts.push(`${indent}<rect x="0.5" y="0.5" width="${terminalWidth - 1}" height="${terminalHeight - 1}" fill="none" stroke="${glow.color}" stroke-width="${template.shell.borderWidth + 2}" rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}" filter="url(#glow)"/>`);
   }
 
+  // Decorative overlays (rendered before terminal bg so they act as background graphics)
+  if (resolvedOverlays.length > 0) {
+    const overlayWrap = bgPadding > 0 ? [`${indent}<g transform="translate(${-bgPadding}, ${-bgPadding})">`, `${indent}</g>`] : ['', ''];
+    if (overlayWrap[0]) svgParts.push(overlayWrap[0]);
+    for (const overlay of resolvedOverlays) {
+      svgParts.push(`${indent}  <g class="overlay">${overlay}</g>`);
+    }
+    if (overlayWrap[1]) svgParts.push(overlayWrap[1]);
+  }
+
   // Terminal Background
   // When theme background is 'transparent', use the outer background color
   // so the terminal window is always opaque and readable.
@@ -592,6 +599,16 @@ ${indent}</g>`);
       const th = terminalHeight;
       svgParts.push(`${indent}<path d="M 0 0 L ${tw} 0 L ${tw} ${bw} L 0 ${bw} Z M 0 ${th - bw} L ${tw} ${th - bw} L ${tw} ${th} L 0 ${th} Z M 0 ${bw} L ${bw} ${bw} L ${bw} ${th - bw} L 0 ${th - bw} Z M ${tw - bw} ${bw} L ${tw} ${bw} L ${tw} ${th - bw} L ${tw - bw} ${th - bw} Z" fill="${borderStroke}" fill-rule="nonzero" shape-rendering="crispEdges"/>`);
     }
+  }
+
+  // Foreground overlays (rendered after terminal border so corner markers sit on top)
+  if (resolvedTopOverlays.length > 0) {
+    const overlayWrap = bgPadding > 0 ? [`${indent}<g transform="translate(${-bgPadding}, ${-bgPadding})">`, `${indent}</g>`] : ['', ''];
+    if (overlayWrap[0]) svgParts.push(overlayWrap[0]);
+    for (const overlay of resolvedTopOverlays) {
+      svgParts.push(`${indent}  <g class="overlay-top">${overlay}</g>`);
+    }
+    if (overlayWrap[1]) svgParts.push(overlayWrap[1]);
   }
 
   // Process content
@@ -689,3 +706,4 @@ ${indent}</g>`);
 
 export { createTheme, darkTheme, dimColor, resolveColor } from './colors';
 export { escapeXml, getDefaultFontConfig } from './text';
+

@@ -391,6 +391,7 @@ const resolveOptions = (options: shellfieOptions = {}, input: string = ''): Rend
     backgroundOpacity: merged.backgroundOpacity ?? 1,
     glow: resolveGlow(merged.glow, template.shell.borderColor),
     overlays: resolveOverlays(merged.overlays),
+    topOverlays: resolveOverlays(merged.topOverlays),
     animation: merged.animation ?? null,
     animationColor: merged.animationColor ?? null,
   };
@@ -456,6 +457,7 @@ export type {
 } from './types';
 
 export type { AnimationType } from './animations';
+export { generateAnimation } from './animations';
 
 export { presets } from './presets';
 

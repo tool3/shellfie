@@ -3,6 +3,26 @@ import { createTemplate } from '../templates';
 
 const pad = 64;
 
+// Deterministic scattered stars — matches Ray.so's gemini frame visual
+const generateStars = (w: number, h: number): string => {
+  let seed = 0x13371337;
+  const rand = () => {
+    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+    return seed / 0x100000000;
+  };
+  const density = 0.00067;
+  const count = Math.round(w * h * density);
+  const parts: string[] = [];
+  for (let i = 0; i < count; i++) {
+    const x = (rand() * w).toFixed(1);
+    const y = (rand() * h).toFixed(1);
+    const r = (0.3 + rand() * 0.5).toFixed(2);
+    const opacity = (0.3 + Math.floor(rand() * 4) * 0.1).toFixed(1);
+    parts.push(`<circle cx="${x}" cy="${y}" r="${r}" fill-opacity="${opacity}"/>`);
+  }
+  return `<g fill="#ffffff">${parts.join('')}</g>`;
+};
+
 export const gemini: Preset = {
   title: 'gemini',
   titleAlignment: 'left',
@@ -22,10 +42,10 @@ export const gemini: Preset = {
     },
     padding: 16,
     shadow: false,
-    border: '1px solid #222222',
-    header: { border: '1px solid #1a1a1a', backgroundColor: '#0a0c12' },
+    border: false,
+    header: { backgroundColor: '#11131780' },
   }),
-  fontFamily: "'JetBrains Mono', monospace",
+  fontFamily: "'Google Sans Code', monospace",
   theme: {
     name: 'gemini',
     background: '#16181d',
@@ -35,40 +55,24 @@ export const gemini: Preset = {
     black: '#1a1a1a',
     red: '#d19a66',
     green: '#98c379',
-    yellow: '#56b6c2',
+    yellow: '#5c9dc7',
     blue: '#98c379',
     magenta: '#5c9dc7',
-    cyan: '#56b6c2',
+    cyan: '#5c9dc7',
     white: '#abb2bf',
     brightBlack: '#5c6370',
     brightRed: '#ebb480',
     brightGreen: '#b2d993',
-    brightYellow: '#70d0dc',
+    brightYellow: '#76b7e1',
     brightBlue: '#b2d993',
     brightMagenta: '#76b7e1',
-    brightCyan: '#56b6c2',
+    brightCyan: '#76b7e1',
     brightWhite: '#c5ccd9',
   },
   lineNumbers: true,
-  backgroundOpacity: 0.8,
   background: {
     color: '#0e1016',
     padding: pad,
-    pattern: { type: 'dots', color: '#161616', size: 24 },
   },
-  overlays: (w, h) => {
-    const cx = w / 2;
-    const cy = h / 2;
-    return [
-      // Subtle star/dots scattered in background — solid colors, no alpha
-      `<circle cx="${pad + 20}" cy="${pad + 15}" r="1" fill="#1c1c1c"/>`,
-      `<circle cx="${w - pad - 30}" cy="${pad + 25}" r="1.5" fill="#1a1a1a"/>`,
-      `<circle cx="${cx - 60}" cy="${cy - 40}" r="1" fill="#1b1b1b"/>`,
-      `<circle cx="${cx + 80}" cy="${cy + 30}" r="1.5" fill="#1a1a1a"/>`,
-      `<circle cx="${pad + 50}" cy="${h - pad - 20}" r="1" fill="#1c1c1c"/>`,
-      `<circle cx="${w - pad - 40}" cy="${h - pad - 35}" r="1" fill="#1b1b1b"/>`,
-      `<circle cx="${cx}" cy="${pad + 10}" r="1.5" fill="#1a1a1a"/>`,
-      `<circle cx="${cx + 40}" cy="${h - pad - 15}" r="1" fill="#1c1c1c"/>`,
-    ];
-  },
+  overlays: (w, h) => [generateStars(w, h)],
 };

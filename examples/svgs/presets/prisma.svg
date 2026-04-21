@@ -1,28 +1,39 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 370 298" width="370" height="298">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 756.4 494" width="756.4" height="494">
   <defs>
     <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0c1d26"/>
       <stop offset="100%" stop-color="#0a0c17"/>
     </linearGradient>
   </defs>
-  <rect x="0" y="0" width="370" height="298" fill="url(#bg-gradient)" rx="0" ry="0"/>
-  <g class="overlay"><defs><linearGradient id="prisma-ring-0" x1="20%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#3e4083"/><stop offset="100%" stop-color="#16544f"/></linearGradient></defs><rect x="64" y="64" width="242" height="170" fill="none" stroke="url(#prisma-ring-0)" stroke-width="1" rx="10" ry="10" opacity="0.6"/></g>
-  <g class="overlay"><defs><linearGradient id="prisma-ring-4" x1="20%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#3e4083"/><stop offset="100%" stop-color="#16544f"/></linearGradient></defs><rect x="60" y="60" width="250" height="178" fill="none" stroke="url(#prisma-ring-4)" stroke-width="1" rx="13" ry="13" opacity="0.3"/></g>
-  <g class="overlay"><defs><linearGradient id="prisma-ring-8" x1="20%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#3e4083"/><stop offset="100%" stop-color="#16544f"/></linearGradient></defs><rect x="56" y="56" width="258" height="186" fill="none" stroke="url(#prisma-ring-8)" stroke-width="1" rx="16" ry="16" opacity="0.15"/></g>
+  <rect x="0" y="0" width="756.4" height="494" fill="url(#bg-gradient)" rx="0" ry="0"/>
   <g transform="translate(64, 64)">
-    <rect x="0" y="0" width="242" height="170" fill="#0b101a" rx="10" ry="10"/>
+    <g transform="translate(-64, -64)">
+      <g class="overlay"><defs><linearGradient id="prisma-ring-0" x1="20%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#3e4083"/><stop offset="100%" stop-color="#16544f"/></linearGradient></defs><rect x="64" y="64" width="628.4" height="366" fill="none" stroke="url(#prisma-ring-0)" stroke-width="1" rx="10" ry="10" opacity="0.6"/></g>
+      <g class="overlay"><defs><linearGradient id="prisma-ring-4" x1="20%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#3e4083"/><stop offset="100%" stop-color="#16544f"/></linearGradient></defs><rect x="60" y="60" width="636.4" height="374" fill="none" stroke="url(#prisma-ring-4)" stroke-width="1" rx="13" ry="13" opacity="0.3"/></g>
+      <g class="overlay"><defs><linearGradient id="prisma-ring-8" x1="20%" y1="0%" x2="80%" y2="100%"><stop offset="0%" stop-color="#3e4083"/><stop offset="100%" stop-color="#16544f"/></linearGradient></defs><rect x="56" y="56" width="644.4" height="382" fill="none" stroke="url(#prisma-ring-8)" stroke-width="1" rx="16" ry="16" opacity="0.15"/></g>
+    </g>
+    <rect x="0" y="0" width="628.4" height="366" fill="#0b101a" rx="10" ry="10"/>
     <g class="title-bar">
-      <rect x="0" y="0" width="242" height="39" fill="#090d15" rx="10" ry="10"/>
-    <rect x="0" y="29" width="242" height="10" fill="#090d15"/>
-    <rect x="0" y="39" width="242" height="1" fill="#141818" shape-rendering="crispEdges"/>
+      <rect x="0" y="0" width="628.4" height="39" fill="#090d15" rx="10" ry="10"/>
+    <rect x="0" y="29" width="628.4" height="10" fill="#090d15"/>
+    <rect x="0" y="39" width="628.4" height="1" fill="#141818" shape-rendering="crispEdges"/>
     <text x="16" y="24.17" fill="#ffffff" font-family="'JetBrains Mono', monospace" font-size="12" text-anchor="start" opacity="0.8">prisma</text>
     <rect x="16" y="37" width="43.2" height="2" fill="#31BAAF" rx="1" ry="1"/>
     </g>
     <g class="text">
-      <text y="70" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#71E8DF">const</tspan><tspan x="58" fill="#ffffff"> a</tspan><tspan x="74.8" fill="#7F9CF5">:</tspan><tspan x="83.2" fill="#ffffff"> </tspan><tspan x="91.6" fill="#71E8DF">string</tspan><tspan x="142" fill="#ffffff"> </tspan><tspan x="150.4" fill="#7F9CF5">=</tspan><tspan x="158.8" fill="#ffffff"> </tspan><tspan x="167.2" fill="#71E8DF">&#39;cool&#39;</tspan><tspan x="217.6" fill="#ffffff">;</tspan></text>
-      <text y="109.2" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#71E8DF">function</tspan><tspan x="83.2" fill="#ffffff"> </tspan><tspan x="91.6" fill="#31BAAF">hello</tspan><tspan x="133.6" fill="#ffffff">() {</tspan></text>
-      <text y="128.8" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ffffff">    </tspan><tspan x="49.6" fill="#71E8DF">const</tspan><tspan x="91.6" fill="#ffffff"> a </tspan><tspan x="116.8" fill="#7F9CF5">=</tspan><tspan x="125.2" fill="#ffffff"> </tspan><tspan x="133.6" fill="#71E8DF">&#39;a&#39;</tspan><tspan x="158.8" fill="#ffffff">;</tspan></text>
-      <text y="148.4" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ffffff">}</tspan></text>
+      <text y="70" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#71E8DF">import</tspan><tspan x="66.4" fill="#ffffff"> { useState, useEffect } </tspan><tspan x="276.4" fill="#71E8DF">from</tspan><tspan x="310" fill="#ffffff"> </tspan><tspan x="318.4" fill="#71E8DF">&#39;react&#39;</tspan><tspan x="377.2" fill="#ffffff">;</tspan></text>
+      <text y="89.6" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#71E8DF">import</tspan><tspan x="66.4" fill="#ffffff"> { createConnection } </tspan><tspan x="251.2" fill="#71E8DF">from</tspan><tspan x="284.8" fill="#ffffff"> </tspan><tspan x="293.2" fill="#71E8DF">&#39;./chat.js&#39;</tspan><tspan x="385.6" fill="#ffffff">;</tspan></text>
+      <text y="128.8" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#71E8DF">function</tspan><tspan x="83.2" fill="#ffffff"> </tspan><tspan x="91.6" fill="#31BAAF">ChatRoom</tspan><tspan x="158.8" fill="#ffffff">({ roomId }) {</tspan></text>
+      <text y="148.4" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ffffff">  </tspan><tspan x="32.8" fill="#71E8DF">const</tspan><tspan x="74.8" fill="#ffffff"> [serverUrl, setServerUrl] </tspan><tspan x="301.6" fill="#7F9CF5">=</tspan><tspan x="310" fill="#ffffff"> </tspan><tspan x="318.4" fill="#31BAAF">useState</tspan><tspan x="385.6" fill="#ffffff">(</tspan><tspan x="394" fill="#71E8DF">&#39;https://localhost:1234&#39;</tspan><tspan x="595.6" fill="#ffffff">);</tspan></text>
+      <text y="187.6" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ffffff">  </tspan><tspan x="32.8" fill="#31BAAF">useEffect</tspan><tspan x="108.4" fill="#ffffff">(() </tspan><tspan x="142" fill="#71E8DF">=&gt;</tspan><tspan x="158.8" fill="#ffffff"> {</tspan></text>
+      <text y="207.2" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ffffff">    </tspan><tspan x="49.6" fill="#71E8DF">const</tspan><tspan x="91.6" fill="#ffffff"> connection </tspan><tspan x="192.4" fill="#7F9CF5">=</tspan><tspan x="200.8" fill="#ffffff"> </tspan><tspan x="209.2" fill="#31BAAF">createConnection</tspan><tspan x="343.6" fill="#ffffff">(serverUrl, roomId);</tspan></text>
+      <text y="226.8" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ffffff">    connection.</tspan><tspan x="142" fill="#31BAAF">connect</tspan><tspan x="200.8" fill="#ffffff">();</tspan></text>
+      <text y="246.4" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ffffff">    </tspan><tspan x="49.6" fill="#71E8DF">return</tspan><tspan x="100" fill="#ffffff"> () </tspan><tspan x="133.6" fill="#71E8DF">=&gt;</tspan><tspan x="150.4" fill="#ffffff"> {</tspan></text>
+      <text y="266" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ffffff">      connection.</tspan><tspan x="158.8" fill="#31BAAF">disconnect</tspan><tspan x="242.8" fill="#ffffff">();</tspan></text>
+      <text y="285.6" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ffffff">    };</tspan></text>
+      <text y="305.2" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ffffff">  }, [serverUrl, roomId]);</tspan></text>
+      <text y="324.8" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ffffff">  </tspan><tspan x="32.8" fill="#718096">// ...</tspan></text>
+      <text y="344.4" font-family="'JetBrains Mono', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#ffffff">}</tspan></text>
     </g>
   </g>
 </svg>
