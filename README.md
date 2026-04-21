@@ -395,6 +395,36 @@ const theme = createTheme({
 shellfie(output, { theme });
 ```
 
+## Presets
+
+shellfie comes with 15 built-in presets:
+
+```typescript
+import shellfie from "shellfie";
+
+shellfie(output, { preset: 'vercel' });
+```
+
+| Browserbase                                                                                                                   | Clerk                                                                                                               | Cloudflare                                                                                                                  |
+| ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| ![Browserbase](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/presets/browserbase.svg)      | ![Clerk](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/presets/clerk.svg)         | ![Cloudflare](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/presets/cloudflare.svg)       |
+
+| ElevenLabs                                                                                                                    | Firecrawl                                                                                                                   | Gemini                                                                                                              |
+| ----------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| ![ElevenLabs](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/presets/elevenlabs.svg)        | ![Firecrawl](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/presets/firecrawl.svg)         | ![Gemini](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/presets/gemini.svg)       |
+
+| Mintlify                                                                                                                      | Nuxt                                                                                                                | OpenAI                                                                                                              |
+| ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| ![Mintlify](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/presets/mintlify.svg)            | ![Nuxt](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/presets/nuxt.svg)           | ![OpenAI](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/presets/openai.svg)       |
+
+| Prisma                                                                                                                        | Resend                                                                                                              | Supabase                                                                                                            |
+| ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| ![Prisma](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/presets/prisma.svg)                | ![Resend](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/presets/resend.svg)       | ![Supabase](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/presets/supabase.svg)   |
+
+| Tailwind                                                                                                                      | Trigger.dev                                                                                                                 | Vercel                                                                                                              |
+| ----------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| ![Tailwind](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/presets/tailwind.svg)            | ![Trigger.dev](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/presets/triggerdev.svg)      | ![Vercel](https://raw.githubusercontent.com/tool3/shellfie/refs/heads/master/examples/svgs/presets/vercel.svg)       |
+
 ## Full Color Support
 
 ### 24-bit True Color & 256-color palette
