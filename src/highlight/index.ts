@@ -295,8 +295,16 @@ export function tokensToAnsi(tokens: Token[]): string {
   return result;
 }
 
+// Matches CSI (e.g. \x1b[31m) and OSC (e.g. \x1b]…\x07) sequences so we can
+// passthrough pre-styled regions during highlighting instead of tokenizing them.
+const ANSI_PASSTHROUGH_REGEX = /\x1b\[[0-9;]*[A-Za-z]|\x1b\].*?(?:\x07|\x1b\\)/g;
+
 /**
- * Highlight code with syntax highlighting, returning ANSI-colored string
+ * Highlight code with syntax highlighting, returning ANSI-colored string.
+ *
+ * Preserves any ANSI escape sequences already present in the input — useful
+ * for hybrid content where part of the string is pre-styled (e.g. gradient
+ * art) and the surrounding text should be syntax-highlighted as code.
  *
  * @param code - The source code to highlight
  * @param language - Language name, alias, or 'auto' for auto-detection
@@ -306,7 +314,9 @@ export function highlight(code: string, language: string = 'auto'): string {
   let tokenizer: LanguageTokenizer | undefined;
 
   if (language === 'auto') {
-    const detected = detectLanguage(code);
+    // Detect against ANSI-stripped code so SGR digits don't bias detection.
+    const stripped = code.replace(ANSI_PASSTHROUGH_REGEX, '');
+    const detected = detectLanguage(stripped);
     if (detected) {
       tokenizer = getLanguage(detected.language);
     }
@@ -319,8 +329,29 @@ export function highlight(code: string, language: string = 'auto'): string {
     return code;
   }
 
-  const tokens = tokenizer.tokenize(code);
-  return tokensToAnsi(tokens);
+  // Fast path: no pre-existing ANSI — tokenize the whole input.
+  if (!code.includes('\x1b')) {
+    return tokensToAnsi(tokenizer.tokenize(code));
+  }
+
+  // Hybrid path: tokenize plain segments, passthrough ANSI sequences verbatim.
+  let result = '';
+  let lastIndex = 0;
+  ANSI_PASSTHROUGH_REGEX.lastIndex = 0;
+  let match: RegExpExecArray | null;
+
+  while ((match = ANSI_PASSTHROUGH_REGEX.exec(code)) !== null) {
+    if (match.index > lastIndex) {
+      result += tokensToAnsi(tokenizer.tokenize(code.slice(lastIndex, match.index)));
+    }
+    result += match[0];
+    lastIndex = match.index + match[0].length;
+  }
+  if (lastIndex < code.length) {
+    result += tokensToAnsi(tokenizer.tokenize(code.slice(lastIndex)));
+  }
+
+  return result;
 }
 
 // Export types
