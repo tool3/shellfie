@@ -1,5 +1,6 @@
 // Custom Glyph Rendering for Box Drawing and Block Element Characters
 // Supported Unicode ranges:
+// - Low Line / Overline (U+005F, U+203E) — drawn as cell-edge bars so they tile
 // - Box Drawing (U+2500-U+257F)
 // - Block Elements (U+2580-U+259F)
 // - Braille Patterns (U+2800-U+28FF)
@@ -70,6 +71,8 @@ function blendColors(fg: string, bg: string, opacity: number): string {
 
 export function isCustomGlyph(codePoint: number): boolean {
   return (
+    codePoint === 0x005f ||
+    codePoint === 0x203e ||
     (codePoint >= 0x2500 && codePoint <= 0x257f) ||
     (codePoint >= 0x2580 && codePoint <= 0x259f) ||
     codePoint === 0x25a0 ||
@@ -111,6 +114,20 @@ export function renderCustomGlyph(
   const codePoint = char.codePointAt(0);
   if (codePoint === undefined) {
     return { svg: '', handled: false };
+  }
+
+  // Low line (U+005F) and overline (U+203E): match U+2581 / U+2594 (1/8 blocks) so
+  // sequences of underscores or overlines tile flush at the cell edge.
+  if (codePoint === 0x005f || codePoint === 0x203e) {
+    const { cellWidth, cellHeight, x, y, color } = ctx;
+    const w = r(cellWidth);
+    const h8 = r(cellHeight / 8);
+    const rx = r(x);
+    const ry = codePoint === 0x203e ? r(y) : r(y + cellHeight * 7 / 8);
+    return {
+      svg: `<rect x="${rx}" y="${ry}" width="${w}" height="${h8}" fill="${color}" shape-rendering="crispEdges"/>`,
+      handled: true,
+    };
   }
 
   if (codePoint >= 0x2500 && codePoint <= 0x257f) {
