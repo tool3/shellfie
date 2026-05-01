@@ -116,16 +116,16 @@ export function renderCustomGlyph(
     return { svg: '', handled: false };
   }
 
-  // Low line (U+005F) and overline (U+203E): match U+2581 / U+2594 (1/8 blocks) so
-  // sequences of underscores or overlines tile flush at the cell edge.
+  // Low line (U+005F) and overline (U+203E): thin cell-edge bars at box-drawing
+  // line weight, so sequences tile flush across adjacent cells.
   if (codePoint === 0x005f || codePoint === 0x203e) {
-    const { cellWidth, cellHeight, x, y, color } = ctx;
+    const { cellWidth, cellHeight, x, y, color, lineWidth } = ctx;
     const w = r(cellWidth);
-    const h8 = r(cellHeight / 8);
+    const h = r(lineWidth);
     const rx = r(x);
-    const ry = codePoint === 0x203e ? r(y) : r(y + cellHeight * 7 / 8);
+    const ry = codePoint === 0x203e ? r(y) : r(y + cellHeight - lineWidth);
     return {
-      svg: `<rect x="${rx}" y="${ry}" width="${w}" height="${h8}" fill="${color}" shape-rendering="crispEdges"/>`,
+      svg: `<rect x="${rx}" y="${ry}" width="${w}" height="${h}" fill="${color}" shape-rendering="crispEdges"/>`,
       handled: true,
     };
   }
