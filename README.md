@@ -486,9 +486,9 @@ getMaxWidth(lines); // 80
 
 ## Related
 
-- See [shellfie-cli](https://github.com/tool3/shellfie-cli) for command line usage
-- See [shellfied](https://github.com/tool3/shellfied) for the shellfie web app
-<!--  - See [dvd](https://github.com/tool3/dvd) for shellfie on drugs !-->
+- See [shellfie-cli](https://github.com/tool3/shellfie-cli) for shellfie on command line.
+- See [shellfied](https://github.com/tool3/shellfied) for the shellfie on web.
+ - See [dvd](https://github.com/tool3/dvd) for shellfie on drugs !
 
 ## License
 
