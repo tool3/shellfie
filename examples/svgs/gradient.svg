@@ -1,9 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 636 370.8" width="636" height="370.8">
   <defs>
-    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="hotpink"/>
-      <stop offset="100%" stop-color="cyan"/>
-    </linearGradient>
+    <linearGradient id="bg-gradient" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff69b4"/><stop offset="100%" stop-color="#00ffff"/></linearGradient>
   </defs>
   <rect x="0" y="0" width="636" height="370.8" fill="url(#bg-gradient)" rx="12" ry="12"/>
   <g transform="translate(50, 50)">

@@ -1,3 +1,4 @@
+import { ansi256ToRgb, fromRgb, rgb as rgbColor, tryParseRgb } from 'grfti';
 import type { Theme, RGB } from '../types';
 
 export const darkTheme: Theme = {
@@ -24,52 +25,21 @@ export const darkTheme: Theme = {
   brightWhite: '#ffffff',
 };
 
+const THEME_SLOTS = [
+  'black', 'red', 'green', 'yellow', 'blue', 'magenta', 'cyan', 'white',
+  'brightBlack', 'brightRed', 'brightGreen', 'brightYellow',
+  'brightBlue', 'brightMagenta', 'brightCyan', 'brightWhite',
+] as const satisfies readonly (keyof Theme)[];
+
 function get256Color(index: number, theme: Theme): string {
-  if (index >= 0 && index <= 7) {
-    const colors = [
-      theme.black, theme.red, theme.green, theme.yellow,
-      theme.blue, theme.magenta, theme.cyan, theme.white,
-    ];
-    return colors[index];
-  }
-
-  if (index >= 8 && index <= 15) {
-    const colors = [
-      theme.brightBlack, theme.brightRed, theme.brightGreen, theme.brightYellow,
-      theme.brightBlue, theme.brightMagenta, theme.brightCyan, theme.brightWhite,
-    ];
-    return colors[index - 8];
-  }
-
-  // 6x6x6 color cube (16-231)
-  if (index >= 16 && index <= 231) {
-    const i = index - 16;
-    const r = Math.floor(i / 36);
-    const g = Math.floor((i % 36) / 6);
-    const b = i % 6;
-
-    const toHex = (v: number) => {
-      const value = v === 0 ? 0 : 55 + v * 40;
-      return value.toString(16).padStart(2, '0');
-    };
-
-    return `#${toHex(r)}${toHex(g)}${toHex(b)}`;
-  }
-
-  // Grayscale (232-255)
-  if (index >= 232 && index <= 255) {
-    const gray = 8 + (index - 232) * 10;
-    const hex = gray.toString(16).padStart(2, '0');
-    return `#${hex}${hex}${hex}`;
-  }
-
+  const slot = THEME_SLOTS[index];
+  if (slot !== undefined) return theme[slot];
+  if (index >= 16 && index <= 255) return fromRgb(ansi256ToRgb(index)).hex;
   return theme.foreground;
 }
 
 export function rgbToHex(rgb: RGB): string {
-  const toHex = (v: number) =>
-    Math.max(0, Math.min(255, v)).toString(16).padStart(2, '0');
-  return `#${toHex(rgb.r)}${toHex(rgb.g)}${toHex(rgb.b)}`;
+  return rgbColor(rgb.r, rgb.g, rgb.b).hex;
 }
 
 export function resolveColor(
@@ -98,15 +68,18 @@ export function resolveColor(
   return color;
 }
 
+const SIX_DIGIT_HEX = /^#[0-9a-f]{6}$/i;
+
 export function dimColor(hex: string): string {
-  const match = hex.match(/^#([0-9a-f]{2})([0-9a-f]{2})([0-9a-f]{2})$/i);
-  if (!match) return hex;
+  if (!SIX_DIGIT_HEX.test(hex)) return hex;
+  const parsed = tryParseRgb(hex);
+  if (parsed === undefined) return hex;
 
-  const r = Math.floor(parseInt(match[1], 16) * 0.5);
-  const g = Math.floor(parseInt(match[2], 16) * 0.5);
-  const b = Math.floor(parseInt(match[3], 16) * 0.5);
-
-  return `#${r.toString(16).padStart(2, '0')}${g.toString(16).padStart(2, '0')}${b.toString(16).padStart(2, '0')}`;
+  return rgbColor(
+    Math.floor(parsed.r * 0.5),
+    Math.floor(parsed.g * 0.5),
+    Math.floor(parsed.b * 0.5)
+  ).hex;
 }
 
 export function createTheme(overrides: Partial<Theme>): Theme {

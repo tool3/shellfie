@@ -19,6 +19,7 @@ const content = `\x1b[32m✓\x1b[0m All tests passed
 const svg = shellfie(content, {
   template: 'macos',
   title: 'CI/CD Pipeline',
+  width: 300,
   header: {
     backgroundColor: '#2d2d2d',  // Darker header background
     border: true,

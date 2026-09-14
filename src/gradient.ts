@@ -1,86 +1,90 @@
+import { gradient as grfti } from 'grfti';
 import type { Gradient } from './types';
 
-export function parseGradient(value: string): Gradient | string {
-  if (!value.startsWith('gradient(')) {
-    return value;
-  }
-
-  const match = value.match(/^gradient\(([^)]+)\)$/);
-  if (!match) {
-    return value;
-  }
-
-  const content = match[1];
-  const parts = content.split(':');
-  const colorsPart = parts[0];
-  const options = parts.slice(1);
-
-  const colors = colorsPart.split(',').map(c => c.trim()).filter(c => c.length > 0);
-
-  if (colors.length === 0) {
-    return value;
-  }
-
-  const gradient: Gradient = {
-    type: 'gradient',
-    colors
-  };
-
-  for (const opt of options) {
-    const trimmed = opt.trim().toLowerCase();
-    if (trimmed === 'horizontal' || trimmed === 'vertical' || trimmed === 'diagonal') {
-      gradient.direction = trimmed;
-    } else if (trimmed === 'reverse' || trimmed === 'reversed') {
-      gradient.reverse = true;
-    }
-  }
-
-  return gradient;
+export interface GradientDefOptions {
+  direction?: Gradient['direction'];
+  padStart?: number;
+  padEnd?: number;
+  total?: number;
 }
 
-/**
- * Check if a value is a Gradient object.
- */
+const GRADIENT_CALL = /^\s*gradient\s*\(/i;
+
+// grfti always reports a direction, but consumers pick their own default for an
+// unspecified one (shellfie horizontal, dvd vertical), so only carry it when written.
+const DIRECTION_FLAG = /:\s*(horizontal|vertical|diagonal|diag|row|column|[hvd])\s*(?=[:)]|\s*$)/i;
+
+const DIRECTIONS: Record<string, NonNullable<Gradient['direction']>> = {
+  horizontal: 'horizontal', h: 'horizontal', row: 'horizontal',
+  vertical: 'vertical', v: 'vertical', column: 'vertical',
+  diagonal: 'diagonal', diag: 'diagonal', d: 'diagonal',
+};
+
+const COORDS: Record<NonNullable<Gradient['direction']>, { x1: string; y1: string; x2: string; y2: string }> = {
+  horizontal: { x1: '0%', y1: '0%', x2: '100%', y2: '0%' },
+  vertical: { x1: '0%', y1: '0%', x2: '0%', y2: '100%' },
+  diagonal: { x1: '0%', y1: '0%', x2: '100%', y2: '100%' },
+};
+
+const writtenDirection = (value: string): Gradient['direction'] => {
+  const match = value.match(DIRECTION_FLAG);
+  return match ? DIRECTIONS[match[1].toLowerCase()] : undefined;
+};
+
+export function parseGradient(value: string): Gradient | string {
+  if (!GRADIENT_CALL.test(value)) return value;
+
+  try {
+    const parsed = grfti(value);
+    const direction = writtenDirection(value);
+    const positions = parsed.stops.map((stop) => stop.position);
+    const even = positions.every(
+      (position, index) =>
+        Math.abs(position - (positions.length === 1 ? 0 : index / (positions.length - 1))) < 1e-9
+    );
+
+    return {
+      type: 'gradient',
+      colors: parsed.colors.map((color) => color.hex),
+      ...(even ? {} : { positions }),
+      ...(direction ? { direction } : {}),
+    };
+  } catch {
+    return value;
+  }
+}
+
 export function isGradient(value: unknown): value is Gradient {
   return typeof value === 'object' && value !== null && (value as Gradient).type === 'gradient';
 }
 
-/**
- * Generate SVG gradient definition element.
- * Returns the <linearGradient> element for inclusion in <defs>.
- */
-export function createGradientDef(
-  gradient: Gradient,
-  id: string,
-  width: number,
-  height: number
-): string {
+export function createGradientDef(gradient: Gradient, id: string, options: GradientDefOptions = {}): string {
+  const direction = gradient.direction ?? options.direction ?? 'horizontal';
+  const { x1, y1, x2, y2 } = COORDS[direction];
+
   const colors = gradient.reverse ? [...gradient.colors].reverse() : gradient.colors;
-  const direction = gradient.direction ?? 'horizontal';
+  const written = gradient.positions;
+  const positions = written === undefined || written.length !== colors.length
+    ? undefined
+    : gradient.reverse
+      ? [...written].reverse().map((position) => 1 - position)
+      : written;
 
-  // Calculate gradient coordinates based on direction
-  let x1: string, y1: string, x2: string, y2: string;
+  const total = options.total ?? 0;
+  const start = total > 0 ? ((options.padStart ?? 0) / total) * 100 : 0;
+  const end = total > 0 ? 100 - ((options.padEnd ?? 0) / total) * 100 : 100;
 
-  switch (direction) {
-    case 'vertical':
-      x1 = '0%'; y1 = '0%'; x2 = '0%'; y2 = '100%';
-      break;
-    case 'diagonal':
-      x1 = '0%'; y1 = '0%'; x2 = '100%'; y2 = '100%';
-      break;
-    case 'horizontal':
-    default:
-      x1 = '0%'; y1 = '0%'; x2 = '100%'; y2 = '0%';
-      break;
-  }
+  const stops = colors
+    .map((color, index) => {
+      const base = positions !== undefined
+        ? (positions[index] ?? 0) * 100
+        : colors.length === 1
+          ? 50
+          : (index / (colors.length - 1)) * 100;
+      const offset = start + (base / 100) * (end - start);
+      return `<stop offset="${Number(offset.toFixed(2))}%" stop-color="${color}"/>`;
+    })
+    .join('');
 
-  // Generate stop elements with even distribution
-  const stops = colors.map((color, index) => {
-    const offset = colors.length === 1 ? 0 : (index / (colors.length - 1)) * 100;
-    return `<stop offset="${offset}%" stop-color="${color}"/>`;
-  }).join('\n      ');
-
-  return `<linearGradient id="${id}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}">
-      ${stops}
-    </linearGradient>`;
+  return `<linearGradient id="${id}" x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}">${stops}</linearGradient>`;
 }

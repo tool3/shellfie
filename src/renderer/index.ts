@@ -461,7 +461,7 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
   let bgFill = 'none';
   if (background) {
     if (isGradient(background.value)) {
-      defs.push(createGradientDef(background.value, 'bg-gradient', svgWidth, svgHeight));
+      defs.push(createGradientDef(background.value, 'bg-gradient'));
       bgFill = 'url(#bg-gradient)';
     } else {
       bgFill = background.value;
@@ -476,7 +476,7 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
   const { borderColor } = template.shell;
   let borderStroke: string;
   if (isGradient(borderColor)) {
-    defs.push(createGradientDef(borderColor, 'border-gradient', terminalWidth, terminalHeight));
+    defs.push(createGradientDef(borderColor, 'border-gradient'));
     borderStroke = 'url(#border-gradient)';
   } else {
     borderStroke = borderColor;

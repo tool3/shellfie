@@ -461,7 +461,8 @@ export { generateAnimation } from './animations';
 
 export { presets } from './presets';
 
-export { isGradient, parseGradient } from './gradient';
+export { createGradientDef, isGradient, parseGradient } from './gradient';
+export type { GradientDefOptions } from './gradient';
 
 export { createFontConfig, loadEmbeddedFont, loadFont } from './fonts';
 export {

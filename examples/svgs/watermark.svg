@@ -1,14 +1,19 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368 212" width="368" height="212">
-  <rect x="0" y="0" width="368" height="212" fill="#1a1b26" rx="10" ry="10"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 317.6 212" width="317.6" height="212">
+  <rect x="0" y="0" width="317.6" height="212" fill="#1a1b26" rx="10" ry="10"/>
   <g class="title-bar">
     <circle cx="16" cy="20" r="6" fill="#ff5f56"/>
     <circle cx="36" cy="20" r="6" fill="#ffbd2e"/>
     <circle cx="56" cy="20" r="6" fill="#27c93f"/>
   </g>
-  <g class="text">
-    <text y="89.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#a9b1d6">DESERVES_RAISE=1</tspan></text>
-    <text y="128.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#a9b1d6">while (DESERVE_RAISE):</tspan></text>
-    <text y="148.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#a9b1d6">    raise_paycheck(tool3, 1000000)</tspan></text>
+  <g class="glyphs">
+    <rect x="83.2" y="94.2" width="8.4" height="1" fill="#a9b1d6" shape-rendering="crispEdges"/>
+    <rect x="133.6" y="133.4" width="8.4" height="1" fill="#a9b1d6" shape-rendering="crispEdges"/>
+    <rect x="91.6" y="153" width="8.4" height="1" fill="#a9b1d6" shape-rendering="crispEdges"/>
   </g>
-  <g><rect x="238" y="186" width="114" height="14" fill="#9ece6a"/><text style="outline: 1px solid white" y="196" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="10" xml:space="preserve"><tspan x="238" fill="#1a1b26">powered by shellfie</tspan></text></g>
+  <g class="text">
+    <text y="89.6" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#a9b1d6">DESERVES</tspan><tspan x="91.6" fill="#a9b1d6">RAISE=1</tspan></text>
+    <text y="128.8" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#a9b1d6">while (DESERVE</tspan><tspan x="142" fill="#a9b1d6">RAISE):</tspan></text>
+    <text y="148.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#a9b1d6">    raise</tspan><tspan x="100" fill="#a9b1d6">paycheck(tool3, 1000000)</tspan></text>
+  </g>
+  <g><rect x="187.6" y="186" width="114" height="14" fill="#9ece6a"/><text style="outline: 1px solid white" y="196" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="10" xml:space="preserve"><tspan x="187.6" fill="#1a1b26">powered by shellfie</tspan></text></g>
 </svg>

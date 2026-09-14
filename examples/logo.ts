@@ -1,4 +1,4 @@
-import gradient from 'gradient-string';
+import { gradient } from 'grfti';
 import shellfie from '../src';
 import { writeFileSync } from 'node:fs';
 
@@ -53,7 +53,7 @@ const logo2 = String.raw`
 
 console.log(logo2);
 
-const svg = shellfie(gradient.teen.multiline(logo2), {
+const svg = shellfie(gradient.teen(logo2), {
   template: 'macos',
   title: 'shellfie',
   lineHeight: 1,

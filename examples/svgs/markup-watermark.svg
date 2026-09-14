@@ -1,5 +1,5 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 368 231.6" width="368" height="231.6">
-  <rect x="0" y="0" width="368" height="231.6" fill="#22212c" rx="10" ry="10"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 292.4 231.6" width="292.4" height="231.6">
+  <rect x="0" y="0" width="292.4" height="231.6" fill="#22212c" rx="10" ry="10"/>
   <g class="title-bar">
     <circle cx="16" cy="20" r="6" fill="#ff5f56"/>
     <circle cx="36" cy="20" r="6" fill="#ffbd2e"/>
@@ -11,7 +11,7 @@
     <text y="148.4" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#f8f8f2">    </tspan><tspan x="49.6" fill="#9580ff">starShellfieOnGitub</tspan><tspan x="209.2" fill="#f8f8f2">(</tspan><tspan x="217.6" fill="#ffff80">10000</tspan><tspan x="259.6" fill="#f8f8f2">);</tspan></text>
     <text y="168" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="14" xml:space="preserve"><tspan x="16" fill="#f8f8f2">}</tspan></text>
   </g>
-  <g transform="translate(352, 215.6)" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="10" fill="#f8f8f2">
+  <g transform="translate(276.4, 215.6)" font-family="'SF Mono', 'Monaco', 'Menlo', 'Ubuntu Mono', 'Consolas', 'Courier New', monospace" font-size="10" fill="#f8f8f2">
 <a href="https://github.com/tool3/shellfie">
   <g transform="translate(-90, -5)">
     <defs>

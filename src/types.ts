@@ -9,6 +9,8 @@ export interface RGB {
 export interface Gradient {
   type: 'gradient';
   colors: string[];
+  /** Stop offsets in 0..1, parallel to `colors`. Evenly spaced when absent. */
+  positions?: number[];
   direction?: 'horizontal' | 'vertical' | 'diagonal';
   reverse?: boolean;
 }
