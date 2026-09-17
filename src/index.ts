@@ -394,6 +394,7 @@ const resolveOptions = (options: shellfieOptions = {}, input: string = ''): Rend
     topOverlays: resolveOverlays(merged.topOverlays),
     animation: merged.animation ?? null,
     animationColor: merged.animationColor ?? null,
+    effects: merged.effects ?? null,
   };
 };
 
@@ -463,6 +464,26 @@ export { presets } from './presets';
 
 export { createGradientDef, isGradient, parseGradient } from './gradient';
 export type { GradientDefOptions } from './gradient';
+
+export {
+  applyEffects,
+  applyToDocument,
+  applyToWindow,
+  effectNames,
+  effectsRegistry,
+  effectsTarget,
+  resolveEffects,
+} from './effects';
+export type {
+  Effect,
+  EffectsConfig,
+  EffectsInput,
+  EffectsList,
+  EffectSpec,
+  EffectsOption,
+  EffectTarget,
+  VctrfxSettings,
+} from './effects';
 
 export { createFontConfig, loadEmbeddedFont, loadFont } from './fonts';
 export {

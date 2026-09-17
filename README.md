@@ -173,6 +173,7 @@ shellfie(input, {
     borderWidth?: 1,                              //   border width in pixels
   },
   background?: "#1a1a2e",                         // outer background (see Background section below)
+  effects?: "crt",                                // post-processing (see Effects section below)
 });
 ```
 
@@ -229,6 +230,77 @@ Gradients use the format `gradient(color1, color2:direction:reverse)`:
 | `diagonal`   | Top-left to bottom-right           |
 
 Add `:reverse` to reverse the gradient direction.
+
+## Effects
+
+Post-processing for the finished SVG, powered by
+[vctrfx](https://github.com/tool3/vctrfx). Still vector, still editable — no
+rasterizing.
+
+```typescript
+shellfie(input, { effects: "crt" });
+shellfie(input, { effects: "scanlines(gap:3,opacity:.35) grain(amount:.4)" });
+```
+
+27 effects and 8 presets are reachable by name. `crt`, `vhs`, `riso`, `xerox`,
+`neon`, `film`, `newsprint` and `cyberpunk` are the presets; the effects behind
+them are listed in the [vctrfx README](https://github.com/tool3/vctrfx#effects).
+
+### Writing a stack
+
+Effects apply left to right, exactly as you would stack them in an editor.
+
+```typescript
+shellfie(input, { effects: "grayscale scanlines vignette" });
+```
+
+Arguments go in parentheses as `key: value`. A dotted key reaches inside a preset,
+so the rest of the recipe stays put:
+
+```typescript
+shellfie(input, { effects: "crt(scanlines.gap:3, animate:true)" });
+```
+
+Arrays mix names, option objects and vctrfx effects freely:
+
+```typescript
+import { crt, grain } from "vctrfx";
+
+shellfie(input, { effects: ["crt", { grain: { amount: 0.4 } }] });
+shellfie(input, { effects: [crt(), grain({ amount: 0.4 })] });
+```
+
+### Effect Options
+
+The object form adds vctrfx's own settings, plus `target`:
+
+```typescript
+shellfie(input, {
+  effects: {
+    use: "crt",                // the stack — any of the forms above
+    target: "terminal",        // 'all' (default) or 'terminal'
+    seed: "hero",              // seeds grain, glitch and friends; same seed, same output
+    animate: false,            // strip self-animating effects, for print or snapshots
+    clip: "shape",             // 'shape' (default) trims to the artwork's own frame
+    format: "preserve",        // 'preserve' | 'pretty' | 'minify'
+  },
+});
+```
+
+| Option | Default | What it does |
+| ------ | ------- | ------------ |
+| `use` | — | The effect stack |
+| `target` | `'all'` | `'all'` post-processes the whole image, outer background included. `'terminal'` confines the effects to the window, leaving the background, padding, shadow and glow untouched |
+| `seed` | `'vctrfx'` | Seeds every random decision. Change it to reroll a glitch or a grain field |
+| `animate` | `true` | `false` strips animation from every effect that asked for it |
+| `clip` | `'shape'` | `'none'` lets effects spill past the artwork's frame |
+| `format` | `'preserve'` | `'pretty'` re-indents, `'minify'` drops comments and layout whitespace |
+
+An unknown name is an error with a suggestion, not a silently missing effect:
+
+```
+Unknown effect "scanline". Did you mean "scanlines"?
+```
 
 ## Watermarks
 
@@ -487,6 +559,7 @@ getMaxWidth(lines); // 80
 ## Related
 
 - See [shellfie-cli](https://github.com/tool3/shellfie-cli) for shellfie on command line.
+- See [vctrfx](https://github.com/tool3/vctrfx) for the post-processing behind `effects`.
 - See [shellfied](https://github.com/tool3/shellfied) for the shellfie on web.
  - See [dvd](https://github.com/tool3/dvd) for shellfie on drugs !
 

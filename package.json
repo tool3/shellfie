@@ -2,26 +2,32 @@
   "name": "shellfie",
   "version": "2.5.0",
   "description": "Convert terminal output to crystal-clear SVG images",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "type": "module",
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
     ".": {
-      "types": "./dist/index.d.ts",
-      "require": "./dist/index.js",
-      "module": "./dist/index.js",
-      "import": "./dist/index.js",
-      "default": "./dist/index.js"
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
     }
   },
   "files": [
-    "dist"
+    "./dist"
   ],
+  "sideEffects": false,
   "scripts": {
-    "build": "tsc",
+    "build": "tsdown",
+    "typecheck": "tsc",
     "test": "vitest run",
     "test:watch": "vitest",
-    "example": "npx tsx example.ts",
-    "examples": "npx tsx examples/run-all.ts"
+    "examples": "tsx examples/run-all.ts"
   },
   "keywords": [
     "terminal",
@@ -40,14 +46,16 @@
   "devDependencies": {
     "@types/node": "^20.10.0",
     "chartscii": "^3.2.0",
+    "tsdown": "^0.23.0",
     "tsx": "^4.7.0",
-    "typescript": "^5.3.0",
+    "typescript": "^7.0.2",
     "vitest": "^4.0.18"
   },
   "engines": {
     "node": ">=18.0.0"
   },
   "dependencies": {
-    "grfti": "^0.5.0"
+    "grfti": "^0.5.0",
+    "vctrfx": "^0.9.0"
   }
 }

@@ -1,6 +1,6 @@
 import { readdirSync, mkdirSync } from 'node:fs';
-import { createRequire } from 'node:module';
 import { dirname, join, relative, resolve } from 'node:path';
+import { pathToFileURL } from 'node:url';
 
 const examplesDir = dirname(resolve(process.argv[1]));
 const projectRoot = resolve(examplesDir, '..');
@@ -27,11 +27,8 @@ const outputDirs = new Set([
 
 type Result = { file: string; error: unknown };
 
-const loadExample = createRequire(resolve(process.argv[1]));
-
 const run = (file: string): Promise<Result> =>
-  Promise.resolve()
-    .then(() => loadExample(file))
+  import(pathToFileURL(file).href)
     .then(
       () => ({ file, error: null as unknown }),
       (error: unknown) => ({ file, error })

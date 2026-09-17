@@ -1,4 +1,5 @@
 import type { AnimationType } from './animations';
+import type { EffectsOption } from './effects';
 
 export interface RGB {
   r: number;
@@ -317,6 +318,22 @@ export interface shellfieOptions {
   topOverlays?: string | string[] | ((width: number, height: number) => string | string[]);
   animation?: AnimationType;
   animationColor?: string;
+  /**
+   * Post-processing effects applied to the finished SVG, powered by vctrfx.
+   *
+   * - String: one effect or a stack, with optional arguments
+   *   @example 'crt'
+   *   @example 'scanlines(gap:3,opacity:.35) grain(amount:.4)'
+   *   @example 'crt(scanlines.gap:3, animate:true)'
+   *
+   * - Array: names, `{ name: options }` objects and vctrfx effects, mixed freely
+   *   @example ['crt', { grain: { amount: 0.4 } }]
+   *   @example [crt(), grain({ amount: 0.4 })]
+   *
+   * - Object: the stack under `use`, plus vctrfx settings and `target`
+   *   @example { use: 'crt', seed: 'hero', animate: false, target: 'terminal' }
+   */
+  effects?: EffectsOption;
 }
 
 export interface ResolvedHeaderConfig {
@@ -400,4 +417,5 @@ export interface RenderOptions {
   topOverlays: shellfieOptions['topOverlays'];
   animation: AnimationType | null;
   animationColor: string | null;
+  effects: EffectsOption | null;
 }

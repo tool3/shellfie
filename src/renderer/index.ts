@@ -1,4 +1,5 @@
 import { generateAnimation } from '../animations';
+import { applyToDocument, applyToWindow, effectsTarget, WINDOW_END, WINDOW_START } from '../effects';
 import { createGradientDef, isGradient } from '../gradient';
 import { parseAnsi } from '../parser';
 import { createPatternDef } from '../patterns';
@@ -19,6 +20,11 @@ import { escapeXml, renderSpan } from './text';
 /**
  * Round a coordinate value to avoid floating-point precision issues in SVG rendering.
  */
+interface ScopedDef {
+  scope: 'outer' | 'window';
+  markup: string;
+}
+
 function r(value: number): number {
   return Math.round(value * 100) / 100;
 }
@@ -434,6 +440,9 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
     watermark, customGlyphs, header, footer, controls, background,
     lineNumbers, badge, backgroundOpacity, glow, overlays, topOverlays, animation, animationColor,
   } = options;
+  const effects = options.effects ?? null;
+  const target = effectsTarget(effects);
+  const windowOnly = effects !== null && target === 'terminal';
   const dim = calculateDimensions(lines, options);
   const fontFamily = font.embedData ? `'EmbeddedFont', ${font.family}` : font.family;
 
@@ -451,24 +460,25 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
     `<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 ${svgWidth} ${svgHeight}" width="${svgWidth}" height="${svgHeight}">`,
   ];
 
-  // Defs
-  const defs: string[] = [];
-  if (template.shell.shadow) defs.push(createShadowDefs(terminalWidth, terminalHeight, template.shell.borderRadius));
-  if (glow) defs.push(createGlowDefs(glow));
-  if (font.embedData) defs.push(`<style>${generateFontFace(font)}</style>`);
+  // Defs. Scope decides which side of the seam a definition lands on when
+  // effects target the window alone — moving rather than copying keeps ids unique.
+  const defs: ScopedDef[] = [];
+  if (template.shell.shadow) defs.push({ scope: 'outer', markup: createShadowDefs(terminalWidth, terminalHeight, template.shell.borderRadius) });
+  if (glow) defs.push({ scope: 'outer', markup: createGlowDefs(glow) });
+  if (font.embedData) defs.push({ scope: 'window', markup: `<style>${generateFontFace(font)}</style>` });
 
   // Add gradient definition if background is a gradient
   let bgFill = 'none';
   if (background) {
     if (isGradient(background.value)) {
-      defs.push(createGradientDef(background.value, 'bg-gradient'));
+      defs.push({ scope: 'outer', markup: createGradientDef(background.value, 'bg-gradient') });
       bgFill = 'url(#bg-gradient)';
     } else {
       bgFill = background.value;
     }
     // Add pattern definition if specified
     if (background.pattern) {
-      defs.push(createPatternDef(background.pattern, 'bg-pattern'));
+      defs.push({ scope: 'outer', markup: createPatternDef(background.pattern, 'bg-pattern') });
     }
   }
 
@@ -476,14 +486,16 @@ export const renderSvg = (lines: ParsedLine[], options: RenderOptions): RenderRe
   const { borderColor } = template.shell;
   let borderStroke: string;
   if (isGradient(borderColor)) {
-    defs.push(createGradientDef(borderColor, 'border-gradient'));
+    defs.push({ scope: 'window', markup: createGradientDef(borderColor, 'border-gradient') });
     borderStroke = 'url(#border-gradient)';
   } else {
     borderStroke = borderColor;
   }
 
-  if (defs.length > 0) {
-    svgParts.push(`  <defs>\n    ${defs.join('\n    ')}\n  </defs>`);
+  const inlineDefs = windowOnly ? defs.filter(def => def.scope === 'outer') : defs;
+  const windowDefs = windowOnly ? defs.filter(def => def.scope === 'window') : [];
+  if (inlineDefs.length > 0) {
+    svgParts.push(`  <defs>\n    ${inlineDefs.map(def => def.markup).join('\n    ')}\n  </defs>`);
   }
 
   // Outer background (only if specified)
@@ -574,6 +586,7 @@ ${indent}</g>`);
     terminalBg = isGradient(background.value) ? '#000000' : background.value;
   }
   const bgOpacityAttr = backgroundOpacity < 1 ? ` opacity="${backgroundOpacity}"` : '';
+  if (windowOnly) svgParts.push(WINDOW_START);
   svgParts.push(`${indent}<rect x="0" y="0" width="${terminalWidth}" height="${terminalHeight}" fill="${terminalBg}" rx="${template.shell.borderRadius}" ry="${template.shell.borderRadius}"${bgOpacityAttr}/>`);
 
   // Title bar (rendered before border so border paints on top)
@@ -690,6 +703,8 @@ ${indent}</g>`);
     );
   }
 
+  if (windowOnly) svgParts.push(WINDOW_END);
+
   // Close terminal group if we opened one
   if (terminalEnd) {
     svgParts.push(terminalEnd);
@@ -697,8 +712,17 @@ ${indent}</g>`);
 
   svgParts.push('</svg>');
 
+  const rendered = svgParts.join('\n');
+  const svg = windowOnly
+    ? applyToWindow(rendered, effects, {
+        width: terminalWidth,
+        height: terminalHeight,
+        defs: windowDefs.length > 0 ? `<defs>${windowDefs.map(def => def.markup).join('')}</defs>` : '',
+      })
+    : applyToDocument(rendered, effects);
+
   return {
-    svg: svgParts.join('\n'),
+    svg,
     width: svgWidth,
     height: svgHeight,
   };
