@@ -1,6 +1,6 @@
 {
   "name": "shellfie",
-  "version": "2.5.2",
+  "version": "2.5.3",
   "description": "Convert terminal output to crystal-clear SVG images",
   "type": "module",
   "main": "./dist/index.cjs",
