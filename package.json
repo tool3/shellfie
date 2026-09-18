@@ -60,7 +60,8 @@
   },
   "dependencies": {
     "grfti": "^0.5.0",
-    "vctrfx": "^0.9.0"
+    "vctrfx": "^0.8.0"
   },
-  "browser": "./dist/index.browser.js"
+  "browser": "./dist/index.browser.js",
+  "allowScripts": {}
 }
